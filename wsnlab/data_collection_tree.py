@@ -22,7 +22,7 @@ def _addr_str(a): return "" if a is None else str(a)
 def _role_name(r): return r.name if hasattr(r, "name") else str(r)
 
 
-Roles = Enum('Roles', 'UNDISCOVERED UNREGISTERED ROOT REGISTERED CLUSTER_HEAD')
+Roles = Enum('Roles', 'ROOT CLUSTER_HEAD ROUTER REGISTERED UNREGISTERED UNDISCOVERED')
 """Enumeration of roles"""
 
 ###########################################################
@@ -103,10 +103,6 @@ class SensorNode(wsn.Node):
                 self.set_timer('TIMER_EXPORT_CH_CSV', config.EXPORT_CH_CSV_INTERVAL)
                 self.set_timer('TIMER_EXPORT_NEIGHBOR_CSV', config.EXPORT_NEIGHBOR_CSV_INTERVAL)
 
-
-
-
-    
     def become_unregistered(self):
         if self.role != Roles.UNDISCOVERED:
             self.kill_all_timers()
@@ -154,7 +150,6 @@ class SensorNode(wsn.Node):
         selected_addr = self.neighbors_table[min_hop_gui]['source']
         self.send_join_request(selected_addr)
         self.set_timer('TIMER_JOIN_REQUEST', 5)
-
 
     ###################
     def send_probe(self):
@@ -495,7 +490,6 @@ def write_clusterhead_distances_csv(path="clusterhead_distances.csv"):
             for id2, x2, y2 in clusterheads[i+1:]:
                 dist = math.hypot(x1 - x2, y1 - y2)
                 w.writerow([id1, id2, f"{dist:.6f}"])
-
 
 
 def write_neighbor_distances_csv(path="neighbor_distances.csv", dedupe_undirected=True):
