@@ -16,13 +16,16 @@ class Node(wsnlab.Node):
     """
 
     ###################
-    def __init__(self, sim, id, pos):
+    def __init__(self, 
+                 sim: Simulator, 
+                 id: int, 
+                 pos: tuple[float, float]):
         """Constructor for visualised Node class. Creates a node in topovis scene.
 
            Args:
                sim (Simulator): Simulation environment of node.
                id (int): Global unique ID of node.
-               pos (Tuple(double,double)): Position of node.
+               pos (Tuple(float, float)): Position of node.
 
            Returns:
                Node: Created node object.
@@ -32,7 +35,8 @@ class Node(wsnlab.Node):
         self.scene.node(id, *pos)
 
     ###################
-    def send(self, pck):
+    def send(self, 
+             pck: dict):
         """Visualise sending process in addition to base send method.
 
            Args:
@@ -73,17 +77,19 @@ class Node(wsnlab.Node):
            Returns:
 
         """
-        obj_id =self.scene.circle(self.pos[0], self.pos[1], self.tx_range, line="wsnsimpy:tx")
+        obj_id = self.scene.circle(self.pos[0], self.pos[1], self.tx_range, line="wsnsimpy:tx")
         #self.delayed_exec(0.2, self.scene.delshape, obj_id)
 
 
 
-    def move(self, x, y):
+    def move(self, 
+             x: float, 
+             y: float):
         """Visualise move process in addition to base move method.
 
            Args:
-               x (double): x of position.
-               y (double): y of position.
+               x (float): x of position.
+               y (float): y of position.
 
            Returns:
 
@@ -134,17 +140,23 @@ class Simulator(wsnlab.Simulator):
 
     Attributes:
         visual (bool): A flag to visualising process.
-        terrain_size (Tuple(double,double)): Size of visualised terrain.
+        terrain_size (Tuple(float,float)): Size of visualised terrain.
     '''
 
-    def __init__(self, duration, timescale=1, seed=0, terrain_size=(1000, 1000), visual=True, title=None):
+    def __init__(self, 
+                 duration: float, 
+                 timescale: float = 1, 
+                 seed: float = 0, 
+                 terrain_size: tuple[float, float] = (1000, 1000), 
+                 visual: bool = True, 
+                 title: str = None):
         """Constructor for visualised Simulator class.
 
            Args:
-               duration (double): Duration of simulation.
-               timescale (double): Seconds in real time for 1 second in simulation. It arranges speed of simulation
-               seed (double): seed for Random bbject.
-               terrain_size (Tuple(double,double)): Size of visualised terrain.
+               duration (float): Duration of simulation.
+               timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
+               seed (float): seed for Random bbject.
+               terrain_size (Tuple(float,float)): Size of visualised terrain.
                visual (bool): A flag to visualising process.
                title (string): Title of scene.
 

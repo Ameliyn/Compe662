@@ -19,7 +19,9 @@ class Addr:
     """
 
     ############################
-    def __init__(self, net_addr, node_addr):
+    def __init__(self, 
+                 net_addr: int, 
+                 node_addr: int):
         """Constructor for Addr class.
 
            Args:
@@ -73,8 +75,7 @@ class Addr:
 
 
 BROADCAST_ADDR = Addr(config.BROADCAST_NET_ADDR, config.BROADCAST_NODE_ADDR)
-"""Addr: Keeps broadcast address.
-"""
+"""Addr: Keeps broadcast address."""
 
 
 
@@ -95,15 +96,16 @@ def ensure_generator(env, func, *args, **kwargs):
 
 
 ###########################################################
-def distance(pos1, pos2):
+def distance(pos1: float, 
+             pos2: float):
     """Calculates the distance between two positions.
 
        Args:
-           pos1 (Tuple(double,double)): First position.
-           pos2 (Tuple(double,double)): Second position.
+           pos1 (Tuple(float,float)): First position.
+           pos2 (Tuple(float,float)): Second position.
 
        Returns:
-           double: returns the distance between two positions.
+           float: returns the distance between two positions.
     """
     return ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
 
@@ -113,8 +115,8 @@ class Node:
     """Class to model a network node with basic operations. It's base class for more complex node classes.
 
        Attributes:
-           pos (Tuple(double,double)): Position of node.
-           tx_range (double): Transmission range of node.
+           pos (Tuple(float,float)): Position of node.
+           tx_range (float): Transmission range of node.
            sim (Simulator): Simulation environment of node.
            id (int): Global unique ID of node.
            addr (Addr): Network address of node.
@@ -123,20 +125,23 @@ class Node:
            Otherwise, node is awaken.
            logging (bool): It is a flag for logging. If it is True, nodes outputs can be seen in terminal.
            active_timer_list (List of strings): It keeps the names of active timers.
-           neighbor_distance_list (List of Tuple(double,int)): Sorted list of nodes distances to other nodes.
+           neighbor_distance_list (List of Tuple(float,int)): Sorted list of nodes distances to other nodes.
             Each Tuple keeps a distance and a node id.
            timeout (Function): timeout function
 
     """
 
     ############################
-    def __init__(self, sim, id, pos):
+    def __init__(self, 
+                 sim, 
+                 id: int, 
+                 pos: tuple[float, float]):
         """Constructor for base Node class.
 
            Args:
                sim (Simulator): Simulation environment of node.
                id (int): Global unique ID of node.
-               pos (Tuple(double,double)): Position of node.
+               pos (Tuple(float,float)): Position of node.
 
            Returns:
                Node: Created node object.
@@ -172,12 +177,12 @@ class Node:
            Args:
 
            Returns:
-               double: Time of simulation.
+               float: Time of simulation.
         """
         return self.sim.env.now
 
     ############################
-    def log(self, msg):
+    def log(self, msg: str):
         """Writes outputs of node to terminal.
 
            Args:
@@ -189,7 +194,7 @@ class Node:
             print(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}")
 
     ############################
-    def can_receive(self, pck):
+    def can_receive(self, pck: dict):
         """Checks if the given package is proper to receive.
 
            Args:
@@ -214,7 +219,7 @@ class Node:
         return False
 
     ############################
-    def send(self, pck):
+    def send(self, pck: dict):
         """Sends given package. If dest address in pck is broadcast address, it sends the package to all neighbors.
 
            Args:
@@ -231,12 +236,12 @@ class Node:
                 break
 
     ############################
-    def set_timer(self, name, time, *args, **kwargs):
+    def set_timer(self, name: str, time: float, *args, **kwargs):
         """Sets a timer with a given name. It appends name of timer to the active timer list.
 
            Args:
                 name (string): Name of timer.
-                time (double): Duration of timer.
+                time (float): Duration of timer.
                 *args (string): Additional args.
                 **kwargs (string): Additional key word args.
            Returns:
@@ -246,7 +251,7 @@ class Node:
         self.delayed_exec(time - 0.00001, self.on_timer_fired_check, name, *args, **kwargs)
 
     ############################
-    def kill_timer(self, name):
+    def kill_timer(self, name: str):
         """Kills a timer with a given name. It removes name of timer from the active timer list if exists.
 
            Args:
@@ -269,14 +274,14 @@ class Node:
         self.active_timer_list = []
 
     ############################
-    def delayed_exec(self, delay, func, *args, **kwargs):
+    def delayed_exec(self, delay: float, func, *args, **kwargs):
         """Executes a function with given parameters after a given delay.
 
            Args:
-                delay (double): Delay duration.
+                delay (float): Delay duration.
                 func (Function): Function to execute.
-                *args (double): Function args.
-                delay (double): Function key word args.
+                *args (float): Function args.
+                delay (float): Function key word args.
            Returns:
 
         """
@@ -306,12 +311,12 @@ class Node:
         pass
 
     ###################
-    def move(self, x, y):
+    def move(self, x: float, y: float):
         """Moves a node from the current position to given position
 
            Args:
-               x (double): x of position.
-               y (double): y of position.
+               x (float): x of position.
+               y (float): y of position.
 .
            Returns:
          """
@@ -319,7 +324,7 @@ class Node:
         self.sim.update_neighbor_list(self.id)
 
     ############################
-    def on_receive(self, pck):
+    def on_receive(self, pck: dict):
         """It is executed when node receives a package. It should be overridden if needed.
 
            Args:
@@ -330,7 +335,7 @@ class Node:
         pass
 
     ############################
-    def on_receive_check(self, pck):
+    def on_receive_check(self, pck: dict):
         """Checks if node is sleeping or not for incoming package.
         If sleeping, does not call on_recieve() and does not receive package.
 
@@ -343,7 +348,7 @@ class Node:
             self.delayed_exec(0.00001, self.on_receive, pck)
 
     ############################
-    def on_timer_fired(self, name, *args, **kwargs):
+    def on_timer_fired(self, name: str, *args, **kwargs):
         """It is executed when a timer fired. It should be overridden if needed.
 
            Args:
@@ -356,7 +361,7 @@ class Node:
         pass
 
     ############################
-    def on_timer_fired_check(self, name, *args, **kwargs):
+    def on_timer_fired_check(self, name: str, *args, **kwargs):
         """Checks if the timer about to fire is in active timer list or not. If not, does not call on_timer_fired().
 
            Args:
@@ -409,22 +414,22 @@ class Simulator:
     """Class to model a network.
 
        Attributes:
-           timescale (double): Seconds in real time for 1 second in simulation. It arranges speed of simulation
+           timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
            nodes (List of Node): Nodes in network.
-           duration (double): Duration of simulation.
+           duration (float): Duration of simulation.
            random (Random): Random object to use.
            timeout (Function): Timeout Function.
 
     """
 
     ############################
-    def __init__(self, duration, timescale=1, seed=0):
+    def __init__(self, duration: float, timescale: float = 1, seed: float = 0):
         """Constructor for Simulator class.
 
            Args:
-               until (double): Duration of simulation.
-               timescale (double): Seconds in real time for 1 second in simulation. It arranges speed of simulation
-               seed (double): seed for Random bbject.
+               until (float): Duration of simulation.
+               timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
+               seed (float): seed for Random bbject.
 
            Returns:
                Simulator: Created Simulator object.
@@ -444,19 +449,19 @@ class Simulator:
            Args:
 
            Returns:
-               double: Time of simulation.
+               float: Time of simulation.
         """
         return self.env.now
 
     ############################
-    def delayed_exec(self, delay, func, *args, **kwargs):
+    def delayed_exec(self, delay: float, func, *args, **kwargs):
         """Executes a function with given parameters after a given delay.
 
            Args:
-                delay (double): Delay duration.
+                delay (float): Delay duration.
                 func (Function): Function to execute.
-                *args (double): Function args.
-                delay (double): Function key word args.
+                *args (float): Function args.
+                delay (float): Function key word args.
            Returns:
 
         """
@@ -464,12 +469,12 @@ class Simulator:
         start_delayed(self.env, func, delay=delay)
 
     ############################
-    def add_node(self, node_class, pos):
+    def add_node(self, node_class, pos: tuple[float, float]):
         """Adds a new node in to network.
 
            Args:
                 nodeclass (Class): Node class inherited from Node.
-                pos (Tuple(double,double)): Position of node.
+                pos (Tuple(float,float)): Position of node.
            Returns:
                 nodeclass object: Created nodeclass object
         """
@@ -480,7 +485,7 @@ class Simulator:
         return node
 
     ############################
-    def update_neighbor_list(self, id):
+    def update_neighbor_list(self, id: int):
         '''
         Maintain each node's neighbor list by sorted distance after affected
         by addition or relocation of node with ID id
