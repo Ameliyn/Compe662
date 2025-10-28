@@ -7,6 +7,7 @@ BROADCAST_NODE_ADDR = 255
 ## node properties
 NODE_TX_RANGE = 100  # transmission range of nodes
 NODE_ARRIVAL_MAX = 200  # max time to wake up
+ROUTER_CHECK_INTERVAL = 100
 
 
 ## simulation properties
@@ -18,6 +19,7 @@ SIM_TERRAIN_SIZE = (1400, 1400)  #terrain size
 SIM_TITLE = 'Data Collection Tree'  # title of visualization window
 SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
+PACKET_TTL = 10
 
 
 ## application properties

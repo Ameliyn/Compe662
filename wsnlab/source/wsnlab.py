@@ -227,6 +227,8 @@ class Node:
            Returns:
 
         """
+        # if pck['type'] in ['NETWORK_REQUEST']:
+        #     print(f'{self.id} sent packet of type: {pck["type"]}')
         for (dist, node) in self.neighbor_distance_list:
             if dist <= self.tx_range:
                 if node.can_receive(pck):
@@ -469,7 +471,7 @@ class Simulator:
         start_delayed(self.env, func, delay=delay)
 
     ############################
-    def add_node(self, node_class, pos: tuple[float, float]):
+    def add_node(self, node_class, pos: tuple[float, float], is_root = False):
         """Adds a new node in to network.
 
            Args:
