@@ -19,8 +19,8 @@ SIM_TERRAIN_SIZE = (1400, 1400)  #terrain size
 SIM_TITLE = 'Data Collection Tree'  # title of visualization window
 SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
-PACKET_TTL = 10
-
+PACKET_TTL = 15
+SHOW_TX_CIRCLES = False
 
 ## application properties
 HEARTH_BEAT_TIME_INTERVAL = 100

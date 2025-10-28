@@ -46,15 +46,17 @@ class Node(wsnlab.Node):
 
         """
         # UNcomment for Radio Circles 
-        obj_id = self.scene.circle(
-           self.pos[0], self.pos[1],
-           self.tx_range,
-           line="wsnsimpy:tx")
+        if config.SHOW_TX_CIRCLES:
+            obj_id = self.scene.circle(
+            self.pos[0], self.pos[1],
+            self.tx_range,
+            line="wsnsimpy:tx")
         
         super().send(pck)
         
         #Uncomment for Radio Circles 
-        self.delayed_exec(0.2, self.scene.delshape, obj_id)
+        if config.SHOW_TX_CIRCLES:
+            self.delayed_exec(0.2, self.scene.delshape, obj_id)
         
         # When unicast is added, it needs to be re-arranged
         # if not pck['dest'].is_equal(wsnlab.BROADCAST_ADDR):

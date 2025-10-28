@@ -172,7 +172,7 @@ class SensorNode(wsn.Node):
             distance=pck['distance'] if 'distance' in pck.keys() else -1,
             arrival_time=pck['arrival_time'],
             role=pck['role'],
-            networks=pck['networks'] if 'networks' in pck.keys() else [pck['source'].net_addr])
+            networks=pck['networks'] if 'networks' in pck.keys() else [])
         self.networking_table[pck['gui']] = NodeInformation(
             gui=pck['gui'], 
             addr=pck['source'], 
@@ -180,7 +180,7 @@ class SensorNode(wsn.Node):
             distance=pck['distance'] if 'distance' in pck.keys() else -1,
             arrival_time=pck['arrival_time'],
             role=pck['role'],
-            networks=pck['networks'] if 'networks' in pck.keys() else [pck['source'].net_addr])
+            networks=pck['networks'] if 'networks' in pck.keys() else [])
 
         if pck['gui'] not in self.networking_table.keys() or pck['gui'] not in self.members_table:
             if pck['gui'] not in self.candidate_parents_table:
@@ -221,8 +221,8 @@ class SensorNode(wsn.Node):
         child_networks = set()
         child_networks.add(self.addr.net_addr)
         for gui, nodes in self.neighbors_table.items():
-            # child_networks.append(nodes.addr.net_addr)
-            child_networks.update(nodes.networks)
+            if gui in self.members_table:
+                child_networks.update(nodes.networks)
 
         self.send({'dest': wsn.BROADCAST_ADDR,
                    'type': 'HEART_BEAT',
@@ -309,8 +309,8 @@ class SensorNode(wsn.Node):
         child_networks = set()
         child_networks.add(self.addr.net_addr)
         for gui, nodes in self.neighbors_table.items():
-            # child_networks.append(nodes.addr.net_addr)
-            child_networks.update(nodes.networks)
+            if gui in self.members_table:
+                child_networks.update(nodes.networks)
 
         self.route_and_forward_package({'dest': self.root_addr, 'type': 'NETWORK_UPDATE', 'source': self.addr,
                    'gui': self.id, 'child_networks': child_networks})
@@ -357,18 +357,24 @@ class SensorNode(wsn.Node):
         # Finally if all else fails, send the packet towards ROOT
         if pck['next_hop'] == self.addr:
             if self.role == Roles.ROOT:
-                print(f'ERROR: {self.parent_gui} not in NEIGHBOR TABLE (self: {self.addr})')
+                print(f'ROOT UNABLE TO FIND ROUTE TO: {pck["dest"]}')
                 print(f'Networking Table {self.networking_table}')
                 print(f'Neighbor Table: {self.neighbors_table}')
                 print(f'{pck}')
-                raise Exception(f"ERROR: ROOT HAS NO PATH TO: {pck['dest']}")
+                #TODO: FIX THIS, ROOT should be able to contact everyone
+                # raise Exception(f"ERROR: ROOT HAS NO PATH TO: {pck['dest']}")
             for gui, networks in self.networking_table.items():
                 if self.root_addr.net_addr in networks.networks:
                     pck['next_hop'] = self.neighbors_table[gui].addr
                     break
 
         if pck['next_hop'] == self.addr:
-            raise Exception(f'UNROUTABLE PACKET FROM ({self.id}): {pck}\nNet Table: {self.networking_table}\nNeigh Table: {self.neighbors_table}')
+            hop_count = 99999
+            for gui, node in self.neighbors_table.items():
+                if node.hop_count < hop_count:
+                    hop_count = node.hop_count
+                    pck['next_hop'] = node.addr
+            # raise Exception(f'UNROUTABLE PACKET FROM ({self.id}): {pck}\nNet Table: {self.networking_table}\nNeigh Table: {self.neighbors_table}')
         if 'ttl' not in pck.keys():
             pck['ttl'] = config.PACKET_TTL
         else:
@@ -408,8 +414,15 @@ class SensorNode(wsn.Node):
             pck (Dict): received package
         Returns:        
         """
-        # assert(pck['dest'] == self.addr or pck['dest'] == wsn.BROADCAST_ADDR)
-
+        if pck['type'] == 'NETWORK_UPDATE':
+            try:
+                self.networking_table[pck['gui']].networks = pck['child_networks']
+                self.neighbors_table[pck['gui']].networks = pck['child_networks']
+                if self.role != Roles.ROOT:
+                    self.send_network_update()
+            except Exception as e:
+                    print(f'SELF {self.id}\nNET: {self.networking_table}\nNEIGH: {self.neighbors_table}\npck: {pck}')
+                    raise e
         if self.role == Roles.ROOT or self.role == Roles.CLUSTER_HEAD or self.role == Roles.ROUTER:  # if the node is root or cluster head
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
@@ -571,4 +584,4 @@ class SensorNode(wsn.Node):
                     print(f'{self.addr} could become router.')
                 else:
                     self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
-                    # self.become_router()
+                    # TODO: self.become_router()
