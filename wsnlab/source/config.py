@@ -20,8 +20,8 @@ SIM_TITLE = 'Data Collection Tree'  # title of visualization window
 SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
 PACKET_TTL = 15
-SHOW_TX_CIRCLES = True
-LOG_LEVEL = "DEBUG"
+SHOW_TX_CIRCLES = False
+LOG_LEVEL = "INFO"
 DO_SENSOR_MESSAGES = False
 
 
