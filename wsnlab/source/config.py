@@ -11,7 +11,7 @@ ROUTER_CHECK_INTERVAL = 100
 
 
 ## simulation properties
-SIM_NODE_COUNT = 100  # noce count in simulation
+SIM_NODE_COUNT = 50  # noce count in simulation
 SIM_NODE_PLACING_CELL_SIZE = 75  # cell size to place one node
 SIM_DURATION = 5000  # simulation Duration in seconds
 SIM_TIME_SCALE = 0.00001  #  The real time dureation of 1 second simualtion time
@@ -19,8 +19,9 @@ SIM_TERRAIN_SIZE = (1400, 1400)  #terrain size
 SIM_TITLE = 'Data Collection Tree'  # title of visualization window
 SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
-PACKET_TTL = 15
+PACKET_TTL = 10
 SHOW_TX_CIRCLES = False
+LOG_LEVEL = "DEBUG"
 
 ## application properties
 HEARTH_BEAT_TIME_INTERVAL = 100

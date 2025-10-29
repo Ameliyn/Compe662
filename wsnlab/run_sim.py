@@ -175,11 +175,24 @@ create_network(SensorNode, config.SIM_NODE_COUNT)
 
 write_node_distances_csv("node_distances.csv")
 write_node_distance_matrix_csv("node_distance_matrix.csv")
+write_clusterhead_distances_csv('clusterhead_distances.csv')
+write_neighbor_distances_csv('neighbor_distances.csv')
 
 # start the simulation
-sim.run()
+try:
+    sim.run()
+except:
+    pass
 print("Simulation Finished")
 
+if config.LOG_LEVEL == 'DEBUG':
+    for node in sim.nodes:
+        assert(isinstance(node, SensorNode))
+        if len(node.child_networks) != 0:
+            print()
+            print(f'ID: {node.id}, PARENT: {node.parent_gui}')
+            for gui, entry in node.neighbors_table.items():
+                print(f'{gui}: {entry}')
 
 # Created 100 nodes at random locations with random arrival times.
 # When nodes are created they appear in white
