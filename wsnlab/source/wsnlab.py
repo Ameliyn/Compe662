@@ -203,6 +203,7 @@ class Node:
            Returns:
                bool: returns True if the given package is proper to receive .
         """
+        # TODO: Check if local nodes are receiving Messages
         dest = pck['next_hop'] if 'next_hop' in pck.keys() else pck['dest']
         if dest.is_equal(BROADCAST_ADDR):  # if destination address is broadcast address
             return True

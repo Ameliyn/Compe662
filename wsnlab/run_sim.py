@@ -188,11 +188,18 @@ print("Simulation Finished")
 if config.LOG_LEVEL == 'DEBUG':
     for node in sim.nodes:
         assert(isinstance(node, SensorNode))
-        if len(node.child_networks) != 0 or node.role == Roles.ROOT:
+        # if len(node.child_networks) != 0 or node.role == Roles.ROOT:
+        if node.role != Roles.UNDISCOVERED:
             print()
             print(f'ID: {node.id}, PARENT: {node.parent_gui}')
             for gui, entry in node.neighbors_table.items():
+                print('Neighbor Table')
                 print(f'{gui}: {entry}')
+            for gui, entry in node.networking_table.items():
+                print('Networking Table')
+                print(f'{gui}: {entry}')
+            print('Candidate Parents Table')
+            print(f'{node.candidate_parents_table}')
 
 # Created 100 nodes at random locations with random arrival times.
 # When nodes are created they appear in white

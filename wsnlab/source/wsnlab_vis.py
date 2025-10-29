@@ -46,16 +46,22 @@ class Node(wsnlab.Node):
 
         """
         # UNcomment for Radio Circles 
-        if config.SHOW_TX_CIRCLES:
+        if config.SHOW_TX_CIRCLES and pck['type'] == 'JOIN_REPLY':
             obj_id = self.scene.circle(
             self.pos[0], self.pos[1],
             self.tx_range,
             line="wsnsimpy:tx")
+
+        # Trace all people who touched a packet
+        if 'packet_trace' in pck.keys():
+            pck['packet_trace'].append(self.id)
+        else:
+            pck['packet_trace'] = [self.id]
         
         super().send(pck)
         
         #Uncomment for Radio Circles 
-        if config.SHOW_TX_CIRCLES:
+        if config.SHOW_TX_CIRCLES and pck['type'] == 'JOIN_REPLY':
             self.delayed_exec(0.2, self.scene.delshape, obj_id)
         
         # When unicast is added, it needs to be re-arranged

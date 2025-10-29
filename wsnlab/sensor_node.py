@@ -199,6 +199,7 @@ class SensorNode(wsn.Node):
         self.networking_table[pck['source'].net_addr] = pck['source']
 
         # If the neighbor is not in our members table (not our child), add them as a candidate parent
+        #TODO: Use for network recovery
         if pck['gui'] not in self.members_table:
             if pck['gui'] not in self.candidate_parents_table:
                 self.candidate_parents_table.append(pck['gui'])
@@ -375,6 +376,7 @@ class SensorNode(wsn.Node):
             pck['ttl'] = config.PACKET_TTL
         else:
             pck['ttl'] -= 1
+        
         self.send(pck)
 
     ###################
