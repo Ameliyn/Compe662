@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import random
 from enum import Enum
 import sys
@@ -24,6 +25,7 @@ def _role_name(r): return r.name if hasattr(r, "name") else str(r)
 Roles = Enum('Roles', 'ROOT CLUSTER_HEAD ROUTER REGISTERED UNREGISTERED UNDISCOVERED')
 """Enumeration of roles"""
 
+@dataclass
 class NodeInformation():
     """A dataclass to store information about other nodes."""
     def __init__(self,
@@ -143,6 +145,7 @@ class SensorNode(wsn.Node):
             elif new_role == Roles.CLUSTER_HEAD:
                 self.scene.nodecolor(self.id, 0, 0, 1)
                 self.draw_tx_range()
+                self.set_timer('TIMER_NETWORK_UPDATE', config.TIMER_NETWORK_UPDATE_INTERVAL)
             elif new_role == Roles.ROOT:
                 self.scene.nodecolor(self.id, 0, 0, 0)
                 self.set_timer('TIMER_EXPORT_CH_CSV', config.EXPORT_CH_CSV_INTERVAL)
@@ -315,7 +318,7 @@ class SensorNode(wsn.Node):
 
         """
         self.route_and_forward_package({'dest': self.root_addr, 'type': 'NETWORK_UPDATE', 'source': self.addr,
-                   'gui': self.id, 'child_networks': self.child_networks})
+                   'gui': self.id, 'child_networks': self.child_networks, 'ttl': 99999})
 
     ###################
     def route_and_forward_package(self, pck: dict):
@@ -384,32 +387,30 @@ class SensorNode(wsn.Node):
 
         """
         try:
+            # Process Network Updates regardless of if they are for us or not
             if pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None:
-                self.neighbors_table[pck['gui']].networks = pck['child_networks']
-                for entry in pck['child_networks']:
-                    self.networking_table[entry] = pck['source']
-                    if entry == self.addr.net_addr:
-                        raise Exception("We are their child?")
-                if self.role != Roles.ROOT:                    
-                    if pck['gui'] != self.parent_gui:
-                        self.child_networks.update(pck['child_networks'])
-                        self.child_networks.add(pck['source'].net_addr)        
-                    self.send_network_update()
+                self.process_packet(pck)
+
+            # If we are the destination, process the packet
             elif pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
-                # Process Packet
                 self.process_packet(pck)
                 pass
+            
+            # If we are the next hop, route the packet
             elif 'next_hop' in pck.keys() and pck['next_hop'] == self.addr:
-                # Route Packet
+                
+                # If the Time to Live is <= 0, don't route the packet
                 if pck['ttl'] <= 0:
                     if config.LOG_LEVEL == 'DEBUG':
                         print(f'Current: {self.id} Packet Died: {pck}')
                         raise Exception(f'Packet Died')
                     return
                 self.route_and_forward_package(pck)
+            
+            # Packet is not for us            
             else:
-                # Packet is not for us
                 pass
+
         except AttributeError as e:
             print(f'{pck}')
             raise e
@@ -421,9 +422,20 @@ class SensorNode(wsn.Node):
             pck (Dict): received package
         Returns:        
         """
-        if pck['type'] == 'NETWORK_UPDATE':
-            raise Exception('we should not get here')
-        if self.role == Roles.ROOT or self.role == Roles.CLUSTER_HEAD or self.role == Roles.ROUTER:  # if the node is root or cluster head
+        if pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None:
+            self.neighbors_table[pck['gui']].networks = pck['child_networks']
+            for entry in pck['child_networks']:
+                self.networking_table[entry] = pck['source']
+                if entry == self.addr.net_addr:
+                    raise Exception("We are their child?")
+            if self.role != Roles.ROOT:                    
+                if pck['gui'] != self.parent_gui:
+                    self.child_networks.update(pck['child_networks'])
+                    self.child_networks.add(pck['source'].net_addr)        
+                self.send_network_update()
+            return
+
+        elif self.role == Roles.ROOT or self.role == Roles.CLUSTER_HEAD:  # if the node is root or cluster head
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
             if pck['type'] == 'PROBE':  # it waits and sends heart beat message once received probe message
@@ -439,8 +451,6 @@ class SensorNode(wsn.Node):
                     self.send_network_reply(pck['source'],new_addr)
             if pck['type'] == 'JOIN_ACK':
                 self.members_table.append(pck['gui'])
-            if pck['type'] == 'NETWORK_UPDATE':
-                raise Exception('we should not get here')
             if pck['type'] == 'SENSOR':
                 pass
                 # self.log(str(pck['source'])+'--'+str(pck['sensor_value']))
@@ -472,18 +482,13 @@ class SensorNode(wsn.Node):
                     # yield self.timeout(random.uniform(.1,.5))
                     self.send_join_reply(gui, wsn.Addr(self.addr.net_addr,gui))
 
-            if pck['type'] == 'NETWORK_UPDATE':
-                if pck['gui'] in self.networking_table:
-                    self.networking_table[pck['gui']].networks = pck['child_networks']
-                    self.neighbors_table[pck['gui']].networks = pck['child_networks']
-
         elif self.role == Roles.UNDISCOVERED:  # if the node is undiscovered
             if pck['type'] == 'HEART_BEAT':  # it kills probe timer, becomes unregistered and sets join request timer once received heart beat
                 self.update_neighbor(pck)
                 self.kill_timer('TIMER_PROBE')
                 self.become_unregistered()
 
-        if self.role == Roles.UNREGISTERED:  # if the node is unregistered
+        elif self.role == Roles.UNREGISTERED:  # if the node is unregistered
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
             if pck['type'] == 'JOIN_REPLY':  # it becomes registered and sends join ack if the message is sent to itself once received join reply
@@ -500,9 +505,10 @@ class SensorNode(wsn.Node):
                     self.set_role(Roles.REGISTERED)
                     # self.send_network_update()
                     # # sensor implementation
-                    # timer_duration =  self.id % 20
-                    # if timer_duration == 0: timer_duration = 1
-                    # self.set_timer('TIMER_SENSOR', timer_duration)
+                    if config.DO_SENSOR_MESSAGES:
+                        timer_duration =  self.id % 20
+                        if timer_duration == 0: timer_duration = 1
+                        self.set_timer('TIMER_SENSOR', timer_duration)
 
     ###################
     def on_timer_fired(self, name: str, *args, **kwargs):
@@ -567,6 +573,9 @@ class SensorNode(wsn.Node):
             if self.role == Roles.ROOT:
                 # write_neighbor_distances_csv("neighbor_distances.csv")
                 self.set_timer('TIMER_EXPORT_NEIGHBOR_CSV', config.EXPORT_NEIGHBOR_CSV_INTERVAL)
+        elif name == 'TIMER_NETWORK_UPDATE_INTERVAL':
+            self.send_network_update()
+            self.set_timer('TIMER_NETWORK_UPDATE_INTERVAL', config.TIMER_NETWORK_UPDATE_INTERVAL)
         elif name == 'ROUTER_CHECK':
             if self.role == Roles.CLUSTER_HEAD:
                 other_networks = 0

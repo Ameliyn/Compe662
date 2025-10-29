@@ -19,12 +19,15 @@ SIM_TERRAIN_SIZE = (1400, 1400)  #terrain size
 SIM_TITLE = 'Data Collection Tree'  # title of visualization window
 SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
-PACKET_TTL = 10
-SHOW_TX_CIRCLES = False
+PACKET_TTL = 15
+SHOW_TX_CIRCLES = True
 LOG_LEVEL = "DEBUG"
+DO_SENSOR_MESSAGES = False
+
 
 ## application properties
 HEARTH_BEAT_TIME_INTERVAL = 100
+TIMER_NETWORK_UPDATE_INTERVAL = 1000
 REPAIRING_METHOD = 'FIND_ANOTHER_PARENT' # 'ALL_ORPHAN', 'FIND_ANOTHER_PARENT'
 EXPORT_CH_CSV_INTERVAL = 10  # simulation time units;
 EXPORT_NEIGHBOR_CSV_INTERVAL = 10  # simulation time units;

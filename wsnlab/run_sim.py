@@ -188,7 +188,7 @@ print("Simulation Finished")
 if config.LOG_LEVEL == 'DEBUG':
     for node in sim.nodes:
         assert(isinstance(node, SensorNode))
-        if len(node.child_networks) != 0:
+        if len(node.child_networks) != 0 or node.role == Roles.ROOT:
             print()
             print(f'ID: {node.id}, PARENT: {node.parent_gui}')
             for gui, entry in node.neighbors_table.items():
