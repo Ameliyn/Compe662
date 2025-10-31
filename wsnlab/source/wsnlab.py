@@ -156,6 +156,7 @@ class Node:
         self.logging = True
         self.active_timer_list = []
         self.neighbor_distance_list = []
+        self.log_history = []
         self.timeout = self.sim.timeout
 
     ############################
@@ -192,6 +193,20 @@ class Node:
         """
         if self.logging:
             print(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}")
+        self.log_history.append(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}")
+
+    def dump_log(self):
+        """Returns a string representation of node's log.
+        
+        Args:
+
+        Returns:
+        """
+        log_dump = ""
+        for entry in self.log_history:
+            log_dump += entry + "\n"
+
+        return log_dump
 
     ############################
     def can_receive(self, pck: dict):

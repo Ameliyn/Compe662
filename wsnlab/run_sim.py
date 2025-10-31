@@ -192,11 +192,11 @@ if config.LOG_LEVEL == 'DEBUG':
         if node.role != Roles.UNDISCOVERED:
             print()
             print(f'ID: {node.id}, PARENT: {node.parent_gui}')
+            print('Neighbor Table')
             for gui, entry in node.neighbors_table.items():
-                print('Neighbor Table')
                 print(f'{gui}: {entry}')
+            print('Networking Table')
             for gui, entry in node.networking_table.items():
-                print('Networking Table')
                 print(f'{gui}: {entry}')
             print('Candidate Parents Table')
             print(f'{node.candidate_parents_table}')
