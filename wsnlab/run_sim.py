@@ -17,7 +17,7 @@ NODE_POS = {}  # {node_id: (x, y)}
 # --- tracking containers ---
 ALL_NODES = []              # node objects
 CLUSTER_HEADS = []
-ROLE_COUNTS = Counter()     # live tally per Roles enum
+ROLE_COUNTS: Counter[Roles] = Counter()     # live tally per Roles enum
 
 def _addr_str(a): return "" if a is None else str(a)
 def _role_name(r): return r.name if hasattr(r, "name") else str(r)

@@ -53,10 +53,10 @@ class Node(wsnlab.Node):
             line="wsnsimpy:tx")
 
         # Trace all people who touched a packet
-        if 'packet_trace' in pck.keys():
-            pck['packet_trace'].append(self.id)
-        else:
-            pck['packet_trace'] = [self.id]
+        # if 'packet_trace' in pck.keys():
+        #     pck['packet_trace'].append(self.id)
+        # else:
+        #     pck['packet_trace'] = [self.id]
         
         super().send(pck)
         

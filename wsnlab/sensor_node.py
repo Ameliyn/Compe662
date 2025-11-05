@@ -185,7 +185,13 @@ class SensorNode(wsn.Node):
             x2, y2 = NODE_POS[pck['gui']]
             pck['distance'] = math.hypot(x1 - x2, y1 - y2)
 
-        # Add source to neighbor Table        
+        # Add source to neighbor Table
+        if pck['gui'] in self.neighbors_table and pck['source'] != self.neighbors_table[pck['gui']].addr:
+            self.log('ADDRESS HAS CHANGED!')
+            for network, node in self.networking_table.items():
+                if node == self.neighbors_table[pck['gui']].addr:
+                    self.networking_table[network] = pck['source']
+
         self.neighbors_table[pck['gui']] = NodeInformation(
             gui=pck['gui'], 
             addr=pck['source'], 
@@ -193,7 +199,7 @@ class SensorNode(wsn.Node):
             distance=pck['distance'] if 'distance' in pck.keys() else -1,
             arrival_time=pck['arrival_time'],
             role=pck['role'],
-            networks=pck['networks'] if 'networks' in pck.keys() else [])
+            networks=pck['networks'] if 'networks' in pck.keys() else set())
         
         # Add network to networking table
         self.networking_table[pck['source'].net_addr] = pck['source']
@@ -299,12 +305,12 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
-        if 'NETWORK_REQUEST_TIMEOUT' in self.active_timer_list:
-            self.log('Not sending new network request because one was already sent and we have not timed out.')
-        else:
-            self.set_timer('NETWORK_REQUEST_TIMEOUT', config.NETWORK_REQUEST_TIMEOUT)
-            self.route_and_forward_package({'dest': self.root_addr, 'type': 'NETWORK_REQUEST', 
-                                            'source': self.addr, 'ttl': config.PACKET_TTL})
+        # if 'NETWORK_REQUEST_TIMEOUT' in self.active_timer_list:
+        #     self.log('Not sending new network request because one was already sent and we have not timed out.')
+        # else:
+        #     self.set_timer('NETWORK_REQUEST_TIMEOUT', config.NETWORK_REQUEST_TIMEOUT)
+        self.route_and_forward_package({'dest': self.root_addr, 'type': 'NETWORK_REQUEST', 
+                                        'source': self.addr, 'ttl': config.PACKET_TTL})
 
     ###################
     def send_network_reply(self, dest: wsn.Addr, addr: wsn.Addr):
@@ -348,6 +354,9 @@ class SensorNode(wsn.Node):
         pck['old_addr'] = old_addr
         pck['new_addr'] = self.addr
         self.route_and_forward_package(pck)
+        # pck['dest'] = wsn.BROADCAST_ADDR
+        # pck['ttl'] = 0
+        # self.send(pck)
 
     ###################
     def route_and_forward_package(self, pck: dict):
@@ -365,6 +374,13 @@ class SensorNode(wsn.Node):
             print(f'ERROR PACKET: {pck}')
             raise e
 
+        # If the Time to Live is <= 0, don't route the packet
+        if pck['ttl'] <= 0:
+            if config.LOG_LEVEL == 'DEBUG':
+                print(f'Current: {self.id} Packet Died: {pck}')
+                raise Exception(f'Packet Died')
+            return
+
         if 'next_hop' not in pck.keys():
             pck['next_hop'] = self.addr
 
@@ -378,7 +394,7 @@ class SensorNode(wsn.Node):
         # If the destination's network is in our neighbor table, next_hop = dest_net
         if pck['next_hop'] == self.addr:
             for gui, node in self.neighbors_table.items():
-                if pck['dest'].net_addr == node.addr.net_addr:
+                if pck['dest'].net_addr == node.addr.net_addr or (pck['dest'].net_addr in node.networks and node.hop_count > self.hop_count):
                     pck['next_hop'] = node.addr
                     pck['routed_type'] = 'Neighbor Network'
                     break
@@ -387,7 +403,7 @@ class SensorNode(wsn.Node):
         if pck['next_hop'] == self.addr:
             # Check networking table
             for network, hop in self.networking_table.items():
-                if node.addr.node_addr != self.parent_gui and pck['dest'].net_addr == network:
+                if hop.node_addr != self.parent_gui and pck['dest'].net_addr == network:
                     pck['next_hop'] = hop
                     pck['routed_type'] = 'Networking Table'
                     break
@@ -409,10 +425,19 @@ class SensorNode(wsn.Node):
         else:
             pck['ttl'] -= 1
         
+        if 'hop_trace' not in pck.keys():
+            pck['hop_trace'] = [self.addr]
+        else:
+            pck['hop_trace'].append(self.addr)
+        
         self.log(f'Sending {pck["type"]} to {pck["dest"]} through {pck["next_hop"]}'
                  f' (selected by {pck["routed_type"]})')
         if pck['next_hop'].node_addr in self.neighbors_table:
             self.log(f'{self.neighbors_table[pck["next_hop"].node_addr]}')
+            if self.neighbors_table[pck["next_hop"].node_addr].addr != pck['next_hop']:
+                print(self.dump_log())
+                raise Exception('Table Mismatch')
+        
         self.send(pck)
 
     ###################
@@ -429,10 +454,10 @@ class SensorNode(wsn.Node):
             if 'next_hop' in pck.keys() and pck['next_hop'].net_addr == self.id and pck['next_hop'] != self.addr:
                 self.log(f'{pck}')
                 raise Exception('They don\'t have my updated address :(')
-            if ((pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None)):
+
+            elif (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
                 self.process_packet(pck)
-            if pck['type'] == 'ADDRESS_RENEW':
-                self.process_packet(pck)
+
             # If we are the destination, process the packet
             elif pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
                 self.process_packet(pck)
@@ -440,20 +465,13 @@ class SensorNode(wsn.Node):
             
             # If we are the next hop, route the packet
             elif 'next_hop' in pck.keys() and pck['next_hop'] == self.addr:
-                
-                # If the Time to Live is <= 0, don't route the packet
-                if pck['ttl'] <= 0:
-                    if config.LOG_LEVEL == 'DEBUG':
-                        print(f'Current: {self.id} Packet Died: {pck}')
-                        raise Exception(f'Packet Died')
-                    return
                 self.route_and_forward_package(pck)
             
             # Packet is not for us            
             else:
                 pass
 
-        except AttributeError as e:
+        except Exception as e:
             print(f'{pck}')
             raise e
 
@@ -480,15 +498,21 @@ class SensorNode(wsn.Node):
                    self.send_network_update()
             return
     
-        if pck['type'] == 'ADDRESS_RENEW':
+        elif pck['type'] == 'ADDRESS_RENEW':
             self.log(f'ADDRESS RENEW: {pck["old_addr"]} -> {pck["new_addr"]}')
-            if pck['old_addr'].node_addr in self.neighbors_table:
-                self.neighbors_table[pck['old_addr'].node_addr].addr = pck['new_addr']
+            
+            # Update neighbors table
+            if pck['gui'] in self.neighbors_table:
+                self.neighbors_table[pck['gui']].addr = pck['new_addr']
+            
+            # Update networking table
             for network, node in self.networking_table.items():
                 if node == pck['old_addr']:
                     self.networking_table[network] = pck['new_addr']
+
             if pck['old_addr'] in self.networking_table.values():
                 raise Exception('We didnt clear it properly.')
+            
             if pck['next_hop'] == self.addr and pck['dest'] != self.addr:
                 self.route_and_forward_package(pck)
     
@@ -538,10 +562,15 @@ class SensorNode(wsn.Node):
                 self.send_heart_beat()
                 self.send_network_update(old_addr)
                 # yield self.timeout(.5)
-                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+                
                 for gui in self.received_JR_guis:
                     # yield self.timeout(random.uniform(.1,.5))
                     self.send_join_reply(gui, wsn.Addr(self.addr.net_addr,gui))
+                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+            if pck['type'] == 'KICK':
+                self.become_unregistered()
+            if pck['type'] == 'PROMOTE':
+                self.send_network_request()
 
         elif self.role == Roles.UNDISCOVERED:  # if the node is undiscovered
             if pck['type'] == 'HEART_BEAT':  # it kills probe timer, becomes unregistered and sets join request timer once received heart beat
@@ -643,13 +672,21 @@ class SensorNode(wsn.Node):
         elif name == 'ROUTER_CHECK':
             if self.role == Roles.CLUSTER_HEAD:
                 other_networks = 0
+                best_child = [self.members_table[0], -1]
                 for node in self.members_table:
-                    if self.neighbors_table[node].addr.net_addr != self.addr.net_addr:
+                    if self.neighbors_table[node].role == Roles.CLUSTER_HEAD:
                         other_networks += 1
+                        if len(self.neighbors_table[node].networks) > best_child[1]:
+                            best_child[0] = node
+                            best_child[1] = len(self.neighbors_table[node].networks)
                 if other_networks > 1:
-                    self.log(f'{self.addr} could become router.')
-                else:
-                    self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+                    self.log(f'{self.addr} could become router. {best_child[0]} should take over.')
+                    # for node in self.members_table:
+                        # self.send_role_change()
+                        
+                # else:
+                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
                     # TODO: self.become_router()
         elif name == 'NETWORK_REQUEST_TIMEOUT':
-            raise RuntimeError("Network Request Timeout.")
+            pass
+            # raise RuntimeError("Network Request Timeout.")
