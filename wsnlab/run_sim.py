@@ -134,7 +134,7 @@ def write_neighbor_distances_csv(path="neighbor_distances.csv", dedupe_undirecte
                 w.writerow([node.id, n_gui, f"{dist:.6f}", n_role, hop, at])
 
 ###########################################################
-def create_network(node_class, number_of_nodes=100):
+def create_network(node_class: wsn.Node, number_of_nodes=100):
     """Creates given number of nodes at random positions with random arrival times.
 
     Args:

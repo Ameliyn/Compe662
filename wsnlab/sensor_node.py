@@ -35,7 +35,8 @@ class NodeInformation():
                  hop_count: int,
                  arrival_time: float,
                  distance: float,
-                 networks: set[int]):
+                 networks: set[int],
+                 neigbors: set[wsn.Addr]):
         self.gui = gui
         """Globally Unique ID"""
         self.addr = addr
@@ -50,7 +51,30 @@ class NodeInformation():
         """Distance from Self"""
         self.networks = networks
         """Networks Reachable"""
+        self.neighbor_nodes = neigbors
 
+    def update(self, pck: dict):
+        for key, value in pck.items():
+            if key == 'gui':
+                self.gui = value
+            elif key == 'addr':
+                self.addr = value
+            elif key == 'role':
+                self.role = value
+            elif key == 'hop_count':
+                self.hop_count = value
+            elif key == 'arrival_time':
+                self.arrival_time = value
+            elif key == 'distance':
+                self.distance = value
+            elif key == 'networks':
+                self.networks = value
+            elif key == 'neighbor_nodes':
+                self.neighbor_nodes = value
+            else:
+                pass
+                # raise Exception (f'Key: {key} not found in Node Information Object')
+            
     def __str__(self):
         return ("{"f'gui: {self.gui}, addr: {self.addr}, role: {self.role}, '
                 f'hop_count: {self.hop_count}, arrival_time: {self.arrival_time}, '
@@ -91,11 +115,11 @@ class SensorNode(wsn.Node):
         self.root_addr: wsn.Addr = None
         """Root's ID"""
         self.set_role(Roles.UNDISCOVERED)
-        self.c_probe = 0
+        self.c_probe: int = 0
         """Probe Counter"""
-        self.th_probe = 10
+        self.th_probe: int = 10
         """Probe Threshold"""
-        self.hop_count = 99999
+        self.hop_count: int = 99999
         """Our Hops to Root"""
         self.neighbors_table: dict[int, NodeInformation] = {}
         """Dictionary of neighbors and Information about them."""
@@ -107,7 +131,7 @@ class SensorNode(wsn.Node):
         """Our cluster members."""
         self.received_JR_guis: list[int] = []
         """List of Join Requests."""
-        self.child_networks = set()
+        self.child_networks: set[int] = set()
         """Networks downstream from us"""
 
     ###################
@@ -180,26 +204,31 @@ class SensorNode(wsn.Node):
     def update_neighbor(self, pck: dict):
         pck['arrival_time'] = self.now
         # compute Euclidean distance between self and neighbor
-        if pck['gui'] in NODE_POS and self.id in NODE_POS:
-            x1, y1 = NODE_POS[self.id]
-            x2, y2 = NODE_POS[pck['gui']]
+        if 'pos' in pck.keys() and self.pos is not None:
+            x1, y1 = self.pos
+            x2, y2 = pck['pos']
             pck['distance'] = math.hypot(x1 - x2, y1 - y2)
 
         # Add source to neighbor Table
-        if pck['gui'] in self.neighbors_table and pck['source'] != self.neighbors_table[pck['gui']].addr:
-            self.log('ADDRESS HAS CHANGED!')
-            for network, node in self.networking_table.items():
-                if node == self.neighbors_table[pck['gui']].addr:
-                    self.networking_table[network] = pck['source']
+        if pck['gui'] in self.neighbors_table:
 
-        self.neighbors_table[pck['gui']] = NodeInformation(
-            gui=pck['gui'], 
-            addr=pck['source'], 
-            hop_count=pck['hop_count'], 
-            distance=pck['distance'] if 'distance' in pck.keys() else -1,
-            arrival_time=pck['arrival_time'],
-            role=pck['role'],
-            networks=pck['networks'] if 'networks' in pck.keys() else set())
+            if pck['source'] != self.neighbors_table[pck['gui']].addr:
+                self.log('ADDRESS HAS CHANGED!')
+                for network, node in self.networking_table.items():
+                    if node == self.neighbors_table[pck['gui']].addr:
+                        self.networking_table[network] = pck['source']
+            pck['addr'] = pck['source']
+            self.neighbors_table[pck['gui']].update(pck)    
+        else:
+            self.neighbors_table[pck['gui']] = NodeInformation(
+                gui=pck['gui'], 
+                addr=pck['source'], 
+                hop_count=pck['hop_count'], 
+                distance=pck['distance'] if 'distance' in pck.keys() else -1,
+                arrival_time=pck['arrival_time'],
+                role=pck['role'],
+                networks=pck['networks'] if 'networks' in pck.keys() else set(),
+                neigbors=set())
         
         # Add network to networking table
         self.networking_table[pck['source'].net_addr] = pck['source']
@@ -250,6 +279,7 @@ class SensorNode(wsn.Node):
                    'role': self.role,
                    'addr': self.addr,
                    'hop_count': self.hop_count,
+                   'pos': self.pos,
                    'networks': self.child_networks, 
                    'ttl': config.PACKET_TTL})
 
