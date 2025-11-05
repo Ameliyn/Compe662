@@ -170,10 +170,13 @@ class SensorNode(wsn.Node):
                 self.scene.nodecolor(self.id, 0, 0, 1)
                 self.draw_tx_range()
                 self.set_timer('TIMER_NETWORK_UPDATE', config.TIMER_NETWORK_UPDATE_INTERVAL)
+                self.assigned_node_ids: set[int] = set([254])
             elif new_role == Roles.ROOT:
                 self.scene.nodecolor(self.id, 0, 0, 0)
                 self.set_timer('TIMER_EXPORT_CH_CSV', config.EXPORT_CH_CSV_INTERVAL)
                 self.set_timer('TIMER_EXPORT_NEIGHBOR_CSV', config.EXPORT_NEIGHBOR_CSV_INTERVAL)
+                self.assigned_network_ids: set[int] = set([1])
+                self.assigned_node_ids: set[int] = set([254])
 
     def become_unregistered(self):
         """Reset many variables and become unregistered."""
@@ -296,7 +299,35 @@ class SensorNode(wsn.Node):
         self.send({'dest': dest, 'type': 'JOIN_REQUEST', 'gui': self.id, 'ttl': 1})
 
     ###################
-    def send_join_reply(self, gui: int, addr: wsn.Addr):
+    def send_join_reply(self, gui: int):
+        """Sending join reply message to register the node requested to join.
+        The message includes a gui to determine which node will take this reply, an addr to be assigned to the node
+        and a root_addr.
+
+        Args:
+            gui (int): Global unique ID
+            addr (Addr): Address that will be assigned to new registered node
+        Returns:
+
+        """
+        new_node_id = -1
+        for i in range(1,config.CLUSTER_SIZE):
+            if i not in self.assigned_node_ids:
+                new_node_id = i
+                break
+        if new_node_id == -1:
+            self.log('No children to allocate.')
+            self.send_negative_join_reply(gui)
+        else:
+            self.assigned_node_ids.add(new_node_id)
+            self.set_timer('JOIN_ACK_TIMEOUT', 200)
+            self.log(f'Sent Join Reply to: {gui}')
+            self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'JOIN_REPLY', 'source': self.addr,
+                    'gui': self.id, 'dest_gui': gui, 'addr': wsn.Addr(self.addr.net_addr, new_node_id), 'root_addr': self.root_addr,
+                    'hop_count': self.hop_count+1, 'ttl': 1})
+            
+
+    def send_negative_join_reply(self, gui: int):
         """Sending join reply message to register the node requested to join.
         The message includes a gui to determine which node will take this reply, an addr to be assigned to the node
         and a root_addr.
@@ -308,11 +339,9 @@ class SensorNode(wsn.Node):
 
         """
         # TTL = 1 because it should not be routed
-        self.log(f'Sent Join Reply to: {addr}')
-        self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'JOIN_REPLY', 'source': self.addr,
-                   'gui': self.id, 'dest_gui': gui, 'addr': addr, 'root_addr': self.root_addr,
-                   'hop_count': self.hop_count+1, 'ttl': 1})
-
+        self.log(f'Sent negative Join Reply to: {gui}')
+        self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'NEG_JOIN_REPLY', 'source': self.addr,
+                   'gui': self.id, 'dest_gui': gui,'ttl': 1})
     ###################
     def send_join_ack(self, dest: wsn.Addr):
         """Sending join acknowledgement message to given destination address.
@@ -335,12 +364,13 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
-        # if 'NETWORK_REQUEST_TIMEOUT' in self.active_timer_list:
-        #     self.log('Not sending new network request because one was already sent and we have not timed out.')
-        # else:
-        #     self.set_timer('NETWORK_REQUEST_TIMEOUT', config.NETWORK_REQUEST_TIMEOUT)
-        self.route_and_forward_package({'dest': self.root_addr, 'type': 'NETWORK_REQUEST', 
-                                        'source': self.addr, 'ttl': config.PACKET_TTL})
+        if 'NETWORK_REQUEST_TIMEOUT' in self.active_timer_list:
+            pass
+            # self.log('Not sending new network request because one was already sent and we have not timed out.')
+        else:
+            self.set_timer('NETWORK_REQUEST_TIMEOUT', config.NETWORK_REQUEST_TIMEOUT)
+            self.route_and_forward_package({'dest': self.root_addr, 'type': 'NETWORK_REQUEST', 
+                                            'source': self.addr, 'gui': self.id, 'ttl': config.PACKET_TTL})
 
     ###################
     def send_network_reply(self, dest: wsn.Addr, addr: wsn.Addr):
@@ -480,12 +510,8 @@ class SensorNode(wsn.Node):
 
         """
         try:
-            # Process Network Updates regardless of if they are for us or not
-            if 'next_hop' in pck.keys() and pck['next_hop'].net_addr == self.id and pck['next_hop'] != self.addr:
-                self.log(f'{pck}')
-                raise Exception('They don\'t have my updated address :(')
 
-            elif (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
+            if (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
                 self.process_packet(pck)
 
             # If we are the destination, process the packet
@@ -526,6 +552,9 @@ class SensorNode(wsn.Node):
                     self.child_networks.add(pck['source'].net_addr)
                 if pck['next_hop'] == self.addr:   
                    self.send_network_update()
+            else:
+                self.assigned_network_ids.add(pck['source'].net_addr)
+
             return
     
         elif pck['type'] == 'ADDRESS_RENEW':
@@ -534,6 +563,11 @@ class SensorNode(wsn.Node):
             # Update neighbors table
             if pck['gui'] in self.neighbors_table:
                 self.neighbors_table[pck['gui']].addr = pck['new_addr']
+
+            if pck['gui'] in self.members_table and pck['new_addr'].net_addr != self.addr.net_addr and pck['old_addr'].node_addr == self.assigned_node_ids:
+                # self.members_table.remove(pck['gui'])
+                self.assigned_node_ids.remove(pck['old_addr'].node_addr)
+                # pass
             
             # Update networking table
             for network, node in self.networking_table.items():
@@ -554,11 +588,20 @@ class SensorNode(wsn.Node):
                 self.send_heart_beat()
             if pck['type'] == 'JOIN_REQUEST':  # it waits and sends join reply message once received join request
                 # yield self.timeout(.5)
-                self.send_join_reply(pck['gui'], wsn.Addr(self.addr.net_addr, pck['gui']))
+                self.send_join_reply(pck['gui'])
             if pck['type'] == 'NETWORK_REQUEST':  # it sends a network reply to requested node
                 # yield self.timeout(.5)
                 if self.role == Roles.ROOT:
-                    new_addr = wsn.Addr(pck['source'].node_addr,254)
+                    new_net_id = -1
+                    for i in range(1,254):
+                        if i not in self.assigned_network_ids:
+                            new_net_id = i
+                            break
+                    if new_net_id == -1:
+                        self.log(f'{self.assigned_network_ids}')
+                        raise Exception('No Networks to allocate.')
+                    # new_net_id = pck['gui']
+                    new_addr = wsn.Addr(new_net_id,254)
                     self.log(f'Sent network reply to {pck["source"]}')
                     self.send_network_reply(pck['source'],new_addr)
             if pck['type'] == 'JOIN_ACK':
@@ -595,7 +638,7 @@ class SensorNode(wsn.Node):
                 
                 for gui in self.received_JR_guis:
                     # yield self.timeout(random.uniform(.1,.5))
-                    self.send_join_reply(gui, wsn.Addr(self.addr.net_addr,gui))
+                    self.send_join_reply(gui)
                 self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
             if pck['type'] == 'KICK':
                 self.become_unregistered()
@@ -611,6 +654,11 @@ class SensorNode(wsn.Node):
         elif self.role == Roles.UNREGISTERED:  # if the node is unregistered
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
+            elif pck['type'] == 'NEG_JOIN_REPLY' and pck['dest_gui']:
+                try:
+                    self.candidate_parents_table.remove(pck['gui'])
+                except:
+                    pass
             if pck['type'] == 'JOIN_REPLY':  # it becomes registered and sends join ack if the message is sent to itself once received join reply
                 if pck['dest_gui'] == self.id:
                     self.log(f'Heard Join Reply from: {pck["source"]}')
@@ -662,7 +710,7 @@ class SensorNode(wsn.Node):
                 if self.is_root_eligible:  # if the node is root eligible, it becomes root
                     self.set_role(Roles.ROOT)
                     self.scene.nodecolor(self.id, 0, 0, 0)
-                    self.addr = wsn.Addr(self.id, 254)
+                    self.addr = wsn.Addr(1, 254)
                     self.root_addr = self.addr
                     self.hop_count = 0
                     self.set_timer('TIMER_HEART_BEAT', config.HEARTH_BEAT_TIME_INTERVAL)
@@ -700,7 +748,7 @@ class SensorNode(wsn.Node):
             self.send_network_update()
             self.set_timer('TIMER_NETWORK_UPDATE_INTERVAL', config.TIMER_NETWORK_UPDATE_INTERVAL)
         elif name == 'ROUTER_CHECK':
-            if self.role == Roles.CLUSTER_HEAD:
+            if self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0:
                 other_networks = 0
                 best_child = [self.members_table[0], -1]
                 for node in self.members_table:
