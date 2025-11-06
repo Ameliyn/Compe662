@@ -9,6 +9,7 @@ NODE_TX_RANGE = 100  # transmission range of nodes
 NODE_ARRIVAL_MAX = 200  # max time to wake up
 ROUTER_CHECK_INTERVAL = 100
 CLUSTER_SIZE = 5
+CLUSTER_LIMIT = 254
 
 
 ## simulation properties
