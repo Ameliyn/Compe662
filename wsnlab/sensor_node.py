@@ -307,7 +307,7 @@ class SensorNode(wsn.Node):
 
         """
         new_node_id = -1
-        for i in range(1,config.CLUSTER_SIZE):
+        for i in range(1,config.CLUSTER_SIZE+1):
             if i not in self.assigned_node_ids.keys():
                 new_node_id = i
                 break
@@ -386,7 +386,7 @@ class SensorNode(wsn.Node):
                 self.log('Duplicate Network Request detected... Sending duplicate network reply')
                 new_net_id = net_id
         else:
-            for i in range(1,config.CLUSTER_LIMIT):
+            for i in range(1,config.CLUSTER_LIMIT+1):
                 if i not in self.assigned_network_ids.keys():
                     new_net_id = i
                     break
