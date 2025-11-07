@@ -666,9 +666,12 @@ class SensorNode(wsn.Node):
                 # pass
             if pck['old_addr'].node_addr == 254 and pck['old_addr'].net_addr in self.networking_table:
                 self.log(f'Cluster head of {pck['old_addr'].node_addr} changing, removing network')
-            if pck['gui'] == self.parent_gui and self.role != Roles.CLUSTER_HEAD:
+            if pck['gui'] == self.parent_gui and self.role != Roles.CLUSTER_HEAD and self.role != Roles.ROUTER:
                 self.log('Our parent has changed addresses!')
-                self.become_unregistered()
+                for gui, node in self.neighbors_table.items():
+                    if gui != pck['gui'] and node.role == Roles.CLUSTER_HEAD:
+                        self.become_unregistered()
+                        break
             
         elif pck['type'] == 'NEIGHBOR_UPDATE':
             self.update_neighbor(pck)
@@ -703,34 +706,6 @@ class SensorNode(wsn.Node):
                 self.set_role(Roles.ROUTER)
         
         elif self.role == Roles.ROUTER:
-            # if pck['type'] == 'JOIN_REQUEST':
-            #     self.send_join_reply(pck['gui'])
-            # elif pck['type'] == 'JOIN_ACK':
-            #     self.members_table.append(pck['gui'])
-                # self.send_negative_join_reply(pck['gui'])
-                # self.received_JR_guis.append(pck['gui'])
-                # yield self.timeout(.5)
-                # self.send_network_request()
-            # elif pck['type'] == 'NETWORK_REPLY':  # it becomes cluster head and send join reply to the candidates
-            #     self.set_role(Roles.CLUSTER_HEAD)
-            #     self.kill_timer('NETWORK_REQUEST_TIMEOUT')
-            #     # try:
-            #         # write_clusterhead_distances_csv("clusterhead_distances.csv")
-            #     # except Exception as e:
-            #         # self.log(f"CH CSV export error: {e}")
-            #     self.scene.nodecolor(self.id, 0, 0, 1)
-            #     old_addr = self.addr
-            #     self.addr = pck['addr']
-            #     self.send_address_renew(old_addr=old_addr)
-            #     self.send_heart_beat()
-            #     self.send_network_update(old_addr)
-            #     # yield self.timeout(.5)
-                
-            #     for gui in self.received_JR_guis:
-            #         # yield self.timeout(random.uniform(.1,.5))
-            #         self.send_join_reply(gui)
-            #     if self.role != Roles.ROOT:
-            #         self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
         elif self.role == Roles.REGISTERED:  # if the node is registered
@@ -873,7 +848,7 @@ class SensorNode(wsn.Node):
             self.send_network_update()
             self.set_timer('TIMER_NETWORK_UPDATE_INTERVAL', config.TIMER_NETWORK_UPDATE_INTERVAL)
         elif name == 'ROUTER_CHECK':
-            if self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0:
+            if self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
                 other_networks = 0
                 # best_child = [self.members_table[0], -1]
                 best_child = None
@@ -888,14 +863,8 @@ class SensorNode(wsn.Node):
                         self.log('Unable to become a router because I have a router child.')
                         return
                 if other_networks > 1 and best_child is not None:
-                    self.log(f'{self.addr} could become router. {best_child.gui} should take over.')
                     self.send_router_request(best_child.addr)
-                    # for node in self.members_table:
-                        # self.send_role_change()
-                        
-                # else:
-                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
-                    # TODO: self.become_router()
+            self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
         elif name == 'NETWORK_REQUEST_TIMEOUT':
             # raise RuntimeError("Network Request Timeout.")
             pass
