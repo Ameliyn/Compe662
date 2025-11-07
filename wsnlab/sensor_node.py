@@ -505,7 +505,7 @@ class SensorNode(wsn.Node):
         self.send(pck)
 
     ###################
-    def route_and_forward_package(self, pck: dict):
+    def route_and_forward_package(self, pck: dict, avoid_nodes: list = []):
         """Routing and forwarding given package
 
         Args:
@@ -513,34 +513,43 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
+        
+        temp_neighbor_list = {}
+        for gui, node in self.neighbors_table.items():
+            if gui not in avoid_nodes:
+                temp_neighbor_list[gui] = node
+
         try:
             assert(isinstance(pck['dest'], wsn.Addr))
             assert(pck['dest'] != self.addr)
         except Exception as e:
             print(f'ERROR PACKET: {pck}')
             raise e
-
         # If the Time to Live is <= 0, don't route the packet
         if pck['ttl'] <= 0:
             if config.LOG_LEVEL == 'DEBUG':
                 print(f'Current: {self.id} Packet Died: {pck}')
             return
 
+        next_gui = self.id
+
         if 'next_hop' not in pck.keys():
             pck['next_hop'] = self.addr
 
         # If the destination is in our neighbor table, next_hop = dest
-        for gui, node in self.neighbors_table.items():
+        for gui, node in temp_neighbor_list.items():
             if pck['dest'] == node.addr:
+                next_gui = gui
                 pck['next_hop'] = node.addr
                 pck['routed_type'] = 'Neighbors Table'
                 break
 
         # If the destination's network is in our neighbor table, next_hop = dest_net
         if pck['next_hop'] == self.addr:
-            for gui, node in self.neighbors_table.items():
+            for gui, node in temp_neighbor_list.items():
                 # if pck['dest'].net_addr == node.addr.net_addr or (pck['dest'].net_addr in node.networks and node.hop_count > self.hop_count):
                 if pck['dest'].net_addr == node.addr.net_addr:
+                    next_gui = gui
                     pck['next_hop'] = node.addr
                     pck['routed_type'] = 'Neighbor Network'
                     break
@@ -549,8 +558,9 @@ class SensorNode(wsn.Node):
         if pck['next_hop'] == self.addr:
             # Check networking table
             for network, hop in self.networking_table.items():
-                if hop != self.parent_gui and pck['dest'].net_addr == network:
-                    pck['next_hop'] = self.neighbors_table[hop].addr
+                if hop != self.parent_gui and pck['dest'].net_addr == network and hop in temp_neighbor_list:
+                    pck['next_hop'] = temp_neighbor_list[hop].addr
+                    next_gui = hop
                     pck['routed_type'] = 'Networking Table'
                     break
         
@@ -564,7 +574,17 @@ class SensorNode(wsn.Node):
                 self.log(f'{pck}')
                 return
             pck['routed_type'] = 'Parent'
-            pck['next_hop'] = self.neighbors_table[self.parent_gui].addr
+            pck['next_hop'] = temp_neighbor_list[self.parent_gui].addr
+            next_gui = self.parent_gui
+
+        if pck['next_hop'] == self.addr:
+            self.log('CANNOT ROUTE PACKET')
+            return #TODO: Send NACK
+        elif pck['next_hop'] == wsn.Addr(-1,-1):
+            self.log('Attempted to route to dead node. retrying')
+            pck['next_hop'] = self.addr
+            avoid_nodes.append(next_gui)
+            self.route_and_forward_package(pck, avoid_nodes=avoid_nodes)
 
         if 'ttl' not in pck.keys():
             pck['ttl'] = config.PACKET_TTL
@@ -645,20 +665,20 @@ class SensorNode(wsn.Node):
                 if pck['gui'] == self.parent_gui:
                     self.log('Parent is leaving!')
                     self.become_unregistered()
-                else:
-                    self.log(f'{pck["old_addr"]} (GUI: {pck["gui"]}) is leaving!')
-                    if pck['gui'] in self.neighbors_table.keys():
-                        self.neighbors_table.pop(pck['gui'])
-                    if pck['gui'] in self.candidate_parents_table:
-                        self.candidate_parents_table.remove(pck['gui'])
+                    return
+                # else:
+                #     self.log(f'{pck["old_addr"]} (GUI: {pck["gui"]}) is leaving!')
+                #     if pck['gui'] in self.neighbors_table.keys():
+                #         self.neighbors_table.pop(pck['gui'])
+                #     if pck['gui'] in self.candidate_parents_table:
+                #         self.candidate_parents_table.remove(pck['gui'])
 
-                    remove_networks = set()
-                    for network, gui in self.networking_table.items():
-                        if gui == pck['gui']:
-                            remove_networks.add(network)
-                    for net in remove_networks:
-                        self.networking_table.pop(net)
-                return
+                #     remove_networks = set()
+                #     for network, gui in self.networking_table.items():
+                #         if gui == pck['gui']:
+                #             remove_networks.add(network)
+                #     for net in remove_networks:
+                #         self.networking_table.pop(net)
             
             # Update neighbors table
             if pck['gui'] in self.neighbors_table:
@@ -671,8 +691,8 @@ class SensorNode(wsn.Node):
                 # self.members_table.remove(pck['gui'])
                 self.log(f'Removing {self.assigned_node_ids.pop(pck['old_addr'].node_addr)} from my assigned node ids.')
                 # pass
-            if pck['old_addr'].node_addr == 254 and pck['old_addr'].net_addr in self.networking_table:
-                self.log(f'Cluster head of {pck['old_addr'].node_addr} changing, removing network')
+            # if pck['old_addr'].node_addr == 254 and pck['old_addr'].net_addr in self.networking_table:
+                # self.log(f'Cluster head of {pck['old_addr'].node_addr} changing, removing network')
             if pck['gui'] == self.parent_gui and self.role != Roles.CLUSTER_HEAD and self.role != Roles.ROUTER:
                 self.log('Our parent has changed addresses!')
                 for gui, node in self.neighbors_table.items():
@@ -873,7 +893,6 @@ class SensorNode(wsn.Node):
                         self.log('Unable to become a router because I have a router child.')
                         self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
                         return
-                        
                 if other_networks > 1 and best_child is not None:
                     self.send_router_request(best_child.addr)
                 elif other_networks > 3:
