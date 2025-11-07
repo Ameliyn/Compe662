@@ -31,6 +31,7 @@ class Node(wsnlab.Node):
                Node: Created node object.
         """
         super().__init__(sim, id, pos)
+        assert(isinstance(self.sim, Simulator))
         self.scene = self.sim.scene
         self.scene.node(id, *pos)
 
@@ -81,9 +82,13 @@ class Node(wsnlab.Node):
            Returns:
 
         """
-        obj_id = self.scene.circle(self.pos[0], self.pos[1], self.tx_range, line="wsnsimpy:tx")
+        self.tx_range_circle = self.scene.circle(self.pos[0], self.pos[1], self.tx_range, line="wsnsimpy:tx")
         #self.delayed_exec(0.2, self.scene.delshape, obj_id)
 
+    def erase_tx_range(self):
+        self.tx_range_circle = getattr(self, 'tx_range_circle', None)
+        if self.tx_range_circle is not None:
+            self.scene.delshape(self.tx_range_circle)
 
 
     def move(self, 
@@ -122,8 +127,10 @@ class Node(wsnlab.Node):
 
         """
         if self.parent_gui is not None:
-            self.scene.dellink(self.parent_gui, self.id, "parent")
-
+            try:
+                self.scene.dellink(self.parent_gui, self.id, "parent")
+            except:
+                pass
 
 ###########################################################
 class _FakeScene:

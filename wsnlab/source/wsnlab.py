@@ -152,6 +152,7 @@ class Node:
         self.id = id
         self.addr = Addr(0, id)
         self.ch_addr = None
+        self.parent_gui = None
         self.is_sleep = False
         self.logging = True
         self.active_timer_list = []
@@ -226,11 +227,6 @@ class Node:
             if dest.is_equal(self.addr):  # if destination address is node's address
                 return True
             elif dest.node_addr == config.BROADCAST_NODE_ADDR and dest.net_addr == self.addr.net_addr:  # if destination address is local broadcast address of node's network
-                return True
-        if self.ch_addr is not None:  # if node's cluster head address is assigned
-            if dest.is_equal(self.ch_addr):  # if destination address is node's cluster head address
-                return True
-            elif dest.node_addr == config.BROADCAST_NODE_ADDR and dest.net_addr == self.ch_addr.net_addr:  # if destination address is local broadcast address of node's cluster head network
                 return True
         return False
 

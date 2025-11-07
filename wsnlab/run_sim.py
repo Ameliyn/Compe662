@@ -19,9 +19,6 @@ ALL_NODES = []              # node objects
 CLUSTER_HEADS = []
 ROLE_COUNTS: Counter[Roles] = Counter()     # live tally per Roles enum
 
-def _addr_str(a): return "" if a is None else str(a)
-def _role_name(r): return r.name if hasattr(r, "name") else str(r)
-
 def write_node_distances_csv(path="node_distances.csv"):
     """Write pairwise node-to-node Euclidean distances as an edge list."""
     ids = sorted(NODE_POS.keys())
@@ -134,7 +131,7 @@ def write_neighbor_distances_csv(path="neighbor_distances.csv", dedupe_undirecte
                 w.writerow([node.id, n_gui, f"{dist:.6f}", n_role, hop, at])
 
 ###########################################################
-def create_network(node_class: wsn.Node, number_of_nodes=100):
+def create_network(node_class: type[SensorNode], number_of_nodes=100):
     """Creates given number of nodes at random positions with random arrival times.
 
     Args:

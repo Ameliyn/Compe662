@@ -36,7 +36,7 @@ class NodeInformation():
                  arrival_time: float,
                  distance: float,
                  networks: set[int],
-                 neigbors: set[wsn.Addr]):
+                 neigbors: list[wsn.Addr]):
         self.gui = gui
         """Globally Unique ID"""
         self.addr = addr
@@ -108,11 +108,11 @@ class SensorNode(wsn.Node):
         """
         self.scene.nodecolor(self.id, 1, 1, 1) # sets self color to white
         self.sleep()
-        self.addr: wsn.Addr = None
+        self.addr: wsn.Addr
         """Our Address [NetworkAddr, DynamicAddr]"""
-        self.parent_gui: int = None
+        self.parent_gui: int
         """Our Parent's ID"""
-        self.root_addr: wsn.Addr = None
+        self.root_addr: wsn.Addr
         """Root's ID"""
         self.set_role(Roles.UNDISCOVERED)
         self.c_probe: int = 0
@@ -133,6 +133,8 @@ class SensorNode(wsn.Node):
         """List of Join Requests."""
         self.child_networks: set[int] = set()
         """Networks downstream from us"""
+        self.arrival: float
+        """Arrival time of current node."""
 
     ###################
     def run(self):
@@ -165,7 +167,7 @@ class SensorNode(wsn.Node):
             elif new_role == Roles.REGISTERED:
                 self.scene.nodecolor(self.id, 0, 1, 0)
             elif new_role == Roles.ROUTER:
-                self.scene.nodecolor(self.id, 0, 0.75, 0.5)
+                self.scene.nodecolor(self.id, 0, 1, 1)
             elif new_role == Roles.CLUSTER_HEAD:
                 self.scene.nodecolor(self.id, 0, 0, 1)
                 self.draw_tx_range()
@@ -182,14 +184,22 @@ class SensorNode(wsn.Node):
         """Reset many variables and become unregistered."""
         if self.role != Roles.UNDISCOVERED:
             self.kill_all_timers()
+            if self.addr is not None and self.addr == wsn.Addr(-1,-1):
+                pass
+            else:
+                old_addr = self.addr
+                self.addr = wsn.Addr(-1,-1)
+                self.send_address_renew(old_addr=old_addr)
             self.log('I became UNREGISTERED')
         self.scene.nodecolor(self.id, 1, 1, 0)
         self.erase_parent()
+        self.erase_tx_range()
+
 
         # Reset Variables
-        self.addr: wsn.Addr = None
-        self.parent_gui: int = None
-        self.root_addr: wsn.Addr = None
+        self.addr: wsn.Addr
+        self.parent_gui: int
+        self.root_addr: wsn.Addr
         self.c_probe = 0
         self.th_probe = 10
         self.hop_count = 99999
@@ -207,7 +217,7 @@ class SensorNode(wsn.Node):
     def update_neighbor(self, pck: dict):
         pck['arrival_time'] = self.now
         # compute Euclidean distance between self and neighbor
-        if 'pos' in pck.keys() and self.pos is not None:
+        if 'pos' in pck.keys() and getattr(self, "pos", None) is not None:
             x1, y1 = self.pos
             x2, y2 = pck['pos']
             pck['distance'] = math.hypot(x1 - x2, y1 - y2)
@@ -218,16 +228,18 @@ class SensorNode(wsn.Node):
                 self.log('ADDRESS HAS CHANGED!')
             pck['addr'] = pck['source']
             self.neighbors_table[pck['gui']].update(pck)    
+        elif pck['type'] == 'NEIGHBOR_UPDATE':
+            self.log('Ignoring neighbor update for someone not in our neighbor table.')
         else:
             self.neighbors_table[pck['gui']] = NodeInformation(
                 gui=pck['gui'], 
                 addr=pck['source'], 
-                hop_count=pck['hop_count'], 
+                hop_count=pck['hop_count'] if 'hop_count' in pck.keys() else -1, 
                 distance=pck['distance'] if 'distance' in pck.keys() else -1,
                 arrival_time=pck['arrival_time'],
                 role=pck['role'],
                 networks=pck['networks'] if 'networks' in pck.keys() else set(),
-                neigbors=set())
+                neigbors=pck['neighbors'] if 'neighbors' in pck.keys() else [])
         
         # Add network to networking table
         self.networking_table[pck['source'].net_addr] = pck['gui']
@@ -240,13 +252,26 @@ class SensorNode(wsn.Node):
 
     ###################
     def select_and_join(self):
+        """Select a node to join based on number of hops to root (minimum distance is tiebreaker).
+        
+        Args:
+        
+        Returns:
+        
+        """
         min_hop = 99999
         min_hop_gui = 99999
         for gui in self.candidate_parents_table:
-            if self.neighbors_table[gui].hop_count < min_hop or (self.neighbors_table[gui].hop_count == min_hop and gui < min_hop_gui):
+            if (self.neighbors_table[gui].hop_count < min_hop or 
+                (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                 min_hop = self.neighbors_table[gui].hop_count
                 min_hop_gui = gui
+        if min_hop_gui == 99999:
+            self.log('No Available Addresses')
+            self.become_unregistered()
+            return
         selected_addr = self.neighbors_table[min_hop_gui].addr
+        self.candidate_parents_table.remove(min_hop_gui)
         self.log(f'Sent Join Request to {selected_addr}')
         self.send_join_request(selected_addr)
         self.set_timer('TIMER_JOIN_REQUEST', 5)
@@ -294,6 +319,34 @@ class SensorNode(wsn.Node):
         # TTL = 1 because it should not be routed
         self.send({'dest': dest, 'type': 'JOIN_REQUEST', 'gui': self.id, 'ttl': 1})
 
+    def send_router_request(self, dest: wsn.Addr):
+        """Send a request to become a router for the node."""
+        self.send({'dest': dest, 'source': self.addr, 'type': 'ROUTER_REQUEST', 'gui': self.id, 'ttl': 1})
+
+    def send_router_reply(self, dest: wsn.Addr, gui: int):
+        """Send a router reply to a given node."""
+        new_node_id = -1
+        for i in range(1,config.CLUSTER_SIZE+1):
+            if i not in self.assigned_node_ids.keys():
+                new_node_id = i
+                break
+        pck = {}
+        if new_node_id == -1:
+            self.log('No children to allocate.')
+            pck = {'dest': dest, 'type': 'ROUTER_REPLY', 'source': self.addr,
+                    'gui': self.id, 'ttl': 1}
+            pck['accepted'] = False
+            self.send(pck)
+        else:
+            pck['accepted'] = True
+            self.assigned_node_ids[new_node_id] = gui
+            self.set_timer('JOIN_ACK_TIMEOUT', 200) #TODO: THIS DOES NOTHING
+            self.log(f'Sent Join Reply to: {dest}')
+            pck = {'dest': dest, 'type': 'ROUTER_REPLY', 'source': self.addr,
+                    'gui': self.id, 'addr': wsn.Addr(self.addr.net_addr, new_node_id)}
+            pck['accepted'] = True
+            self.send(pck)
+            
     ###################
     def send_join_reply(self, gui: int):
         """Sending join reply message to register the node requested to join.
@@ -321,7 +374,6 @@ class SensorNode(wsn.Node):
             self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'JOIN_REPLY', 'source': self.addr,
                     'gui': self.id, 'dest_gui': gui, 'addr': wsn.Addr(self.addr.net_addr, new_node_id), 'root_addr': self.root_addr,
                     'hop_count': self.hop_count+1, 'ttl': 1})
-            
 
     def send_negative_join_reply(self, gui: int):
         """Sending join reply message to register the node requested to join.
@@ -400,7 +452,7 @@ class SensorNode(wsn.Node):
         self.route_and_forward_package(pck)
 
     ###################
-    def send_network_update(self, old_addr: wsn.Addr = None):
+    def send_network_update(self, old_addr: wsn.Addr = wsn.Addr(-1,-1)):
         """Sending network update message to parent
 
         Args:
@@ -410,7 +462,7 @@ class SensorNode(wsn.Node):
         """
         pck = {'dest': self.root_addr, 'type': 'NETWORK_UPDATE', 'source': self.addr,
                    'gui': self.id, 'child_networks': self.child_networks, 'ttl': 1}
-        if old_addr is not None:
+        if old_addr != wsn.Addr(-1,-1):
             pck['old_addr'] = old_addr
         self.route_and_forward_package(pck)
 
@@ -422,15 +474,28 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
+        if old_addr == wsn.Addr(-1,-1):
+            raise Exception('Bad Address Renew')
         pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'ADDRESS_RENEW', 'source': self.addr,
                    'gui': self.id, 'ttl': config.PACKET_TTL}
         pck['old_addr'] = old_addr
         pck['new_addr'] = self.addr
         self.send(pck)
-        # self.route_and_forward_package(pck)
-        # pck['dest'] = wsn.BROADCAST_ADDR
-        # pck['ttl'] = 0
-        # self.send(pck)
+
+    def send_neighbor_table(self):
+        """Sending network update message to parent
+
+        Args:
+
+        Returns:
+
+        """
+        neighbors = []
+        for gui, node in self.neighbors_table.items():
+            neighbors.append(node.addr)
+        pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'NEIGHBOR_UPDATE', 'source': self.addr,
+                   'gui': self.id, 'ttl': 1, 'neighbors': neighbors}
+        self.send(pck)
 
     ###################
     def route_and_forward_package(self, pck: dict):
@@ -490,7 +555,7 @@ class SensorNode(wsn.Node):
                 self.log(f'Networking Table {self.networking_table}')
                 self.log(f'Neighbor Table: {self.neighbors_table}')
                 self.log(f'{pck}')
-                raise Exception('Break')
+                return
             pck['routed_type'] = 'Parent'
             pck['next_hop'] = self.neighbors_table[self.parent_gui].addr
 
@@ -551,9 +616,10 @@ class SensorNode(wsn.Node):
             self.neighbors_table[pck['gui']].networks = pck['child_networks']
             
             for entry in pck['child_networks']:
-                self.networking_table[entry] = pck['gui']
-                if entry == self.addr.net_addr:
-                    raise Exception("Our network marked as their child network.")
+                if entry != self.addr.net_addr:
+                    self.networking_table[entry] = pck['gui']
+                    
+                    # raise Exception("Our network marked as their child network.")
                         
             if self.role != Roles.ROOT:                    
                 if pck['gui'] != self.parent_gui:
@@ -566,6 +632,26 @@ class SensorNode(wsn.Node):
     
         elif pck['type'] == 'ADDRESS_RENEW':
             self.log(f'ADDRESS RENEW: {pck["old_addr"]} -> {pck["new_addr"]}')
+
+            # Node is leaving!
+            if pck['new_addr'] == wsn.Addr(-1,-1):
+                if pck['gui'] == self.parent_gui:
+                    self.log('Parent is leaving!')
+                    self.become_unregistered()
+                else:
+                    self.log(f'{pck["old_addr"]} (GUI: {pck["gui"]}) is leaving!')
+                    if pck['gui'] in self.neighbors_table.keys():
+                        self.neighbors_table.pop(pck['gui'])
+                    if pck['gui'] in self.candidate_parents_table:
+                        self.candidate_parents_table.remove(pck['gui'])
+
+                    remove_networks = set()
+                    for network, gui in self.networking_table.items():
+                        if gui == pck['gui']:
+                            remove_networks.add(network)
+                    for net in remove_networks:
+                        self.networking_table.pop(net)
+                return
             
             # Update neighbors table
             if pck['gui'] in self.neighbors_table:
@@ -578,15 +664,15 @@ class SensorNode(wsn.Node):
                 # self.members_table.remove(pck['gui'])
                 self.log(f'Removing {self.assigned_node_ids.pop(pck['old_addr'].node_addr)} from my assigned node ids.')
                 # pass
+            if pck['old_addr'].node_addr == 254 and pck['old_addr'].net_addr in self.networking_table:
+                self.log(f'Cluster head of {pck['old_addr'].node_addr} changing, removing network')
+            if pck['gui'] == self.parent_gui and self.role != Roles.CLUSTER_HEAD:
+                self.log('Our parent has changed addresses!')
+                self.become_unregistered()
             
-            # Update networking table
-            # for network, node in self.networking_table.items():
-            #     if node == pck['gui']:
-            #         self.networking_table[network] = pck['new_addr']
-            
-            # if pck['next_hop'] == self.addr and pck['dest'] != self.addr:
-            #     self.route_and_forward_package(pck)
-    
+        elif pck['type'] == 'NEIGHBOR_UPDATE':
+            self.update_neighbor(pck)
+
         elif self.role == Roles.ROOT or self.role == Roles.CLUSTER_HEAD:  # if the node is root or cluster head
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
@@ -604,8 +690,49 @@ class SensorNode(wsn.Node):
                 self.members_table.append(pck['gui'])
             if pck['type'] == 'SENSOR':
                 pass
-                # self.log(str(pck['source'])+'--'+str(pck['sensor_value']))
-
+            if pck['type'] == 'ROUTER_REQUEST' and self.role != Roles.ROOT:
+                self.log(f'Heard ROUTER_REQUEST from: {pck["source"]}')
+                self.send_router_reply(pck['source'], pck['gui'])
+            if pck['type'] == 'ROUTER_REPLY':
+                self.log(f'Heard ROUTER_REPLY from: {pck["source"]}')
+                old_addr = self.addr
+                self.addr = pck['addr']
+                self.send_address_renew(old_addr=old_addr)
+                self.send_heart_beat()
+                self.erase_tx_range()
+                self.set_role(Roles.ROUTER)
+        
+        elif self.role == Roles.ROUTER:
+            # if pck['type'] == 'JOIN_REQUEST':
+            #     self.send_join_reply(pck['gui'])
+            # elif pck['type'] == 'JOIN_ACK':
+            #     self.members_table.append(pck['gui'])
+                # self.send_negative_join_reply(pck['gui'])
+                # self.received_JR_guis.append(pck['gui'])
+                # yield self.timeout(.5)
+                # self.send_network_request()
+            # elif pck['type'] == 'NETWORK_REPLY':  # it becomes cluster head and send join reply to the candidates
+            #     self.set_role(Roles.CLUSTER_HEAD)
+            #     self.kill_timer('NETWORK_REQUEST_TIMEOUT')
+            #     # try:
+            #         # write_clusterhead_distances_csv("clusterhead_distances.csv")
+            #     # except Exception as e:
+            #         # self.log(f"CH CSV export error: {e}")
+            #     self.scene.nodecolor(self.id, 0, 0, 1)
+            #     old_addr = self.addr
+            #     self.addr = pck['addr']
+            #     self.send_address_renew(old_addr=old_addr)
+            #     self.send_heart_beat()
+            #     self.send_network_update(old_addr)
+            #     # yield self.timeout(.5)
+                
+            #     for gui in self.received_JR_guis:
+            #         # yield self.timeout(random.uniform(.1,.5))
+            #         self.send_join_reply(gui)
+            #     if self.role != Roles.ROOT:
+            #         self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+            if pck['type'] == 'HEART_BEAT':
+                self.update_neighbor(pck)
         elif self.role == Roles.REGISTERED:  # if the node is registered
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
@@ -619,6 +746,7 @@ class SensorNode(wsn.Node):
                 self.send_network_request()
             if pck['type'] == 'NETWORK_REPLY':  # it becomes cluster head and send join reply to the candidates
                 self.set_role(Roles.CLUSTER_HEAD)
+                self.kill_timer('NETWORK_REQUEST_TIMEOUT')
                 # try:
                     # write_clusterhead_distances_csv("clusterhead_distances.csv")
                 # except Exception as e:
@@ -634,7 +762,8 @@ class SensorNode(wsn.Node):
                 for gui in self.received_JR_guis:
                     # yield self.timeout(random.uniform(.1,.5))
                     self.send_join_reply(gui)
-                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+                if self.role != Roles.ROOT:
+                    self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
             if pck['type'] == 'KICK':
                 self.become_unregistered()
             if pck['type'] == 'PROMOTE':
@@ -649,11 +778,6 @@ class SensorNode(wsn.Node):
         elif self.role == Roles.UNREGISTERED:  # if the node is unregistered
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
-            elif pck['type'] == 'NEG_JOIN_REPLY' and pck['dest_gui']:
-                try:
-                    self.candidate_parents_table.remove(pck['gui'])
-                except:
-                    pass
             if pck['type'] == 'JOIN_REPLY':  # it becomes registered and sends join ack if the message is sent to itself once received join reply
                 if pck['dest_gui'] == self.id:
                     self.log(f'Heard Join Reply from: {pck["source"]}')
@@ -667,6 +791,7 @@ class SensorNode(wsn.Node):
                     self.kill_timer('TIMER_JOIN_REQUEST')
                     self.send_heart_beat()
                     self.set_timer('TIMER_HEART_BEAT', config.HEARTH_BEAT_TIME_INTERVAL)
+                    self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)
                     self.send_join_ack(pck['source'])
                     self.set_role(Roles.REGISTERED)
                     # self.send_network_update()
@@ -675,7 +800,11 @@ class SensorNode(wsn.Node):
                         timer_duration =  self.id % 20
                         if timer_duration == 0: timer_duration = 1
                         self.set_timer('TIMER_SENSOR', timer_duration)
-
+        if pck['type'] == 'NEG_JOIN_REPLY' and pck['dest_gui']:
+            try:
+                self.candidate_parents_table.remove(pck['gui'])
+            except:
+                pass
     ###################
     def on_timer_fired(self, name: str, *args, **kwargs):
         """Executes when a timer fired.
@@ -708,6 +837,7 @@ class SensorNode(wsn.Node):
                     self.addr = wsn.Addr(1, 254)
                     self.root_addr = self.addr
                     self.hop_count = 0
+                    self.draw_tx_range()
                     self.set_timer('TIMER_HEART_BEAT', config.HEARTH_BEAT_TIME_INTERVAL)
                 else:  # otherwise it keeps trying to sending probe after a long time
                     self.c_probe = 0
@@ -745,15 +875,21 @@ class SensorNode(wsn.Node):
         elif name == 'ROUTER_CHECK':
             if self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0:
                 other_networks = 0
-                best_child = [self.members_table[0], -1]
-                for node in self.members_table:
-                    if self.neighbors_table[node].role == Roles.CLUSTER_HEAD:
+                # best_child = [self.members_table[0], -1]
+                best_child = None
+                for gui, node in self.neighbors_table.items():
+                    if best_child is None:
+                        best_child = node
+                    if node.role == Roles.CLUSTER_HEAD:
                         other_networks += 1
-                        if len(self.neighbors_table[node].networks) > best_child[1]:
-                            best_child[0] = node
-                            best_child[1] = len(self.neighbors_table[node].networks)
-                if other_networks > 1:
-                    self.log(f'{self.addr} could become router. {best_child[0]} should take over.')
+                        if len(node.networks) > len(best_child.networks) and node.role != Roles.ROUTER:
+                            best_child = node
+                    elif node.gui in self.members_table and node.role == Roles.ROUTER:
+                        self.log('Unable to become a router because I have a router child.')
+                        return
+                if other_networks > 1 and best_child is not None:
+                    self.log(f'{self.addr} could become router. {best_child.gui} should take over.')
+                    self.send_router_request(best_child.addr)
                     # for node in self.members_table:
                         # self.send_role_change()
                         
@@ -761,5 +897,8 @@ class SensorNode(wsn.Node):
                 self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
                     # TODO: self.become_router()
         elif name == 'NETWORK_REQUEST_TIMEOUT':
-            pass
             # raise RuntimeError("Network Request Timeout.")
+            pass
+        elif name == 'TIMER_NEIGHBOR_PUBLISH':
+            self.send_neighbor_table()
+            self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)
