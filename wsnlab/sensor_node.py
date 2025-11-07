@@ -262,14 +262,21 @@ class SensorNode(wsn.Node):
         min_hop = 99999
         min_hop_gui = 99999
         for gui in self.candidate_parents_table:
-            if (self.neighbors_table[gui].hop_count < min_hop or 
+            if (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].role != Roles.ROUTER or 
                 (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                 min_hop = self.neighbors_table[gui].hop_count
                 min_hop_gui = gui
         if min_hop_gui == 99999:
-            self.log('No Available Addresses')
-            self.become_unregistered()
-            return
+            for gui in self.candidate_parents_table:
+                if (self.neighbors_table[gui].hop_count < min_hop or 
+                    (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
+                    min_hop = self.neighbors_table[gui].hop_count
+                    min_hop_gui = gui
+            if min_hop_gui == 99999:
+            
+                self.log('No Available Addresses')
+                self.become_unregistered()
+                return
         selected_addr = self.neighbors_table[min_hop_gui].addr
         self.candidate_parents_table.remove(min_hop_gui)
         self.log(f'Sent Join Request to {selected_addr}')
@@ -657,7 +664,7 @@ class SensorNode(wsn.Node):
             if pck['gui'] in self.neighbors_table:
                 self.neighbors_table[pck['gui']].addr = pck['new_addr']
 
-            if (self.role == Roles.CLUSTER_HEAD 
+            if (self.role == Roles.CLUSTER_HEAD
                 and pck['gui'] in self.members_table 
                 and pck['new_addr'].net_addr != self.addr.net_addr
                 and pck['old_addr'].node_addr in self.assigned_node_ids):
@@ -693,10 +700,10 @@ class SensorNode(wsn.Node):
                 self.members_table.append(pck['gui'])
             if pck['type'] == 'SENSOR':
                 pass
-            if pck['type'] == 'ROUTER_REQUEST' and self.role != Roles.ROOT:
+            if pck['type'] == 'ROUTER_REQUEST':
                 self.log(f'Heard ROUTER_REQUEST from: {pck["source"]}')
                 self.send_router_reply(pck['source'], pck['gui'])
-            if pck['type'] == 'ROUTER_REPLY':
+            if pck['type'] == 'ROUTER_REPLY' and pck['accepted']:
                 self.log(f'Heard ROUTER_REPLY from: {pck["source"]}')
                 old_addr = self.addr
                 self.addr = pck['addr']
@@ -704,10 +711,13 @@ class SensorNode(wsn.Node):
                 self.send_heart_beat()
                 self.erase_tx_range()
                 self.set_role(Roles.ROUTER)
+                self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
         
         elif self.role == Roles.ROUTER:
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
+            if pck['type'] == 'JOIN_REQUEST':
+                self.become_unregistered()
         elif self.role == Roles.REGISTERED:  # if the node is registered
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
@@ -861,10 +871,23 @@ class SensorNode(wsn.Node):
                             best_child = node
                     elif node.gui in self.members_table and node.role == Roles.ROUTER:
                         self.log('Unable to become a router because I have a router child.')
+                        self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
                         return
+                        
                 if other_networks > 1 and best_child is not None:
                     self.send_router_request(best_child.addr)
+                elif other_networks > 3:
+                    self.become_unregistered()
+                    return
             self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+        elif name == 'ROUTER_NECESSITY_CHECK':
+            if len(self.members_table) > 0 or (len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].gui != self.parent_gui):
+                self.log(f'Router deemed necessary: {self.members_table}')
+                self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
+            else:
+                self.log('Router status deemed unnecessary')
+                self.become_unregistered()
+
         elif name == 'NETWORK_REQUEST_TIMEOUT':
             # raise RuntimeError("Network Request Timeout.")
             pass
