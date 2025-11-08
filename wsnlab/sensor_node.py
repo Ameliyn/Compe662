@@ -696,9 +696,12 @@ class SensorNode(wsn.Node):
             if pck['gui'] == self.parent_gui and self.role != Roles.CLUSTER_HEAD and self.role != Roles.ROUTER:
                 self.log('Our parent has changed addresses!')
                 for gui, node in self.neighbors_table.items():
-                    if gui != pck['gui'] and node.role == Roles.CLUSTER_HEAD:
-                        self.become_unregistered()
-                        break
+                    if node.addr != wsn.Addr(-1,-1,) and gui != pck['gui'] and node.role == Roles.CLUSTER_HEAD and node.hop_count <= self.hop_count:
+                        self.erase_parent()
+                        self.parent_gui = gui
+                        self.draw_parent()
+                        return
+                self.become_unregistered()
             
         elif pck['type'] == 'NEIGHBOR_UPDATE':
             self.update_neighbor(pck)
@@ -895,7 +898,7 @@ class SensorNode(wsn.Node):
                         return
                 if other_networks > 1 and best_child is not None:
                     self.send_router_request(best_child.addr)
-                elif other_networks > 3:
+                elif other_networks > 2:
                     self.become_unregistered()
                     return
             self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
