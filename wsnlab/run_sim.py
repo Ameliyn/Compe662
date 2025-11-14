@@ -142,6 +142,19 @@ def create_network(node_class: type[SensorNode], number_of_nodes=100):
     """
     edge = math.ceil(math.sqrt(number_of_nodes))
     ROOT_ID = random.randrange(config.SIM_NODE_COUNT)  # 0..count-1
+    
+    faulty_node_id = random.randrange(config.SIM_NODE_COUNT)
+    while faulty_node_id == ROOT_ID:
+        faulty_node_id = random.randrange(config.SIM_NODE_COUNT)
+
+    num_faulty_nodes = config.NUM_FAULTY_NODES
+    faulty_node_list = []
+    while num_faulty_nodes > 0:
+        potential_faulty_node = random.randrange(config.SIM_NODE_COUNT)
+        while potential_faulty_node in faulty_node_list or potential_faulty_node == ROOT_ID:
+            potential_faulty_node = random.randrange(config.SIM_NODE_COUNT)
+        faulty_node_list.append(potential_faulty_node)
+        num_faulty_nodes -= 1
 
     for i in range(number_of_nodes):
         x = i / edge
@@ -158,6 +171,10 @@ def create_network(node_class: type[SensorNode], number_of_nodes=100):
             print(f'Node: {ROOT_ID} is ROOT')
             node.is_root_eligible = True
             node.arrival = 0.1
+        elif node.id in faulty_node_list:
+            print(f'Node: {node.id} is FAULTY')
+            node.is_faulty = True
+        
 
 
 sim = wsn.Simulator(

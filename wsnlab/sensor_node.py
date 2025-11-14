@@ -135,6 +135,7 @@ class SensorNode(wsn.Node):
         """Networks downstream from us"""
         self.arrival: float
         """Arrival time of current node."""
+        self.is_faulty: float
 
     ###################
     def run(self):
@@ -166,6 +167,12 @@ class SensorNode(wsn.Node):
                 self.scene.nodecolor(self.id, 1, 1, 0)
             elif new_role == Roles.REGISTERED:
                 self.scene.nodecolor(self.id, 0, 1, 0)
+                try:
+                    self.is_faulty = getattr(self, 'is_faulty')
+                except:
+                    self.is_faulty = False
+                if self.is_faulty:
+                    self.set_timer('FAULTY_NODE', random.randrange(config.FAULTY_NODE_PERIOD + int(config.FAULTY_NODE_PERIOD*0.2)))
             elif new_role == Roles.ROUTER:
                 self.scene.nodecolor(self.id, 0, 1, 1)
             elif new_role == Roles.CLUSTER_HEAD:
@@ -262,13 +269,17 @@ class SensorNode(wsn.Node):
         min_hop = 99999
         min_hop_gui = 99999
         for gui in self.candidate_parents_table:
-            if (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].role != Roles.ROUTER or 
+            if gui not in self.neighbors_table:
+                continue
+            elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].role != Roles.ROUTER or 
                 (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                 min_hop = self.neighbors_table[gui].hop_count
                 min_hop_gui = gui
         if min_hop_gui == 99999:
             for gui in self.candidate_parents_table:
-                if (self.neighbors_table[gui].hop_count < min_hop or 
+                if gui not in self.neighbors_table:
+                    continue
+                elif (self.neighbors_table[gui].hop_count < min_hop or 
                     (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                     min_hop = self.neighbors_table[gui].hop_count
                     min_hop_gui = gui
@@ -689,7 +700,7 @@ class SensorNode(wsn.Node):
                 and pck['new_addr'].net_addr != self.addr.net_addr
                 and pck['old_addr'].node_addr in self.assigned_node_ids):
                 # self.members_table.remove(pck['gui'])
-                self.log(f'Removing {self.assigned_node_ids.pop(pck['old_addr'].node_addr)} from my assigned node ids.')
+                self.log(f'Removing {self.assigned_node_ids.pop(pck["old_addr"].node_addr)} from my assigned node ids.')
                 # pass
             # if pck['old_addr'].node_addr == 254 and pck['old_addr'].net_addr in self.networking_table:
                 # self.log(f'Cluster head of {pck['old_addr'].node_addr} changing, removing network')
@@ -881,7 +892,7 @@ class SensorNode(wsn.Node):
             self.send_network_update()
             self.set_timer('TIMER_NETWORK_UPDATE_INTERVAL', config.TIMER_NETWORK_UPDATE_INTERVAL)
         elif name == 'ROUTER_CHECK':
-            if self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
+            if config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
                 other_networks = 0
                 # best_child = [self.members_table[0], -1]
                 best_child = None
@@ -916,3 +927,5 @@ class SensorNode(wsn.Node):
         elif name == 'TIMER_NEIGHBOR_PUBLISH':
             self.send_neighbor_table()
             self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)
+        elif name == 'FAULTY_NODE':
+            self.become_unregistered()
