@@ -618,7 +618,7 @@ class SensorNode(wsn.Node):
                  f' (selected by {pck["routed_type"]})')
         
         self.send(pck)
-
+        
     ###################
     def on_receive(self, pck: dict):
         """Executes when a package received.
@@ -629,7 +629,12 @@ class SensorNode(wsn.Node):
 
         """
         try:
-
+            if config.USE_BATTERY_POWER and self.charge < 0 and self.role != Roles.ROOT:
+                self.become_unregistered()
+                self.set_timer('CHARGE_TIMER', config.NODE_CHARGE_TIME)
+                self.sleep()
+                return
+            
             if (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
                 self.process_packet(pck)
 
@@ -925,5 +930,8 @@ class SensorNode(wsn.Node):
             self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)
         elif name == 'FAULTY_NODE':
             self.become_unregistered()
+        elif name == 'CHARGE_TIMER':
+            self.charge = config.NODE_CHARGE_AMOUNT
+            self.wake_up()
         else:
             super().on_timer_fired(name)
