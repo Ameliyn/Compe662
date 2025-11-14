@@ -120,7 +120,6 @@ class Node:
            sim (Simulator): Simulation environment of node.
            id (int): Global unique ID of node.
            addr (Addr): Network address of node.
-           ch_addr (Addr): Cluster Head network address
            is_sleep (bool): If it is True, It means node is sleeping and can not receive messages.
            Otherwise, node is awaken.
            logging (bool): It is a flag for logging. If it is True, nodes outputs can be seen in terminal.
@@ -151,7 +150,6 @@ class Node:
         self.sim = sim
         self.id = id
         self.addr = Addr(0, id)
-        self.ch_addr = None
         self.parent_gui = None
         self.is_sleep = False
         self.logging = True
@@ -159,6 +157,7 @@ class Node:
         self.neighbor_distance_list = []
         self.log_history = []
         self.timeout = self.sim.timeout
+        self.charge = config.NODE_CHARGE_AMOUNT
 
     ############################
     def __repr__(self):
@@ -246,9 +245,10 @@ class Node:
                 if node.can_receive(pck):
                     prop_time = dist / 1000000 - 0.00001 if dist / 1000000 - 0.00001 >0 else 0.00001
                     self.delayed_exec(prop_time, node.on_receive_check, pck)
+                    self.charge -= dist
             else:
                 break
-
+        
     ############################
     def set_timer(self, name: str, time: float, *args, **kwargs):
         """Sets a timer with a given name. It appends name of timer to the active timer list.

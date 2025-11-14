@@ -11,12 +11,13 @@ ROUTER_CHECK_INTERVAL = 100
 CLUSTER_SIZE = 10
 CLUSTER_LIMIT = 254
 NEIGHBOR_PUBLISH_INTERVAL = 500
-
+NODE_CHARGE_AMOUNT = 50000
+NODE_CHARGE_TIME = 200
 
 ## simulation properties
 SIM_NODE_COUNT = 50  # noce count in simulation
 SIM_NODE_PLACING_CELL_SIZE = 75  # cell size to place one node
-SIM_DURATION = 5000  # simulation Duration in seconds
+SIM_DURATION = 10000  # simulation Duration in seconds
 SIM_TIME_SCALE = 0.00001  #  The real time dureation of 1 second simualtion time
 SIM_TERRAIN_SIZE = (1400, 1400)  #terrain size
 SIM_TITLE = 'Data Collection Tree'  # title of visualization window
@@ -29,8 +30,8 @@ LOG_LEVEL = "INFO"
 DO_SENSOR_MESSAGES = False
 PACKET_LOSS_RATE = 0.000001 #TODO
 ALLOW_ROUTERS = True
-NUM_FAULTY_NODES = 3
-FAULTY_NODE_PERIOD = 1000
+NUM_FAULTY_NODES = 10
+FAULTY_NODE_PERIOD = [1000,1500]
 
 ## application properties
 HEARTH_BEAT_TIME_INTERVAL = 100

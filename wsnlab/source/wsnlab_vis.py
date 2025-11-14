@@ -61,7 +61,6 @@ class Node(wsnlab.Node):
                 self.tx_range,
                 line="wsnsimpy:tx")
             self.delayed_exec(0.2, self.scene.delshape, obj_id)
-        
         # When unicast is added, it needs to be re-arranged
         # if not pck['dest'].is_equal(wsnlab.BROADCAST_ADDR):
         #     destPos = self.sim.nodes[pck['dest'].l].pos
