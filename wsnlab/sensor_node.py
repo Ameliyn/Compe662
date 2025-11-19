@@ -356,20 +356,19 @@ class SensorNode(wsn.Node):
                 new_node_id = i
                 break
         pck = {}
-        if new_node_id == -1:
+        if new_node_id == -1 or self.parent_gui is None or self.neighbors_table[self.parent_gui].role == Roles.ROUTER:
             self.log('No children to allocate.')
             pck = {'dest': dest, 'type': 'ROUTER_REPLY', 'source': self.addr,
                     'gui': self.id, 'ttl': 1}
             pck['accepted'] = False
             self.send(pck)
         else:
-            pck['accepted'] = True
             self.assigned_node_ids[new_node_id] = gui
-            self.set_timer('JOIN_ACK_TIMEOUT', 200) #TODO: THIS DOES NOTHING
-            self.log(f'Sent Join Reply to: {dest}')
+            
             pck = {'dest': dest, 'type': 'ROUTER_REPLY', 'source': self.addr,
                     'gui': self.id, 'addr': wsn.Addr(self.addr.net_addr, new_node_id)}
             pck['accepted'] = True
+
             self.send(pck)
             
     ###################
@@ -706,7 +705,7 @@ class SensorNode(wsn.Node):
                 and pck['old_addr'].node_addr in self.assigned_node_ids):
                 self.log(f'Removing {self.assigned_node_ids.pop(pck["old_addr"].node_addr)} from my assigned node ids.')
 
-            if pck['gui'] == self.parent_gui and pck['role'] not in [Roles.CLUSTER_HEAD, Roles.ROOT, Roles.ROUTER]:
+            if pck['gui'] == self.parent_gui and pck['role'] not in [Roles.CLUSTER_HEAD, Roles.ROOT]:
                 self.become_unregistered()
                 return
             
@@ -738,9 +737,11 @@ class SensorNode(wsn.Node):
                 old_addr = self.addr
                 self.addr = pck['addr']
                 self.send_address_renew(old_addr=old_addr)
+
                 self.send_heart_beat()
                 self.erase_tx_range()
                 self.set_role(Roles.ROUTER)
+
                 self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
         
         elif self.role == Roles.ROUTER:
@@ -894,6 +895,16 @@ class SensorNode(wsn.Node):
             self.set_timer('TIMER_NETWORK_UPDATE_INTERVAL', config.TIMER_NETWORK_UPDATE_INTERVAL)
         elif name == 'ROUTER_CHECK':
             if config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
+                # become_router = False
+                # child = None
+                # if self.neighbors_table[self.parent_gui].role == Roles.CLUSTER_HEAD:
+                #     for gui, node in self.neighbors_table.items():
+                #         if node.role == Roles.CLUSTER_HEAD and gui != self.parent_gui:
+                #             become_router = True
+                #             child = self.neighbors_table[gui].addr
+                #             break
+                # if become_router and child is not None:
+                #     self.send_router_request(child)
                 other_networks = 0
                 # best_child = [self.members_table[0], -1]
                 best_child = None
@@ -908,14 +919,18 @@ class SensorNode(wsn.Node):
                         self.log('Unable to become a router because I have a router child.')
                         self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
                         return
-                if other_networks > 1 and best_child is not None:
+                if other_networks > 0 and best_child is not None:
                     self.send_router_request(best_child.addr)
                 elif other_networks > 2:
                     self.become_unregistered()
                     return
-            self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
         elif name == 'ROUTER_NECESSITY_CHECK':
             if len(self.members_table) > 0 or (len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].gui != self.parent_gui):
+                for node in self.members_table:
+                    if self.neighbors_table[node].role != Roles.CLUSTER_HEAD:
+                        self.become_unregistered()
+                        return
                 self.log(f'Router deemed necessary: {self.members_table}')
                 self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
             else:
