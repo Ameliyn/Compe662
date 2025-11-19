@@ -225,6 +225,8 @@ class SensorNode(wsn.Node):
 
     ###################
     def update_neighbor(self, pck: dict):
+        if getattr(self, 'root_addr',None) is None and 'root_addr' in pck:
+            self.root_addr = pck['root_addr']
         pck['arrival_time'] = self.now
         # compute Euclidean distance between self and neighbor
         if 'pos' in pck.keys() and getattr(self, "pos", None) is not None:
@@ -312,7 +314,7 @@ class SensorNode(wsn.Node):
         self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'PROBE', 'ttl': config.PACKET_TTL})
 
     ###################
-    def send_heart_beat(self):
+    def send_heart_beat(self, with_root = False):
         """Sending heart beat message
 
         Args:
@@ -320,7 +322,7 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
-        self.send({'dest': wsn.BROADCAST_ADDR,
+        pck = {'dest': wsn.BROADCAST_ADDR,
                    'type': 'HEART_BEAT',
                    'source': self.addr,
                    'gui': self.id,
@@ -330,7 +332,10 @@ class SensorNode(wsn.Node):
                    'pos': self.pos,
                    'networks': self.child_networks, 
                    'ttl': config.PACKET_TTL,
-                   'parent': self.parent_gui})
+                   'parent': self.parent_gui}
+        if with_root:
+            pck['root_addr'] = self.root_addr
+        self.send(pck)
 
     ###################
     def send_join_request(self, dest: wsn.Addr):
@@ -717,7 +722,7 @@ class SensorNode(wsn.Node):
                 self.update_neighbor(pck)
             if pck['type'] == 'PROBE':  # it waits and sends heart beat message once received probe message
                 # yield self.timeout(.5)
-                self.send_heart_beat()
+                self.send_heart_beat(with_root = True)
             if pck['type'] == 'JOIN_REQUEST':  # it waits and sends join reply message once received join request
                 # yield self.timeout(.5)
                 self.send_join_reply(pck['gui'])
