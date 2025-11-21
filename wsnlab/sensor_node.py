@@ -657,7 +657,6 @@ class SensorNode(wsn.Node):
 
         except Exception as e:
             print(f'{pck}')
-            raise e
 
     def process_packet(self, pck: dict):
         """Process an incoming packet that is assigned to us.
@@ -668,6 +667,7 @@ class SensorNode(wsn.Node):
         """
         while self.processing_packet:
             self.log('Trying to process multiple packets at once...')
+            return
 
         self.processing_packet = True
         if pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None and pck['gui'] in self.neighbors_table:
@@ -929,7 +929,7 @@ class SensorNode(wsn.Node):
                 elif other_networks > 2:
                     self.become_unregistered()
                     return
-                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+            self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
         elif name == 'ROUTER_NECESSITY_CHECK':
             if len(self.members_table) > 0 or (len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].gui != self.parent_gui):
                 for node in self.members_table:
