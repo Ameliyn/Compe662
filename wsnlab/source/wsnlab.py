@@ -4,10 +4,17 @@ Based on wsnsimpy library. Timers, Network address and Sleep mode are included b
 
 import bisect
 import inspect
+import json
 import random
 import simpy
+from enum import Enum
+from simpy import rt
+import csv
 from simpy.util import start_delayed
 from source import config
+
+Roles = Enum('Roles', 'ROOT CLUSTER_HEAD ROUTER REGISTERED UNREGISTERED UNDISCOVERED')
+"""Enumeration of roles"""
 
 ###########################################################
 class Addr:
@@ -44,7 +51,10 @@ class Addr:
                string: represents Addr object as a string.
         """
         return '[%d,%d]' % (self.net_addr, self.node_addr)
-
+    
+    def __str__(self) -> str:
+        return self.__repr__()
+    
     ############################
     def __eq__(self, other):
         """ == operator function for Addr objects.
@@ -96,8 +106,8 @@ def ensure_generator(env, func, *args, **kwargs):
 
 
 ###########################################################
-def distance(pos1: float, 
-             pos2: float):
+def distance(pos1: tuple[float, float], 
+             pos2: tuple[float, float]):
     """Calculates the distance between two positions.
 
        Args:
@@ -109,6 +119,210 @@ def distance(pos1: float,
     """
     return ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
 
+
+###########################################################
+class Simulator:
+    """Class to model a network.
+
+       Attributes:
+           timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
+           nodes (List of Node): Nodes in network.
+           duration (float): Duration of simulation.
+           random (Random): Random object to use.
+           timeout (Function): Timeout Function.
+
+    """
+
+    ############################
+    def __init__(self, duration: float, timescale: float = 1, seed: float = 0):
+        """Constructor for Simulator class.
+
+           Args:
+               until (float): Duration of simulation.
+               timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
+               seed (float): seed for Random bbject.
+
+           Returns:
+               Simulator: Created Simulator object.
+        """
+        self.env = rt.RealtimeEnvironment(factor=timescale, strict=False)
+        self.nodes = []
+        self.duration = duration
+        self.timescale = timescale
+        self.random = random.Random(seed)
+        self.timeout = self.env.timeout
+        
+        self.node_file = 'node_log.csv'
+        self.node_logs = []
+        with open(self.node_file, "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["timestamp", "node_id", "log_text"])
+
+        self.packet_file = 'node_packets.csv'
+        self.packets = []
+        with open(self.packet_file, "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["timestamp", "node_id", "send_receive", "create_time", "receive_time", "packet"])
+
+        self.node_role_change_file = 'node_role_change.csv'
+        self.role_changes = []
+        with open(self.node_role_change_file, "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["timestamp", "node_id", "role"])
+
+
+
+    ############################
+    @property
+    def now(self):
+        """Property for time of simulation.
+
+           Args:
+
+           Returns:
+               float: Time of simulation.
+        """
+        return self.env.now
+
+    ############################
+    def delayed_exec(self, delay: float, func, *args, **kwargs):
+        """Executes a function with given parameters after a given delay.
+
+           Args:
+                delay (float): Delay duration.
+                func (Function): Function to execute.
+                *args (float): Function args.
+                delay (float): Function key word args.
+           Returns:
+
+        """
+        func = ensure_generator(self.env, func, *args, **kwargs)
+        start_delayed(self.env, func, delay=delay)
+
+    ############################
+    def add_node(self, node_class, pos: tuple[float, float], is_root = False):
+        """Adds a new node in to network.
+
+           Args:
+                nodeclass (Class): Node class inherited from Node.
+                pos (Tuple(float,float)): Position of node.
+           Returns:
+                nodeclass object: Created nodeclass object
+        """
+        id = len(self.nodes)
+        node = node_class(self, id, pos)
+        self.nodes.append(node)
+        self.update_neighbor_list(id)
+        return node
+
+    ############################
+    def update_neighbor_list(self, id: int):
+        '''
+        Maintain each node's neighbor list by sorted distance after affected
+        by addition or relocation of node with ID id
+
+        Args:
+            id (int): Global unique id of node
+        Returns:
+
+        '''
+        me = self.nodes[id]
+
+        # (re)sort other nodes' neighbor lists by distance
+        for n in self.nodes:
+            # skip this node
+            if n is me:
+                continue
+
+            nlist = n.neighbor_distance_list
+
+            # remove this node from other nodes' neighbor lists
+            for i, (dist, neighbor) in enumerate(nlist):
+                if neighbor is me:
+                    del nlist[i]
+                    break
+
+            # then insert it while maintaining sort order by distance
+            bisect.insort(nlist, (distance(n.pos, me.pos), me))
+
+        self.nodes[id].neighbor_distance_list = [
+            (distance(n.pos, me.pos), n)
+            for n in self.nodes if n is not me
+        ]
+        self.nodes[id].neighbor_distance_list.sort()
+
+    ############################
+    def run(self):
+        """Runs the simulation. It initialize every node, then executes each nodes run function.
+        Finally calls finish functions of nodes.
+
+           Args:
+
+           Returns:
+
+        """
+        for n in self.nodes:
+            n.init()
+        for n in self.nodes:
+            self.env.process(ensure_generator(self.env, n.run))
+        self.env.run(until=self.duration)
+        for n in self.nodes:
+            n.finish()
+
+    def log_message(self, msg: str, id: int):
+        if self.node_logs is not None:
+            self.node_logs.append({'msg': msg, 'id': id, 'now': f"{self.now:.6f}"})
+        
+        if len(self.node_logs) > config.NODE_LOG_CACHE_COUNT:
+            with open(self.node_file, "a", newline="") as f:
+                w = csv.writer(f)
+                for log in self.node_logs:
+                    w.writerow([log['now'], log['id'], log['msg']])
+                self.node_logs = []
+
+    def log_packet(self, input_pck: dict, send_receive: str, id: int):
+        pck = input_pck.copy()
+        if self.packets is not None and 'ALL' in config.PACKET_LOG_MASK or pck['type'] in config.PACKET_LOG_MASK:
+            self.packets.append({'pck': pck, 'send_receive': send_receive, 'id': id, 'now': f"{self.now:.6f}"})
+        
+        if len(self.packets) > config.PACKET_CACHE_COUNT:
+            with open(self.packet_file, "a", newline="") as f:
+                w = csv.writer(f)
+                for packet in self.packets:
+                    w.writerow([packet['now'], packet['id'], packet['send_receive'], 
+                                packet['pck']['create_time'] if 'create_time' in packet['pck'] else '-1',
+                                packet['pck']['receive_time'] if 'receive_time' in packet['pck'] else '-1', packet['pck']])
+                self.packets = []
+
+    def log_role_change(self, id: int, role: Roles):
+        if self.role_changes is not None:
+            self.role_changes.append({'role': f'{role.value}: {role.name}', 'id': id, 'now': f"{self.now:.6f}"})
+        
+        if len(self.role_changes) > config.PACKET_CACHE_COUNT:
+            with open(self.node_role_change_file, "a", newline="") as f:
+                w = csv.writer(f)
+                for packet in self.role_changes:
+                    w.writerow([packet['now'], packet['id'], packet['role']])
+                self.role_changes = []
+
+    def write_packets_and_logs(self):
+        with open(self.packet_file, "a", newline="") as f:
+            w = csv.writer(f)
+            for packet in self.packets:
+                w.writerow([packet['now'], packet['id'], packet['send_receive'], 
+                            packet['pck']['create_time'] if 'create_time' in packet['pck'] else '-1',
+                            packet['pck']['receive_time'] if 'receive_time' in packet['pck'] else '-1', packet['pck']])
+            self.packets = []
+        with open(self.node_file, "a", newline="") as f:
+            w = csv.writer(f)
+            for log in self.node_logs:
+                w.writerow([log['now'], log['id'], log['msg']])
+            self.node_logs = []
+        with open(self.node_role_change_file, "a", newline="") as f:
+            w = csv.writer(f)
+            for packet in self.role_changes:
+                w.writerow([packet['now'], packet['id'], packet['role']])
+            self.role_changes = []
 
 ###########################################################
 class Node:
@@ -147,7 +361,7 @@ class Node:
         """
         self.pos = pos
         self.tx_range = 0
-        self.sim = sim
+        self.sim: Simulator = sim
         self.id = id
         self.addr = Addr(0, id)
         self.parent_gui = None
@@ -191,9 +405,11 @@ class Node:
            Returns:
 
         """
+
         if self.logging:
             print(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}")
         self.log_history.append(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}")
+        self.sim.log_message(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}", self.id)
 
     def dump_log(self):
         """Returns a string representation of node's log.
@@ -240,6 +456,8 @@ class Node:
         """
         # if pck['type'] in ['NETWORK_REQUEST']:
         #     print(f'{self.id} sent packet of type: {pck["type"]}')
+        if 'create_time' not in pck.keys():
+            pck['create_time'] = self.now
         for (dist, node) in self.neighbor_distance_list:
             if dist <= self.tx_range:
                 if node.can_receive(pck):
@@ -248,6 +466,7 @@ class Node:
                     self.charge -= dist
             else:
                 break
+        self.sim.log_packet(pck, 'send', self.id)
         
     ############################
     def set_timer(self, name: str, time: float, *args, **kwargs):
@@ -423,131 +642,4 @@ class Node:
         pass
 
 
-###########################################################
-class Simulator:
-    """Class to model a network.
 
-       Attributes:
-           timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
-           nodes (List of Node): Nodes in network.
-           duration (float): Duration of simulation.
-           random (Random): Random object to use.
-           timeout (Function): Timeout Function.
-
-    """
-
-    ############################
-    def __init__(self, duration: float, timescale: float = 1, seed: float = 0):
-        """Constructor for Simulator class.
-
-           Args:
-               until (float): Duration of simulation.
-               timescale (float): Seconds in real time for 1 second in simulation. It arranges speed of simulation
-               seed (float): seed for Random bbject.
-
-           Returns:
-               Simulator: Created Simulator object.
-        """
-        self.env = simpy.rt.RealtimeEnvironment(factor=timescale, strict=False)
-        self.nodes = []
-        self.duration = duration
-        self.timescale = timescale
-        self.random = random.Random(seed)
-        self.timeout = self.env.timeout
-
-    ############################
-    @property
-    def now(self):
-        """Property for time of simulation.
-
-           Args:
-
-           Returns:
-               float: Time of simulation.
-        """
-        return self.env.now
-
-    ############################
-    def delayed_exec(self, delay: float, func, *args, **kwargs):
-        """Executes a function with given parameters after a given delay.
-
-           Args:
-                delay (float): Delay duration.
-                func (Function): Function to execute.
-                *args (float): Function args.
-                delay (float): Function key word args.
-           Returns:
-
-        """
-        func = ensure_generator(self.env, func, *args, **kwargs)
-        start_delayed(self.env, func, delay=delay)
-
-    ############################
-    def add_node(self, node_class, pos: tuple[float, float], is_root = False):
-        """Adds a new node in to network.
-
-           Args:
-                nodeclass (Class): Node class inherited from Node.
-                pos (Tuple(float,float)): Position of node.
-           Returns:
-                nodeclass object: Created nodeclass object
-        """
-        id = len(self.nodes)
-        node = node_class(self, id, pos)
-        self.nodes.append(node)
-        self.update_neighbor_list(id)
-        return node
-
-    ############################
-    def update_neighbor_list(self, id: int):
-        '''
-        Maintain each node's neighbor list by sorted distance after affected
-        by addition or relocation of node with ID id
-
-        Args:
-            id (int): Global unique id of node
-        Returns:
-
-        '''
-        me = self.nodes[id]
-
-        # (re)sort other nodes' neighbor lists by distance
-        for n in self.nodes:
-            # skip this node
-            if n is me:
-                continue
-
-            nlist = n.neighbor_distance_list
-
-            # remove this node from other nodes' neighbor lists
-            for i, (dist, neighbor) in enumerate(nlist):
-                if neighbor is me:
-                    del nlist[i]
-                    break
-
-            # then insert it while maintaining sort order by distance
-            bisect.insort(nlist, (distance(n.pos, me.pos), me))
-
-        self.nodes[id].neighbor_distance_list = [
-            (distance(n.pos, me.pos), n)
-            for n in self.nodes if n is not me
-        ]
-        self.nodes[id].neighbor_distance_list.sort()
-
-    ############################
-    def run(self):
-        """Runs the simulation. It initialize every node, then executes each nodes run function.
-        Finally calls finish functions of nodes.
-
-           Args:
-
-           Returns:
-
-        """
-        for n in self.nodes:
-            n.init()
-        for n in self.nodes:
-            self.env.process(ensure_generator(self.env, n.run))
-        self.env.run(until=self.duration)
-        for n in self.nodes:
-            n.finish()

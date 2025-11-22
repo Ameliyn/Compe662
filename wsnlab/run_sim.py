@@ -1,3 +1,4 @@
+import json
 import random
 from enum import Enum
 import sys
@@ -196,6 +197,7 @@ write_neighbor_distances_csv('neighbor_distances.csv')
 try:
     sim.run()
 except:
+    sim.write_packets_and_logs()
     pass
 print("Simulation Finished")
 
@@ -214,6 +216,56 @@ if config.LOG_LEVEL == 'DEBUG':
                 print(f'{gui}: {entry}')
             print('Candidate Parents Table')
             print(f'{node.candidate_parents_table}')
+
+if config.GENERATE_AVG_PACKET_DELAY:
+    with open('node_packets.csv', 'r') as f:
+        r = csv.reader(f)
+        header = next(r)
+        packet_turnaround_times = []
+        for row in r:
+            try:
+                timestamp = row[0]
+                node_id = row[1]
+                send_receive = row[2]
+                create_time = float(row[3])
+                receive_time = float(row[4])
+                if send_receive == 'receive' and receive_time != -1:
+                    packet_turnaround_times.append(receive_time - create_time)
+            except:
+                pass
+                # print(f'{timestamp}, {node_id} : {} {packet["receive_time"]}')
+        print(f'Average Packet Delay: {sum(packet_turnaround_times) / len(packet_turnaround_times)}')
+
+if config.GENERATE_AVG_JOIN_DELAY:
+    with open('node_role_change.csv', 'r') as f:
+        r = csv.reader(f)
+        header = next(r)
+        node_join_times = []
+        node_roles = dict()
+        off_roles = ['5: UNREGISTERED']
+        for row in r:
+            try:
+                timestamp = float(row[0])
+                node_id = row[1]
+                role = row[2]
+                if node_id in node_roles.keys():
+                    old_role = node_roles[node_id][0]
+                    start_time = node_roles[node_id][1]
+                    if old_role in off_roles:
+                        # print(f'Node: {node_id} is off')
+                        if role not in off_roles:
+                            # print(f'Node: {node_id} turned on')
+                            node_join_times.append(timestamp-start_time)
+                node_roles[node_id] = (role, timestamp)
+
+                
+            except:
+                pass
+                # print(f'{timestamp}, {node_id} : {} {packet["receive_time"]}')
+        if len(node_join_times) > 0:
+            print(f'Average Join Delay: {sum(node_join_times) / len(node_join_times)}')
+        else:
+            print(node_roles)
 
 # Created 100 nodes at random locations with random arrival times.
 # When nodes are created they appear in white

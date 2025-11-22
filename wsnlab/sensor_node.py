@@ -22,8 +22,7 @@ ROLE_COUNTS = Counter()     # live tally per Roles enum
 def _addr_str(a): return "" if a is None else str(a)
 def _role_name(r): return r.name if hasattr(r, "name") else str(r)
 
-Roles = Enum('Roles', 'ROOT CLUSTER_HEAD ROUTER REGISTERED UNREGISTERED UNDISCOVERED')
-"""Enumeration of roles"""
+Roles = wsn.Roles
 
 @dataclass
 class NodeInformation():
@@ -160,6 +159,7 @@ class SensorNode(wsn.Node):
                 ROLE_COUNTS.pop(old_role, None)
         ROLE_COUNTS[new_role] += 1
         self.role = new_role
+        self.sim.log_role_change(self.id, self.role)
 
         if recolor:
             if new_role == Roles.UNDISCOVERED:
@@ -311,7 +311,7 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
-        self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'PROBE', 'ttl': config.PACKET_TTL})
+        self.send({'dest': wsn.BROADCAST_ADDR, 'type': 'PROBE', 'ttl': 1})
 
     ###################
     def send_heart_beat(self, with_root = False):
@@ -536,7 +536,7 @@ class SensorNode(wsn.Node):
 
         """
         
-        temp_neighbor_list = {}
+        temp_neighbor_list: dict[int, NodeInformation] = {}
         for gui, node in self.neighbors_table.items():
             if gui not in avoid_nodes:
                 temp_neighbor_list[gui] = node
@@ -564,6 +564,13 @@ class SensorNode(wsn.Node):
                 next_gui = gui
                 pck['next_hop'] = node.addr
                 pck['routed_type'] = 'Neighbors Table'
+                break
+
+        for gui, node in temp_neighbor_list.items():
+            if pck['dest'] in node.neighbor_nodes:
+                next_gui = gui
+                pck['next_hop'] = node.addr
+                pck['routed_type'] = 'Neighbors Table (MultiHop)'
                 break
 
         # If the destination's network is in our neighbor table, next_hop = dest_net
@@ -614,7 +621,7 @@ class SensorNode(wsn.Node):
             pck['ttl'] -= 1
         
         if 'hop_trace' not in pck.keys():
-            pck['hop_trace'] = [self.addr]
+            pck['hop_trace'] = [(self.addr, self.now)]
         else:
             pck['hop_trace'].append((self.addr, self.now))
         
@@ -640,16 +647,16 @@ class SensorNode(wsn.Node):
                 return
             
             if (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
-                self.process_packet(pck)
+                self.process_packet(pck.copy())
 
             # If we are the destination, process the packet
             elif pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
-                self.process_packet(pck)
+                self.process_packet(pck.copy())
                 pass
             
             # If we are the next hop, route the packet
             elif 'next_hop' in pck.keys() and pck['next_hop'] == self.addr:
-                self.route_and_forward_package(pck)
+                self.route_and_forward_package(pck.copy())
             
             # Packet is not for us            
             else:
@@ -665,6 +672,8 @@ class SensorNode(wsn.Node):
             pck (Dict): received package
         Returns:        
         """
+        pck['receive_time'] = self.now
+        self.sim.log_packet(pck, 'receive', self.id)
         while self.processing_packet:
             self.log('Trying to process multiple packets at once...')
             return

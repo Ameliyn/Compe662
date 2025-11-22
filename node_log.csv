@@ -1,0 +1,1665 @@
+timestamp,node_id,log_text
+31.445241,19,"Node #19 [  31.44524] Sent Join Request to [1,254]"
+31.445330,20,Node #20 [  31.44533] Sent Join Reply to: 19
+31.445419,19,"Node #19 [  31.44542] Heard Join Reply from: [1,254]"
+31.445419,19,"Node #19 [  31.44542] [1,1] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+38.629036,29,"Node #29 [  38.62904] Sent Join Request to [1,254]"
+38.629109,20,Node #20 [  38.62911] Sent Join Reply to: 29
+38.629182,29,"Node #29 [  38.62918] Heard Join Reply from: [1,254]"
+38.629182,29,"Node #29 [  38.62918] [1,2] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+45.544433,28,"Node #28 [  45.54443] Sent Join Request to [1,254]"
+45.544526,20,Node #20 [  45.54453] Sent Join Reply to: 28
+45.544618,28,"Node #28 [  45.54462] Heard Join Reply from: [1,254]"
+45.544618,28,"Node #28 [  45.54462] [1,3] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+51.445504,27,"Node #27 [  51.44550] Sent Join Request to [1,3]"
+51.445579,28,Node #28 [  51.44558] Heard Join Request from 27
+51.445579,28,"Node #28 [  51.44558] [1,3] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+51.445672,20,"Node #20 [  51.44567] Sent network reply to [1,3]"
+51.445672,20,"Node #20 [  51.44567] {'dest': [1,3], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [2,254], 'ttl': 15}"
+51.445672,20,"Node #20 [  51.44567] [1,254] Sending NETWORK_REPLY to [1,3] through [1,3] (selected by Neighbors Table)"
+51.445764,28,"Node #28 [  51.44576] [2,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+51.445764,28,Node #28 [  51.44576] Sent Join Reply to: 27
+51.445827,36,"Node #36 [  51.44583] ADDRESS RENEW: [1,3] -> [2,254]"
+51.445840,27,"Node #27 [  51.44584] ADDRESS RENEW: [1,3] -> [2,254]"
+51.445840,27,"Node #27 [  51.44584] Heard Join Reply from: [2,254]"
+51.445840,27,"Node #27 [  51.44584] [2,1] Sending JOIN_ACK to [2,254] through [2,254] (selected by Neighbors Table)"
+51.445842,29,"Node #29 [  51.44584] ADDRESS RENEW: [1,3] -> [2,254]"
+51.445857,20,"Node #20 [  51.44586] ADDRESS RENEW: [1,3] -> [2,254]"
+58.629279,30,"Node #30 [  58.62928] Sent Join Request to [1,2]"
+58.629280,36,"Node #36 [  58.62928] Sent Join Request to [2,254]"
+58.629343,28,Node #28 [  58.62934] Sent Join Reply to: 36
+58.629377,29,Node #29 [  58.62938] Heard Join Request from 30
+58.629377,29,"Node #29 [  58.62938] [1,2] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+58.629406,36,"Node #36 [  58.62941] Heard Join Reply from: [2,254]"
+58.629406,36,"Node #36 [  58.62941] [2,2] Sending JOIN_ACK to [2,254] through [2,254] (selected by Neighbors Table)"
+58.629450,20,"Node #20 [  58.62945] Sent network reply to [1,2]"
+58.629450,20,"Node #20 [  58.62945] {'dest': [1,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [3,254], 'ttl': 15}"
+58.629450,20,"Node #20 [  58.62945] [1,254] Sending NETWORK_REPLY to [1,2] through [1,2] (selected by Neighbors Table)"
+58.629522,29,"Node #29 [  58.62952] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+58.629522,29,Node #29 [  58.62952] Sent Join Reply to: 30
+58.629595,20,"Node #20 [  58.62959] ADDRESS RENEW: [1,2] -> [3,254]"
+58.629600,28,"Node #28 [  58.62960] ADDRESS RENEW: [1,2] -> [3,254]"
+58.629615,22,"Node #22 [  58.62961] ADDRESS RENEW: [1,2] -> [3,254]"
+58.629620,30,"Node #30 [  58.62962] ADDRESS RENEW: [1,2] -> [3,254]"
+58.629620,30,"Node #30 [  58.62962] Heard Join Reply from: [3,254]"
+58.629620,30,"Node #30 [  58.62962] [3,1] Sending JOIN_ACK to [3,254] through [3,254] (selected by Neighbors Table)"
+58.629621,36,"Node #36 [  58.62962] ADDRESS RENEW: [1,2] -> [3,254]"
+63.403797,18,"Node #18 [  63.40380] Sent Join Request to [1,1]"
+63.403870,19,Node #19 [  63.40387] Heard Join Request from 18
+63.403870,19,"Node #19 [  63.40387] [1,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+63.403959,20,"Node #20 [  63.40396] Sent network reply to [1,1]"
+63.403959,20,"Node #20 [  63.40396] {'dest': [1,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [4,254], 'ttl': 15}"
+63.403959,20,"Node #20 [  63.40396] [1,254] Sending NETWORK_REPLY to [1,1] through [1,1] (selected by Neighbors Table)"
+63.404048,19,"Node #19 [  63.40405] [4,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+63.404048,19,Node #19 [  63.40405] Sent Join Reply to: 18
+63.404121,18,"Node #18 [  63.40412] ADDRESS RENEW: [1,1] -> [4,254]"
+63.404121,18,"Node #18 [  63.40412] Heard Join Reply from: [4,254]"
+63.404121,18,"Node #18 [  63.40412] [4,1] Sending JOIN_ACK to [4,254] through [4,254] (selected by Neighbors Table)"
+63.404133,27,"Node #27 [  63.40413] ADDRESS RENEW: [1,1] -> [4,254]"
+63.404137,20,"Node #20 [  63.40414] ADDRESS RENEW: [1,1] -> [4,254]"
+71.445921,26,"Node #26 [  71.44592] Sent Join Request to [2,1]"
+71.446003,27,Node #27 [  71.44600] Heard Join Request from 26
+71.446003,27,"Node #27 [  71.44600] [2,1] Sending NETWORK_REQUEST to [1,254] through [2,254] (selected by Parent)"
+71.446078,28,"Node #28 [  71.44608] [2,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+71.446171,20,"Node #20 [  71.44617] Sent network reply to [2,1]"
+71.446171,20,"Node #20 [  71.44617] {'dest': [2,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [5,254], 'ttl': 15}"
+71.446171,20,"Node #20 [  71.44617] [1,254] Sending NETWORK_REPLY to [2,1] through [2,254] (selected by Neighbor Network)"
+71.446263,28,"Node #28 [  71.44626] [2,254] Sending NETWORK_REPLY to [2,1] through [2,1] (selected by Neighbors Table)"
+71.446339,27,"Node #27 [  71.44634] [5,254] Sending NETWORK_UPDATE to [1,254] through [2,254] (selected by Parent)"
+71.446339,27,Node #27 [  71.44634] Sent Join Reply to: 26
+71.446414,28,"Node #28 [  71.44641] ADDRESS RENEW: [2,1] -> [5,254]"
+71.446414,28,Node #28 [  71.44641] Removing 27 from my assigned node ids.
+71.446414,28,"Node #28 [  71.44641] [2,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+71.446420,26,"Node #26 [  71.44642] ADDRESS RENEW: [2,1] -> [5,254]"
+71.446420,26,"Node #26 [  71.44642] Heard Join Reply from: [5,254]"
+71.446420,26,"Node #26 [  71.44642] [5,1] Sending JOIN_ACK to [5,254] through [5,254] (selected by Neighbors Table)"
+71.446424,19,"Node #19 [  71.44642] ADDRESS RENEW: [2,1] -> [5,254]"
+73.821371,22,"Node #22 [  73.82137] Sent Join Request to [3,254]"
+73.821464,29,Node #29 [  73.82146] Sent Join Reply to: 22
+73.821557,22,"Node #22 [  73.82156] Heard Join Reply from: [3,254]"
+73.821557,22,"Node #22 [  73.82156] [3,2] Sending JOIN_ACK to [3,254] through [3,254] (selected by Neighbors Table)"
+78.629711,31,"Node #31 [  78.62971] Sent Join Request to [3,1]"
+78.629802,30,Node #30 [  78.62980] Heard Join Request from 31
+78.629802,30,"Node #30 [  78.62980] [3,1] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+78.629900,29,"Node #29 [  78.62990] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+78.629972,20,"Node #20 [  78.62997] Sent network reply to [3,1]"
+78.629972,20,"Node #20 [  78.62997] {'dest': [3,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [6,254], 'ttl': 15}"
+78.629972,20,"Node #20 [  78.62997] [1,254] Sending NETWORK_REPLY to [3,1] through [3,254] (selected by Neighbor Network)"
+78.630045,29,"Node #29 [  78.63004] [3,254] Sending NETWORK_REPLY to [3,1] through [3,1] (selected by Neighbors Table)"
+78.630142,30,"Node #30 [  78.63014] [6,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+78.630142,30,Node #30 [  78.63014] Sent Join Reply to: 31
+78.630181,22,"Node #22 [  78.63018] ADDRESS RENEW: [3,1] -> [6,254]"
+78.630234,31,"Node #31 [  78.63023] ADDRESS RENEW: [3,1] -> [6,254]"
+78.630234,31,"Node #31 [  78.63023] Heard Join Reply from: [6,254]"
+78.630234,31,"Node #31 [  78.63023] [6,1] Sending JOIN_ACK to [6,254] through [6,254] (selected by Neighbors Table)"
+78.630240,29,"Node #29 [  78.63024] ADDRESS RENEW: [3,1] -> [6,254]"
+78.630240,29,Node #29 [  78.63024] Removing 30 from my assigned node ids.
+78.630240,29,"Node #29 [  78.63024] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+91.446487,33,"Node #33 [  91.44649] Sent Join Request to [5,1]"
+91.446499,34,"Node #34 [  91.44650] Sent Join Request to [5,1]"
+91.446554,26,Node #26 [  91.44655] Heard Join Request from 33
+91.446554,26,"Node #26 [  91.44655] [5,1] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+91.446579,26,Node #26 [  91.44658] Heard Join Request from 34
+91.446635,27,"Node #27 [  91.44664] [5,254] Sending NETWORK_REQUEST to [1,254] through [2,254] (selected by Parent)"
+91.446711,28,"Node #28 [  91.44671] [2,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+91.446803,20,"Node #20 [  91.44680] Sent network reply to [5,1]"
+91.446803,20,"Node #20 [  91.44680] {'dest': [5,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [7,254], 'ttl': 15}"
+91.446803,20,"Node #20 [  91.44680] [1,254] Sending NETWORK_REPLY to [5,1] through [2,254] (selected by Networking Table)"
+91.446896,28,"Node #28 [  91.44690] [2,254] Sending NETWORK_REPLY to [5,1] through [5,254] (selected by Neighbor Network)"
+91.446971,27,"Node #27 [  91.44697] [5,254] Sending NETWORK_REPLY to [5,1] through [5,1] (selected by Neighbors Table)"
+91.447053,26,"Node #26 [  91.44705] [7,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+91.447053,26,Node #26 [  91.44705] Sent Join Reply to: 33
+91.447053,26,Node #26 [  91.44705] Sent Join Reply to: 34
+91.447119,33,"Node #33 [  91.44712] ADDRESS RENEW: [5,1] -> [7,254]"
+91.447119,33,"Node #33 [  91.44712] Heard Join Reply from: [7,254]"
+91.447119,33,"Node #33 [  91.44712] [7,1] Sending JOIN_ACK to [7,254] through [7,254] (selected by Neighbors Table)"
+91.447132,34,"Node #34 [  91.44713] ADDRESS RENEW: [5,1] -> [7,254]"
+91.447132,34,"Node #34 [  91.44713] Heard Join Reply from: [7,254]"
+91.447132,34,"Node #34 [  91.44713] [7,2] Sending JOIN_ACK to [7,254] through [7,254] (selected by Neighbors Table)"
+91.447134,27,"Node #27 [  91.44713] ADDRESS RENEW: [5,1] -> [7,254]"
+91.447134,27,Node #27 [  91.44713] Removing 26 from my assigned node ids.
+91.447134,27,"Node #27 [  91.44713] [5,254] Sending NETWORK_UPDATE to [1,254] through [2,254] (selected by Parent)"
+91.447210,28,"Node #28 [  91.44721] [2,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+93.821624,14,"Node #14 [  93.82162] Sent Join Request to [3,2]"
+93.821692,22,Node #22 [  93.82169] Heard Join Request from 14
+93.821692,22,"Node #22 [  93.82169] [3,2] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+93.821785,29,"Node #29 [  93.82178] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+93.821857,20,"Node #20 [  93.82186] Sent network reply to [3,2]"
+93.821857,20,"Node #20 [  93.82186] {'dest': [3,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [8,254], 'ttl': 15}"
+93.821857,20,"Node #20 [  93.82186] [1,254] Sending NETWORK_REPLY to [3,2] through [3,254] (selected by Neighbor Network)"
+93.821930,29,"Node #29 [  93.82193] [3,254] Sending NETWORK_REPLY to [3,2] through [3,2] (selected by Neighbors Table)"
+93.822023,22,"Node #22 [  93.82202] [8,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+93.822023,22,Node #22 [  93.82202] Sent Join Reply to: 14
+93.822061,30,"Node #30 [  93.82206] ADDRESS RENEW: [3,2] -> [8,254]"
+93.822090,14,"Node #14 [  93.82209] ADDRESS RENEW: [3,2] -> [8,254]"
+93.822090,14,"Node #14 [  93.82209] Heard Join Reply from: [8,254]"
+93.822090,14,"Node #14 [  93.82209] [8,1] Sending JOIN_ACK to [8,254] through [8,254] (selected by Neighbors Table)"
+93.822108,23,"Node #23 [  93.82211] ADDRESS RENEW: [3,2] -> [8,254]"
+93.822115,29,"Node #29 [  93.82212] ADDRESS RENEW: [3,2] -> [8,254]"
+93.822115,29,Node #29 [  93.82212] Removing 22 from my assigned node ids.
+93.822115,29,"Node #29 [  93.82212] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+108.949150,10,"Node #10 [ 108.94915] Sent Join Request to [4,1]"
+108.949223,18,Node #18 [ 108.94922] Heard Join Request from 10
+108.949223,18,"Node #18 [ 108.94922] [4,1] Sending NETWORK_REQUEST to [1,254] through [4,254] (selected by Parent)"
+108.949296,19,"Node #19 [ 108.94930] [4,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+108.949386,20,"Node #20 [ 108.94939] Sent network reply to [4,1]"
+108.949386,20,"Node #20 [ 108.94939] {'dest': [4,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [9,254], 'ttl': 15}"
+108.949386,20,"Node #20 [ 108.94939] [1,254] Sending NETWORK_REPLY to [4,1] through [4,254] (selected by Neighbor Network)"
+108.949475,19,"Node #19 [ 108.94947] [4,254] Sending NETWORK_REPLY to [4,1] through [4,1] (selected by Neighbors Table)"
+108.949548,18,"Node #18 [ 108.94955] [9,254] Sending NETWORK_UPDATE to [1,254] through [4,254] (selected by Parent)"
+108.949548,18,Node #18 [ 108.94955] Sent Join Reply to: 10
+108.949621,19,"Node #19 [ 108.94962] ADDRESS RENEW: [4,1] -> [9,254]"
+108.949621,19,Node #19 [ 108.94962] Removing 18 from my assigned node ids.
+108.949621,19,"Node #19 [ 108.94962] [4,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+108.949622,10,"Node #10 [ 108.94962] ADDRESS RENEW: [4,1] -> [9,254]"
+108.949622,10,"Node #10 [ 108.94962] Heard Join Reply from: [9,254]"
+108.949622,10,"Node #10 [ 108.94962] [9,1] Sending JOIN_ACK to [9,254] through [9,254] (selected by Neighbors Table)"
+111.447165,41,"Node #41 [ 111.44717] Sent Join Request to [7,1]"
+111.447185,42,"Node #42 [ 111.44719] Sent Join Request to [7,2]"
+111.447211,33,Node #33 [ 111.44721] Heard Join Request from 41
+111.447211,33,"Node #33 [ 111.44721] [7,1] Sending NETWORK_REQUEST to [1,254] through [7,254] (selected by Parent)"
+111.447239,34,Node #34 [ 111.44724] Heard Join Request from 42
+111.447239,34,"Node #34 [ 111.44724] [7,2] Sending NETWORK_REQUEST to [1,254] through [7,254] (selected by Parent)"
+111.447277,26,"Node #26 [ 111.44728] [7,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+111.447318,26,"Node #26 [ 111.44732] [7,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+111.447359,27,"Node #27 [ 111.44736] [5,254] Sending NETWORK_REQUEST to [1,254] through [2,254] (selected by Parent)"
+111.447399,27,"Node #27 [ 111.44740] [5,254] Sending NETWORK_REQUEST to [1,254] through [2,254] (selected by Parent)"
+111.447434,28,"Node #28 [ 111.44743] [2,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+111.447475,28,"Node #28 [ 111.44747] [2,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+111.447527,20,"Node #20 [ 111.44753] Sent network reply to [7,1]"
+111.447527,20,"Node #20 [ 111.44753] {'dest': [7,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [10,254], 'ttl': 15}"
+111.447527,20,"Node #20 [ 111.44753] [1,254] Sending NETWORK_REPLY to [7,1] through [2,254] (selected by Networking Table)"
+111.447567,20,"Node #20 [ 111.44757] Sent network reply to [7,2]"
+111.447567,20,"Node #20 [ 111.44757] {'dest': [7,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [11,254], 'ttl': 15}"
+111.447567,20,"Node #20 [ 111.44757] [1,254] Sending NETWORK_REPLY to [7,2] through [2,254] (selected by Networking Table)"
+111.447619,28,"Node #28 [ 111.44762] [2,254] Sending NETWORK_REPLY to [7,1] through [5,254] (selected by Networking Table)"
+111.447660,28,"Node #28 [ 111.44766] [2,254] Sending NETWORK_REPLY to [7,2] through [5,254] (selected by Networking Table)"
+111.447695,27,"Node #27 [ 111.44769] [5,254] Sending NETWORK_REPLY to [7,1] through [7,254] (selected by Neighbor Network)"
+111.447735,27,"Node #27 [ 111.44773] [5,254] Sending NETWORK_REPLY to [7,2] through [7,254] (selected by Neighbor Network)"
+111.447776,26,"Node #26 [ 111.44778] [7,254] Sending NETWORK_REPLY to [7,1] through [7,1] (selected by Neighbors Table)"
+111.447817,26,"Node #26 [ 111.44782] [7,254] Sending NETWORK_REPLY to [7,2] through [7,2] (selected by Neighbors Table)"
+111.447843,33,"Node #33 [ 111.44784] [10,254] Sending NETWORK_UPDATE to [1,254] through [7,254] (selected by Parent)"
+111.447843,33,Node #33 [ 111.44784] Sent Join Reply to: 41
+111.447880,34,"Node #34 [ 111.44788] ADDRESS RENEW: [7,1] -> [10,254]"
+111.447889,41,"Node #41 [ 111.44789] ADDRESS RENEW: [7,1] -> [10,254]"
+111.447889,41,"Node #41 [ 111.44789] Heard Join Reply from: [10,254]"
+111.447889,41,"Node #41 [ 111.44789] [10,1] Sending JOIN_ACK to [10,254] through [10,254] (selected by Neighbors Table)"
+111.447896,34,"Node #34 [ 111.44790] [11,254] Sending NETWORK_UPDATE to [1,254] through [7,254] (selected by Parent)"
+111.447896,34,Node #34 [ 111.44790] Sent Join Reply to: 42
+111.447910,26,"Node #26 [ 111.44791] ADDRESS RENEW: [7,1] -> [10,254]"
+111.447910,26,Node #26 [ 111.44791] Removing 33 from my assigned node ids.
+111.447910,26,"Node #26 [ 111.44791] [7,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+111.447929,42,"Node #42 [ 111.44793] ADDRESS RENEW: [7,1] -> [10,254]"
+111.447933,33,"Node #33 [ 111.44793] ADDRESS RENEW: [7,2] -> [11,254]"
+111.447946,41,"Node #41 [ 111.44795] ADDRESS RENEW: [7,2] -> [11,254]"
+111.447949,42,"Node #42 [ 111.44795] ADDRESS RENEW: [7,2] -> [11,254]"
+111.447949,42,"Node #42 [ 111.44795] Heard Join Reply from: [11,254]"
+111.447949,42,"Node #42 [ 111.44795] [11,1] Sending JOIN_ACK to [11,254] through [11,254] (selected by Neighbors Table)"
+111.447975,26,"Node #26 [ 111.44797] ADDRESS RENEW: [7,2] -> [11,254]"
+111.447975,26,Node #26 [ 111.44797] Removing 34 from my assigned node ids.
+111.447975,26,"Node #26 [ 111.44797] [7,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+111.447991,27,"Node #27 [ 111.44799] [5,254] Sending NETWORK_UPDATE to [1,254] through [2,254] (selected by Parent)"
+111.448056,27,"Node #27 [ 111.44806] [5,254] Sending NETWORK_UPDATE to [1,254] through [2,254] (selected by Parent)"
+111.448067,28,"Node #28 [ 111.44807] [2,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+111.448132,28,"Node #28 [ 111.44813] [2,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+111.615580,23,"Node #23 [ 111.61558] Sent Join Request to [8,254]"
+111.615665,22,Node #22 [ 111.61567] Sent Join Reply to: 23
+111.615751,23,"Node #23 [ 111.61575] Heard Join Reply from: [8,254]"
+111.615751,23,"Node #23 [ 111.61575] [8,2] Sending JOIN_ACK to [8,254] through [8,254] (selected by Neighbors Table)"
+113.822159,15,"Node #15 [ 113.82216] Sent Join Request to [8,2]"
+113.822224,23,Node #23 [ 113.82222] Heard Join Request from 15
+113.822224,23,"Node #23 [ 113.82222] [8,2] Sending NETWORK_REQUEST to [1,254] through [8,254] (selected by Parent)"
+113.822309,22,"Node #22 [ 113.82231] [8,254] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+113.822402,29,"Node #29 [ 113.82240] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+113.822475,20,"Node #20 [ 113.82247] Sent network reply to [8,2]"
+113.822475,20,"Node #20 [ 113.82247] {'dest': [8,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [12,254], 'ttl': 15}"
+113.822475,20,"Node #20 [ 113.82247] [1,254] Sending NETWORK_REPLY to [8,2] through [3,254] (selected by Networking Table)"
+113.822547,29,"Node #29 [ 113.82255] [3,254] Sending NETWORK_REPLY to [8,2] through [8,254] (selected by Neighbor Network)"
+113.822640,22,"Node #22 [ 113.82264] [8,254] Sending NETWORK_REPLY to [8,2] through [8,2] (selected by Neighbors Table)"
+113.822726,23,"Node #23 [ 113.82273] [12,254] Sending NETWORK_UPDATE to [1,254] through [8,254] (selected by Parent)"
+113.822726,23,Node #23 [ 113.82273] Sent Join Reply to: 15
+113.822790,15,"Node #15 [ 113.82279] ADDRESS RENEW: [8,2] -> [12,254]"
+113.822790,15,"Node #15 [ 113.82279] Heard Join Reply from: [12,254]"
+113.822790,15,"Node #15 [ 113.82279] [12,1] Sending JOIN_ACK to [12,254] through [12,254] (selected by Neighbors Table)"
+113.822811,22,"Node #22 [ 113.82281] ADDRESS RENEW: [8,2] -> [12,254]"
+113.822811,22,Node #22 [ 113.82281] Removing 23 from my assigned node ids.
+113.822811,22,"Node #22 [ 113.82281] [8,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+113.822815,31,"Node #31 [ 113.82281] ADDRESS RENEW: [8,2] -> [12,254]"
+113.822815,30,"Node #30 [ 113.82282] ADDRESS RENEW: [8,2] -> [12,254]"
+113.822816,14,"Node #14 [ 113.82282] ADDRESS RENEW: [8,2] -> [12,254]"
+113.822904,29,"Node #29 [ 113.82290] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+117.480155,21,"Node #21 [ 117.48015] Sent Join Request to [1,254]"
+117.480185,12,"Node #12 [ 117.48019] Sent Join Request to [1,254]"
+117.480215,20,Node #20 [ 117.48021] Sent Join Reply to: 21
+117.480275,21,"Node #21 [ 117.48028] Heard Join Reply from: [1,254]"
+117.480275,21,"Node #21 [ 117.48028] [1,4] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+117.480276,20,Node #20 [ 117.48028] Sent Join Reply to: 12
+117.480367,12,"Node #12 [ 117.48037] Heard Join Reply from: [1,254]"
+117.480367,12,"Node #12 [ 117.48037] [1,5] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+124.542944,45,"Node #45 [ 124.54294] Sent Join Request to [2,2]"
+124.543035,36,Node #36 [ 124.54303] Heard Join Request from 45
+124.543035,36,"Node #36 [ 124.54303] [2,2] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Networking Table)"
+124.543134,29,"Node #29 [ 124.54313] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+124.543206,20,"Node #20 [ 124.54321] Sent network reply to [2,2]"
+124.543206,20,"Node #20 [ 124.54321] {'dest': [2,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [13,254], 'ttl': 15}"
+124.543206,20,"Node #20 [ 124.54321] [1,254] Sending NETWORK_REPLY to [2,2] through [2,254] (selected by Neighbor Network)"
+124.543299,28,"Node #28 [ 124.54330] [2,254] Sending NETWORK_REPLY to [2,2] through [2,2] (selected by Neighbors Table)"
+124.543361,36,"Node #36 [ 124.54336] [13,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Networking Table)"
+124.543361,36,Node #36 [ 124.54336] Sent Join Reply to: 45
+124.543424,28,"Node #28 [ 124.54342] ADDRESS RENEW: [2,2] -> [13,254]"
+124.543424,28,Node #28 [ 124.54342] Removing 36 from my assigned node ids.
+124.543452,45,"Node #45 [ 124.54345] ADDRESS RENEW: [2,2] -> [13,254]"
+124.543452,45,"Node #45 [ 124.54345] Heard Join Reply from: [13,254]"
+124.543452,45,"Node #45 [ 124.54345] [13,1] Sending JOIN_ACK to [13,254] through [13,254] (selected by Neighbors Table)"
+124.543460,29,"Node #29 [ 124.54346] ADDRESS RENEW: [2,2] -> [13,254]"
+124.543460,29,"Node #29 [ 124.54346] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+133.822853,7,"Node #7  [ 133.82285] Sent Join Request to [12,1]"
+133.822915,15,Node #15 [ 133.82292] Heard Join Request from 7
+133.822915,15,"Node #15 [ 133.82292] [12,1] Sending NETWORK_REQUEST to [1,254] through [12,254] (selected by Parent)"
+133.822980,23,"Node #23 [ 133.82298] [12,254] Sending NETWORK_REQUEST to [1,254] through [8,254] (selected by Parent)"
+133.823065,22,"Node #22 [ 133.82307] [8,254] Sending NETWORK_REQUEST to [1,254] through [1,4] (selected by Neighbor Network)"
+133.823139,21,"Node #21 [ 133.82314] [1,4] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+133.823199,20,"Node #20 [ 133.82320] Sent network reply to [12,1]"
+133.823199,20,"Node #20 [ 133.82320] {'dest': [12,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [14,254], 'ttl': 15}"
+133.823199,20,"Node #20 [ 133.82320] [1,254] Sending NETWORK_REPLY to [12,1] through [3,254] (selected by Networking Table)"
+133.823272,29,"Node #29 [ 133.82327] [3,254] Sending NETWORK_REPLY to [12,1] through [8,254] (selected by Networking Table)"
+133.823365,22,"Node #22 [ 133.82336] [8,254] Sending NETWORK_REPLY to [12,1] through [12,254] (selected by Neighbor Network)"
+133.823450,23,"Node #23 [ 133.82345] [12,254] Sending NETWORK_REPLY to [12,1] through [12,1] (selected by Neighbors Table)"
+133.823514,15,"Node #15 [ 133.82351] [14,254] Sending NETWORK_UPDATE to [1,254] through [12,254] (selected by Parent)"
+133.823514,15,Node #15 [ 133.82351] Sent Join Reply to: 7
+133.823577,7,"Node #7  [ 133.82358] ADDRESS RENEW: [12,1] -> [14,254]"
+133.823577,7,"Node #7  [ 133.82358] Heard Join Reply from: [14,254]"
+133.823577,7,"Node #7  [ 133.82358] [14,1] Sending JOIN_ACK to [14,254] through [14,254] (selected by Neighbors Table)"
+133.823579,23,"Node #23 [ 133.82358] ADDRESS RENEW: [12,1] -> [14,254]"
+133.823579,23,Node #23 [ 133.82358] Removing 15 from my assigned node ids.
+133.823579,23,"Node #23 [ 133.82358] [12,254] Sending NETWORK_UPDATE to [1,254] through [8,254] (selected by Parent)"
+133.823584,14,"Node #14 [ 133.82358] ADDRESS RENEW: [12,1] -> [14,254]"
+133.823664,22,"Node #22 [ 133.82366] [8,254] Sending NETWORK_UPDATE to [1,254] through [1,4] (selected by Neighbor Network)"
+133.823738,21,"Node #21 [ 133.82374] [1,4] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+137.480439,5,"Node #5  [ 137.48044] Sent Join Request to [1,5]"
+137.480510,12,Node #12 [ 137.48051] Heard Join Request from 5
+137.480510,12,"Node #12 [ 137.48051] [1,5] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+137.480602,20,"Node #20 [ 137.48060] Sent network reply to [1,5]"
+137.480602,20,"Node #20 [ 137.48060] {'dest': [1,5], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [15,254], 'ttl': 15}"
+137.480602,20,"Node #20 [ 137.48060] [1,254] Sending NETWORK_REPLY to [1,5] through [1,5] (selected by Neighbors Table)"
+137.480693,12,"Node #12 [ 137.48069] [15,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+137.480693,12,Node #12 [ 137.48069] Sent Join Reply to: 5
+137.480764,5,"Node #5  [ 137.48076] ADDRESS RENEW: [1,5] -> [15,254]"
+137.480764,5,"Node #5  [ 137.48076] Heard Join Reply from: [15,254]"
+137.480764,5,"Node #5  [ 137.48076] [15,1] Sending JOIN_ACK to [15,254] through [15,254] (selected by Neighbors Table)"
+137.480784,20,"Node #20 [ 137.48078] ADDRESS RENEW: [1,5] -> [15,254]"
+137.480789,21,"Node #21 [ 137.48079] ADDRESS RENEW: [1,5] -> [15,254]"
+151.445842,29,"Node #29 [ 151.44584] Heard ROUTER_REQUEST from: [2,254]"
+151.445920,28,"Node #28 [ 151.44592] Heard ROUTER_REPLY from: [3,254]"
+151.445982,36,"Node #36 [ 151.44598] ADDRESS RENEW: [2,254] -> [3,1]"
+151.445995,27,"Node #27 [ 151.44599] ADDRESS RENEW: [2,254] -> [3,1]"
+151.445997,29,"Node #29 [ 151.44600] ADDRESS RENEW: [2,254] -> [3,1]"
+151.446012,20,"Node #20 [ 151.44601] ADDRESS RENEW: [2,254] -> [3,1]"
+163.404133,27,"Node #27 [ 163.40413] Heard ROUTER_REQUEST from: [4,254]"
+163.404218,19,"Node #19 [ 163.40422] Heard ROUTER_REPLY from: [5,254]"
+163.404291,18,"Node #18 [ 163.40429] ADDRESS RENEW: [4,254] -> [5,1]"
+163.404302,27,"Node #27 [ 163.40430] ADDRESS RENEW: [4,254] -> [5,1]"
+163.404307,20,"Node #20 [ 163.40431] ADDRESS RENEW: [4,254] -> [5,1]"
+164.423221,1,"Node #1  [ 164.42322] Sent Join Request to [9,1]"
+164.423291,10,Node #10 [ 164.42329] Heard Join Request from 1
+164.423291,10,"Node #10 [ 164.42329] [9,1] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+164.423365,18,"Node #18 [ 164.42336] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+164.423438,19,"Node #19 [ 164.42344] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+164.423527,20,"Node #20 [ 164.42353] Sent network reply to [9,1]"
+164.423527,20,"Node #20 [ 164.42353] {'dest': [9,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [16,254], 'ttl': 15}"
+164.423527,20,"Node #20 [ 164.42353] [1,254] Sending NETWORK_REPLY to [9,1] through [5,1] (selected by Networking Table)"
+164.423616,19,"Node #19 [ 164.42362] [5,1] Sending NETWORK_REPLY to [9,1] through [9,254] (selected by Neighbor Network)"
+164.423689,18,"Node #18 [ 164.42369] [9,254] Sending NETWORK_REPLY to [9,1] through [9,1] (selected by Neighbors Table)"
+164.423763,10,"Node #10 [ 164.42376] [16,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+164.423763,10,Node #10 [ 164.42376] Sent Join Reply to: 1
+164.423819,9,"Node #9  [ 164.42382] ADDRESS RENEW: [9,1] -> [16,254]"
+164.423833,1,"Node #1  [ 164.42383] ADDRESS RENEW: [9,1] -> [16,254]"
+164.423833,1,"Node #1  [ 164.42383] Heard Join Reply from: [16,254]"
+164.423833,1,"Node #1  [ 164.42383] [16,1] Sending JOIN_ACK to [16,254] through [16,254] (selected by Neighbors Table)"
+164.423837,18,"Node #18 [ 164.42384] ADDRESS RENEW: [9,1] -> [16,254]"
+164.423837,18,Node #18 [ 164.42384] Removing 10 from my assigned node ids.
+164.423837,18,"Node #18 [ 164.42384] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+164.423910,19,"Node #19 [ 164.42391] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+173.813237,9,"Node #9  [ 173.81324] Sent Join Request to [16,254]"
+173.813293,10,Node #10 [ 173.81329] Sent Join Reply to: 9
+173.813349,9,"Node #9  [ 173.81335] Heard Join Reply from: [16,254]"
+173.813349,9,"Node #9  [ 173.81335] [16,2] Sending JOIN_ACK to [16,254] through [16,254] (selected by Neighbors Table)"
+174.785687,43,"Node #43 [ 174.78569] Sent Join Request to [11,1]"
+174.785746,42,Node #42 [ 174.78575] Heard Join Request from 43
+174.785746,42,"Node #42 [ 174.78575] [11,1] Sending NETWORK_REQUEST to [1,254] through [11,254] (selected by Parent)"
+174.785800,34,"Node #34 [ 174.78580] [11,254] Sending NETWORK_REQUEST to [1,254] through [7,254] (selected by Parent)"
+174.785879,26,"Node #26 [ 174.78588] [7,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+174.785960,27,"Node #27 [ 174.78596] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+174.786036,28,"Node #28 [ 174.78604] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+174.786128,20,"Node #20 [ 174.78613] Sent network reply to [11,1]"
+174.786128,20,"Node #20 [ 174.78613] {'dest': [11,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [17,254], 'ttl': 15}"
+174.786128,20,"Node #20 [ 174.78613] [1,254] Sending NETWORK_REPLY to [11,1] through [3,1] (selected by Networking Table)"
+174.786221,28,"Node #28 [ 174.78622] [3,1] Sending NETWORK_REPLY to [11,1] through [5,254] (selected by Networking Table)"
+174.786296,27,"Node #27 [ 174.78630] [5,254] Sending NETWORK_REPLY to [11,1] through [7,254] (selected by Networking Table)"
+174.786378,26,"Node #26 [ 174.78638] [7,254] Sending NETWORK_REPLY to [11,1] through [11,254] (selected by Neighbor Network)"
+174.786457,34,"Node #34 [ 174.78646] [11,254] Sending NETWORK_REPLY to [11,1] through [11,1] (selected by Neighbors Table)"
+174.786510,42,"Node #42 [ 174.78651] [17,254] Sending NETWORK_UPDATE to [1,254] through [11,254] (selected by Parent)"
+174.786510,42,Node #42 [ 174.78651] Sent Join Reply to: 43
+174.786563,34,"Node #34 [ 174.78656] ADDRESS RENEW: [11,1] -> [17,254]"
+174.786563,34,Node #34 [ 174.78656] Removing 42 from my assigned node ids.
+174.786563,34,"Node #34 [ 174.78656] [11,254] Sending NETWORK_UPDATE to [1,254] through [7,254] (selected by Parent)"
+174.786570,43,"Node #43 [ 174.78657] ADDRESS RENEW: [11,1] -> [17,254]"
+174.786570,43,"Node #43 [ 174.78657] Heard Join Reply from: [17,254]"
+174.786570,43,"Node #43 [ 174.78657] [17,1] Sending JOIN_ACK to [17,254] through [17,254] (selected by Neighbors Table)"
+174.786580,41,"Node #41 [ 174.78658] ADDRESS RENEW: [11,1] -> [17,254]"
+174.786596,33,"Node #33 [ 174.78660] ADDRESS RENEW: [11,1] -> [17,254]"
+174.786643,26,"Node #26 [ 174.78664] [7,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+174.786724,27,"Node #27 [ 174.78672] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+174.786800,28,"Node #28 [ 174.78680] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+174.862097,4,"Node #4  [ 174.86210] Sent Join Request to [15,254]"
+174.862187,12,Node #12 [ 174.86219] Sent Join Reply to: 4
+174.862277,4,"Node #4  [ 174.86228] Heard Join Reply from: [15,254]"
+174.862277,4,"Node #4  [ 174.86228] [15,2] Sending JOIN_ACK to [15,254] through [15,254] (selected by Neighbors Table)"
+177.795718,39,"Node #39 [ 177.79572] Sent Join Request to [6,1]"
+177.795794,31,Node #31 [ 177.79579] Heard Join Request from 39
+177.795794,31,"Node #31 [ 177.79579] [6,1] Sending NETWORK_REQUEST to [1,254] through [6,254] (selected by Parent)"
+177.795885,30,"Node #30 [ 177.79589] [6,254] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+177.795983,29,"Node #29 [ 177.79598] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+177.796056,20,"Node #20 [ 177.79606] Sent network reply to [6,1]"
+177.796056,20,"Node #20 [ 177.79606] {'dest': [6,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [18,254], 'ttl': 15}"
+177.796056,20,"Node #20 [ 177.79606] [1,254] Sending NETWORK_REPLY to [6,1] through [3,254] (selected by Networking Table)"
+177.796128,29,"Node #29 [ 177.79613] [3,254] Sending NETWORK_REPLY to [6,1] through [6,254] (selected by Neighbor Network)"
+177.796226,30,"Node #30 [ 177.79623] [6,254] Sending NETWORK_REPLY to [6,1] through [6,1] (selected by Neighbors Table)"
+177.796317,31,"Node #31 [ 177.79632] [18,254] Sending NETWORK_UPDATE to [1,254] through [6,254] (selected by Parent)"
+177.796317,31,Node #31 [ 177.79632] Sent Join Reply to: 39
+177.796394,39,"Node #39 [ 177.79639] ADDRESS RENEW: [6,1] -> [18,254]"
+177.796394,39,"Node #39 [ 177.79639] Heard Join Reply from: [18,254]"
+177.796394,39,"Node #39 [ 177.79639] [18,1] Sending JOIN_ACK to [18,254] through [18,254] (selected by Neighbors Table)"
+177.796406,23,"Node #23 [ 177.79641] ADDRESS RENEW: [6,1] -> [18,254]"
+177.796408,30,"Node #30 [ 177.79641] ADDRESS RENEW: [6,1] -> [18,254]"
+177.796408,30,Node #30 [ 177.79641] Removing 31 from my assigned node ids.
+177.796408,30,"Node #30 [ 177.79641] [6,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+177.796506,29,"Node #29 [ 177.79651] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+178.630240,29,"Node #29 [ 178.63024] Heard ROUTER_REQUEST from: [6,254]"
+178.630338,30,"Node #30 [ 178.63034] Heard ROUTER_REPLY from: [3,254]"
+178.630377,22,"Node #22 [ 178.63038] ADDRESS RENEW: [6,254] -> [3,2]"
+178.630428,23,"Node #23 [ 178.63043] ADDRESS RENEW: [6,254] -> [3,2]"
+178.630429,31,"Node #31 [ 178.63043] ADDRESS RENEW: [6,254] -> [3,2]"
+178.630436,29,"Node #29 [ 178.63044] ADDRESS RENEW: [6,254] -> [3,2]"
+184.423913,0,"Node #0  [ 184.42391] Sent Join Request to [16,1]"
+184.423992,1,Node #1  [ 184.42399] Heard Join Request from 0
+184.423992,1,"Node #1  [ 184.42399] [16,1] Sending NETWORK_REQUEST to [1,254] through [16,254] (selected by Parent)"
+184.424062,10,"Node #10 [ 184.42406] [16,254] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+184.424136,18,"Node #18 [ 184.42414] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+184.424209,19,"Node #19 [ 184.42421] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+184.424298,20,"Node #20 [ 184.42430] Sent network reply to [16,1]"
+184.424298,20,"Node #20 [ 184.42430] {'dest': [16,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [19,254], 'ttl': 15}"
+184.424298,20,"Node #20 [ 184.42430] [1,254] Sending NETWORK_REPLY to [16,1] through [5,1] (selected by Networking Table)"
+184.424388,19,"Node #19 [ 184.42439] [5,1] Sending NETWORK_REPLY to [16,1] through [9,254] (selected by Networking Table)"
+184.424461,18,"Node #18 [ 184.42446] [9,254] Sending NETWORK_REPLY to [16,1] through [16,254] (selected by Neighbor Network)"
+184.424534,10,"Node #10 [ 184.42453] [16,254] Sending NETWORK_REPLY to [16,1] through [16,1] (selected by Neighbors Table)"
+184.424605,1,"Node #1  [ 184.42460] [19,254] Sending NETWORK_UPDATE to [1,254] through [16,254] (selected by Parent)"
+184.424605,1,Node #1  [ 184.42460] Sent Join Reply to: 0
+184.424642,9,"Node #9  [ 184.42464] ADDRESS RENEW: [16,1] -> [19,254]"
+184.424675,10,"Node #10 [ 184.42467] ADDRESS RENEW: [16,1] -> [19,254]"
+184.424675,10,Node #10 [ 184.42467] Removing 1 from my assigned node ids.
+184.424675,10,"Node #10 [ 184.42467] [16,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+184.424684,0,"Node #0  [ 184.42468] ADDRESS RENEW: [16,1] -> [19,254]"
+184.424684,0,"Node #0  [ 184.42468] Heard Join Reply from: [19,254]"
+184.424684,0,"Node #0  [ 184.42468] [19,1] Sending JOIN_ACK to [19,254] through [19,254] (selected by Neighbors Table)"
+184.424749,18,"Node #18 [ 184.42475] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+184.424822,19,"Node #19 [ 184.42482] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+191.447134,27,"Node #27 [ 191.44713] Heard ROUTER_REQUEST from: [7,254]"
+191.447216,26,"Node #26 [ 191.44722] Heard ROUTER_REPLY from: [5,254]"
+191.447256,25,"Node #25 [ 191.44726] ADDRESS RENEW: [7,254] -> [5,2]"
+191.447283,33,"Node #33 [ 191.44728] ADDRESS RENEW: [7,254] -> [5,2]"
+191.447295,34,"Node #34 [ 191.44730] ADDRESS RENEW: [7,254] -> [5,2]"
+191.447298,27,"Node #27 [ 191.44730] ADDRESS RENEW: [7,254] -> [5,2]"
+191.447312,35,"Node #35 [ 191.44731] ADDRESS RENEW: [7,254] -> [5,2]"
+192.713087,13,"Node #13 [ 192.71309] Sent Join Request to [1,254]"
+192.713173,20,Node #20 [ 192.71317] Sent Join Reply to: 13
+192.713259,13,"Node #13 [ 192.71326] Heard Join Reply from: [1,254]"
+192.713259,13,"Node #13 [ 192.71326] [1,6] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+193.822115,29,"Node #29 [ 193.82212] Heard ROUTER_REQUEST from: [8,254]"
+193.822208,22,"Node #22 [ 193.82221] Heard ROUTER_REPLY from: [3,254]"
+193.822247,30,"Node #30 [ 193.82225] ADDRESS RENEW: [8,254] -> [3,3]"
+193.822276,14,"Node #14 [ 193.82228] ADDRESS RENEW: [8,254] -> [3,3]"
+193.822282,21,"Node #21 [ 193.82228] ADDRESS RENEW: [8,254] -> [3,3]"
+193.822294,23,"Node #23 [ 193.82229] ADDRESS RENEW: [8,254] -> [3,3]"
+193.822301,29,"Node #29 [ 193.82230] ADDRESS RENEW: [8,254] -> [3,3]"
+194.379418,35,"Node #35 [ 194.37942] Sent Join Request to [5,254]"
+194.379468,27,Node #27 [ 194.37947] Sent Join Reply to: 35
+194.379518,35,"Node #35 [ 194.37952] Heard Join Reply from: [5,254]"
+194.379518,35,"Node #35 [ 194.37952] [5,3] Sending JOIN_ACK to [5,254] through [5,254] (selected by Neighbors Table)"
+194.862348,3,"Node #3  [ 194.86235] Sent Join Request to [15,2]"
+194.862418,4,Node #4  [ 194.86242] Heard Join Request from 3
+194.862418,4,"Node #4  [ 194.86242] [15,2] Sending NETWORK_REQUEST to [1,254] through [15,254] (selected by Parent)"
+194.862508,12,"Node #12 [ 194.86251] [15,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+194.862600,20,"Node #20 [ 194.86260] Sent network reply to [15,2]"
+194.862600,20,"Node #20 [ 194.86260] {'dest': [15,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [20,254], 'ttl': 15}"
+194.862600,20,"Node #20 [ 194.86260] [1,254] Sending NETWORK_REPLY to [15,2] through [15,254] (selected by Neighbor Network)"
+194.862691,12,"Node #12 [ 194.86269] [15,254] Sending NETWORK_REPLY to [15,2] through [15,2] (selected by Neighbors Table)"
+194.862781,4,"Node #4  [ 194.86278] [20,254] Sending NETWORK_UPDATE to [1,254] through [15,254] (selected by Parent)"
+194.862781,4,Node #4  [ 194.86278] Sent Join Reply to: 3
+194.862851,3,"Node #3  [ 194.86285] ADDRESS RENEW: [15,2] -> [20,254]"
+194.862851,3,"Node #3  [ 194.86285] Heard Join Reply from: [20,254]"
+194.862851,3,"Node #3  [ 194.86285] [20,1] Sending JOIN_ACK to [20,254] through [20,254] (selected by Neighbors Table)"
+194.862861,5,"Node #5  [ 194.86286] ADDRESS RENEW: [15,2] -> [20,254]"
+194.862871,12,"Node #12 [ 194.86287] ADDRESS RENEW: [15,2] -> [20,254]"
+194.862871,12,Node #12 [ 194.86287] Removing 4 from my assigned node ids.
+194.862871,12,"Node #12 [ 194.86287] [15,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+197.140143,49,"Node #49 [ 197.14014] Sent Join Request to [10,1]"
+197.140229,41,Node #41 [ 197.14023] Heard Join Request from 49
+197.140229,41,"Node #41 [ 197.14023] [10,1] Sending NETWORK_REQUEST to [1,254] through [10,254] (selected by Parent)"
+197.140275,33,"Node #33 [ 197.14027] [10,254] Sending NETWORK_REQUEST to [1,254] through [5,2] (selected by Parent)"
+197.140341,26,"Node #26 [ 197.14034] [5,2] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+197.140423,27,"Node #27 [ 197.14042] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+197.140499,28,"Node #28 [ 197.14050] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+197.140591,20,"Node #20 [ 197.14059] Sent network reply to [10,1]"
+197.140591,20,"Node #20 [ 197.14059] {'dest': [10,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [21,254], 'ttl': 15}"
+197.140591,20,"Node #20 [ 197.14059] [1,254] Sending NETWORK_REPLY to [10,1] through [3,1] (selected by Networking Table)"
+197.140683,28,"Node #28 [ 197.14068] [3,1] Sending NETWORK_REPLY to [10,1] through [5,254] (selected by Networking Table)"
+197.140759,27,"Node #27 [ 197.14076] [5,254] Sending NETWORK_REPLY to [10,1] through [5,2] (selected by Networking Table)"
+197.140840,26,"Node #26 [ 197.14084] [5,2] Sending NETWORK_REPLY to [10,1] through [10,254] (selected by Neighbor Network)"
+197.140907,33,"Node #33 [ 197.14091] [10,254] Sending NETWORK_REPLY to [10,1] through [10,1] (selected by Neighbors Table)"
+197.140953,41,"Node #41 [ 197.14095] [21,254] Sending NETWORK_UPDATE to [1,254] through [10,254] (selected by Parent)"
+197.140953,41,Node #41 [ 197.14095] Sent Join Reply to: 49
+197.140998,33,"Node #33 [ 197.14100] ADDRESS RENEW: [10,1] -> [21,254]"
+197.140998,33,Node #33 [ 197.14100] Removing 41 from my assigned node ids.
+197.140998,33,"Node #33 [ 197.14100] [10,254] Sending NETWORK_UPDATE to [1,254] through [5,2] (selected by Parent)"
+197.141003,34,"Node #34 [ 197.14100] ADDRESS RENEW: [10,1] -> [21,254]"
+197.141023,42,"Node #42 [ 197.14102] ADDRESS RENEW: [10,1] -> [21,254]"
+197.141038,49,"Node #49 [ 197.14104] ADDRESS RENEW: [10,1] -> [21,254]"
+197.141038,49,"Node #49 [ 197.14104] Heard Join Reply from: [21,254]"
+197.141038,49,"Node #49 [ 197.14104] [21,1] Sending JOIN_ACK to [21,254] through [21,254] (selected by Neighbors Table)"
+197.141065,26,"Node #26 [ 197.14107] [5,2] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+197.141147,27,"Node #27 [ 197.14115] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+197.141222,28,"Node #28 [ 197.14122] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+197.796474,47,"Node #47 [ 197.79647] Sent Join Request to [18,1]"
+197.796554,39,Node #39 [ 197.79655] Heard Join Request from 47
+197.796554,39,"Node #39 [ 197.79655] [18,1] Sending NETWORK_REQUEST to [1,254] through [18,254] (selected by Parent)"
+197.796630,31,"Node #31 [ 197.79663] [18,254] Sending NETWORK_REQUEST to [1,254] through [3,2] (selected by Parent)"
+197.796721,30,"Node #30 [ 197.79672] [3,2] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+197.796819,29,"Node #29 [ 197.79682] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+197.796892,20,"Node #20 [ 197.79689] Sent network reply to [18,1]"
+197.796892,20,"Node #20 [ 197.79689] {'dest': [18,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [22,254], 'ttl': 15}"
+197.796892,20,"Node #20 [ 197.79689] [1,254] Sending NETWORK_REPLY to [18,1] through [3,254] (selected by Networking Table)"
+197.796964,29,"Node #29 [ 197.79696] [3,254] Sending NETWORK_REPLY to [18,1] through [3,2] (selected by Networking Table)"
+197.797062,30,"Node #30 [ 197.79706] [3,2] Sending NETWORK_REPLY to [18,1] through [18,254] (selected by Neighbor Network)"
+197.797153,31,"Node #31 [ 197.79715] [18,254] Sending NETWORK_REPLY to [18,1] through [18,1] (selected by Neighbors Table)"
+197.797229,39,"Node #39 [ 197.79723] [22,254] Sending NETWORK_UPDATE to [1,254] through [18,254] (selected by Parent)"
+197.797229,39,Node #39 [ 197.79723] Sent Join Reply to: 47
+197.797306,31,"Node #31 [ 197.79731] ADDRESS RENEW: [18,1] -> [22,254]"
+197.797306,31,Node #31 [ 197.79731] Removing 39 from my assigned node ids.
+197.797306,31,"Node #31 [ 197.79731] [18,254] Sending NETWORK_UPDATE to [1,254] through [3,2] (selected by Parent)"
+197.797306,38,"Node #38 [ 197.79731] ADDRESS RENEW: [18,1] -> [22,254]"
+197.797309,47,"Node #47 [ 197.79731] ADDRESS RENEW: [18,1] -> [22,254]"
+197.797309,47,"Node #47 [ 197.79731] Heard Join Reply from: [22,254]"
+197.797309,47,"Node #47 [ 197.79731] [22,1] Sending JOIN_ACK to [22,254] through [22,254] (selected by Neighbors Table)"
+197.797397,30,"Node #30 [ 197.79740] [3,2] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+197.797494,29,"Node #29 [ 197.79749] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+202.176978,6,"Node #6  [ 202.17698] Sent Join Request to [15,1]"
+202.177057,5,Node #5  [ 202.17706] Heard Join Request from 6
+202.177057,5,"Node #5  [ 202.17706] [15,1] Sending NETWORK_REQUEST to [1,254] through [1,6] (selected by Neighbor Network)"
+202.177123,13,"Node #13 [ 202.17712] [1,6] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+202.177209,20,"Node #20 [ 202.17721] Sent network reply to [15,1]"
+202.177209,20,"Node #20 [ 202.17721] {'dest': [15,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [23,254], 'ttl': 15}"
+202.177209,20,"Node #20 [ 202.17721] [1,254] Sending NETWORK_REPLY to [15,1] through [15,254] (selected by Neighbor Network)"
+202.177300,12,"Node #12 [ 202.17730] [15,254] Sending NETWORK_REPLY to [15,1] through [15,1] (selected by Neighbors Table)"
+202.177372,5,"Node #5  [ 202.17737] [23,254] Sending NETWORK_UPDATE to [1,254] through [1,6] (selected by Neighbor Network)"
+202.177372,5,Node #5  [ 202.17737] Sent Join Reply to: 6
+202.177439,13,"Node #13 [ 202.17744] ADDRESS RENEW: [15,1] -> [23,254]"
+202.177439,13,"Node #13 [ 202.17744] [1,6] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+202.177444,12,"Node #12 [ 202.17744] ADDRESS RENEW: [15,1] -> [23,254]"
+202.177444,12,Node #12 [ 202.17744] Removing 5 from my assigned node ids.
+202.177450,6,"Node #6  [ 202.17745] ADDRESS RENEW: [15,1] -> [23,254]"
+202.177450,6,"Node #6  [ 202.17745] Heard Join Reply from: [23,254]"
+202.177450,6,"Node #6  [ 202.17745] [23,1] Sending JOIN_ACK to [23,254] through [23,254] (selected by Neighbors Table)"
+202.177452,4,"Node #4  [ 202.17745] ADDRESS RENEW: [15,1] -> [23,254]"
+204.317401,44,"Node #44 [ 204.31740] Sent Join Request to [13,254]"
+204.317465,36,Node #36 [ 204.31747] Sent Join Reply to: 44
+204.317530,44,"Node #44 [ 204.31753] Heard Join Reply from: [13,254]"
+204.317530,44,"Node #44 [ 204.31753] [13,2] Sending JOIN_ACK to [13,254] through [13,254] (selected by Neighbors Table)"
+204.424766,8,"Node #8  [ 204.42477] Sent Join Request to [19,1]"
+204.424848,0,Node #0  [ 204.42485] Heard Join Request from 8
+204.424848,0,"Node #0  [ 204.42485] [19,1] Sending NETWORK_REQUEST to [1,254] through [19,254] (selected by Parent)"
+204.424927,1,"Node #1  [ 204.42493] [19,254] Sending NETWORK_REQUEST to [1,254] through [16,254] (selected by Parent)"
+204.424998,10,"Node #10 [ 204.42500] [16,254] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+204.425071,18,"Node #18 [ 204.42507] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+204.425145,19,"Node #19 [ 204.42514] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+204.425234,20,"Node #20 [ 204.42523] Sent network reply to [19,1]"
+204.425234,20,"Node #20 [ 204.42523] {'dest': [19,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [24,254], 'ttl': 15}"
+204.425234,20,"Node #20 [ 204.42523] [1,254] Sending NETWORK_REPLY to [19,1] through [5,1] (selected by Networking Table)"
+204.425323,19,"Node #19 [ 204.42532] [5,1] Sending NETWORK_REPLY to [19,1] through [9,254] (selected by Networking Table)"
+204.425396,18,"Node #18 [ 204.42540] [9,254] Sending NETWORK_REPLY to [19,1] through [16,254] (selected by Networking Table)"
+204.425470,10,"Node #10 [ 204.42547] [16,254] Sending NETWORK_REPLY to [19,1] through [19,254] (selected by Neighbor Network)"
+204.425540,1,"Node #1  [ 204.42554] [19,254] Sending NETWORK_REPLY to [19,1] through [19,1] (selected by Neighbors Table)"
+204.425619,0,"Node #0  [ 204.42562] [24,254] Sending NETWORK_UPDATE to [1,254] through [19,254] (selected by Parent)"
+204.425619,0,Node #0  [ 204.42562] Sent Join Reply to: 8
+204.425699,1,"Node #1  [ 204.42570] ADDRESS RENEW: [19,1] -> [24,254]"
+204.425699,1,Node #1  [ 204.42570] Removing 0 from my assigned node ids.
+204.425699,1,"Node #1  [ 204.42570] [19,254] Sending NETWORK_UPDATE to [1,254] through [16,254] (selected by Parent)"
+204.425701,8,"Node #8  [ 204.42570] ADDRESS RENEW: [19,1] -> [24,254]"
+204.425701,8,"Node #8  [ 204.42570] Heard Join Reply from: [24,254]"
+204.425701,8,"Node #8  [ 204.42570] [24,1] Sending JOIN_ACK to [24,254] through [24,254] (selected by Neighbors Table)"
+204.425709,9,"Node #9  [ 204.42571] ADDRESS RENEW: [19,1] -> [24,254]"
+204.425769,10,"Node #10 [ 204.42577] [16,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+204.425843,18,"Node #18 [ 204.42584] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+204.425916,19,"Node #19 [ 204.42592] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+205.749585,25,"Node #25 [ 205.74958] Sent Join Request to [5,2]"
+205.749625,26,Node #26 [ 205.74962] I became UNREGISTERED
+205.749664,25,"Node #25 [ 205.74966] ADDRESS RENEW: [5,2] -> [-1,-1]"
+205.749691,33,"Node #33 [ 205.74969] ADDRESS RENEW: [5,2] -> [-1,-1]"
+205.749691,33,Node #33 [ 205.74969] Parent is leaving!
+205.749691,33,Node #33 [ 205.74969] I became UNREGISTERED
+205.749704,34,"Node #34 [ 205.74970] ADDRESS RENEW: [5,2] -> [-1,-1]"
+205.749704,34,Node #34 [ 205.74970] Parent is leaving!
+205.749704,34,Node #34 [ 205.74970] I became UNREGISTERED
+205.749706,27,"Node #27 [ 205.74971] ADDRESS RENEW: [5,2] -> [-1,-1]"
+205.749706,27,Node #27 [ 205.74971] Removing 26 from my assigned node ids.
+205.749721,35,"Node #35 [ 205.74972] ADDRESS RENEW: [5,2] -> [-1,-1]"
+205.749728,34,"Node #34 [ 205.74973] ADDRESS RENEW: [10,254] -> [-1,-1]"
+205.749737,41,"Node #41 [ 205.74974] ADDRESS RENEW: [10,254] -> [-1,-1]"
+205.749737,41,Node #41 [ 205.74974] Parent is leaving!
+205.749737,41,Node #41 [ 205.74974] I became UNREGISTERED
+205.749741,33,"Node #33 [ 205.74974] ADDRESS RENEW: [11,254] -> [-1,-1]"
+205.749754,41,"Node #41 [ 205.74975] ADDRESS RENEW: [11,254] -> [-1,-1]"
+205.749757,42,"Node #42 [ 205.74976] ADDRESS RENEW: [11,254] -> [-1,-1]"
+205.749757,42,Node #42 [ 205.74976] Parent is leaving!
+205.749757,42,Node #42 [ 205.74976] I became UNREGISTERED
+205.749758,26,"Node #26 [ 205.74976] ADDRESS RENEW: [10,254] -> [-1,-1]"
+205.749760,25,"Node #25 [ 205.74976] ADDRESS RENEW: [10,254] -> [-1,-1]"
+205.749777,42,"Node #42 [ 205.74978] ADDRESS RENEW: [10,254] -> [-1,-1]"
+205.749782,33,"Node #33 [ 205.74978] ADDRESS RENEW: [21,254] -> [-1,-1]"
+205.749783,26,"Node #26 [ 205.74978] ADDRESS RENEW: [11,254] -> [-1,-1]"
+205.749788,34,"Node #34 [ 205.74979] ADDRESS RENEW: [21,254] -> [-1,-1]"
+205.749792,35,"Node #35 [ 205.74979] ADDRESS RENEW: [11,254] -> [-1,-1]"
+205.749801,25,"Node #25 [ 205.74980] ADDRESS RENEW: [11,254] -> [-1,-1]"
+205.749807,42,"Node #42 [ 205.74981] ADDRESS RENEW: [21,254] -> [-1,-1]"
+205.749810,34,"Node #34 [ 205.74981] ADDRESS RENEW: [17,254] -> [-1,-1]"
+205.749816,43,"Node #43 [ 205.74982] ADDRESS RENEW: [17,254] -> [-1,-1]"
+205.749816,43,Node #43 [ 205.74982] Parent is leaving!
+205.749816,43,Node #43 [ 205.74982] I became UNREGISTERED
+205.749822,40,"Node #40 [ 205.74982] ADDRESS RENEW: [21,254] -> [-1,-1]"
+205.749823,49,"Node #49 [ 205.74982] ADDRESS RENEW: [21,254] -> [-1,-1]"
+205.749823,49,Node #49 [ 205.74982] Parent is leaving!
+205.749823,49,Node #49 [ 205.74982] I became UNREGISTERED
+205.749827,41,"Node #41 [ 205.74983] ADDRESS RENEW: [17,254] -> [-1,-1]"
+205.749843,33,"Node #33 [ 205.74984] ADDRESS RENEW: [17,254] -> [-1,-1]"
+205.749876,42,"Node #42 [ 205.74988] ADDRESS RENEW: [17,1] -> [-1,-1]"
+205.749900,48,"Node #48 [ 205.74990] ADDRESS RENEW: [21,1] -> [-1,-1]"
+205.749900,44,"Node #44 [ 205.74990] ADDRESS RENEW: [17,1] -> [-1,-1]"
+205.749908,41,"Node #41 [ 205.74991] ADDRESS RENEW: [21,1] -> [-1,-1]"
+205.749910,40,"Node #40 [ 205.74991] ADDRESS RENEW: [21,1] -> [-1,-1]"
+205.749914,35,"Node #35 [ 205.74991] ADDRESS RENEW: [17,1] -> [-1,-1]"
+210.749585,25,"Node #25 [ 210.74958] Sent Join Request to [-1,-1]"
+212.639176,37,"Node #37 [ 212.63918] Sent Join Request to [13,254]"
+212.639244,36,Node #36 [ 212.63924] Sent Join Reply to: 37
+212.639311,37,"Node #37 [ 212.63931] Heard Join Reply from: [13,254]"
+212.639311,37,"Node #37 [ 212.63931] [13,3] Sending JOIN_ACK to [13,254] through [13,254] (selected by Neighbors Table)"
+213.095187,38,"Node #38 [ 213.09519] Sent Join Request to [18,254]"
+213.095280,31,Node #31 [ 213.09528] Sent Join Reply to: 38
+213.095373,38,"Node #38 [ 213.09537] Heard Join Reply from: [18,254]"
+213.095373,38,"Node #38 [ 213.09537] [18,1] Sending JOIN_ACK to [18,254] through [18,254] (selected by Neighbors Table)"
+215.749585,25,"Node #25 [ 215.74958] Sent Join Request to [-1,-1]"
+216.019670,11,"Node #11 [ 216.01967] Sent Join Request to [9,254]"
+216.019752,18,Node #18 [ 216.01975] Sent Join Reply to: 11
+216.019834,11,"Node #11 [ 216.01983] Heard Join Reply from: [9,254]"
+216.019834,11,"Node #11 [ 216.01983] [9,1] Sending JOIN_ACK to [9,254] through [9,254] (selected by Neighbors Table)"
+217.141116,48,"Node #48 [ 217.14112] Sent Join Request to [-1,-1]"
+217.204900,2,"Node #2  [ 217.20490] Sent Join Request to [16,254]"
+217.204977,10,Node #10 [ 217.20498] Sent Join Reply to: 2
+217.205055,2,"Node #2  [ 217.20505] Heard Join Reply from: [16,254]"
+217.205055,2,"Node #2  [ 217.20505] [16,1] Sending JOIN_ACK to [16,254] through [16,254] (selected by Neighbors Table)"
+217.832271,46,"Node #46 [ 217.83227] Sent Join Request to [13,1]"
+217.832352,45,Node #45 [ 217.83235] Heard Join Request from 46
+217.832352,45,"Node #45 [ 217.83235] [13,1] Sending NETWORK_REQUEST to [1,254] through [13,254] (selected by Parent)"
+217.832444,36,"Node #36 [ 217.83244] [13,254] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Networking Table)"
+217.832542,29,"Node #29 [ 217.83254] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+217.832615,20,"Node #20 [ 217.83262] Sent network reply to [13,1]"
+217.832615,20,"Node #20 [ 217.83262] {'dest': [13,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [25,254], 'ttl': 15}"
+217.832615,20,"Node #20 [ 217.83262] [1,254] Sending NETWORK_REPLY to [13,1] through [3,254] (selected by Networking Table)"
+217.832688,29,"Node #29 [ 217.83269] [3,254] Sending NETWORK_REPLY to [13,1] through [13,254] (selected by Neighbor Network)"
+217.832787,36,"Node #36 [ 217.83279] [13,254] Sending NETWORK_REPLY to [13,1] through [13,1] (selected by Neighbors Table)"
+217.832878,45,"Node #45 [ 217.83288] [25,254] Sending NETWORK_UPDATE to [1,254] through [13,254] (selected by Parent)"
+217.832878,45,Node #45 [ 217.83288] Sent Join Reply to: 46
+217.832925,37,"Node #37 [ 217.83293] ADDRESS RENEW: [13,1] -> [25,254]"
+217.832943,44,"Node #44 [ 217.83294] ADDRESS RENEW: [13,1] -> [25,254]"
+217.832959,46,"Node #46 [ 217.83296] ADDRESS RENEW: [13,1] -> [25,254]"
+217.832959,46,"Node #46 [ 217.83296] Heard Join Reply from: [25,254]"
+217.832959,46,"Node #46 [ 217.83296] [25,1] Sending JOIN_ACK to [25,254] through [25,254] (selected by Neighbors Table)"
+217.832969,36,"Node #36 [ 217.83297] ADDRESS RENEW: [13,1] -> [25,254]"
+217.832969,36,Node #36 [ 217.83297] Removing 45 from my assigned node ids.
+217.832969,36,"Node #36 [ 217.83297] [13,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Networking Table)"
+217.833068,29,"Node #29 [ 217.83307] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+220.448848,40,"Node #40 [ 220.44885] Sent Join Request to [-1,-1]"
+220.749585,25,Node #25 [ 220.74958] I became UNREGISTERED
+220.749625,26,"Node #26 [ 220.74962] ADDRESS RENEW: [0,25] -> [-1,-1]"
+220.749654,33,"Node #33 [ 220.74965] ADDRESS RENEW: [0,25] -> [-1,-1]"
+220.749669,17,"Node #17 [ 220.74967] ADDRESS RENEW: [0,25] -> [-1,-1]"
+220.749682,34,"Node #34 [ 220.74968] ADDRESS RENEW: [0,25] -> [-1,-1]"
+222.141116,48,Node #48 [ 222.14112] I became UNREGISTERED
+222.141181,40,"Node #40 [ 222.14118] ADDRESS RENEW: [0,48] -> [-1,-1]"
+222.141193,49,"Node #49 [ 222.14119] ADDRESS RENEW: [0,48] -> [-1,-1]"
+224.425773,16,"Node #16 [ 224.42577] Sent Join Request to [24,1]"
+224.425844,8,Node #8  [ 224.42584] Heard Join Request from 16
+224.425844,8,"Node #8  [ 224.42584] [24,1] Sending NETWORK_REQUEST to [1,254] through [24,254] (selected by Parent)"
+224.425926,0,"Node #0  [ 224.42593] [24,254] Sending NETWORK_REQUEST to [1,254] through [19,254] (selected by Parent)"
+224.426005,1,"Node #1  [ 224.42601] [19,254] Sending NETWORK_REQUEST to [1,254] through [16,254] (selected by Parent)"
+224.426076,10,"Node #10 [ 224.42608] [16,254] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+224.426149,18,"Node #18 [ 224.42615] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+224.426222,19,"Node #19 [ 224.42622] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+224.426312,20,"Node #20 [ 224.42631] Sent network reply to [24,1]"
+224.426312,20,"Node #20 [ 224.42631] {'dest': [24,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [26,254], 'ttl': 15}"
+224.426312,20,"Node #20 [ 224.42631] [1,254] Sending NETWORK_REPLY to [24,1] through [5,1] (selected by Networking Table)"
+224.426401,19,"Node #19 [ 224.42640] [5,1] Sending NETWORK_REPLY to [24,1] through [9,254] (selected by Networking Table)"
+224.426474,18,"Node #18 [ 224.42647] [9,254] Sending NETWORK_REPLY to [24,1] through [16,254] (selected by Networking Table)"
+224.426548,10,"Node #10 [ 224.42655] [16,254] Sending NETWORK_REPLY to [24,1] through [19,254] (selected by Networking Table)"
+224.426618,1,"Node #1  [ 224.42662] [19,254] Sending NETWORK_REPLY to [24,1] through [24,254] (selected by Neighbor Network)"
+224.426697,0,"Node #0  [ 224.42670] [24,254] Sending NETWORK_REPLY to [24,1] through [24,1] (selected by Neighbors Table)"
+224.426779,8,"Node #8  [ 224.42678] [26,254] Sending NETWORK_UPDATE to [1,254] through [24,254] (selected by Parent)"
+224.426779,8,Node #8  [ 224.42678] Sent Join Reply to: 16
+224.426851,16,"Node #16 [ 224.42685] ADDRESS RENEW: [24,1] -> [26,254]"
+224.426851,16,"Node #16 [ 224.42685] Heard Join Reply from: [26,254]"
+224.426851,16,"Node #16 [ 224.42685] [26,1] Sending JOIN_ACK to [26,254] through [26,254] (selected by Neighbors Table)"
+224.426861,0,"Node #0  [ 224.42686] ADDRESS RENEW: [24,1] -> [26,254]"
+224.426861,0,Node #0  [ 224.42686] Removing 8 from my assigned node ids.
+224.426861,0,"Node #0  [ 224.42686] [24,254] Sending NETWORK_UPDATE to [1,254] through [19,254] (selected by Parent)"
+224.426941,1,"Node #1  [ 224.42694] [19,254] Sending NETWORK_UPDATE to [1,254] through [16,254] (selected by Parent)"
+224.427011,10,"Node #10 [ 224.42701] [16,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+224.427085,18,"Node #18 [ 224.42708] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+224.427158,19,"Node #19 [ 224.42716] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+224.543460,29,"Node #29 [ 224.54346] Heard ROUTER_REQUEST from: [13,254]"
+224.543559,36,"Node #36 [ 224.54356] Heard ROUTER_REPLY from: [3,254]"
+224.543621,28,"Node #28 [ 224.54362] ADDRESS RENEW: [13,254] -> [3,4]"
+224.543623,44,"Node #44 [ 224.54362] ADDRESS RENEW: [13,254] -> [3,4]"
+224.543626,37,"Node #37 [ 224.54363] ADDRESS RENEW: [13,254] -> [3,4]"
+224.543650,45,"Node #45 [ 224.54365] ADDRESS RENEW: [13,254] -> [3,4]"
+224.543654,35,"Node #35 [ 224.54365] ADDRESS RENEW: [13,254] -> [3,4]"
+224.543658,29,"Node #29 [ 224.54366] ADDRESS RENEW: [13,254] -> [3,4]"
+225.448848,40,"Node #40 [ 225.44885] Sent Join Request to [-1,-1]"
+225.749625,26,"Node #26 [ 225.74962] Sent Join Request to [5,254]"
+225.749691,33,Node #33 [ 225.74969] I became UNREGISTERED
+225.749704,34,"Node #34 [ 225.74970] Sent Join Request to [5,3]"
+225.749706,27,Node #27 [ 225.74971] Sent Join Reply to: 26
+225.749737,41,Node #41 [ 225.74974] I became UNREGISTERED
+225.749757,42,Node #42 [ 225.74976] I became UNREGISTERED
+225.749788,26,"Node #26 [ 225.74979] Heard Join Reply from: [5,254]"
+225.749788,26,"Node #26 [ 225.74979] [5,2] Sending JOIN_ACK to [5,254] through [5,254] (selected by Neighbors Table)"
+225.749792,35,Node #35 [ 225.74979] Heard Join Request from 34
+225.749792,35,"Node #35 [ 225.74979] [5,3] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+225.749816,43,"Node #43 [ 225.74982] Sent Join Request to [13,2]"
+225.749823,49,Node #49 [ 225.74982] I became UNREGISTERED
+225.749842,27,"Node #27 [ 225.74984] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+225.749870,27,Node #27 [ 225.74987] ADDRESS HAS CHANGED!
+225.749884,35,Node #35 [ 225.74988] ADDRESS HAS CHANGED!
+225.749900,44,Node #44 [ 225.74990] Heard Join Request from 43
+225.749900,44,"Node #44 [ 225.74990] [13,2] Sending NETWORK_REQUEST to [1,254] through [3,4] (selected by Parent)"
+225.749918,28,"Node #28 [ 225.74992] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+225.749965,36,"Node #36 [ 225.74996] [3,4] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Networking Table)"
+225.750010,20,"Node #20 [ 225.75001] Sent network reply to [5,3]"
+225.750010,20,"Node #20 [ 225.75001] {'dest': [5,3], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [27,254], 'ttl': 15}"
+225.750010,20,"Node #20 [ 225.75001] [1,254] Sending NETWORK_REPLY to [5,3] through [5,1] (selected by Neighbor Network)"
+225.750064,29,"Node #29 [ 225.75006] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+225.750099,19,"Node #19 [ 225.75010] [5,1] Sending NETWORK_REPLY to [5,3] through [5,254] (selected by Neighbor Network)"
+225.750136,20,"Node #20 [ 225.75014] Sent network reply to [13,2]"
+225.750136,20,"Node #20 [ 225.75014] {'dest': [13,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [28,254], 'ttl': 15}"
+225.750136,20,"Node #20 [ 225.75014] [1,254] Sending NETWORK_REPLY to [13,2] through [3,254] (selected by Networking Table)"
+225.750184,27,"Node #27 [ 225.75018] [5,254] Sending NETWORK_REPLY to [5,3] through [5,3] (selected by Neighbors Table)"
+225.750209,29,"Node #29 [ 225.75021] [3,254] Sending NETWORK_REPLY to [13,2] through [3,4] (selected by Networking Table)"
+225.750234,35,"Node #35 [ 225.75023] [27,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+225.750234,35,Node #35 [ 225.75023] Sent Join Reply to: 34
+225.750284,27,"Node #27 [ 225.75028] ADDRESS RENEW: [5,3] -> [27,254]"
+225.750284,27,Node #27 [ 225.75028] Removing 35 from my assigned node ids.
+225.750284,27,"Node #27 [ 225.75028] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+225.750305,28,"Node #28 [ 225.75031] ADDRESS RENEW: [5,3] -> [27,254]"
+225.750308,36,"Node #36 [ 225.75031] [3,4] Sending NETWORK_REPLY to [13,2] through [13,2] (selected by Neighbors Table)"
+225.750322,34,"Node #34 [ 225.75032] ADDRESS RENEW: [5,3] -> [27,254]"
+225.750322,34,"Node #34 [ 225.75032] Heard Join Reply from: [27,254]"
+225.750322,34,"Node #34 [ 225.75032] [27,1] Sending JOIN_ACK to [27,254] through [27,254] (selected by Neighbors Table)"
+225.750330,36,"Node #36 [ 225.75033] ADDRESS RENEW: [5,3] -> [27,254]"
+225.750330,26,"Node #26 [ 225.75033] ADDRESS RENEW: [5,3] -> [27,254]"
+225.750332,43,"Node #43 [ 225.75033] ADDRESS RENEW: [5,3] -> [27,254]"
+225.750360,28,"Node #28 [ 225.75036] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+225.750372,44,"Node #44 [ 225.75037] [28,254] Sending NETWORK_UPDATE to [1,254] through [3,4] (selected by Parent)"
+225.750372,44,Node #44 [ 225.75037] Sent Join Reply to: 43
+225.750411,35,Node #35 [ 225.75041] ADDRESS HAS CHANGED!
+225.750437,36,"Node #36 [ 225.75044] ADDRESS RENEW: [13,2] -> [28,254]"
+225.750437,36,"Node #36 [ 225.75044] [3,4] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Networking Table)"
+225.750438,45,"Node #45 [ 225.75044] ADDRESS RENEW: [13,2] -> [28,254]"
+225.750454,37,"Node #37 [ 225.75045] ADDRESS RENEW: [13,2] -> [28,254]"
+225.750456,43,"Node #43 [ 225.75046] ADDRESS RENEW: [13,2] -> [28,254]"
+225.750456,43,"Node #43 [ 225.75046] Heard Join Reply from: [28,254]"
+225.750456,43,"Node #43 [ 225.75046] [28,1] Sending JOIN_ACK to [28,254] through [28,254] (selected by Neighbors Table)"
+225.750536,29,"Node #29 [ 225.75054] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+225.750540,44,Node #44 [ 225.75054] ADDRESS HAS CHANGED!
+225.750553,35,Node #35 [ 225.75055] ADDRESS HAS CHANGED!
+230.448848,40,Node #40 [ 230.44885] I became UNREGISTERED
+230.448913,48,"Node #48 [ 230.44891] ADDRESS RENEW: [0,40] -> [-1,-1]"
+230.448928,32,"Node #32 [ 230.44893] ADDRESS RENEW: [0,40] -> [-1,-1]"
+230.448933,41,"Node #41 [ 230.44893] ADDRESS RENEW: [0,40] -> [-1,-1]"
+230.448935,49,"Node #49 [ 230.44894] ADDRESS RENEW: [0,40] -> [-1,-1]"
+233.823579,23,"Node #23 [ 233.82358] Heard ROUTER_REQUEST from: [14,254]"
+233.823643,15,"Node #15 [ 233.82364] Heard ROUTER_REPLY from: [12,254]"
+233.823706,7,"Node #7  [ 233.82371] ADDRESS RENEW: [14,254] -> [12,1]"
+233.823707,23,"Node #23 [ 233.82371] ADDRESS RENEW: [14,254] -> [12,1]"
+233.823712,14,"Node #14 [ 233.82371] ADDRESS RENEW: [14,254] -> [12,1]"
+237.480784,20,"Node #20 [ 237.48078] Heard ROUTER_REQUEST from: [15,254]"
+237.480784,20,Node #20 [ 237.48078] No children to allocate.
+240.749585,25,"Node #25 [ 240.74958] Sent Join Request to [5,2]"
+240.749625,26,Node #26 [ 240.74962] Heard Join Request from 25
+240.749625,26,"Node #26 [ 240.74962] [5,2] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+240.749706,27,"Node #27 [ 240.74971] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+240.749782,28,"Node #28 [ 240.74978] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+240.749874,20,Node #20 [ 240.74987] Duplicate Network Request detected... Sending duplicate network reply
+240.749874,20,"Node #20 [ 240.74987] Sent network reply to [5,2]"
+240.749874,20,"Node #20 [ 240.74987] {'dest': [5,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [29,254], 'ttl': 15}"
+240.749874,20,"Node #20 [ 240.74987] [1,254] Sending NETWORK_REPLY to [5,2] through [5,1] (selected by Neighbor Network)"
+240.749963,19,"Node #19 [ 240.74996] [5,1] Sending NETWORK_REPLY to [5,2] through [5,254] (selected by Neighbor Network)"
+240.750048,27,"Node #27 [ 240.75005] [5,254] Sending NETWORK_REPLY to [5,2] through [5,2] (selected by Neighbors Table)"
+240.750130,26,"Node #26 [ 240.75013] [29,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+240.750130,26,Node #26 [ 240.75013] Sent Join Reply to: 25
+240.750170,25,"Node #25 [ 240.75017] ADDRESS RENEW: [5,2] -> [29,254]"
+240.750170,25,"Node #25 [ 240.75017] Heard Join Reply from: [29,254]"
+240.750170,25,"Node #25 [ 240.75017] [29,1] Sending JOIN_ACK to [29,254] through [29,254] (selected by Neighbors Table)"
+240.750196,33,"Node #33 [ 240.75020] ADDRESS RENEW: [5,2] -> [29,254]"
+240.750209,34,"Node #34 [ 240.75021] ADDRESS RENEW: [5,2] -> [29,254]"
+240.750211,27,"Node #27 [ 240.75021] ADDRESS RENEW: [5,2] -> [29,254]"
+240.750211,27,Node #27 [ 240.75021] Removing 26 from my assigned node ids.
+240.750211,27,"Node #27 [ 240.75021] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+240.750226,35,"Node #35 [ 240.75023] ADDRESS RENEW: [5,2] -> [29,254]"
+240.750287,28,"Node #28 [ 240.75029] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+242.141116,48,Node #48 [ 242.14112] I became UNREGISTERED
+244.426921,17,"Node #17 [ 244.42692] Sent Join Request to [29,1]"
+244.426930,24,"Node #24 [ 244.42693] Sent Join Request to [26,1]"
+244.427006,25,Node #25 [ 244.42701] Heard Join Request from 17
+244.427006,25,"Node #25 [ 244.42701] [29,1] Sending NETWORK_REQUEST to [1,254] through [29,254] (selected by Parent)"
+244.427009,16,Node #16 [ 244.42701] Heard Join Request from 24
+244.427009,16,"Node #16 [ 244.42701] [26,1] Sending NETWORK_REQUEST to [1,254] through [26,254] (selected by Parent)"
+244.427046,26,"Node #26 [ 244.42705] [29,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+244.427080,8,"Node #8  [ 244.42708] [26,254] Sending NETWORK_REQUEST to [1,254] through [24,254] (selected by Parent)"
+244.427128,27,"Node #27 [ 244.42713] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+244.427162,0,"Node #0  [ 244.42716] [24,254] Sending NETWORK_REQUEST to [1,254] through [19,254] (selected by Parent)"
+244.427203,28,"Node #28 [ 244.42720] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+244.427241,1,"Node #1  [ 244.42724] [19,254] Sending NETWORK_REQUEST to [1,254] through [16,254] (selected by Parent)"
+244.427296,20,"Node #20 [ 244.42730] Sent network reply to [29,1]"
+244.427296,20,"Node #20 [ 244.42730] {'dest': [29,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [30,254], 'ttl': 15}"
+244.427296,20,"Node #20 [ 244.42730] [1,254] Sending NETWORK_REPLY to [29,1] through [3,1] (selected by Networking Table)"
+244.427312,10,"Node #10 [ 244.42731] [16,254] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+244.427385,18,"Node #18 [ 244.42739] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+244.427388,28,"Node #28 [ 244.42739] [3,1] Sending NETWORK_REPLY to [29,1] through [5,254] (selected by Networking Table)"
+244.427458,19,"Node #19 [ 244.42746] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+244.427463,27,"Node #27 [ 244.42746] [5,254] Sending NETWORK_REPLY to [29,1] through [29,254] (selected by Neighbor Network)"
+244.427545,26,"Node #26 [ 244.42755] [29,254] Sending NETWORK_REPLY to [29,1] through [29,1] (selected by Neighbors Table)"
+244.427548,20,"Node #20 [ 244.42755] Sent network reply to [26,1]"
+244.427548,20,"Node #20 [ 244.42755] {'dest': [26,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [31,254], 'ttl': 15}"
+244.427548,20,"Node #20 [ 244.42755] [1,254] Sending NETWORK_REPLY to [26,1] through [5,1] (selected by Networking Table)"
+244.427585,25,"Node #25 [ 244.42759] [30,254] Sending NETWORK_UPDATE to [1,254] through [29,254] (selected by Parent)"
+244.427585,25,Node #25 [ 244.42759] Sent Join Reply to: 17
+244.427625,26,"Node #26 [ 244.42763] ADDRESS RENEW: [29,1] -> [30,254]"
+244.427625,26,Node #26 [ 244.42763] Removing 25 from my assigned node ids.
+244.427625,26,"Node #26 [ 244.42763] [29,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+244.427637,19,"Node #19 [ 244.42764] [5,1] Sending NETWORK_REPLY to [26,1] through [9,254] (selected by Networking Table)"
+244.427654,33,"Node #33 [ 244.42765] ADDRESS RENEW: [29,1] -> [30,254]"
+244.427670,17,"Node #17 [ 244.42767] ADDRESS RENEW: [29,1] -> [30,254]"
+244.427670,17,"Node #17 [ 244.42767] Heard Join Reply from: [30,254]"
+244.427670,17,"Node #17 [ 244.42767] [30,1] Sending JOIN_ACK to [30,254] through [30,254] (selected by Neighbors Table)"
+244.427682,34,"Node #34 [ 244.42768] ADDRESS RENEW: [29,1] -> [30,254]"
+244.427707,27,"Node #27 [ 244.42771] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+244.427710,18,"Node #18 [ 244.42771] [9,254] Sending NETWORK_REPLY to [26,1] through [16,254] (selected by Networking Table)"
+244.427782,28,"Node #28 [ 244.42778] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+244.427784,10,"Node #10 [ 244.42778] [16,254] Sending NETWORK_REPLY to [26,1] through [19,254] (selected by Networking Table)"
+244.427854,1,"Node #1  [ 244.42785] [19,254] Sending NETWORK_REPLY to [26,1] through [24,254] (selected by Networking Table)"
+244.427933,0,"Node #0  [ 244.42793] [24,254] Sending NETWORK_REPLY to [26,1] through [26,254] (selected by Neighbor Network)"
+244.428015,8,"Node #8  [ 244.42802] [26,254] Sending NETWORK_REPLY to [26,1] through [26,1] (selected by Neighbors Table)"
+244.428087,16,"Node #16 [ 244.42809] [31,254] Sending NETWORK_UPDATE to [1,254] through [26,254] (selected by Parent)"
+244.428087,16,Node #16 [ 244.42809] Sent Join Reply to: 24
+244.428157,17,"Node #17 [ 244.42816] ADDRESS RENEW: [26,1] -> [31,254]"
+244.428158,8,"Node #8  [ 244.42816] ADDRESS RENEW: [26,1] -> [31,254]"
+244.428158,8,Node #8  [ 244.42816] Removing 16 from my assigned node ids.
+244.428158,8,"Node #8  [ 244.42816] [26,254] Sending NETWORK_UPDATE to [1,254] through [24,254] (selected by Parent)"
+244.428166,24,"Node #24 [ 244.42817] ADDRESS RENEW: [26,1] -> [31,254]"
+244.428166,24,"Node #24 [ 244.42817] Heard Join Reply from: [31,254]"
+244.428166,24,"Node #24 [ 244.42817] [31,1] Sending JOIN_ACK to [31,254] through [31,254] (selected by Neighbors Table)"
+244.428240,0,"Node #0  [ 244.42824] [24,254] Sending NETWORK_UPDATE to [1,254] through [19,254] (selected by Parent)"
+244.428319,1,"Node #1  [ 244.42832] [19,254] Sending NETWORK_UPDATE to [1,254] through [16,254] (selected by Parent)"
+244.428390,10,"Node #10 [ 244.42839] [16,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+244.428463,18,"Node #18 [ 244.42846] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+244.428536,19,"Node #19 [ 244.42854] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+245.749691,33,"Node #33 [ 245.74969] Sent Join Request to [29,254]"
+245.749737,41,"Node #41 [ 245.74974] Sent Join Request to [27,1]"
+245.749757,42,"Node #42 [ 245.74976] Sent Join Request to [27,1]"
+245.749758,26,Node #26 [ 245.74976] Sent Join Reply to: 33
+245.749788,34,Node #34 [ 245.74979] Heard Join Request from 41
+245.749788,34,"Node #34 [ 245.74979] [27,1] Sending NETWORK_REQUEST to [1,254] through [27,254] (selected by Parent)"
+245.749810,34,Node #34 [ 245.74981] Heard Join Request from 42
+245.749823,49,Node #49 [ 245.74982] I became UNREGISTERED
+245.749825,33,"Node #33 [ 245.74982] Heard Join Reply from: [29,254]"
+245.749825,33,"Node #33 [ 245.74982] [29,1] Sending JOIN_ACK to [29,254] through [29,254] (selected by Neighbors Table)"
+245.749876,35,"Node #35 [ 245.74988] [27,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+245.749926,27,"Node #27 [ 245.74993] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+245.750002,28,"Node #28 [ 245.75000] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+245.750094,20,Node #20 [ 245.75009] Duplicate Network Request detected... Sending duplicate network reply
+245.750094,20,"Node #20 [ 245.75009] Sent network reply to [27,1]"
+245.750094,20,"Node #20 [ 245.75009] {'dest': [27,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [32,254], 'ttl': 15}"
+245.750094,20,"Node #20 [ 245.75009] [1,254] Sending NETWORK_REPLY to [27,1] through [3,1] (selected by Networking Table)"
+245.750186,28,"Node #28 [ 245.75019] [3,1] Sending NETWORK_REPLY to [27,1] through [27,254] (selected by Neighbor Network)"
+245.750258,35,"Node #35 [ 245.75026] [27,254] Sending NETWORK_REPLY to [27,1] through [27,1] (selected by Neighbors Table)"
+245.750346,34,"Node #34 [ 245.75035] [32,254] Sending NETWORK_UPDATE to [1,254] through [27,254] (selected by Parent)"
+245.750346,34,Node #34 [ 245.75035] Sent Join Reply to: 41
+245.750346,34,Node #34 [ 245.75035] Sent Join Reply to: 42
+245.750383,33,"Node #33 [ 245.75038] ADDRESS RENEW: [27,1] -> [32,254]"
+245.750397,41,"Node #41 [ 245.75040] ADDRESS RENEW: [27,1] -> [32,254]"
+245.750397,41,"Node #41 [ 245.75040] Heard Join Reply from: [32,254]"
+245.750397,41,"Node #41 [ 245.75040] [32,1] Sending JOIN_ACK to [32,254] through [32,254] (selected by Neighbors Table)"
+245.750399,42,"Node #42 [ 245.75040] ADDRESS RENEW: [27,1] -> [32,254]"
+245.750399,42,"Node #42 [ 245.75040] Heard Join Reply from: [32,254]"
+245.750399,42,"Node #42 [ 245.75040] [32,2] Sending JOIN_ACK to [32,254] through [32,254] (selected by Neighbors Table)"
+245.750425,26,"Node #26 [ 245.75043] ADDRESS RENEW: [27,1] -> [32,254]"
+245.750435,35,"Node #35 [ 245.75043] ADDRESS RENEW: [27,1] -> [32,254]"
+245.750435,35,Node #35 [ 245.75043] Removing 34 from my assigned node ids.
+245.750435,35,"Node #35 [ 245.75043] [27,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+245.750443,25,"Node #25 [ 245.75044] ADDRESS RENEW: [27,1] -> [32,254]"
+245.750485,27,"Node #27 [ 245.75048] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+245.750560,28,"Node #28 [ 245.75056] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+250.448848,40,"Node #40 [ 250.44885] Sent Join Request to [32,1]"
+250.448933,41,Node #41 [ 250.44893] Heard Join Request from 40
+250.448933,41,"Node #41 [ 250.44893] [32,1] Sending NETWORK_REQUEST to [1,254] through [32,254] (selected by Parent)"
+250.448984,34,"Node #34 [ 250.44898] [32,254] Sending NETWORK_REQUEST to [1,254] through [27,254] (selected by Parent)"
+250.449073,35,"Node #35 [ 250.44907] [27,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+250.449123,27,"Node #27 [ 250.44912] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+250.449198,28,"Node #28 [ 250.44920] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+250.449291,20,Node #20 [ 250.44929] Duplicate Network Request detected... Sending duplicate network reply
+250.449291,20,"Node #20 [ 250.44929] Sent network reply to [32,1]"
+250.449291,20,"Node #20 [ 250.44929] {'dest': [32,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [33,254], 'ttl': 15}"
+250.449291,20,"Node #20 [ 250.44929] [1,254] Sending NETWORK_REPLY to [32,1] through [3,1] (selected by Networking Table)"
+250.449383,28,"Node #28 [ 250.44938] [3,1] Sending NETWORK_REPLY to [32,1] through [5,254] (selected by Networking Table)"
+250.449458,27,"Node #27 [ 250.44946] [5,254] Sending NETWORK_REPLY to [32,1] through [27,254] (selected by Networking Table)"
+250.449508,35,"Node #35 [ 250.44951] [27,254] Sending NETWORK_REPLY to [32,1] through [32,254] (selected by Neighbor Network)"
+250.449597,34,"Node #34 [ 250.44960] [32,254] Sending NETWORK_REPLY to [32,1] through [32,1] (selected by Neighbors Table)"
+250.449648,41,"Node #41 [ 250.44965] [33,254] Sending NETWORK_UPDATE to [1,254] through [32,254] (selected by Parent)"
+250.449648,41,Node #41 [ 250.44965] Sent Join Reply to: 40
+250.449693,33,"Node #33 [ 250.44969] ADDRESS RENEW: [32,1] -> [33,254]"
+250.449698,34,"Node #34 [ 250.44970] ADDRESS RENEW: [32,1] -> [33,254]"
+250.449698,34,Node #34 [ 250.44970] Removing 41 from my assigned node ids.
+250.449698,34,"Node #34 [ 250.44970] [32,254] Sending NETWORK_UPDATE to [1,254] through [27,254] (selected by Parent)"
+250.449718,42,"Node #42 [ 250.44972] ADDRESS RENEW: [32,1] -> [33,254]"
+250.449733,40,"Node #40 [ 250.44973] ADDRESS RENEW: [32,1] -> [33,254]"
+250.449733,40,"Node #40 [ 250.44973] Heard Join Reply from: [33,254]"
+250.449733,40,"Node #40 [ 250.44973] [33,1] Sending JOIN_ACK to [33,254] through [33,254] (selected by Neighbors Table)"
+250.449733,49,"Node #49 [ 250.44973] ADDRESS RENEW: [32,1] -> [33,254]"
+250.449787,35,"Node #35 [ 250.44979] [27,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+250.449837,27,"Node #27 [ 250.44984] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+250.449912,28,"Node #28 [ 250.44991] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+251.445920,28,"Node #28 [ 251.44592] Router deemed necessary: [27, 36]"
+262.141116,48,"Node #48 [ 262.14112] Sent Join Request to [33,1]"
+262.141181,40,Node #40 [ 262.14118] Heard Join Request from 48
+262.141181,40,"Node #40 [ 262.14118] [33,1] Sending NETWORK_REQUEST to [1,254] through [33,254] (selected by Parent)"
+262.141266,41,"Node #41 [ 262.14127] [33,254] Sending NETWORK_REQUEST to [1,254] through [32,254] (selected by Parent)"
+262.141317,34,"Node #34 [ 262.14132] [32,254] Sending NETWORK_REQUEST to [1,254] through [27,254] (selected by Parent)"
+262.141405,35,"Node #35 [ 262.14141] [27,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+262.141455,27,"Node #27 [ 262.14146] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+262.141531,28,"Node #28 [ 262.14153] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+262.141623,20,"Node #20 [ 262.14162] Sent network reply to [33,1]"
+262.141623,20,"Node #20 [ 262.14162] {'dest': [33,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [34,254], 'ttl': 15}"
+262.141623,20,"Node #20 [ 262.14162] [1,254] Sending NETWORK_REPLY to [33,1] through [3,1] (selected by Networking Table)"
+262.141716,28,"Node #28 [ 262.14172] [3,1] Sending NETWORK_REPLY to [33,1] through [5,254] (selected by Networking Table)"
+262.141791,27,"Node #27 [ 262.14179] [5,254] Sending NETWORK_REPLY to [33,1] through [27,254] (selected by Networking Table)"
+262.141841,35,"Node #35 [ 262.14184] [27,254] Sending NETWORK_REPLY to [33,1] through [32,254] (selected by Networking Table)"
+262.141930,34,"Node #34 [ 262.14193] [32,254] Sending NETWORK_REPLY to [33,1] through [33,254] (selected by Neighbor Network)"
+262.141980,41,"Node #41 [ 262.14198] [33,254] Sending NETWORK_REPLY to [33,1] through [33,1] (selected by Neighbors Table)"
+262.142066,40,"Node #40 [ 262.14207] [34,254] Sending NETWORK_UPDATE to [1,254] through [33,254] (selected by Parent)"
+262.142066,40,Node #40 [ 262.14207] Sent Join Reply to: 48
+262.142131,48,"Node #48 [ 262.14213] ADDRESS RENEW: [33,1] -> [34,254]"
+262.142131,48,"Node #48 [ 262.14213] Heard Join Reply from: [34,254]"
+262.142131,48,"Node #48 [ 262.14213] [34,1] Sending JOIN_ACK to [34,254] through [34,254] (selected by Neighbors Table)"
+262.142146,32,"Node #32 [ 262.14215] ADDRESS RENEW: [33,1] -> [34,254]"
+262.142151,41,"Node #41 [ 262.14215] ADDRESS RENEW: [33,1] -> [34,254]"
+262.142151,41,Node #41 [ 262.14215] Removing 40 from my assigned node ids.
+262.142151,41,"Node #41 [ 262.14215] [33,254] Sending NETWORK_UPDATE to [1,254] through [32,254] (selected by Parent)"
+262.142153,49,"Node #49 [ 262.14215] ADDRESS RENEW: [33,1] -> [34,254]"
+262.142202,34,"Node #34 [ 262.14220] [32,254] Sending NETWORK_UPDATE to [1,254] through [27,254] (selected by Parent)"
+262.142290,35,"Node #35 [ 262.14229] [27,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+262.142340,27,"Node #27 [ 262.14234] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+262.142416,28,"Node #28 [ 262.14242] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+263.404218,19,Node #19 [ 263.40422] Router deemed necessary: [18]
+264.423837,18,"Node #18 [ 264.42384] Heard ROUTER_REQUEST from: [16,254]"
+264.423837,18,Node #18 [ 264.42384] No children to allocate.
+264.428257,32,"Node #32 [ 264.42826] Sent Join Request to [34,254]"
+264.428337,40,Node #40 [ 264.42834] Sent Join Reply to: 32
+264.428417,32,"Node #32 [ 264.42842] Heard Join Reply from: [34,254]"
+264.428417,32,"Node #32 [ 264.42842] [34,2] Sending JOIN_ACK to [34,254] through [34,254] (selected by Neighbors Table)"
+265.749823,49,"Node #49 [ 265.74982] Sent Join Request to [33,254]"
+265.749908,41,Node #41 [ 265.74991] Sent Join Reply to: 49
+265.749994,49,"Node #49 [ 265.74999] Heard Join Reply from: [33,254]"
+265.749994,49,"Node #49 [ 265.74999] [33,1] Sending JOIN_ACK to [33,254] through [33,254] (selected by Neighbors Table)"
+278.630338,30,Node #30 [ 278.63034] Router deemed necessary: [31]
+284.424675,10,"Node #10 [ 284.42467] Heard ROUTER_REQUEST from: [19,254]"
+284.424745,1,"Node #1  [ 284.42475] Heard ROUTER_REPLY from: [16,254]"
+284.424782,9,"Node #9  [ 284.42478] ADDRESS RENEW: [19,254] -> [16,3]"
+284.424790,2,"Node #2  [ 284.42479] ADDRESS RENEW: [19,254] -> [16,3]"
+284.424815,10,"Node #10 [ 284.42482] ADDRESS RENEW: [19,254] -> [16,3]"
+284.424825,0,"Node #0  [ 284.42482] ADDRESS RENEW: [19,254] -> [16,3]"
+291.447134,27,"Node #27 [ 291.44713] Heard ROUTER_REQUEST from: [29,254]"
+291.447134,27,Node #27 [ 291.44713] No children to allocate.
+293.822208,22,Node #22 [ 293.82221] I became UNREGISTERED
+293.822247,30,"Node #30 [ 293.82225] ADDRESS RENEW: [3,3] -> [-1,-1]"
+293.822276,14,"Node #14 [ 293.82228] ADDRESS RENEW: [3,3] -> [-1,-1]"
+293.822276,14,Node #14 [ 293.82228] Parent is leaving!
+293.822276,14,Node #14 [ 293.82228] I became UNREGISTERED
+293.822282,21,"Node #21 [ 293.82228] ADDRESS RENEW: [3,3] -> [-1,-1]"
+293.822294,23,"Node #23 [ 293.82229] ADDRESS RENEW: [3,3] -> [-1,-1]"
+293.822294,23,Node #23 [ 293.82229] Parent is leaving!
+293.822294,23,Node #23 [ 293.82229] I became UNREGISTERED
+293.822301,29,"Node #29 [ 293.82230] ADDRESS RENEW: [3,3] -> [-1,-1]"
+293.822301,29,Node #29 [ 293.82230] Removing 22 from my assigned node ids.
+293.822343,22,"Node #22 [ 293.82234] ADDRESS RENEW: [8,1] -> [-1,-1]"
+293.822345,15,"Node #15 [ 293.82235] ADDRESS RENEW: [8,1] -> [-1,-1]"
+293.822356,21,"Node #21 [ 293.82236] ADDRESS RENEW: [8,1] -> [-1,-1]"
+293.822358,15,"Node #15 [ 293.82236] ADDRESS RENEW: [12,254] -> [-1,-1]"
+293.822358,15,Node #15 [ 293.82236] Parent is leaving!
+293.822358,15,Node #15 [ 293.82236] I became UNREGISTERED
+293.822367,23,"Node #23 [ 293.82237] ADDRESS RENEW: [8,1] -> [-1,-1]"
+293.822376,13,"Node #13 [ 293.82238] ADDRESS RENEW: [8,1] -> [-1,-1]"
+293.822379,22,"Node #22 [ 293.82238] ADDRESS RENEW: [12,254] -> [-1,-1]"
+293.822383,31,"Node #31 [ 293.82238] ADDRESS RENEW: [12,254] -> [-1,-1]"
+293.822383,30,"Node #30 [ 293.82238] ADDRESS RENEW: [12,254] -> [-1,-1]"
+293.822385,14,"Node #14 [ 293.82238] ADDRESS RENEW: [12,254] -> [-1,-1]"
+293.822421,7,"Node #7  [ 293.82242] ADDRESS RENEW: [12,1] -> [-1,-1]"
+293.822421,7,Node #7  [ 293.82242] Parent is leaving!
+293.822421,7,Node #7  [ 293.82242] I became UNREGISTERED
+293.822422,23,"Node #23 [ 293.82242] ADDRESS RENEW: [12,1] -> [-1,-1]"
+293.822427,14,"Node #14 [ 293.82243] ADDRESS RENEW: [12,1] -> [-1,-1]"
+293.822484,15,"Node #15 [ 293.82248] ADDRESS RENEW: [14,1] -> [-1,-1]"
+293.822502,6,"Node #6  [ 293.82250] ADDRESS RENEW: [14,1] -> [-1,-1]"
+294.862871,12,"Node #12 [ 294.86287] Heard ROUTER_REQUEST from: [20,254]"
+294.862962,4,"Node #4  [ 294.86296] Heard ROUTER_REPLY from: [15,254]"
+294.863032,3,"Node #3  [ 294.86303] ADDRESS RENEW: [20,254] -> [15,1]"
+294.863042,5,"Node #5  [ 294.86304] ADDRESS RENEW: [20,254] -> [15,1]"
+294.863052,12,"Node #12 [ 294.86305] ADDRESS RENEW: [20,254] -> [15,1]"
+297.141003,34,"Node #34 [ 297.14100] Heard ROUTER_REQUEST from: [33,254]"
+297.141054,41,"Node #41 [ 297.14105] Heard ROUTER_REPLY from: [32,254]"
+297.141100,33,"Node #33 [ 297.14110] ADDRESS RENEW: [33,254] -> [32,1]"
+297.141105,34,"Node #34 [ 297.14111] ADDRESS RENEW: [33,254] -> [32,1]"
+297.141124,42,"Node #42 [ 297.14112] ADDRESS RENEW: [33,254] -> [32,1]"
+297.141140,40,"Node #40 [ 297.14114] ADDRESS RENEW: [33,254] -> [32,1]"
+297.141140,49,"Node #49 [ 297.14114] ADDRESS RENEW: [33,254] -> [32,1]"
+297.797306,31,"Node #31 [ 297.79731] Heard ROUTER_REQUEST from: [22,254]"
+297.797306,31,Node #31 [ 297.79731] No children to allocate.
+302.177444,12,"Node #12 [ 302.17744] Heard ROUTER_REQUEST from: [23,254]"
+302.177515,5,"Node #5  [ 302.17752] Heard ROUTER_REPLY from: [15,254]"
+302.177582,13,"Node #13 [ 302.17758] ADDRESS RENEW: [23,254] -> [15,2]"
+302.177587,12,"Node #12 [ 302.17759] ADDRESS RENEW: [23,254] -> [15,2]"
+302.177593,6,"Node #6  [ 302.17759] ADDRESS RENEW: [23,254] -> [15,2]"
+302.177595,4,"Node #4  [ 302.17760] ADDRESS RENEW: [23,254] -> [15,2]"
+313.822208,22,"Node #22 [ 313.82221] Sent Join Request to [1,4]"
+313.822276,14,"Node #14 [ 313.82228] Sent Join Request to [1,4]"
+313.822282,21,Node #21 [ 313.82228] Heard Join Request from 22
+313.822282,21,"Node #21 [ 313.82228] [1,4] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+313.822294,23,"Node #23 [ 313.82229] Sent Join Request to [18,254]"
+313.822342,20,"Node #20 [ 313.82234] Sent network reply to [1,4]"
+313.822342,20,"Node #20 [ 313.82234] {'dest': [1,4], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [35,254], 'ttl': 15}"
+313.822342,20,"Node #20 [ 313.82234] [1,254] Sending NETWORK_REPLY to [1,4] through [1,4] (selected by Neighbors Table)"
+313.822356,21,Node #21 [ 313.82236] Heard Join Request from 14
+313.822358,15,Node #15 [ 313.82236] I became UNREGISTERED
+313.822383,31,Node #31 [ 313.82238] Sent Join Reply to: 23
+313.822403,21,"Node #21 [ 313.82240] [35,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+313.822403,21,Node #21 [ 313.82240] Sent Join Reply to: 22
+313.822403,21,Node #21 [ 313.82240] Sent Join Reply to: 14
+313.822421,7,"Node #7  [ 313.82242] Sent Join Request to [23,1]"
+313.822463,20,"Node #20 [ 313.82246] ADDRESS RENEW: [1,4] -> [35,254]"
+313.822472,23,"Node #23 [ 313.82247] Heard Join Reply from: [18,254]"
+313.822472,23,"Node #23 [ 313.82247] [18,2] Sending JOIN_ACK to [18,254] through [18,254] (selected by Neighbors Table)"
+313.822474,13,"Node #13 [ 313.82247] ADDRESS RENEW: [1,4] -> [35,254]"
+313.822475,29,"Node #29 [ 313.82248] ADDRESS RENEW: [1,4] -> [35,254]"
+313.822476,22,"Node #22 [ 313.82248] ADDRESS RENEW: [1,4] -> [35,254]"
+313.822476,22,"Node #22 [ 313.82248] Heard Join Reply from: [35,254]"
+313.822476,22,"Node #22 [ 313.82248] [35,1] Sending JOIN_ACK to [35,254] through [35,254] (selected by Neighbors Table)"
+313.822483,14,"Node #14 [ 313.82248] ADDRESS RENEW: [1,4] -> [35,254]"
+313.822483,14,"Node #14 [ 313.82248] Heard Join Reply from: [35,254]"
+313.822483,14,"Node #14 [ 313.82248] [35,2] Sending JOIN_ACK to [35,254] through [35,254] (selected by Neighbors Table)"
+313.822499,12,"Node #12 [ 313.82250] ADDRESS RENEW: [1,4] -> [35,254]"
+313.822502,6,Node #6  [ 313.82250] Heard Join Request from 7
+313.822502,6,"Node #6  [ 313.82250] [23,1] Sending NETWORK_REQUEST to [1,254] through [15,2] (selected by Parent)"
+313.822515,30,Node #30 [ 313.82251] ADDRESS HAS CHANGED!
+313.822550,21,Node #21 [ 313.82255] ADDRESS HAS CHANGED!
+313.822561,31,Node #31 [ 313.82256] ADDRESS HAS CHANGED!
+313.822561,30,Node #30 [ 313.82256] ADDRESS HAS CHANGED!
+313.822564,21,Node #21 [ 313.82256] ADDRESS HAS CHANGED!
+313.822569,29,Node #29 [ 313.82257] ADDRESS HAS CHANGED!
+313.822569,29,Node #29 [ 313.82257] Node has left my children.
+313.822581,5,"Node #5  [ 313.82258] [15,2] Sending NETWORK_REQUEST to [1,254] through [1,6] (selected by Neighbor Network)"
+313.822583,13,Node #13 [ 313.82258] ADDRESS HAS CHANGED!
+313.822647,13,"Node #13 [ 313.82265] [1,6] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+313.822733,20,"Node #20 [ 313.82273] Sent network reply to [23,1]"
+313.822733,20,"Node #20 [ 313.82273] {'dest': [23,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [36,254], 'ttl': 15}"
+313.822733,20,"Node #20 [ 313.82273] [1,254] Sending NETWORK_REPLY to [23,1] through [1,6] (selected by Networking Table)"
+313.822819,13,"Node #13 [ 313.82282] [1,6] Sending NETWORK_REPLY to [23,1] through [15,2] (selected by Networking Table)"
+313.822886,5,"Node #5  [ 313.82289] [15,2] Sending NETWORK_REPLY to [23,1] through [23,1] (selected by Neighbors Table)"
+313.822964,6,"Node #6  [ 313.82296] [36,254] Sending NETWORK_UPDATE to [1,254] through [15,2] (selected by Parent)"
+313.822964,6,Node #6  [ 313.82296] Sent Join Reply to: 7
+313.823043,5,"Node #5  [ 313.82304] ADDRESS RENEW: [23,1] -> [36,254]"
+313.823043,5,"Node #5  [ 313.82304] [15,2] Sending NETWORK_UPDATE to [1,254] through [1,6] (selected by Neighbor Network)"
+313.823046,7,"Node #7  [ 313.82305] ADDRESS RENEW: [23,1] -> [36,254]"
+313.823046,7,"Node #7  [ 313.82305] Heard Join Reply from: [36,254]"
+313.823046,7,"Node #7  [ 313.82305] [36,1] Sending JOIN_ACK to [36,254] through [36,254] (selected by Neighbors Table)"
+313.823109,13,"Node #13 [ 313.82311] [1,6] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+313.823127,6,Node #6  [ 313.82313] ADDRESS HAS CHANGED!
+324.426861,0,"Node #0  [ 324.42686] Heard ROUTER_REQUEST from: [26,254]"
+324.426943,8,"Node #8  [ 324.42694] Heard ROUTER_REPLY from: [24,254]"
+324.427014,16,"Node #16 [ 324.42701] ADDRESS RENEW: [26,254] -> [24,1]"
+324.427025,0,"Node #0  [ 324.42703] ADDRESS RENEW: [26,254] -> [24,1]"
+324.543559,36,Node #36 [ 324.54356] I became UNREGISTERED
+324.543621,28,"Node #28 [ 324.54362] ADDRESS RENEW: [3,4] -> [-1,-1]"
+324.543623,44,"Node #44 [ 324.54362] ADDRESS RENEW: [3,4] -> [-1,-1]"
+324.543623,44,Node #44 [ 324.54362] Parent is leaving!
+324.543623,44,Node #44 [ 324.54362] I became UNREGISTERED
+324.543626,37,"Node #37 [ 324.54363] ADDRESS RENEW: [3,4] -> [-1,-1]"
+324.543626,37,Node #37 [ 324.54363] Parent is leaving!
+324.543626,37,Node #37 [ 324.54363] I became UNREGISTERED
+324.543650,45,"Node #45 [ 324.54365] ADDRESS RENEW: [3,4] -> [-1,-1]"
+324.543650,45,Node #45 [ 324.54365] Parent is leaving!
+324.543650,45,Node #45 [ 324.54365] I became UNREGISTERED
+324.543654,35,"Node #35 [ 324.54365] ADDRESS RENEW: [3,4] -> [-1,-1]"
+324.543658,29,"Node #29 [ 324.54366] ADDRESS RENEW: [3,4] -> [-1,-1]"
+324.543674,45,"Node #45 [ 324.54367] ADDRESS RENEW: [13,3] -> [-1,-1]"
+324.543688,36,"Node #36 [ 324.54369] ADDRESS RENEW: [28,254] -> [-1,-1]"
+324.543689,45,"Node #45 [ 324.54369] ADDRESS RENEW: [28,254] -> [-1,-1]"
+324.543693,36,"Node #36 [ 324.54369] ADDRESS RENEW: [13,3] -> [-1,-1]"
+324.543698,37,"Node #37 [ 324.54370] ADDRESS RENEW: [25,254] -> [-1,-1]"
+324.543705,37,"Node #37 [ 324.54371] ADDRESS RENEW: [28,254] -> [-1,-1]"
+324.543707,43,"Node #43 [ 324.54371] ADDRESS RENEW: [28,254] -> [-1,-1]"
+324.543707,43,Node #43 [ 324.54371] Parent is leaving!
+324.543707,43,Node #43 [ 324.54371] I became UNREGISTERED
+324.543708,44,"Node #44 [ 324.54371] ADDRESS RENEW: [13,3] -> [-1,-1]"
+324.543716,44,"Node #44 [ 324.54372] ADDRESS RENEW: [25,254] -> [-1,-1]"
+324.543731,46,"Node #46 [ 324.54373] ADDRESS RENEW: [25,254] -> [-1,-1]"
+324.543731,46,Node #46 [ 324.54373] Parent is leaving!
+324.543731,46,Node #46 [ 324.54373] I became UNREGISTERED
+324.543741,36,"Node #36 [ 324.54374] ADDRESS RENEW: [25,254] -> [-1,-1]"
+324.543767,42,"Node #42 [ 324.54377] ADDRESS RENEW: [28,1] -> [-1,-1]"
+324.543791,44,"Node #44 [ 324.54379] ADDRESS RENEW: [28,1] -> [-1,-1]"
+324.543805,35,"Node #35 [ 324.54380] ADDRESS RENEW: [28,1] -> [-1,-1]"
+324.543812,45,"Node #45 [ 324.54381] ADDRESS RENEW: [25,1] -> [-1,-1]"
+324.543820,38,"Node #38 [ 324.54382] ADDRESS RENEW: [25,1] -> [-1,-1]"
+325.750284,27,"Node #27 [ 325.75028] Heard ROUTER_REQUEST from: [27,254]"
+325.750284,27,Node #27 [ 325.75028] No children to allocate.
+333.822358,15,"Node #15 [ 333.82236] Sent Join Request to [35,2]"
+333.822427,14,Node #14 [ 333.82243] Heard Join Request from 15
+333.822427,14,"Node #14 [ 333.82243] [35,2] Sending NETWORK_REQUEST to [1,254] through [1,6] (selected by Neighbor Network)"
+333.822527,13,"Node #13 [ 333.82253] [1,6] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+333.822614,20,"Node #20 [ 333.82261] Sent network reply to [35,2]"
+333.822614,20,"Node #20 [ 333.82261] {'dest': [35,2], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [37,254], 'ttl': 15}"
+333.822614,20,"Node #20 [ 333.82261] [1,254] Sending NETWORK_REPLY to [35,2] through [35,254] (selected by Neighbor Network)"
+333.822674,21,"Node #21 [ 333.82267] [35,254] Sending NETWORK_REPLY to [35,2] through [35,2] (selected by Neighbors Table)"
+333.822754,14,"Node #14 [ 333.82275] [37,254] Sending NETWORK_UPDATE to [1,254] through [1,6] (selected by Neighbor Network)"
+333.822754,14,Node #14 [ 333.82275] Sent Join Reply to: 15
+333.822822,22,"Node #22 [ 333.82282] ADDRESS RENEW: [35,2] -> [37,254]"
+333.822824,15,"Node #15 [ 333.82282] ADDRESS RENEW: [35,2] -> [37,254]"
+333.822824,15,"Node #15 [ 333.82282] Heard Join Reply from: [37,254]"
+333.822824,15,"Node #15 [ 333.82282] [37,1] Sending JOIN_ACK to [37,254] through [37,254] (selected by Neighbors Table)"
+333.822835,21,"Node #21 [ 333.82283] ADDRESS RENEW: [35,2] -> [37,254]"
+333.822835,21,Node #21 [ 333.82283] Removing 14 from my assigned node ids.
+333.822845,23,"Node #23 [ 333.82285] ADDRESS RENEW: [35,2] -> [37,254]"
+333.822854,13,"Node #13 [ 333.82285] ADDRESS RENEW: [35,2] -> [37,254]"
+333.822854,13,"Node #13 [ 333.82285] [1,6] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+337.480789,21,"Node #21 [ 337.48079] Heard ROUTER_REQUEST from: [15,254]"
+337.480885,12,"Node #12 [ 337.48089] Heard ROUTER_REPLY from: [35,254]"
+337.480918,13,"Node #13 [ 337.48092] ADDRESS RENEW: [15,254] -> [35,2]"
+337.480957,5,"Node #5  [ 337.48096] ADDRESS RENEW: [15,254] -> [35,2]"
+337.480975,4,"Node #4  [ 337.48098] ADDRESS RENEW: [15,254] -> [35,2]"
+337.480976,20,"Node #20 [ 337.48098] ADDRESS RENEW: [15,254] -> [35,2]"
+337.480981,21,"Node #21 [ 337.48098] ADDRESS RENEW: [15,254] -> [35,2]"
+340.750211,27,"Node #27 [ 340.75021] Heard ROUTER_REQUEST from: [29,254]"
+340.750211,27,Node #27 [ 340.75021] No children to allocate.
+344.427682,34,"Node #34 [ 344.42768] Heard ROUTER_REQUEST from: [30,254]"
+344.427779,25,"Node #25 [ 344.42778] Heard ROUTER_REPLY from: [32,254]"
+344.427819,26,"Node #26 [ 344.42782] ADDRESS RENEW: [30,254] -> [32,3]"
+344.427819,26,Node #26 [ 344.42782] Removing 26 from my assigned node ids.
+344.427848,33,"Node #33 [ 344.42785] ADDRESS RENEW: [30,254] -> [32,3]"
+344.427864,17,"Node #17 [ 344.42786] ADDRESS RENEW: [30,254] -> [32,3]"
+344.427876,34,"Node #34 [ 344.42788] ADDRESS RENEW: [30,254] -> [32,3]"
+344.543559,36,"Node #36 [ 344.54356] Sent Join Request to [3,254]"
+344.543623,44,Node #44 [ 344.54362] I became UNREGISTERED
+344.543626,37,Node #37 [ 344.54363] I became UNREGISTERED
+344.543650,45,Node #45 [ 344.54365] I became UNREGISTERED
+344.543658,29,Node #29 [ 344.54366] Sent Join Reply to: 36
+344.543707,43,"Node #43 [ 344.54371] Sent Join Request to [27,254]"
+344.543731,46,"Node #46 [ 344.54373] Sent Join Request to [18,1]"
+344.543757,36,"Node #36 [ 344.54376] Heard Join Reply from: [3,254]"
+344.543757,36,"Node #36 [ 344.54376] [3,3] Sending JOIN_ACK to [3,254] through [3,254] (selected by Neighbors Table)"
+344.543805,35,Node #35 [ 344.54380] Sent Join Reply to: 43
+344.543819,28,Node #28 [ 344.54382] ADDRESS HAS CHANGED!
+344.543819,28,Node #28 [ 344.54382] Node has left my children.
+344.543820,38,Node #38 [ 344.54382] Heard Join Request from 46
+344.543820,38,"Node #38 [ 344.54382] [18,1] Sending NETWORK_REQUEST to [1,254] through [18,254] (selected by Parent)"
+344.543852,35,Node #35 [ 344.54385] ADDRESS HAS CHANGED!
+344.543856,29,Node #29 [ 344.54386] ADDRESS HAS CHANGED!
+344.543902,43,"Node #43 [ 344.54390] Heard Join Reply from: [27,254]"
+344.543902,43,"Node #43 [ 344.54390] [27,1] Sending JOIN_ACK to [27,254] through [27,254] (selected by Neighbors Table)"
+344.543913,31,"Node #31 [ 344.54391] [18,254] Sending NETWORK_REQUEST to [1,254] through [3,2] (selected by Parent)"
+344.543962,42,Node #42 [ 344.54396] ADDRESS HAS CHANGED!
+344.544000,35,Node #35 [ 344.54400] ADDRESS HAS CHANGED!
+344.544004,30,"Node #30 [ 344.54400] [3,2] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+344.544102,29,"Node #29 [ 344.54410] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+344.544175,20,"Node #20 [ 344.54417] Sent network reply to [18,1]"
+344.544175,20,"Node #20 [ 344.54417] {'dest': [18,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [38,254], 'ttl': 15}"
+344.544175,20,"Node #20 [ 344.54417] [1,254] Sending NETWORK_REPLY to [18,1] through [3,254] (selected by Networking Table)"
+344.544247,29,"Node #29 [ 344.54425] [3,254] Sending NETWORK_REPLY to [18,1] through [3,2] (selected by Networking Table)"
+344.544345,30,"Node #30 [ 344.54435] [3,2] Sending NETWORK_REPLY to [18,1] through [18,254] (selected by Neighbor Network)"
+344.544436,31,"Node #31 [ 344.54444] [18,254] Sending NETWORK_REPLY to [18,1] through [18,1] (selected by Neighbors Table)"
+344.544529,38,"Node #38 [ 344.54453] [38,254] Sending NETWORK_UPDATE to [1,254] through [18,254] (selected by Parent)"
+344.544529,38,Node #38 [ 344.54453] Sent Join Reply to: 46
+344.544606,39,"Node #39 [ 344.54461] ADDRESS RENEW: [18,1] -> [38,254]"
+344.544618,46,"Node #46 [ 344.54462] ADDRESS RENEW: [18,1] -> [38,254]"
+344.544618,46,"Node #46 [ 344.54462] Heard Join Reply from: [38,254]"
+344.544618,46,"Node #46 [ 344.54462] [38,1] Sending JOIN_ACK to [38,254] through [38,254] (selected by Neighbors Table)"
+344.544622,31,"Node #31 [ 344.54462] ADDRESS RENEW: [18,1] -> [38,254]"
+344.544622,31,Node #31 [ 344.54462] Removing 38 from my assigned node ids.
+344.544622,31,"Node #31 [ 344.54462] [18,254] Sending NETWORK_UPDATE to [1,254] through [3,2] (selected by Parent)"
+344.544708,38,Node #38 [ 344.54471] ADDRESS HAS CHANGED!
+344.544713,30,"Node #30 [ 344.54471] [3,2] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+344.544811,29,"Node #29 [ 344.54481] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+345.750435,35,"Node #35 [ 345.75043] Heard ROUTER_REQUEST from: [32,254]"
+345.750523,34,"Node #34 [ 345.75052] Heard ROUTER_REPLY from: [27,254]"
+345.750560,33,"Node #33 [ 345.75056] ADDRESS RENEW: [32,254] -> [27,2]"
+345.750574,41,"Node #41 [ 345.75057] ADDRESS RENEW: [32,254] -> [27,2]"
+345.750576,42,"Node #42 [ 345.75058] ADDRESS RENEW: [32,254] -> [27,2]"
+345.750602,26,"Node #26 [ 345.75060] ADDRESS RENEW: [32,254] -> [27,2]"
+345.750611,35,"Node #35 [ 345.75061] ADDRESS RENEW: [32,254] -> [27,2]"
+345.750620,25,"Node #25 [ 345.75062] ADDRESS RENEW: [32,254] -> [27,2]"
+351.445920,28,Node #28 [ 351.44592] Router deemed necessary: [27]
+358.629522,29,Node #29 [ 358.62952] Unable to become a router because I have a router child.
+363.404218,19,Node #19 [ 363.40422] Router deemed necessary: [18]
+364.423837,18,"Node #18 [ 364.42384] Heard ROUTER_REQUEST from: [16,254]"
+364.423837,18,Node #18 [ 364.42384] No children to allocate.
+364.543623,44,"Node #44 [ 364.54362] Sent Join Request to [3,3]"
+364.543626,37,"Node #37 [ 364.54363] Sent Join Request to [3,3]"
+364.543650,45,"Node #45 [ 364.54365] Sent Join Request to [3,3]"
+364.543688,36,Node #36 [ 364.54369] Heard Join Request from 44
+364.543688,36,"Node #36 [ 364.54369] [3,3] Sending NETWORK_REQUEST to [1,254] through [3,254] (selected by Parent)"
+364.543693,36,Node #36 [ 364.54369] Heard Join Request from 37
+364.543741,36,Node #36 [ 364.54374] Heard Join Request from 45
+364.543787,29,"Node #29 [ 364.54379] [3,254] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+364.543859,20,Node #20 [ 364.54386] Duplicate Network Request detected... Sending duplicate network reply
+364.543859,20,"Node #20 [ 364.54386] Sent network reply to [3,3]"
+364.543859,20,"Node #20 [ 364.54386] {'dest': [3,3], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [39,254], 'ttl': 15}"
+364.543859,20,"Node #20 [ 364.54386] [1,254] Sending NETWORK_REPLY to [3,3] through [3,254] (selected by Neighbor Network)"
+364.543932,29,"Node #29 [ 364.54393] [3,254] Sending NETWORK_REPLY to [3,3] through [3,3] (selected by Neighbors Table)"
+364.544031,36,"Node #36 [ 364.54403] [39,254] Sending NETWORK_UPDATE to [1,254] through [3,254] (selected by Parent)"
+364.544031,36,Node #36 [ 364.54403] Sent Join Reply to: 44
+364.544031,36,Node #36 [ 364.54403] Sent Join Reply to: 37
+364.544031,36,Node #36 [ 364.54403] Sent Join Reply to: 45
+364.544093,28,"Node #28 [ 364.54409] ADDRESS RENEW: [3,3] -> [39,254]"
+364.544095,44,"Node #44 [ 364.54410] ADDRESS RENEW: [3,3] -> [39,254]"
+364.544095,44,"Node #44 [ 364.54410] Heard Join Reply from: [39,254]"
+364.544095,44,"Node #44 [ 364.54410] [39,1] Sending JOIN_ACK to [39,254] through [39,254] (selected by Neighbors Table)"
+364.544098,37,"Node #37 [ 364.54410] ADDRESS RENEW: [3,3] -> [39,254]"
+364.544098,37,"Node #37 [ 364.54410] Heard Join Reply from: [39,254]"
+364.544098,37,"Node #37 [ 364.54410] [39,2] Sending JOIN_ACK to [39,254] through [39,254] (selected by Neighbors Table)"
+364.544122,45,"Node #45 [ 364.54412] ADDRESS RENEW: [3,3] -> [39,254]"
+364.544122,45,"Node #45 [ 364.54412] Heard Join Reply from: [39,254]"
+364.544122,45,"Node #45 [ 364.54412] [39,3] Sending JOIN_ACK to [39,254] through [39,254] (selected by Neighbors Table)"
+364.544126,35,"Node #35 [ 364.54413] ADDRESS RENEW: [3,3] -> [39,254]"
+364.544130,29,"Node #29 [ 364.54413] ADDRESS RENEW: [3,3] -> [39,254]"
+364.544130,29,Node #29 [ 364.54413] Removing 36 from my assigned node ids.
+364.544130,29,"Node #29 [ 364.54413] [3,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+378.630338,30,Node #30 [ 378.63034] Router deemed necessary: [31]
+384.424745,1,Node #1  [ 384.42475] Router deemed necessary: [0]
+391.447134,27,"Node #27 [ 391.44713] Heard ROUTER_REQUEST from: [29,254]"
+391.447134,27,Node #27 [ 391.44713] No children to allocate.
+394.862962,4,Node #4  [ 394.86296] I became UNREGISTERED
+394.863032,3,"Node #3  [ 394.86303] ADDRESS RENEW: [15,1] -> [-1,-1]"
+394.863032,3,Node #3  [ 394.86303] Parent is leaving!
+394.863032,3,Node #3  [ 394.86303] I became UNREGISTERED
+394.863042,5,"Node #5  [ 394.86304] ADDRESS RENEW: [15,1] -> [-1,-1]"
+394.863052,12,"Node #12 [ 394.86305] ADDRESS RENEW: [15,1] -> [-1,-1]"
+394.863087,11,"Node #11 [ 394.86309] ADDRESS RENEW: [20,1] -> [-1,-1]"
+394.863102,4,"Node #4  [ 394.86310] ADDRESS RENEW: [20,1] -> [-1,-1]"
+397.141054,41,Node #41 [ 397.14105] I became UNREGISTERED
+397.141100,33,"Node #33 [ 397.14110] ADDRESS RENEW: [32,1] -> [-1,-1]"
+397.141105,34,"Node #34 [ 397.14111] ADDRESS RENEW: [32,1] -> [-1,-1]"
+397.141124,42,"Node #42 [ 397.14112] ADDRESS RENEW: [32,1] -> [-1,-1]"
+397.141140,40,"Node #40 [ 397.14114] ADDRESS RENEW: [32,1] -> [-1,-1]"
+397.141140,40,Node #40 [ 397.14114] Parent is leaving!
+397.141140,40,Node #40 [ 397.14114] I became UNREGISTERED
+397.141140,49,"Node #49 [ 397.14114] ADDRESS RENEW: [32,1] -> [-1,-1]"
+397.141140,49,Node #49 [ 397.14114] Parent is leaving!
+397.141140,49,Node #49 [ 397.14114] I became UNREGISTERED
+397.141205,48,"Node #48 [ 397.14120] ADDRESS RENEW: [34,254] -> [-1,-1]"
+397.141205,48,Node #48 [ 397.14120] Parent is leaving!
+397.141205,48,Node #48 [ 397.14120] I became UNREGISTERED
+397.141217,48,"Node #48 [ 397.14122] ADDRESS RENEW: [33,1] -> [-1,-1]"
+397.141220,32,"Node #32 [ 397.14122] ADDRESS RENEW: [34,254] -> [-1,-1]"
+397.141220,32,Node #32 [ 397.14122] Parent is leaving!
+397.141220,32,Node #32 [ 397.14122] I became UNREGISTERED
+397.141225,41,"Node #41 [ 397.14122] ADDRESS RENEW: [34,254] -> [-1,-1]"
+397.141226,41,"Node #41 [ 397.14123] ADDRESS RENEW: [33,1] -> [-1,-1]"
+397.141227,49,"Node #49 [ 397.14123] ADDRESS RENEW: [34,254] -> [-1,-1]"
+397.141227,40,"Node #40 [ 397.14123] ADDRESS RENEW: [33,1] -> [-1,-1]"
+397.141270,40,"Node #40 [ 397.14127] ADDRESS RENEW: [34,1] -> [-1,-1]"
+397.141282,49,"Node #49 [ 397.14128] ADDRESS RENEW: [34,1] -> [-1,-1]"
+397.141300,40,"Node #40 [ 397.14130] ADDRESS RENEW: [34,2] -> [-1,-1]"
+397.141311,24,"Node #24 [ 397.14131] ADDRESS RENEW: [34,2] -> [-1,-1]"
+397.797306,31,"Node #31 [ 397.79731] Heard ROUTER_REQUEST from: [22,254]"
+397.797306,31,Node #31 [ 397.79731] No children to allocate.
+402.177515,5,Node #5  [ 402.17752] Router deemed necessary: [6]
+413.822475,29,"Node #29 [ 413.82248] Heard ROUTER_REQUEST from: [35,254]"
+413.822547,21,"Node #21 [ 413.82255] Heard ROUTER_REPLY from: [3,254]"
+413.822608,20,"Node #20 [ 413.82261] ADDRESS RENEW: [35,254] -> [3,3]"
+413.822618,13,"Node #13 [ 413.82262] ADDRESS RENEW: [35,254] -> [3,3]"
+413.822620,29,"Node #29 [ 413.82262] ADDRESS RENEW: [35,254] -> [3,3]"
+413.822621,22,"Node #22 [ 413.82262] ADDRESS RENEW: [35,254] -> [3,3]"
+413.822628,14,"Node #14 [ 413.82263] ADDRESS RENEW: [35,254] -> [3,3]"
+413.822643,12,"Node #12 [ 413.82264] ADDRESS RENEW: [35,254] -> [3,3]"
+414.862962,4,Node #4  [ 414.86296] I became UNREGISTERED
+414.863032,3,"Node #3  [ 414.86303] Sent Join Request to [9,1]"
+414.863087,11,Node #11 [ 414.86309] Heard Join Request from 3
+414.863087,11,"Node #11 [ 414.86309] [9,1] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+414.863168,18,"Node #18 [ 414.86317] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+414.863241,19,"Node #19 [ 414.86324] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+414.863331,20,"Node #20 [ 414.86333] Sent network reply to [9,1]"
+414.863331,20,"Node #20 [ 414.86333] {'dest': [9,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [40,254], 'ttl': 15}"
+414.863331,20,"Node #20 [ 414.86333] [1,254] Sending NETWORK_REPLY to [9,1] through [5,1] (selected by Networking Table)"
+414.863420,19,"Node #19 [ 414.86342] [5,1] Sending NETWORK_REPLY to [9,1] through [9,1] (selected by Neighbors Table)"
+414.863511,11,"Node #11 [ 414.86351] [40,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+414.863511,11,Node #11 [ 414.86351] Sent Join Reply to: 3
+414.863566,3,"Node #3  [ 414.86357] ADDRESS RENEW: [9,1] -> [40,254]"
+414.863566,3,"Node #3  [ 414.86357] Heard Join Reply from: [40,254]"
+414.863566,3,"Node #3  [ 414.86357] [40,1] Sending JOIN_ACK to [40,254] through [40,254] (selected by Neighbors Table)"
+414.863582,10,"Node #10 [ 414.86358] ADDRESS RENEW: [9,1] -> [40,254]"
+414.863593,18,"Node #18 [ 414.86359] ADDRESS RENEW: [9,1] -> [40,254]"
+414.863593,18,Node #18 [ 414.86359] Removing 11 from my assigned node ids.
+414.863593,18,"Node #18 [ 414.86359] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+414.863603,19,"Node #19 [ 414.86360] ADDRESS RENEW: [9,1] -> [40,254]"
+414.863620,11,Node #11 [ 414.86362] ADDRESS HAS CHANGED!
+414.863666,19,"Node #19 [ 414.86367] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+417.141054,41,"Node #41 [ 417.14105] Sent Join Request to [29,1]"
+417.141100,33,Node #33 [ 417.14110] Heard Join Request from 41
+417.141100,33,"Node #33 [ 417.14110] [29,1] Sending NETWORK_REQUEST to [1,254] through [29,254] (selected by Parent)"
+417.141140,40,Node #40 [ 417.14114] I became UNREGISTERED
+417.141140,49,Node #49 [ 417.14114] I became UNREGISTERED
+417.141167,26,"Node #26 [ 417.14117] [29,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+417.141205,48,Node #48 [ 417.14120] I became UNREGISTERED
+417.141220,32,"Node #32 [ 417.14122] Sent Join Request to [31,1]"
+417.141248,27,"Node #27 [ 417.14125] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+417.141311,24,Node #24 [ 417.14131] Heard Join Request from 32
+417.141311,24,"Node #24 [ 417.14131] [31,1] Sending NETWORK_REQUEST to [1,254] through [31,254] (selected by Parent)"
+417.141324,28,"Node #28 [ 417.14132] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+417.141390,16,"Node #16 [ 417.14139] [31,254] Sending NETWORK_REQUEST to [1,254] through [24,1] (selected by Parent)"
+417.141416,20,Node #20 [ 417.14142] Duplicate Network Request detected... Sending duplicate network reply
+417.141416,20,"Node #20 [ 417.14142] Sent network reply to [29,1]"
+417.141416,20,"Node #20 [ 417.14142] {'dest': [29,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [41,254], 'ttl': 15}"
+417.141416,20,"Node #20 [ 417.14142] [1,254] Sending NETWORK_REPLY to [29,1] through [3,1] (selected by Networking Table)"
+417.141461,8,"Node #8  [ 417.14146] [24,1] Sending NETWORK_REQUEST to [1,254] through [24,254] (selected by Parent)"
+417.141508,28,"Node #28 [ 417.14151] [3,1] Sending NETWORK_REPLY to [29,1] through [5,254] (selected by Networking Table)"
+417.141543,0,"Node #0  [ 417.14154] [24,254] Sending NETWORK_REQUEST to [1,254] through [16,3] (selected by Parent)"
+417.141584,27,"Node #27 [ 417.14158] [5,254] Sending NETWORK_REPLY to [29,1] through [29,254] (selected by Neighbor Network)"
+417.141623,1,"Node #1  [ 417.14162] [16,3] Sending NETWORK_REQUEST to [1,254] through [16,254] (selected by Parent)"
+417.141666,26,"Node #26 [ 417.14167] [29,254] Sending NETWORK_REPLY to [29,1] through [29,1] (selected by Neighbors Table)"
+417.141693,10,"Node #10 [ 417.14169] [16,254] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+417.141732,33,"Node #33 [ 417.14173] [41,254] Sending NETWORK_UPDATE to [1,254] through [29,254] (selected by Parent)"
+417.141732,33,Node #33 [ 417.14173] Sent Join Reply to: 41
+417.141767,18,"Node #18 [ 417.14177] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+417.141769,34,"Node #34 [ 417.14177] ADDRESS RENEW: [29,1] -> [41,254]"
+417.141778,41,"Node #41 [ 417.14178] ADDRESS RENEW: [29,1] -> [41,254]"
+417.141778,41,"Node #41 [ 417.14178] Heard Join Reply from: [41,254]"
+417.141778,41,"Node #41 [ 417.14178] [41,1] Sending JOIN_ACK to [41,254] through [41,254] (selected by Neighbors Table)"
+417.141799,26,"Node #26 [ 417.14180] ADDRESS RENEW: [29,1] -> [41,254]"
+417.141799,26,Node #26 [ 417.14180] Removing 33 from my assigned node ids.
+417.141799,26,"Node #26 [ 417.14180] [29,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+417.141802,25,"Node #25 [ 417.14180] ADDRESS RENEW: [29,1] -> [41,254]"
+417.141819,42,"Node #42 [ 417.14182] ADDRESS RENEW: [29,1] -> [41,254]"
+417.141824,33,Node #33 [ 417.14182] ADDRESS HAS CHANGED!
+417.141829,34,Node #34 [ 417.14183] ADDRESS HAS CHANGED!
+417.141829,34,Node #34 [ 417.14183] Node has left my children.
+417.141840,19,"Node #19 [ 417.14184] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+417.141848,42,Node #42 [ 417.14185] ADDRESS HAS CHANGED!
+417.141881,27,"Node #27 [ 417.14188] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+417.141929,20,"Node #20 [ 417.14193] Sent network reply to [31,1]"
+417.141929,20,"Node #20 [ 417.14193] {'dest': [31,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [42,254], 'ttl': 15}"
+417.141929,20,"Node #20 [ 417.14193] [1,254] Sending NETWORK_REPLY to [31,1] through [5,1] (selected by Networking Table)"
+417.141956,28,"Node #28 [ 417.14196] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+417.142018,19,"Node #19 [ 417.14202] [5,1] Sending NETWORK_REPLY to [31,1] through [9,254] (selected by Networking Table)"
+417.142091,18,"Node #18 [ 417.14209] [9,254] Sending NETWORK_REPLY to [31,1] through [16,254] (selected by Networking Table)"
+417.142165,10,"Node #10 [ 417.14216] [16,254] Sending NETWORK_REPLY to [31,1] through [16,3] (selected by Networking Table)"
+417.142235,1,"Node #1  [ 417.14224] [16,3] Sending NETWORK_REPLY to [31,1] through [24,254] (selected by Networking Table)"
+417.142315,0,"Node #0  [ 417.14231] [24,254] Sending NETWORK_REPLY to [31,1] through [24,1] (selected by Networking Table)"
+417.142397,8,"Node #8  [ 417.14240] [24,1] Sending NETWORK_REPLY to [31,1] through [31,254] (selected by Neighbor Network)"
+417.142468,16,"Node #16 [ 417.14247] [31,254] Sending NETWORK_REPLY to [31,1] through [31,1] (selected by Neighbors Table)"
+417.142547,24,"Node #24 [ 417.14255] [42,254] Sending NETWORK_UPDATE to [1,254] through [31,254] (selected by Parent)"
+417.142547,24,Node #24 [ 417.14255] Sent Join Reply to: 32
+417.142622,17,"Node #17 [ 417.14262] ADDRESS RENEW: [31,1] -> [42,254]"
+417.142626,16,"Node #16 [ 417.14263] ADDRESS RENEW: [31,1] -> [42,254]"
+417.142626,16,Node #16 [ 417.14263] Removing 24 from my assigned node ids.
+417.142626,16,"Node #16 [ 417.14263] [31,254] Sending NETWORK_UPDATE to [1,254] through [24,1] (selected by Parent)"
+417.142638,32,"Node #32 [ 417.14264] ADDRESS RENEW: [31,1] -> [42,254]"
+417.142638,32,"Node #32 [ 417.14264] Heard Join Reply from: [42,254]"
+417.142638,32,"Node #32 [ 417.14264] [42,1] Sending JOIN_ACK to [42,254] through [42,254] (selected by Neighbors Table)"
+417.142697,8,"Node #8  [ 417.14270] [24,1] Sending NETWORK_UPDATE to [1,254] through [24,254] (selected by Parent)"
+417.142729,24,Node #24 [ 417.14273] ADDRESS HAS CHANGED!
+417.142779,0,"Node #0  [ 417.14278] [24,254] Sending NETWORK_UPDATE to [1,254] through [16,3] (selected by Parent)"
+417.142859,1,"Node #1  [ 417.14286] [16,3] Sending NETWORK_UPDATE to [1,254] through [16,254] (selected by Parent)"
+417.142929,10,"Node #10 [ 417.14293] [16,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+417.143003,18,"Node #18 [ 417.14300] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+417.143076,19,"Node #19 [ 417.14308] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+424.426943,8,Node #8  [ 424.42694] Router deemed necessary: [16]
+424.543460,29,"Node #29 [ 424.54346] Heard ROUTER_REQUEST from: [39,254]"
+424.543559,36,"Node #36 [ 424.54356] Heard ROUTER_REPLY from: [3,254]"
+424.543621,28,"Node #28 [ 424.54362] ADDRESS RENEW: [39,254] -> [3,5]"
+424.543623,44,"Node #44 [ 424.54362] ADDRESS RENEW: [39,254] -> [3,5]"
+424.543626,37,"Node #37 [ 424.54363] ADDRESS RENEW: [39,254] -> [3,5]"
+424.543650,45,"Node #45 [ 424.54365] ADDRESS RENEW: [39,254] -> [3,5]"
+424.543654,35,"Node #35 [ 424.54365] ADDRESS RENEW: [39,254] -> [3,5]"
+424.543658,29,"Node #29 [ 424.54366] ADDRESS RENEW: [39,254] -> [3,5]"
+425.750234,35,Node #35 [ 425.75023] Unable to become a router because I have a router child.
+434.862962,4,"Node #4  [ 434.86296] Sent Join Request to [40,1]"
+434.863032,3,Node #3  [ 434.86303] Heard Join Request from 4
+434.863032,3,"Node #3  [ 434.86303] [40,1] Sending NETWORK_REQUEST to [1,254] through [40,254] (selected by Parent)"
+434.863087,11,"Node #11 [ 434.86309] [40,254] Sending NETWORK_REQUEST to [1,254] through [9,254] (selected by Parent)"
+434.863168,18,"Node #18 [ 434.86317] [9,254] Sending NETWORK_REQUEST to [1,254] through [5,1] (selected by Parent)"
+434.863241,19,"Node #19 [ 434.86324] [5,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+434.863331,20,"Node #20 [ 434.86333] Sent network reply to [40,1]"
+434.863331,20,"Node #20 [ 434.86333] {'dest': [40,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [43,254], 'ttl': 15}"
+434.863331,20,"Node #20 [ 434.86333] [1,254] Sending NETWORK_REPLY to [40,1] through [5,1] (selected by Networking Table)"
+434.863420,19,"Node #19 [ 434.86342] [5,1] Sending NETWORK_REPLY to [40,1] through [40,254] (selected by Neighbor Network)"
+434.863511,11,"Node #11 [ 434.86351] [40,254] Sending NETWORK_REPLY to [40,1] through [40,1] (selected by Neighbors Table)"
+434.863566,3,"Node #3  [ 434.86357] [43,254] Sending NETWORK_UPDATE to [1,254] through [40,254] (selected by Parent)"
+434.863566,3,Node #3  [ 434.86357] Sent Join Reply to: 4
+434.863620,11,"Node #11 [ 434.86362] ADDRESS RENEW: [40,1] -> [43,254]"
+434.863620,11,Node #11 [ 434.86362] Removing 3 from my assigned node ids.
+434.863620,11,"Node #11 [ 434.86362] [40,254] Sending NETWORK_UPDATE to [1,254] through [9,254] (selected by Parent)"
+434.863636,4,"Node #4  [ 434.86364] ADDRESS RENEW: [40,1] -> [43,254]"
+434.863636,4,"Node #4  [ 434.86364] Heard Join Reply from: [43,254]"
+434.863636,4,"Node #4  [ 434.86364] [43,1] Sending JOIN_ACK to [43,254] through [43,254] (selected by Neighbors Table)"
+434.863702,18,"Node #18 [ 434.86370] [9,254] Sending NETWORK_UPDATE to [1,254] through [5,1] (selected by Parent)"
+434.863716,5,Node #5  [ 434.86372] ADDRESS HAS CHANGED!
+434.863727,12,Node #12 [ 434.86373] ADDRESS HAS CHANGED!
+434.863727,12,Node #12 [ 434.86373] Node has left my children.
+434.863775,19,"Node #19 [ 434.86378] [5,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+437.141140,40,"Node #40 [ 437.14114] Sent Join Request to [41,1]"
+437.141140,49,"Node #49 [ 437.14114] Sent Join Request to [41,1]"
+437.141205,48,Node #48 [ 437.14120] I became UNREGISTERED
+437.141225,41,Node #41 [ 437.14122] Heard Join Request from 40
+437.141225,41,"Node #41 [ 437.14122] [41,1] Sending NETWORK_REQUEST to [1,254] through [41,254] (selected by Parent)"
+437.141226,41,Node #41 [ 437.14123] Heard Join Request from 49
+437.141270,33,"Node #33 [ 437.14127] [41,254] Sending NETWORK_REQUEST to [1,254] through [29,254] (selected by Parent)"
+437.141337,26,"Node #26 [ 437.14134] [29,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+437.141419,27,"Node #27 [ 437.14142] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+437.141494,28,"Node #28 [ 437.14149] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+437.141587,20,Node #20 [ 437.14159] Duplicate Network Request detected... Sending duplicate network reply
+437.141587,20,Node #20 [ 437.14159] Duplicate Network Request detected... Sending duplicate network reply
+437.141587,20,"Node #20 [ 437.14159] Sent network reply to [41,1]"
+437.141587,20,"Node #20 [ 437.14159] {'dest': [41,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [44,254], 'ttl': 15}"
+437.141587,20,"Node #20 [ 437.14159] [1,254] Sending NETWORK_REPLY to [41,1] through [3,1] (selected by Networking Table)"
+437.141679,28,"Node #28 [ 437.14168] [3,1] Sending NETWORK_REPLY to [41,1] through [5,254] (selected by Networking Table)"
+437.141754,27,"Node #27 [ 437.14175] [5,254] Sending NETWORK_REPLY to [41,1] through [29,254] (selected by Networking Table)"
+437.141836,26,"Node #26 [ 437.14184] [29,254] Sending NETWORK_REPLY to [41,1] through [41,254] (selected by Neighbor Network)"
+437.141903,33,"Node #33 [ 437.14190] [41,254] Sending NETWORK_REPLY to [41,1] through [41,1] (selected by Neighbors Table)"
+437.141948,41,"Node #41 [ 437.14195] [44,254] Sending NETWORK_UPDATE to [1,254] through [41,254] (selected by Parent)"
+437.141948,41,Node #41 [ 437.14195] Sent Join Reply to: 40
+437.141948,41,Node #41 [ 437.14195] Sent Join Reply to: 49
+437.141994,33,"Node #33 [ 437.14199] ADDRESS RENEW: [41,1] -> [44,254]"
+437.141994,33,Node #33 [ 437.14199] Removing 41 from my assigned node ids.
+437.141994,33,"Node #33 [ 437.14199] [41,254] Sending NETWORK_UPDATE to [1,254] through [29,254] (selected by Parent)"
+437.141999,34,"Node #34 [ 437.14200] ADDRESS RENEW: [41,1] -> [44,254]"
+437.142019,42,"Node #42 [ 437.14202] ADDRESS RENEW: [41,1] -> [44,254]"
+437.142034,40,"Node #40 [ 437.14203] ADDRESS RENEW: [41,1] -> [44,254]"
+437.142034,40,"Node #40 [ 437.14203] Heard Join Reply from: [44,254]"
+437.142034,40,"Node #40 [ 437.14203] [44,1] Sending JOIN_ACK to [44,254] through [44,254] (selected by Neighbors Table)"
+437.142034,49,"Node #49 [ 437.14203] ADDRESS RENEW: [41,1] -> [44,254]"
+437.142034,49,"Node #49 [ 437.14203] Heard Join Reply from: [44,254]"
+437.142034,49,"Node #49 [ 437.14203] [44,2] Sending JOIN_ACK to [44,254] through [44,254] (selected by Neighbors Table)"
+437.142061,26,"Node #26 [ 437.14206] [29,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+437.142120,41,Node #41 [ 437.14212] ADDRESS HAS CHANGED!
+437.142142,27,"Node #27 [ 437.14214] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+437.142218,28,"Node #28 [ 437.14222] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+437.480885,12,Node #12 [ 437.48089] I became UNREGISTERED
+437.480918,13,"Node #13 [ 437.48092] ADDRESS RENEW: [35,2] -> [-1,-1]"
+437.480957,5,"Node #5  [ 437.48096] ADDRESS RENEW: [35,2] -> [-1,-1]"
+437.480957,5,Node #5  [ 437.48096] Parent is leaving!
+437.480957,5,Node #5  [ 437.48096] I became UNREGISTERED
+437.480975,4,"Node #4  [ 437.48098] ADDRESS RENEW: [35,2] -> [-1,-1]"
+437.480976,20,"Node #20 [ 437.48098] ADDRESS RENEW: [35,2] -> [-1,-1]"
+437.480981,21,"Node #21 [ 437.48098] ADDRESS RENEW: [35,2] -> [-1,-1]"
+437.481023,13,"Node #13 [ 437.48102] ADDRESS RENEW: [15,2] -> [-1,-1]"
+437.481028,12,"Node #12 [ 437.48103] ADDRESS RENEW: [15,2] -> [-1,-1]"
+437.481035,6,"Node #6  [ 437.48103] ADDRESS RENEW: [15,2] -> [-1,-1]"
+437.481035,6,Node #6  [ 437.48103] Parent is leaving!
+437.481035,6,Node #6  [ 437.48103] I became UNREGISTERED
+437.481037,4,"Node #4  [ 437.48104] ADDRESS RENEW: [15,2] -> [-1,-1]"
+437.481113,5,"Node #5  [ 437.48111] ADDRESS RENEW: [36,254] -> [-1,-1]"
+437.481116,7,"Node #7  [ 437.48112] ADDRESS RENEW: [36,254] -> [-1,-1]"
+437.481116,7,Node #7  [ 437.48112] Parent is leaving!
+437.481116,7,Node #7  [ 437.48112] I became UNREGISTERED
+437.481179,15,"Node #15 [ 437.48118] ADDRESS RENEW: [36,1] -> [-1,-1]"
+437.481198,6,"Node #6  [ 437.48120] ADDRESS RENEW: [36,1] -> [-1,-1]"
+440.750211,27,"Node #27 [ 440.75021] Heard ROUTER_REQUEST from: [29,254]"
+440.750211,27,Node #27 [ 440.75021] No children to allocate.
+444.427779,25,Node #25 [ 444.42778] I became UNREGISTERED
+444.427819,26,"Node #26 [ 444.42782] ADDRESS RENEW: [32,3] -> [-1,-1]"
+444.427848,33,"Node #33 [ 444.42785] ADDRESS RENEW: [32,3] -> [-1,-1]"
+444.427864,17,"Node #17 [ 444.42786] ADDRESS RENEW: [32,3] -> [-1,-1]"
+444.427864,17,Node #17 [ 444.42786] Parent is leaving!
+444.427864,17,Node #17 [ 444.42786] I became UNREGISTERED
+444.427876,34,"Node #34 [ 444.42788] ADDRESS RENEW: [32,3] -> [-1,-1]"
+444.427935,16,"Node #16 [ 444.42793] ADDRESS RENEW: [30,1] -> [-1,-1]"
+444.427939,24,"Node #24 [ 444.42794] ADDRESS RENEW: [30,1] -> [-1,-1]"
+444.427949,25,"Node #25 [ 444.42795] ADDRESS RENEW: [30,1] -> [-1,-1]"
+444.544622,31,"Node #31 [ 444.54462] Heard ROUTER_REQUEST from: [38,254]"
+444.544622,31,Node #31 [ 444.54462] No children to allocate.
+445.750523,34,Node #34 [ 445.75052] I became UNREGISTERED
+445.750560,33,"Node #33 [ 445.75056] ADDRESS RENEW: [27,2] -> [-1,-1]"
+445.750574,41,"Node #41 [ 445.75057] ADDRESS RENEW: [27,2] -> [-1,-1]"
+445.750576,42,"Node #42 [ 445.75058] ADDRESS RENEW: [27,2] -> [-1,-1]"
+445.750576,42,Node #42 [ 445.75058] Parent is leaving!
+445.750576,42,Node #42 [ 445.75058] I became UNREGISTERED
+445.750602,26,"Node #26 [ 445.75060] ADDRESS RENEW: [27,2] -> [-1,-1]"
+445.750611,35,"Node #35 [ 445.75061] ADDRESS RENEW: [27,2] -> [-1,-1]"
+445.750611,35,Node #35 [ 445.75061] Removing 34 from my assigned node ids.
+445.750620,25,"Node #25 [ 445.75062] ADDRESS RENEW: [27,2] -> [-1,-1]"
+445.750630,34,"Node #34 [ 445.75063] ADDRESS RENEW: [32,2] -> [-1,-1]"
+445.750636,43,"Node #43 [ 445.75064] ADDRESS RENEW: [32,2] -> [-1,-1]"
+445.750646,41,"Node #41 [ 445.75065] ADDRESS RENEW: [32,2] -> [-1,-1]"
+445.750663,33,"Node #33 [ 445.75066] ADDRESS RENEW: [32,2] -> [-1,-1]"
+450.449693,33,"Node #33 [ 450.44969] Heard ROUTER_REQUEST from: [44,254]"
+450.449739,41,"Node #41 [ 450.44974] Heard ROUTER_REPLY from: [41,254]"
+450.449785,33,"Node #33 [ 450.44978] ADDRESS RENEW: [44,254] -> [41,1]"
+450.449790,34,"Node #34 [ 450.44979] ADDRESS RENEW: [44,254] -> [41,1]"
+450.449809,42,"Node #42 [ 450.44981] ADDRESS RENEW: [44,254] -> [41,1]"
+450.449824,40,"Node #40 [ 450.44982] ADDRESS RENEW: [44,254] -> [41,1]"
+450.449825,49,"Node #49 [ 450.44982] ADDRESS RENEW: [44,254] -> [41,1]"
+451.445920,28,Node #28 [ 451.44592] Router deemed necessary: [27]
+457.141205,48,"Node #48 [ 457.14120] Sent Join Request to [44,1]"
+457.141270,40,Node #40 [ 457.14127] Heard Join Request from 48
+457.141270,40,"Node #40 [ 457.14127] [44,1] Sending NETWORK_REQUEST to [1,254] through [41,1] (selected by Parent)"
+457.141355,41,"Node #41 [ 457.14136] [41,1] Sending NETWORK_REQUEST to [1,254] through [41,254] (selected by Parent)"
+457.141401,33,"Node #33 [ 457.14140] [41,254] Sending NETWORK_REQUEST to [1,254] through [29,254] (selected by Parent)"
+457.141467,26,"Node #26 [ 457.14147] [29,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+457.141549,27,"Node #27 [ 457.14155] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+457.141624,28,"Node #28 [ 457.14162] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+457.141717,20,Node #20 [ 457.14172] Duplicate Network Request detected... Sending duplicate network reply
+457.141717,20,"Node #20 [ 457.14172] Sent network reply to [44,1]"
+457.141717,20,"Node #20 [ 457.14172] {'dest': [44,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [45,254], 'ttl': 15}"
+457.141717,20,"Node #20 [ 457.14172] [1,254] Sending NETWORK_REPLY to [44,1] through [3,1] (selected by Networking Table)"
+457.141809,28,"Node #28 [ 457.14181] [3,1] Sending NETWORK_REPLY to [44,1] through [5,254] (selected by Networking Table)"
+457.141885,27,"Node #27 [ 457.14188] [5,254] Sending NETWORK_REPLY to [44,1] through [29,254] (selected by Networking Table)"
+457.141966,26,"Node #26 [ 457.14197] [29,254] Sending NETWORK_REPLY to [44,1] through [41,254] (selected by Networking Table)"
+457.142033,33,"Node #33 [ 457.14203] [41,254] Sending NETWORK_REPLY to [44,1] through [41,1] (selected by Networking Table)"
+457.142079,41,"Node #41 [ 457.14208] [41,1] Sending NETWORK_REPLY to [44,1] through [44,1] (selected by Neighbors Table)"
+457.142164,40,"Node #40 [ 457.14216] [45,254] Sending NETWORK_UPDATE to [1,254] through [41,1] (selected by Parent)"
+457.142164,40,Node #40 [ 457.14216] Sent Join Reply to: 48
+457.142229,48,"Node #48 [ 457.14223] ADDRESS RENEW: [44,1] -> [45,254]"
+457.142229,48,"Node #48 [ 457.14223] Heard Join Reply from: [45,254]"
+457.142229,48,"Node #48 [ 457.14223] [45,1] Sending JOIN_ACK to [45,254] through [45,254] (selected by Neighbors Table)"
+457.142244,32,"Node #32 [ 457.14224] ADDRESS RENEW: [44,1] -> [45,254]"
+457.142249,41,"Node #41 [ 457.14225] ADDRESS RENEW: [44,1] -> [45,254]"
+457.142249,41,"Node #41 [ 457.14225] [41,1] Sending NETWORK_UPDATE to [1,254] through [41,254] (selected by Parent)"
+457.142251,49,"Node #49 [ 457.14225] ADDRESS RENEW: [44,1] -> [45,254]"
+457.142295,33,"Node #33 [ 457.14229] [41,254] Sending NETWORK_UPDATE to [1,254] through [29,254] (selected by Parent)"
+457.142362,26,"Node #26 [ 457.14236] [29,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+457.142443,27,"Node #27 [ 457.14244] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+457.142519,28,"Node #28 [ 457.14252] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+457.480885,12,"Node #12 [ 457.48089] Sent Join Request to [1,254]"
+457.480957,5,"Node #5  [ 457.48096] Sent Join Request to [1,6]"
+457.480976,20,Node #20 [ 457.48098] Sent Join Reply to: 12
+457.481023,13,Node #13 [ 457.48102] Heard Join Request from 5
+457.481023,13,"Node #13 [ 457.48102] [1,6] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+457.481035,6,Node #6  [ 457.48103] I became UNREGISTERED
+457.481067,12,"Node #12 [ 457.48107] Heard Join Reply from: [1,254]"
+457.481067,12,"Node #12 [ 457.48107] [1,7] Sending JOIN_ACK to [1,254] through [1,254] (selected by Neighbors Table)"
+457.481100,13,Node #13 [ 457.48110] ADDRESS HAS CHANGED!
+457.481109,20,"Node #20 [ 457.48111] Sent network reply to [1,6]"
+457.481109,20,"Node #20 [ 457.48111] {'dest': [1,6], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [46,254], 'ttl': 15}"
+457.481109,20,"Node #20 [ 457.48111] [1,254] Sending NETWORK_REPLY to [1,6] through [1,6] (selected by Neighbors Table)"
+457.481116,7,"Node #7  [ 457.48112] Sent Join Request to [37,1]"
+457.481158,4,Node #4  [ 457.48116] ADDRESS HAS CHANGED!
+457.481158,20,Node #20 [ 457.48116] ADDRESS HAS CHANGED!
+457.481163,21,Node #21 [ 457.48116] ADDRESS HAS CHANGED!
+457.481179,15,Node #15 [ 457.48118] Heard Join Request from 7
+457.481179,15,"Node #15 [ 457.48118] [37,1] Sending NETWORK_REQUEST to [1,254] through [37,254] (selected by Parent)"
+457.481195,13,"Node #13 [ 457.48120] [46,254] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+457.481195,13,Node #13 [ 457.48120] Sent Join Reply to: 5
+457.481228,12,"Node #12 [ 457.48123] ADDRESS RENEW: [1,6] -> [46,254]"
+457.481249,14,"Node #14 [ 457.48125] [37,254] Sending NETWORK_REQUEST to [1,254] through [1,6] (selected by Neighbor Network)"
+457.481262,5,"Node #5  [ 457.48126] ADDRESS RENEW: [1,6] -> [46,254]"
+457.481262,5,"Node #5  [ 457.48126] Heard Join Reply from: [46,254]"
+457.481262,5,"Node #5  [ 457.48126] [46,1] Sending JOIN_ACK to [46,254] through [46,254] (selected by Neighbors Table)"
+457.481266,21,"Node #21 [ 457.48127] ADDRESS RENEW: [1,6] -> [46,254]"
+457.481281,20,"Node #20 [ 457.48128] ADDRESS RENEW: [1,6] -> [46,254]"
+457.481295,14,"Node #14 [ 457.48130] ADDRESS RENEW: [1,6] -> [46,254]"
+457.481329,13,Node #13 [ 457.48133] ADDRESS HAS CHANGED!
+457.481342,4,Node #4  [ 457.48134] ADDRESS HAS CHANGED!
+458.629522,29,Node #29 [ 458.62952] Unable to become a router because I have a router child.
+462.481116,7,Node #7  [ 462.48112] I became UNREGISTERED
+463.404218,19,Node #19 [ 463.40422] Router deemed necessary: [18]
+464.423763,10,Node #10 [ 464.42376] Unable to become a router because I have a router child.
+464.427779,25,"Node #25 [ 464.42778] Sent Join Request to [29,254]"
+464.427819,26,Node #26 [ 464.42782] Sent Join Reply to: 25
+464.427859,25,"Node #25 [ 464.42786] Heard Join Reply from: [29,254]"
+464.427859,25,"Node #25 [ 464.42786] [29,1] Sending JOIN_ACK to [29,254] through [29,254] (selected by Neighbors Table)"
+464.427864,17,"Node #17 [ 464.42786] Sent Join Request to [31,254]"
+464.427899,26,Node #26 [ 464.42790] ADDRESS HAS CHANGED!
+464.427928,33,Node #33 [ 464.42793] ADDRESS HAS CHANGED!
+464.427935,16,Node #16 [ 464.42793] Sent Join Reply to: 17
+464.428005,17,"Node #17 [ 464.42801] Heard Join Reply from: [31,254]"
+464.428005,17,"Node #17 [ 464.42801] [31,1] Sending JOIN_ACK to [31,254] through [31,254] (selected by Neighbors Table)"
+464.428076,16,Node #16 [ 464.42808] ADDRESS HAS CHANGED!
+464.428080,24,Node #24 [ 464.42808] ADDRESS HAS CHANGED!
+465.750523,34,"Node #34 [ 465.75052] Sent Join Request to [29,254]"
+465.750576,42,"Node #42 [ 465.75058] Sent Join Request to [27,1]"
+465.750602,26,Node #26 [ 465.75060] Sent Join Reply to: 34
+465.750636,43,Node #43 [ 465.75064] Heard Join Request from 42
+465.750636,43,"Node #43 [ 465.75064] [27,1] Sending NETWORK_REQUEST to [1,254] through [27,254] (selected by Parent)"
+465.750681,34,"Node #34 [ 465.75068] Heard Join Reply from: [29,254]"
+465.750681,34,"Node #34 [ 465.75068] [29,2] Sending JOIN_ACK to [29,254] through [29,254] (selected by Neighbors Table)"
+465.750718,33,Node #33 [ 465.75072] ADDRESS HAS CHANGED!
+465.750732,41,Node #41 [ 465.75073] ADDRESS HAS CHANGED!
+465.750733,35,"Node #35 [ 465.75073] [27,254] Sending NETWORK_REQUEST to [1,254] through [5,254] (selected by Parent)"
+465.750760,26,Node #26 [ 465.75076] ADDRESS HAS CHANGED!
+465.750770,35,Node #35 [ 465.75077] ADDRESS HAS CHANGED!
+465.750770,35,Node #35 [ 465.75077] Node has left my children.
+465.750784,27,"Node #27 [ 465.75078] [5,254] Sending NETWORK_REQUEST to [1,254] through [3,1] (selected by Parent)"
+465.750859,28,"Node #28 [ 465.75086] [3,1] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+465.750951,20,"Node #20 [ 465.75095] Sent network reply to [27,1]"
+465.750951,20,"Node #20 [ 465.75095] {'dest': [27,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [47,254], 'ttl': 15}"
+465.750951,20,"Node #20 [ 465.75095] [1,254] Sending NETWORK_REPLY to [27,1] through [3,1] (selected by Networking Table)"
+465.751044,28,"Node #28 [ 465.75104] [3,1] Sending NETWORK_REPLY to [27,1] through [27,254] (selected by Neighbor Network)"
+465.751115,35,"Node #35 [ 465.75112] [27,254] Sending NETWORK_REPLY to [27,1] through [27,1] (selected by Neighbors Table)"
+465.751213,43,"Node #43 [ 465.75121] [47,254] Sending NETWORK_UPDATE to [1,254] through [27,254] (selected by Parent)"
+465.751213,43,Node #43 [ 465.75121] Sent Join Reply to: 42
+465.751272,42,"Node #42 [ 465.75127] ADDRESS RENEW: [27,1] -> [47,254]"
+465.751272,42,"Node #42 [ 465.75127] Heard Join Reply from: [47,254]"
+465.751272,42,"Node #42 [ 465.75127] [47,1] Sending JOIN_ACK to [47,254] through [47,254] (selected by Neighbors Table)"
+465.751296,44,"Node #44 [ 465.75130] ADDRESS RENEW: [27,1] -> [47,254]"
+465.751310,35,"Node #35 [ 465.75131] ADDRESS RENEW: [27,1] -> [47,254]"
+465.751310,35,Node #35 [ 465.75131] Removing 43 from my assigned node ids.
+465.751310,35,"Node #35 [ 465.75131] [27,254] Sending NETWORK_UPDATE to [1,254] through [5,254] (selected by Parent)"
+465.751332,43,Node #43 [ 465.75133] ADDRESS HAS CHANGED!
+465.751342,41,Node #41 [ 465.75134] ADDRESS HAS CHANGED!
+465.751358,33,Node #33 [ 465.75136] ADDRESS HAS CHANGED!
+465.751360,27,"Node #27 [ 465.75136] [5,254] Sending NETWORK_UPDATE to [1,254] through [3,1] (selected by Parent)"
+465.751436,28,"Node #28 [ 465.75144] [3,1] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+477.481035,6,"Node #6  [ 477.48103] Sent Join Request to [46,1]"
+477.481113,5,Node #5  [ 477.48111] Heard Join Request from 6
+477.481113,5,"Node #5  [ 477.48111] [46,1] Sending NETWORK_REQUEST to [1,254] through [1,7] (selected by Neighbor Network)"
+477.481185,12,"Node #12 [ 477.48118] [1,7] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+477.481276,20,Node #20 [ 477.48128] Duplicate Network Request detected... Sending duplicate network reply
+477.481276,20,"Node #20 [ 477.48128] Sent network reply to [46,1]"
+477.481276,20,"Node #20 [ 477.48128] {'dest': [46,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [48,254], 'ttl': 15}"
+477.481276,20,"Node #20 [ 477.48128] [1,254] Sending NETWORK_REPLY to [46,1] through [46,254] (selected by Neighbor Network)"
+477.481362,13,"Node #13 [ 477.48136] [46,254] Sending NETWORK_REPLY to [46,1] through [46,1] (selected by Neighbors Table)"
+477.481428,5,"Node #5  [ 477.48143] [48,254] Sending NETWORK_UPDATE to [1,254] through [1,7] (selected by Neighbor Network)"
+477.481428,5,Node #5  [ 477.48143] Sent Join Reply to: 6
+477.481495,13,"Node #13 [ 477.48150] ADDRESS RENEW: [46,1] -> [48,254]"
+477.481495,13,Node #13 [ 477.48150] Removing 5 from my assigned node ids.
+477.481500,12,"Node #12 [ 477.48150] ADDRESS RENEW: [46,1] -> [48,254]"
+477.481500,12,"Node #12 [ 477.48150] [1,7] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+477.481507,6,"Node #6  [ 477.48151] ADDRESS RENEW: [46,1] -> [48,254]"
+477.481507,6,"Node #6  [ 477.48151] Heard Join Reply from: [48,254]"
+477.481507,6,"Node #6  [ 477.48151] [48,1] Sending JOIN_ACK to [48,254] through [48,254] (selected by Neighbors Table)"
+477.481509,4,"Node #4  [ 477.48151] ADDRESS RENEW: [46,1] -> [48,254]"
+478.630338,30,Node #30 [ 478.63034] Router deemed necessary: [31]
+482.481116,7,"Node #7  [ 482.48112] Sent Join Request to [37,1]"
+482.481179,15,Node #15 [ 482.48118] Heard Join Request from 7
+484.424745,1,Node #1  [ 484.42475] Router deemed necessary: [0]
+487.481116,7,"Node #7  [ 487.48112] Sent Join Request to [48,1]"
+487.481198,6,Node #6  [ 487.48120] Heard Join Request from 7
+487.481198,6,"Node #6  [ 487.48120] [48,1] Sending NETWORK_REQUEST to [1,254] through [48,254] (selected by Parent)"
+487.481276,5,"Node #5  [ 487.48128] [48,254] Sending NETWORK_REQUEST to [1,254] through [1,7] (selected by Neighbor Network)"
+487.481348,12,"Node #12 [ 487.48135] [1,7] Sending NETWORK_REQUEST to [1,254] through [1,254] (selected by Neighbors Table)"
+487.481439,20,Node #20 [ 487.48144] Duplicate Network Request detected... Sending duplicate network reply
+487.481439,20,"Node #20 [ 487.48144] Sent network reply to [48,1]"
+487.481439,20,"Node #20 [ 487.48144] {'dest': [48,1], 'type': 'NETWORK_REPLY', 'source': [1,254], 'addr': [49,254], 'ttl': 15}"
+487.481439,20,"Node #20 [ 487.48144] [1,254] Sending NETWORK_REPLY to [48,1] through [1,7] (selected by Networking Table)"
+487.481530,12,"Node #12 [ 487.48153] [1,7] Sending NETWORK_REPLY to [48,1] through [48,254] (selected by Neighbor Network)"
+487.481602,5,"Node #5  [ 487.48160] [48,254] Sending NETWORK_REPLY to [48,1] through [48,1] (selected by Neighbors Table)"
+487.481680,6,"Node #6  [ 487.48168] [49,254] Sending NETWORK_UPDATE to [1,254] through [48,254] (selected by Parent)"
+487.481680,6,Node #6  [ 487.48168] Sent Join Reply to: 7
+487.481758,5,"Node #5  [ 487.48176] ADDRESS RENEW: [48,1] -> [49,254]"
+487.481758,5,Node #5  [ 487.48176] Removing 6 from my assigned node ids.
+487.481758,5,"Node #5  [ 487.48176] [48,254] Sending NETWORK_UPDATE to [1,254] through [1,7] (selected by Neighbor Network)"
+487.481761,7,"Node #7  [ 487.48176] ADDRESS RENEW: [48,1] -> [49,254]"
+487.481761,7,"Node #7  [ 487.48176] Heard Join Reply from: [49,254]"
+487.481761,7,"Node #7  [ 487.48176] [49,1] Sending JOIN_ACK to [49,254] through [49,254] (selected by Neighbors Table)"
+487.481824,15,Node #15 [ 487.48182] ADDRESS HAS CHANGED!
+487.481830,12,"Node #12 [ 487.48183] [1,7] Sending NETWORK_UPDATE to [1,254] through [1,254] (selected by Neighbors Table)"
+491.447134,27,"Node #27 [ 491.44713] Heard ROUTER_REQUEST from: [29,254]"
+491.447134,27,Node #27 [ 491.44713] No children to allocate.
+497.797306,31,"Node #31 [ 497.79731] Heard ROUTER_REQUEST from: [22,254]"
+497.797306,31,Node #31 [ 497.79731] No children to allocate.
+502.177439,13,"Node #13 [ 502.17744] Heard ROUTER_REQUEST from: [48,254]"
+502.177505,5,"Node #5  [ 502.17751] Heard ROUTER_REPLY from: [46,254]"
+502.177572,13,"Node #13 [ 502.17757] ADDRESS RENEW: [48,254] -> [46,1]"
+502.177577,12,"Node #12 [ 502.17758] ADDRESS RENEW: [48,254] -> [46,1]"
+502.177583,6,"Node #6  [ 502.17758] ADDRESS RENEW: [48,254] -> [46,1]"
+502.177585,4,"Node #4  [ 502.17759] ADDRESS RENEW: [48,254] -> [46,1]"
+513.822547,21,Node #21 [ 513.82255] I became UNREGISTERED
+513.822608,20,"Node #20 [ 513.82261] ADDRESS RENEW: [3,3] -> [-1,-1]"
+513.822618,13,"Node #13 [ 513.82262] ADDRESS RENEW: [3,3] -> [-1,-1]"
+513.822620,29,"Node #29 [ 513.82262] ADDRESS RENEW: [3,3] -> [-1,-1]"
+513.822621,22,"Node #22 [ 513.82262] ADDRESS RENEW: [3,3] -> [-1,-1]"
+513.822621,22,Node #22 [ 513.82262] Parent is leaving!
+513.822621,22,Node #22 [ 513.82262] I became UNREGISTERED
+513.822628,14,"Node #14 [ 513.82263] ADDRESS RENEW: [3,3] -> [-1,-1]"
+513.822628,14,Node #14 [ 513.82263] Parent is leaving!
+513.822628,14,Node #14 [ 513.82263] I became UNREGISTERED
+513.822643,12,"Node #12 [ 513.82264] ADDRESS RENEW: [3,3] -> [-1,-1]"
+513.822659,30,"Node #30 [ 513.82266] ADDRESS RENEW: [35,1] -> [-1,-1]"
+513.822688,14,"Node #14 [ 513.82269] ADDRESS RENEW: [35,1] -> [-1,-1]"
+513.822694,21,"Node #21 [ 513.82269] ADDRESS RENEW: [35,1] -> [-1,-1]"
+513.822695,22,"Node #22 [ 513.82270] ADDRESS RENEW: [37,254] -> [-1,-1]"
+513.822697,15,"Node #15 [ 513.82270] ADDRESS RENEW: [37,254] -> [-1,-1]"
+513.822697,15,Node #15 [ 513.82270] Parent is leaving!
+513.822697,15,Node #15 [ 513.82270] I became UNREGISTERED
+513.822706,23,"Node #23 [ 513.82271] ADDRESS RENEW: [35,1] -> [-1,-1]"
+513.822708,21,"Node #21 [ 513.82271] ADDRESS RENEW: [37,254] -> [-1,-1]"
+513.822714,29,"Node #29 [ 513.82271] ADDRESS RENEW: [35,1] -> [-1,-1]"
+513.822719,23,"Node #23 [ 513.82272] ADDRESS RENEW: [37,254] -> [-1,-1]"
+513.822728,13,"Node #13 [ 513.82273] ADDRESS RENEW: [37,254] -> [-1,-1]"
+513.822760,7,"Node #7  [ 513.82276] ADDRESS RENEW: [37,1] -> [-1,-1]"
+513.822761,23,"Node #23 [ 513.82276] ADDRESS RENEW: [37,1] -> [-1,-1]"
+513.822766,14,"Node #14 [ 513.82277] ADDRESS RENEW: [37,1] -> [-1,-1]"
+514.863593,18,"Node #18 [ 514.86359] Heard ROUTER_REQUEST from: [40,254]"
+514.863593,18,Node #18 [ 514.86359] No children to allocate.
+517.141799,26,"Node #26 [ 517.14180] Heard ROUTER_REQUEST from: [41,254]"
+517.141866,33,"Node #33 [ 517.14187] Heard ROUTER_REPLY from: [29,254]"
+517.141903,34,"Node #34 [ 517.14190] ADDRESS RENEW: [41,254] -> [29,3]"
+517.141911,41,"Node #41 [ 517.14191] ADDRESS RENEW: [41,254] -> [29,3]"
+517.141932,26,"Node #26 [ 517.14193] ADDRESS RENEW: [41,254] -> [29,3]"
+517.141935,25,"Node #25 [ 517.14193] ADDRESS RENEW: [41,254] -> [29,3]"
