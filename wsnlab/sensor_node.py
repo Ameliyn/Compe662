@@ -281,7 +281,7 @@ class SensorNode(wsn.Node):
         for gui in self.candidate_parents_table:
             if gui not in self.neighbors_table:
                 continue
-            elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].role != Roles.ROUTER or 
+            elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].addr != wsn.Addr(-1,-1,) and self.neighbors_table[gui].role != Roles.ROUTER or 
                 (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                 min_hop = self.neighbors_table[gui].hop_count
                 min_hop_gui = gui
@@ -289,7 +289,7 @@ class SensorNode(wsn.Node):
             for gui in self.candidate_parents_table:
                 if gui not in self.neighbors_table:
                     continue
-                elif (self.neighbors_table[gui].hop_count < min_hop or 
+                elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].addr != wsn.Addr(-1,-1,) or 
                     (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                     min_hop = self.neighbors_table[gui].hop_count
                     min_hop_gui = gui
@@ -510,7 +510,7 @@ class SensorNode(wsn.Node):
         if old_addr == wsn.Addr(-1,-1):
             raise Exception('Bad Address Renew')
         pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'ADDRESS_RENEW', 'source': self.addr,
-                   'gui': self.id, 'role': self.role, 'ttl': 1}
+                   'gui': self.id, 'role': self.role, 'ttl': 1, 'parent': self.parent_gui}
         pck['old_addr'] = old_addr
         pck['new_addr'] = self.addr
         self.send(pck)
@@ -724,12 +724,15 @@ class SensorNode(wsn.Node):
             
             # Update neighbors table
             if pck['gui'] in self.neighbors_table:
-                self.neighbors_table[pck['gui']].addr = pck['new_addr']
+                self.update_neighbor(pck)
+                # self.neighbors_table[pck['gui']].addr = pck['new_addr']
             else:
                 if pck['gui'] in self.node_addresses and self.node_addresses[pck['gui']] != pck['new_addr']:
                     self.node_addresses[pck['gui']] = pck['new_addr']
                     self.send(pck)
-
+                else:
+                    self.node_addresses[pck['gui']] = pck['new_addr']
+                    # self.send(pck)
 
             if ((self.role == Roles.CLUSTER_HEAD or self.role == Roles.ROOT)
                 and pck['gui'] in self.members_table 

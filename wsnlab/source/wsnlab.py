@@ -368,7 +368,7 @@ class Node:
         self.is_sleep = False
         self.logging = True
         self.active_timer_list = []
-        self.neighbor_distance_list = []
+        self.neighbor_distance_list: list[tuple[int, Node]] = []
         self.log_history = []
         self.timeout = self.sim.timeout
         self.charge = config.NODE_CHARGE_AMOUNT
@@ -458,16 +458,16 @@ class Node:
             lose_packet = random.randrange(1, int(1/config.PACKET_LOSS_RATE)+1)
             if lose_packet == int(1/config.PACKET_LOSS_RATE):
                 self.log('Packet Lost due to Packet Loss Rate.')
-        # if pck['type'] in ['NETWORK_REQUEST']:
-        #     print(f'{self.id} sent packet of type: {pck["type"]}')
         if 'create_time' not in pck.keys():
             pck['create_time'] = self.now
+        pck_cost = (len(bytes(f'{pck}', 'UTF-8')) * 1.67 * (self.tx_range / config.TX_RANGE_COST) )/ 1000000
+        # (number of bytes in packet * microjules per byte * TX_RANGE) / 1e6 => Joules cost of packet
         for (dist, node) in self.neighbor_distance_list:
             if dist <= self.tx_range:
                 if node.can_receive(pck):
                     prop_time = dist / 1000000 - 0.00001 if dist / 1000000 - 0.00001 >0 else 0.00001
                     self.delayed_exec(prop_time, node.on_receive_check, pck)
-                    self.charge -= dist
+                    self.charge -= pck_cost
             else:
                 break
         self.sim.log_packet(pck, 'send', self.id)
