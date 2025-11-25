@@ -238,8 +238,8 @@ class SensorNode(wsn.Node):
 
         # Add source to neighbor Table
         if pck['gui'] in self.neighbors_table:
-            if pck['source'] != self.neighbors_table[pck['gui']].addr:
-                self.log('ADDRESS HAS CHANGED!')
+            # if pck['source'] != self.neighbors_table[pck['gui']].addr:
+                # self.log('ADDRESS HAS CHANGED!')
             pck['addr'] = pck['source']
             self.neighbors_table[pck['gui']].update(pck)
             if pck['type'] == 'HEART_BEAT' and pck['parent'] != self.id and pck['gui'] in self.members_table:
@@ -294,7 +294,6 @@ class SensorNode(wsn.Node):
                     min_hop = self.neighbors_table[gui].hop_count
                     min_hop_gui = gui
             if min_hop_gui == 99999:
-            
                 self.log('No Available Addresses')
                 self.become_unregistered()
                 return
@@ -364,11 +363,10 @@ class SensorNode(wsn.Node):
                 break
         pck = {}
         if new_node_id == -1 or self.parent_gui is None or self.neighbors_table[self.parent_gui].role == Roles.ROUTER:
-            self.log('No children to allocate.')
+            self.log('Router Requet denied: No children to allocate.')
             pck = {'dest': dest, 'type': 'ROUTER_REPLY', 'source': self.addr,
                     'gui': self.id, 'ttl': 1}
             pck['accepted'] = False
-            self.send(pck)
         else:
             self.assigned_node_ids[new_node_id] = gui
             
@@ -376,7 +374,7 @@ class SensorNode(wsn.Node):
                     'gui': self.id, 'addr': wsn.Addr(self.addr.net_addr, new_node_id)}
             pck['accepted'] = True
 
-            self.send(pck)
+        self.send(pck)
             
     ###################
     def send_join_reply(self, gui: int):
@@ -396,7 +394,7 @@ class SensorNode(wsn.Node):
                 new_node_id = i
                 break
         if new_node_id == -1:
-            self.log('No children to allocate.')
+            self.log('Negative Join Reply: No children to allocate.')
             self.send_negative_join_reply(gui)
         else:
             self.assigned_node_ids[new_node_id] = gui
@@ -529,6 +527,22 @@ class SensorNode(wsn.Node):
         pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'NEIGHBOR_UPDATE', 'source': self.addr,
                    'gui': self.id, 'ttl': 1, 'neighbors': neighbors}
         self.send(pck)
+
+    def send_promote_reply(self, pck: dict):
+        """Response to a PROMOTE_REQUEST
+        """
+        promote_reply_pck = {'type': 'PROMOTE_REPLY','assigned_addr': pck['source'], 'source': self.addr, 'gui': self.id, 
+                             'dest': pck['source'], 'next_hop': pck['source'], 'role': Roles.ROUTER}
+        if pck['gui'] == self.parent_gui:
+            promote_reply_pck['role'] = Roles.ROUTER
+        else:
+            promote_reply_pck['role'] = Roles.UNREGISTERED
+        self.send(promote_reply_pck)
+
+    def send_promote_request(self, addr: wsn.Addr):
+        """Request to transfer cluster head ownership."""
+        promote_req_pck = {'type': 'PROMOTE_REQUEST', 'source': self.addr, 'dest': addr, 'next_hop': addr, 'gui': self.id, 'assigned_addr': self.addr, 'role': Roles.CLUSTER_HEAD}
+        self.send(promote_req_pck)
 
     ###################
     def route_and_forward_package(self, pck: dict, avoid_nodes: list = []):
@@ -685,6 +699,7 @@ class SensorNode(wsn.Node):
         self.sim.log_packet(pck, 'receive', self.id)
         while self.processing_packet:
             self.log('Trying to process multiple packets at once...')
+            # yield self.timeout(0.5)
             return
 
         self.processing_packet = True
@@ -746,22 +761,22 @@ class SensorNode(wsn.Node):
             
         elif pck['type'] == 'NEIGHBOR_UPDATE':
             self.update_neighbor(pck)
-
+        
+        
         elif self.role == Roles.ROOT or self.role == Roles.CLUSTER_HEAD:  # if the node is root or cluster head
             if pck['type'] == 'HEART_BEAT':
                 self.update_neighbor(pck)
             if pck['type'] == 'PROBE':  # it waits and sends heart beat message once received probe message
-                # yield self.timeout(.5)
                 self.send_heart_beat(with_root = True)
             if pck['type'] == 'JOIN_REQUEST':  # it waits and sends join reply message once received join request
-                # yield self.timeout(.5)
                 self.send_join_reply(pck['gui'])
             if pck['type'] == 'NETWORK_REQUEST':  # it sends a network reply to requested node
-                # yield self.timeout(.5)
                 if self.role == Roles.ROOT:
                     self.send_network_reply(pck)
             if pck['type'] == 'JOIN_ACK':
                 self.members_table.append(pck['gui'])
+                # if len(self.members_table) == 1:
+                    # self.send_promote_request(pck['source'])
             if pck['type'] == 'SENSOR':
                 pass
             if pck['type'] == 'ROUTER_REQUEST':
@@ -778,6 +793,21 @@ class SensorNode(wsn.Node):
                 self.set_role(Roles.ROUTER)
 
                 self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
+            elif pck['type'] == 'PROMOTE_REPLY' and self.role != Roles.ROOT:
+                if pck['role'] == Roles.UNREGISTERED:
+                    self.become_unregistered()
+                else:
+                    if pck['role'] == Roles.ROUTER:
+                        self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
+                        
+                    old_addr = self.addr
+                    self.addr = pck['assigned_addr']
+                    self.send_address_renew(old_addr=old_addr)
+                    self.erase_tx_range()
+
+                    self.set_role(pck['role'])
+            elif pck['type'] == 'PROMOTE_REQUEST' and self.role != Roles.ROOT:
+                self.send_promote_reply(pck)
         
         elif self.role == Roles.ROUTER:
             if pck['type'] == 'HEART_BEAT':
@@ -798,20 +828,14 @@ class SensorNode(wsn.Node):
             if pck['type'] == 'NETWORK_REPLY':  # it becomes cluster head and send join reply to the candidates
                 self.set_role(Roles.CLUSTER_HEAD)
                 self.kill_timer('NETWORK_REQUEST_TIMEOUT')
-                # try:
-                    # write_clusterhead_distances_csv("clusterhead_distances.csv")
-                # except Exception as e:
-                    # self.log(f"CH CSV export error: {e}")
                 self.scene.nodecolor(self.id, 0, 0, 1)
                 old_addr = self.addr
                 self.addr = pck['addr']
                 self.send_address_renew(old_addr=old_addr)
                 self.send_heart_beat()
                 self.send_network_update(old_addr)
-                # yield self.timeout(.5)
                 
                 for gui in self.received_JR_guis:
-                    # yield self.timeout(random.uniform(.1,.5))
                     self.send_join_reply(gui)
                 if self.role != Roles.ROOT:
                     self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
@@ -819,6 +843,19 @@ class SensorNode(wsn.Node):
                 self.become_unregistered()
             if pck['type'] == 'PROMOTE':
                 self.send_network_request()
+            if pck['type'] == 'PROMOTE_REQUEST':
+                if self.addr is None or self.addr == wsn.Addr(-1,-1) or pck['assigned_addr'].net_addr == self.addr.net_addr:
+                    if self.role == Roles.UNREGISTERED: 
+                        self.parent_gui = pck['gui']
+                    self.send_promote_reply(pck)
+                    self.set_role(Roles.CLUSTER_HEAD)
+                    self.scene.nodecolor(self.id, 0, 0, 1)
+                    old_addr = self.addr
+                    self.addr = pck['assigned_addr']
+                    self.send_address_renew(old_addr=old_addr)
+                    self.send_heart_beat()
+                    self.send_network_update(old_addr)                
+                    self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
 
         elif self.role == Roles.UNDISCOVERED:  # if the node is undiscovered
             if pck['type'] == 'HEART_BEAT':  # it kills probe timer, becomes unregistered and sets join request timer once received heart beat
@@ -929,39 +966,54 @@ class SensorNode(wsn.Node):
             self.send_network_update()
             self.set_timer('TIMER_NETWORK_UPDATE_INTERVAL', config.TIMER_NETWORK_UPDATE_INTERVAL)
         elif name == 'ROUTER_CHECK':
-            if config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
-                # become_router = False
-                # child = None
-                # if self.neighbors_table[self.parent_gui].role == Roles.CLUSTER_HEAD:
-                #     for gui, node in self.neighbors_table.items():
-                #         if node.role == Roles.CLUSTER_HEAD and gui != self.parent_gui:
-                #             become_router = True
-                #             child = self.neighbors_table[gui].addr
-                #             break
-                # if become_router and child is not None:
-                #     self.send_router_request(child)
-                other_networks = 0
-                # best_child = [self.members_table[0], -1]
-                best_child = None
-                for gui, node in self.neighbors_table.items():
-                    if best_child is None:
-                        best_child = node
-                    if node.role == Roles.CLUSTER_HEAD:
-                        other_networks += 1
-                        if len(node.networks) > len(best_child.networks) and node.role != Roles.ROUTER:
-                            best_child = node
-                    elif node.gui in self.members_table and node.role == Roles.ROUTER:
-                        self.log('Unable to become a router because I have a router child.')
-                        self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
-                        return
-                if other_networks > 0 and best_child is not None:
-                    self.send_router_request(best_child.addr)
-                elif other_networks > 2:
-                    self.become_unregistered()
+            try:
+                if self.role != Roles.CLUSTER_HEAD:
                     return
-            self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+                elif len(self.members_table) == 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
+                    self.become_unregistered()
+                elif len(self.members_table) == 1:
+                    self.send_promote_request(self.neighbors_table[self.members_table[0]].addr)
+                
+                elif config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
+                    # become_router = False
+                    # child = None
+                    # if self.neighbors_table[self.parent_gui].role == Roles.CLUSTER_HEAD:
+                    #     for gui, node in self.neighbors_table.items():
+                    #         if node.role == Roles.CLUSTER_HEAD and gui != self.parent_gui:
+                    #             become_router = True
+                    #             child = self.neighbors_table[gui].addr
+                    #             break
+                    # if become_router and child is not None:
+                    #     self.send_router_request(child)
+                    other_networks = 0
+                    # best_child = [self.members_table[0], -1]
+                    best_child = None
+                    for gui, node in self.neighbors_table.items():
+                        if best_child is None:
+                            best_child = node
+                        if node.role == Roles.CLUSTER_HEAD:
+                            other_networks += 1
+                            if len(node.networks) > len(best_child.networks) and node.role != Roles.ROUTER:
+                                best_child = node
+                        elif node.gui in self.members_table and node.role == Roles.ROUTER:
+                            self.log('Unable to become a router because I have a router child.')
+                            self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+                            return
+                    if other_networks > 0 and best_child is not None:
+                        self.send_router_request(best_child.addr)
+                    elif other_networks > 2:
+                        self.become_unregistered()
+                        return
+                self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
+            except:
+                pass
         elif name == 'ROUTER_NECESSITY_CHECK':
-            if len(self.members_table) > 0 or (len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].gui != self.parent_gui):
+            if self.role != Roles.ROUTER:
+                return
+            elif self.role == Roles.ROUTER and self.neighbors_table[self.parent_gui].role == Roles.ROUTER:
+                self.log('Router should not be because parent is router.')
+                self.become_unregistered()
+            elif len(self.members_table) > 0 or (len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].gui != self.parent_gui):
                 for node in self.members_table:
                     if self.neighbors_table[node].role != Roles.CLUSTER_HEAD:
                         self.become_unregistered()
