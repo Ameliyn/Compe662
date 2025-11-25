@@ -553,7 +553,13 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
-        
+        if 'hop_trace' in pck.keys():
+            for (id, time) in pck['hop_trace']:
+                if id == self.addr:
+                    self.log(f'Circular Routing Detected: {pck}')
+                    return
+
+
         temp_neighbor_list: dict[int, NodeInformation] = {}
         for gui, node in self.neighbors_table.items():
             if gui not in avoid_nodes:
@@ -643,9 +649,8 @@ class SensorNode(wsn.Node):
         else:
             pck['hop_trace'].append((self.addr, self.now))
         
-        self.log(f'{self.addr} Sending {pck["type"]} to {pck["dest"]} through {pck["next_hop"]}'
+        self.log(f'{self.id}.{self.addr} Sending {pck["type"]} to {pck["dest"]} through {next_gui}.{pck["next_hop"]}'
                  f' (selected by {pck["routed_type"]})')
-        
         self.send(pck)
         
     ###################
@@ -971,7 +976,7 @@ class SensorNode(wsn.Node):
                     return
                 elif len(self.members_table) == 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
                     self.become_unregistered()
-                elif len(self.members_table) == 1:
+                elif len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].role == Roles.REGISTERED:
                     self.send_promote_request(self.neighbors_table[self.members_table[0]].addr)
                 
                 elif config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
@@ -989,11 +994,11 @@ class SensorNode(wsn.Node):
                     # best_child = [self.members_table[0], -1]
                     best_child = None
                     for gui, node in self.neighbors_table.items():
-                        if best_child is None:
+                        if best_child is None and gui in self.members_table:
                             best_child = node
                         if node.role == Roles.CLUSTER_HEAD:
                             other_networks += 1
-                            if len(node.networks) > len(best_child.networks) and node.role != Roles.ROUTER:
+                            if best_child is not None and len(node.networks) > len(best_child.networks) and node.role != Roles.ROUTER:
                                 best_child = node
                         elif node.gui in self.members_table and node.role == Roles.ROUTER:
                             self.log('Unable to become a router because I have a router child.')
@@ -1001,9 +1006,10 @@ class SensorNode(wsn.Node):
                             return
                     if other_networks > 0 and best_child is not None:
                         self.send_router_request(best_child.addr)
-                    elif other_networks > 2:
+                    elif other_networks > 2 and best_child is not None:
+                        self.send_promote_request(best_child.addr)
+                    elif other_networks > 1:
                         self.become_unregistered()
-                        return
                 self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
             except:
                 pass
