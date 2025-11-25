@@ -136,6 +136,8 @@ class SensorNode(wsn.Node):
         """Arrival time of current node."""
         self.is_faulty: float
         self.processing_packet = False
+        self.node_addresses = dict()
+
 
     ###################
     def run(self):
@@ -466,18 +468,20 @@ class SensorNode(wsn.Node):
             if pck['gui'] == gui:
                 self.log('Duplicate Network Request detected... Sending duplicate network reply')
                 new_net_id = net_id
-        else:
+                break
+        if new_net_id == -1:
             for i in range(1,config.CLUSTER_LIMIT+1):
                 if i not in self.assigned_network_ids.keys():
                     new_net_id = i
                     break
             if new_net_id == -1:
                 self.log(f'No Networks to Allocate: {self.assigned_network_ids}')
+                return
         new_addr = wsn.Addr(new_net_id,254)
         self.assigned_network_ids[new_net_id] = pck['gui']
         self.log(f'Sent network reply to {pck["source"]}')
         pck = {'dest': pck['source'], 'type': 'NETWORK_REPLY', 'source': self.addr, 'addr': new_addr, 'ttl': config.PACKET_TTL}
-        self.log(f'{pck}')
+        # self.log(f'{pck}')
         self.route_and_forward_package(pck)
 
     ###################
@@ -506,7 +510,7 @@ class SensorNode(wsn.Node):
         if old_addr == wsn.Addr(-1,-1):
             raise Exception('Bad Address Renew')
         pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'ADDRESS_RENEW', 'source': self.addr,
-                   'gui': self.id, 'role': self.role, 'ttl': config.PACKET_TTL}
+                   'gui': self.id, 'role': self.role, 'ttl': 1}
         pck['old_addr'] = old_addr
         pck['new_addr'] = self.addr
         self.send(pck)
@@ -640,13 +644,17 @@ class SensorNode(wsn.Node):
 
         """
         try:
-            if config.USE_BATTERY_POWER and self.charge < 0 and self.role != Roles.ROOT:
-                self.become_unregistered()
+            if config.USE_BATTERY_POWER and self.charge < 0 and self.role != Roles.ROOT and 'CHARGE_TIMER' not in self.active_timer_list and self.addr != wsn.Addr(-1,-1):
+                self.kill_all_timers()
+                old_addr = self.addr
+                self.addr = wsn.Addr(-1,-1)
+                self.send_address_renew(old_addr=old_addr)
                 self.set_timer('CHARGE_TIMER', config.NODE_CHARGE_TIME)
+                self.log('I ran out of power.')
                 self.sleep()
                 return
             
-            if (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
+            elif (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
                 self.process_packet(pck.copy())
 
             # If we are the destination, process the packet
@@ -663,6 +671,7 @@ class SensorNode(wsn.Node):
                 pass
 
         except Exception as e:
+            print(f'{e}')
             print(f'{pck}')
 
     def process_packet(self, pck: dict):
@@ -708,15 +717,24 @@ class SensorNode(wsn.Node):
                     self.become_unregistered()
                     self.processing_packet = False
                     return
+                elif self.role == Roles.ROOT:
+                    if pck['old_addr'].net_addr in self.assigned_network_ids.keys() and self.assigned_network_ids[pck['old_addr'].net_addr] == pck['gui']:
+                        self.log(f'Cluster: {pck["old_addr"].net_addr} removed.')
+                        self.assigned_network_ids.pop(pck['old_addr'].net_addr)
             
             # Update neighbors table
             if pck['gui'] in self.neighbors_table:
                 self.neighbors_table[pck['gui']].addr = pck['new_addr']
+            else:
+                if pck['gui'] in self.node_addresses and self.node_addresses[pck['gui']] != pck['new_addr']:
+                    self.node_addresses[pck['gui']] = pck['new_addr']
+                    self.send(pck)
 
-            if (self.role == Roles.CLUSTER_HEAD
+
+            if ((self.role == Roles.CLUSTER_HEAD or self.role == Roles.ROOT)
                 and pck['gui'] in self.members_table 
                 and pck['new_addr'].net_addr != self.addr.net_addr
-                and pck['old_addr'].node_addr in self.assigned_node_ids):
+                and pck['old_addr'].node_addr in self.assigned_node_ids.keys()):
                 self.log(f'Removing {self.assigned_node_ids.pop(pck["old_addr"].node_addr)} from my assigned node ids.')
 
             if pck['gui'] == self.parent_gui and pck['role'] not in [Roles.CLUSTER_HEAD, Roles.ROOT]:
@@ -822,7 +840,7 @@ class SensorNode(wsn.Node):
                     self.draw_parent()
                     self.kill_timer('TIMER_JOIN_REQUEST')
                     self.send_heart_beat()
-                    self.set_timer('TIMER_HEART_BEAT', config.HEARTH_BEAT_TIME_INTERVAL)
+                    self.set_timer('TIMER_HEART_BEAT', config.HEART_BEAT_TIME_INTERVAL)
                     self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)
                     self.send_join_ack(pck['source'])
                     self.set_role(Roles.REGISTERED)
@@ -873,14 +891,14 @@ class SensorNode(wsn.Node):
                     self.root_addr = self.addr
                     self.hop_count = 0
                     self.draw_tx_range()
-                    self.set_timer('TIMER_HEART_BEAT', config.HEARTH_BEAT_TIME_INTERVAL)
+                    self.set_timer('TIMER_HEART_BEAT', config.HEART_BEAT_TIME_INTERVAL)
                 else:  # otherwise it keeps trying to sending probe after a long time
                     self.c_probe = 0
                     self.set_timer('TIMER_PROBE', 30)
 
         elif name == 'TIMER_HEART_BEAT':  # it sends heart beat message once heart beat timer fired
             self.send_heart_beat()
-            self.set_timer('TIMER_HEART_BEAT', config.HEARTH_BEAT_TIME_INTERVAL)
+            self.set_timer('TIMER_HEART_BEAT', config.HEART_BEAT_TIME_INTERVAL)
             #print(self.id)
 
         elif name == 'TIMER_JOIN_REQUEST':  # if it has not received heart beat messages before, it sets timer again and wait heart beat messages once join request timer fired.
@@ -961,6 +979,8 @@ class SensorNode(wsn.Node):
             self.become_unregistered()
         elif name == 'CHARGE_TIMER':
             self.charge = config.NODE_CHARGE_AMOUNT
-            self.wake_up()
+            self.log(f'Recharged!')
+            self.init()
+            self.set_timer('TIMER_ARRIVAL',1)
         else:
             super().on_timer_fired(name)

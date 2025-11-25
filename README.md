@@ -9,3 +9,5 @@ You need to install the following packages.
 - python3-tk (tkinter)
 
 - Activate the venv using `source WSNVenv/bin/activate`
+
+To Run execute: `python3 wsnlab/run_sim.py`

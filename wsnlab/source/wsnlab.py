@@ -454,6 +454,10 @@ class Node:
            Returns:
 
         """
+        if config.PACKET_LOSS_RATE > 0:
+            lose_packet = random.randrange(1, int(1/config.PACKET_LOSS_RATE)+1)
+            if lose_packet == int(1/config.PACKET_LOSS_RATE):
+                self.log('Packet Lost due to Packet Loss Rate.')
         # if pck['type'] in ['NETWORK_REQUEST']:
         #     print(f'{self.id} sent packet of type: {pck["type"]}')
         if 'create_time' not in pck.keys():
