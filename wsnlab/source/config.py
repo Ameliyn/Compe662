@@ -2,20 +2,9 @@
 BROADCAST_NET_ADDR = 255
 BROADCAST_NODE_ADDR = 255
 
-
-
 ## node properties
-NODE_TX_RANGE = 100  # transmission range of nodes
-NODE_TX_MIN = 10
 NODE_ARRIVAL_MAX = 200  # max time to wake up
 ROUTER_CHECK_INTERVAL = 100
-CLUSTER_SIZE = 100
-CLUSTER_LIMIT = 100
-NEIGHBOR_PUBLISH_INTERVAL = 500
-NODE_CHARGE_AMOUNT = 40
-NODE_CHARGE_TIME = 100
-TX_RANGE_COST = 1 # Scalar for node TX_RANGE to set volume
-USE_BATTERY_POWER = False
 ACK_TIMEOUT = 100
 
 ## simulation properties
@@ -29,27 +18,58 @@ SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
 PACKET_TTL = 15
 SHOW_TX_CIRCLES = False
-TX_CIRCLE_MASK = ["ALL"]
+TX_CIRCLE_MASK = ["HEART_BEAT"] # EIther use "ALL" or list "PACKET_TYPE" (ex. ["ALL"] or ["PROBE", "HEART_BEAT", "JOIN_ACK"])
 LOG_LEVEL = "INFO"
 DO_SENSOR_MESSAGES = False
-PACKET_LOSS_RATE = 0.00000
-
-ALLOW_ROUTERS = True
-NUM_FAULTY_NODES = 0
-FAULTY_NODE_PERIOD = [1000,1500]
 
 ## application properties
-HEART_BEAT_TIME_INTERVAL = 100
+HEART_BEAT_TIME_INTERVAL = 10
 TIMER_NETWORK_UPDATE_INTERVAL = 1000
 NETWORK_REQUEST_TIMEOUT = 500
 REPAIRING_METHOD = 'FIND_ANOTHER_PARENT' # 'ALL_ORPHAN', 'FIND_ANOTHER_PARENT'
 EXPORT_CH_CSV_INTERVAL = 10  # simulation time units;
 EXPORT_NEIGHBOR_CSV_INTERVAL = 10  # simulation time units;
 
-
 ## Logging Properties
 PACKET_CACHE_COUNT = 25
 NODE_LOG_CACHE_COUNT = 25
 PACKET_LOG_MASK = ["ALL"]
+
+################################
+###### MIDTERM 2 FEATURES ######
+################################
+
+# - A multihop neighbor discovery protocol (two hops using published neighbor tables)
+NEIGHBOR_PUBLISH_INTERVAL = 500
+
+# - Reports for the average time to join the network and average packet delay (from source to destination)
 GENERATE_AVG_PACKET_DELAY = True
 GENERATE_AVG_JOIN_DELAY = True
+
+# - Customizable number of children per cluster
+CLUSTER_SIZE = 100
+
+# - Customizable number of clusters
+CLUSTER_LIMIT = 100
+
+# - Customizable packet loss rate
+PACKET_LOSS_RATE = 0.00000
+
+# - Customizable and variable node Transmit Range
+NODE_TX_RANGE = 100  # transmission range of nodes
+NODE_TX_MIN = 10
+RANDOMIZE_TX_RANGE = False
+
+# - The use of Routers and a mobile cluster head role to limit overlap between clusters (the network is optimized to have the minimum number of clusters)
+ALLOW_ROUTERS = True
+PROMOTION_ALLOWED = False
+
+# - Automatic recovery from link failures and nodes leaving (set the "NUM_FAULTY_NODES" parameter to see nodes die randomly)
+NUM_FAULTY_NODES = 0
+FAULTY_NODE_PERIOD = [1000,1500]
+
+# - An energy model that is based on CC2420 that includes nodes having a set battery amount and each transmission taking a certain amount of energy based on TX_RANGE and Message Length
+NODE_CHARGE_AMOUNT = 40
+NODE_CHARGE_TIME = 100
+TX_RANGE_COST = 1 # Scalar for node TX_RANGE to set volume (simulated dBm)
+USE_BATTERY_POWER = False

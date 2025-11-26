@@ -35,7 +35,7 @@ class NodeInformation():
                  arrival_time: float,
                  distance: float,
                  networks: set[int],
-                 neigbors: list[wsn.Addr]):
+                 neighbors: list[wsn.Addr]):
         self.gui = gui
         """Globally Unique ID"""
         self.addr = addr
@@ -50,7 +50,7 @@ class NodeInformation():
         """Distance from Self"""
         self.networks = networks
         """Networks Reachable"""
-        self.neighbor_nodes = neigbors
+        self.neighbor_nodes = neighbors
 
     def update(self, pck: dict):
         for key, value in pck.items():
@@ -162,6 +162,8 @@ class SensorNode(wsn.Node):
         ROLE_COUNTS[new_role] += 1
         self.role = new_role
         self.sim.log_role_change(self.id, self.role)
+        # if 'TIMER_HEART_BEAT' not in self.active_timer_list and new_role not in ['UNDISCOVERED', 'UNREGISTERED']:
+
 
         if recolor:
             if new_role == Roles.UNDISCOVERED:
@@ -192,6 +194,10 @@ class SensorNode(wsn.Node):
 
     def become_unregistered(self):
         """Reset many variables and become unregistered."""
+        if self.role == Roles.UNREGISTERED:
+            self.send_probe()
+            self.set_timer('TIMER_JOIN_REQUEST', 20)
+            return
         if self.role != Roles.UNDISCOVERED:
             self.kill_all_timers()
             if self.addr is not None and self.addr == wsn.Addr(-1,-1):
@@ -256,7 +262,7 @@ class SensorNode(wsn.Node):
                 arrival_time=pck['arrival_time'],
                 role=pck['role'],
                 networks=pck['networks'] if 'networks' in pck.keys() else set(),
-                neigbors=pck['neighbors'] if 'neighbors' in pck.keys() else [])
+                neighbors=pck['neighbors'] if 'neighbors' in pck.keys() else [])
         
         # Add network to networking table
         self.networking_table[pck['source'].net_addr] = pck['gui']
@@ -281,7 +287,7 @@ class SensorNode(wsn.Node):
         for gui in self.candidate_parents_table:
             if gui not in self.neighbors_table:
                 continue
-            elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].addr != wsn.Addr(-1,-1,) and self.neighbors_table[gui].role != Roles.ROUTER or 
+            elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].addr != wsn.Addr(-1,-1) and self.neighbors_table[gui].role != Roles.ROUTER or 
                 (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                 min_hop = self.neighbors_table[gui].hop_count
                 min_hop_gui = gui
@@ -289,13 +295,14 @@ class SensorNode(wsn.Node):
             for gui in self.candidate_parents_table:
                 if gui not in self.neighbors_table:
                     continue
-                elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].addr != wsn.Addr(-1,-1,) or 
+                elif (self.neighbors_table[gui].hop_count < min_hop and self.neighbors_table[gui].addr != wsn.Addr(-1,-1) or 
                     (min_hop_gui != 99999 and self.neighbors_table[gui].hop_count == min_hop and self.neighbors_table[gui].distance < self.neighbors_table[min_hop_gui].distance)):
                     min_hop = self.neighbors_table[gui].hop_count
                     min_hop_gui = gui
             if min_hop_gui == 99999:
                 self.log('No Available Addresses')
-                self.become_unregistered()
+                self.init()
+                self.set_timer('TIMER_ARRIVAL', self.arrival)
                 return
         selected_addr = self.neighbors_table[min_hop_gui].addr
         self.candidate_parents_table.remove(min_hop_gui)
@@ -525,24 +532,37 @@ class SensorNode(wsn.Node):
         for gui, node in self.neighbors_table.items():
             neighbors.append(node.addr)
         pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'NEIGHBOR_UPDATE', 'source': self.addr,
-                   'gui': self.id, 'ttl': 1, 'neighbors': neighbors}
+                   'gui': self.id, 'ttl': 1, 'neighbor_nodes': neighbors}
         self.send(pck)
 
     def send_promote_reply(self, pck: dict):
         """Response to a PROMOTE_REQUEST
         """
-        promote_reply_pck = {'type': 'PROMOTE_REPLY','assigned_addr': pck['source'], 'source': self.addr, 'gui': self.id, 
-                             'dest': pck['source'], 'next_hop': pck['source'], 'role': Roles.ROUTER}
-        if pck['gui'] == self.parent_gui:
-            promote_reply_pck['role'] = Roles.ROUTER
-        else:
-            promote_reply_pck['role'] = Roles.UNREGISTERED
-        self.send(promote_reply_pck)
+        if config.PROMOTION_ALLOWED:
+            promote_reply_pck = {'type': 'PROMOTE_REPLY','assigned_addr': pck['free_addr'], 'source': self.addr, 'gui': self.id, 
+                                'dest': pck['source'], 'next_hop': pck['source'], 'role': Roles.ROUTER}
+            if pck['gui'] == self.parent_gui:
+                promote_reply_pck['role'] = Roles.ROUTER
+            else:
+                promote_reply_pck['role'] = Roles.UNREGISTERED
+            self.send(promote_reply_pck)
 
     def send_promote_request(self, addr: wsn.Addr):
         """Request to transfer cluster head ownership."""
-        promote_req_pck = {'type': 'PROMOTE_REQUEST', 'source': self.addr, 'dest': addr, 'next_hop': addr, 'gui': self.id, 'assigned_addr': self.addr, 'role': Roles.CLUSTER_HEAD}
-        self.send(promote_req_pck)
+        if config.PROMOTION_ALLOWED:
+
+            if self.role == Roles.CLUSTER_HEAD:
+                new_node_id = -1
+                for i in range(1,config.CLUSTER_SIZE+1):
+                    if i not in self.assigned_node_ids.keys():
+                        new_node_id = i
+                        break
+            if new_node_id == -1:
+                return
+            
+            promote_req_pck = {'type': 'PROMOTE_REQUEST', 'source': self.addr, 'dest': addr, 'next_hop': addr, 
+                            'gui': self.id, 'free_addr': wsn.Addr(self.addr.net_addr, new_node_id),'assigned_addr': self.addr, 'role': Roles.CLUSTER_HEAD}
+            self.send(promote_req_pck)
 
     ###################
     def route_and_forward_package(self, pck: dict, avoid_nodes: list = []):
@@ -702,10 +722,11 @@ class SensorNode(wsn.Node):
         """
         pck['receive_time'] = self.now
         self.sim.log_packet(pck, 'receive', self.id)
-        while self.processing_packet:
-            self.log('Trying to process multiple packets at once...')
-            # yield self.timeout(0.5)
-            return
+        # while self.processing_packet:
+        #     self.log('Trying to process multiple packets at once...')
+        #     # self.delayed_exec(1, self.process_packet, pck)
+        #     # yield self.timeout(0.5)
+        #     return
 
         self.processing_packet = True
         if pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None and pck['gui'] in self.neighbors_table:
@@ -722,7 +743,7 @@ class SensorNode(wsn.Node):
                 if pck['gui'] != self.parent_gui:
                     self.child_networks.update(pck['child_networks'])
                     self.child_networks.add(pck['source'].net_addr)
-                if pck['next_hop'] == self.addr:   
+                if pck['next_hop'] == self.addr:
                    self.send_network_update()
             self.processing_packet = False
             return
@@ -744,6 +765,8 @@ class SensorNode(wsn.Node):
             
             # Update neighbors table
             if pck['gui'] in self.neighbors_table:
+                if self.neighbors_table[pck['gui']].addr == pck['new_addr']:
+                    return
                 self.update_neighbor(pck)
                 # self.neighbors_table[pck['gui']].addr = pck['new_addr']
             else:
@@ -796,6 +819,7 @@ class SensorNode(wsn.Node):
                 self.send_heart_beat()
                 self.erase_tx_range()
                 self.set_role(Roles.ROUTER)
+                # self.child_networks = set()
 
                 self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
             elif pck['type'] == 'PROMOTE_REPLY' and self.role != Roles.ROOT:
@@ -804,11 +828,11 @@ class SensorNode(wsn.Node):
                 else:
                     if pck['role'] == Roles.ROUTER:
                         self.set_timer('ROUTER_NECESSITY_CHECK', config.ROUTER_CHECK_INTERVAL)
-                        
                     old_addr = self.addr
                     self.addr = pck['assigned_addr']
                     self.send_address_renew(old_addr=old_addr)
                     self.erase_tx_range()
+                    self.members_table = [pck['gui']]
 
                     self.set_role(pck['role'])
             elif pck['type'] == 'PROMOTE_REQUEST' and self.role != Roles.ROOT:
@@ -859,7 +883,7 @@ class SensorNode(wsn.Node):
                     self.addr = pck['assigned_addr']
                     self.send_address_renew(old_addr=old_addr)
                     self.send_heart_beat()
-                    self.send_network_update(old_addr)                
+                    # self.send_network_update(old_addr)                
                     self.set_timer('ROUTER_CHECK', config.ROUTER_CHECK_INTERVAL)
 
         elif self.role == Roles.UNDISCOVERED:  # if the node is undiscovered
@@ -976,8 +1000,8 @@ class SensorNode(wsn.Node):
                     return
                 elif len(self.members_table) == 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
                     self.become_unregistered()
-                # elif len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].role == Roles.REGISTERED:
-                    # self.send_promote_request(self.neighbors_table[self.members_table[0]].addr)
+                elif config.PROMOTION_ALLOWED and len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].role == Roles.REGISTERED:
+                    self.send_promote_request(self.neighbors_table[self.members_table[0]].addr)
                 
                 elif config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
                     # become_router = False
@@ -1006,7 +1030,7 @@ class SensorNode(wsn.Node):
                             return
                     if other_networks > 0 and best_child is not None:
                         self.send_router_request(best_child.addr)
-                    elif other_networks > 2 and best_child is not None:
+                    elif config.PROMOTION_ALLOWED and other_networks > 2 and best_child is not None:
                         self.send_promote_request(best_child.addr)
                     elif other_networks > 1:
                         self.become_unregistered()
