@@ -243,6 +243,10 @@ class SensorNode(wsn.Node):
             pck['distance'] = math.hypot(x1 - x2, y1 - y2)
 
         # Add source to neighbor Table
+        if 'parent' in pck.keys() and pck['parent'] == self.id and self.parent_gui == pck['gui']:
+            self.log('Circular Parenting')
+            self.become_unregistered()
+            return
         if pck['gui'] in self.neighbors_table:
             # if pck['source'] != self.neighbors_table[pck['gui']].addr:
                 # self.log('ADDRESS HAS CHANGED!')
@@ -609,13 +613,14 @@ class SensorNode(wsn.Node):
                 pck['next_hop'] = node.addr
                 pck['routed_type'] = 'Neighbors Table'
                 break
-
-        for gui, node in temp_neighbor_list.items():
-            if pck['dest'] in node.neighbor_nodes:
-                next_gui = gui
-                pck['next_hop'] = node.addr
-                pck['routed_type'] = 'Neighbors Table (MultiHop)'
-                break
+        if pck['next_hop'] == self.addr:
+            
+            for gui, node in temp_neighbor_list.items():
+                if pck['dest'] in node.neighbor_nodes:
+                    next_gui = gui
+                    pck['next_hop'] = node.addr
+                    pck['routed_type'] = 'Neighbors Table (MultiHop)'
+                    break
 
         # If the destination's network is in our neighbor table, next_hop = dest_net
         if pck['next_hop'] == self.addr:
@@ -731,6 +736,8 @@ class SensorNode(wsn.Node):
         self.processing_packet = True
         if pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None and pck['gui'] in self.neighbors_table:
             
+            # if self.neighbors_table[pck['gui']].networks == pck['child_networks']:
+            #     return
             self.neighbors_table[pck['gui']].networks = pck['child_networks']
             
             for entry in pck['child_networks']:
@@ -852,6 +859,7 @@ class SensorNode(wsn.Node):
             if pck['type'] == 'JOIN_REQUEST':  # it sends a network request to the root
                 self.log(f'Heard Join Request from {pck["gui"]}')
                 self.received_JR_guis.append(pck['gui'])
+                # self.send_negative_join_reply(pck['gui'])
                 # yield self.timeout(.5)
                 self.send_network_request()
             if pck['type'] == 'NETWORK_REPLY':  # it becomes cluster head and send join reply to the candidates
