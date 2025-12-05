@@ -467,7 +467,10 @@ class Node:
                 if node.can_receive(pck):
                     prop_time = dist / 1000000 - 0.00001 if dist / 1000000 - 0.00001 >0 else 0.00001
                     self.delayed_exec(prop_time, node.on_receive_check, pck)
-                    self.charge -= pck_cost
+                    if config.USE_SIMPLE_POWER:
+                        self.charge -= config.SEND_COST
+                    else:
+                        self.charge -= pck_cost
             else:
                 break
         self.sim.log_packet(pck, 'send', self.id)

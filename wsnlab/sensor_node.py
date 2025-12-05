@@ -585,9 +585,10 @@ class SensorNode(wsn.Node):
 
 
         temp_neighbor_list: dict[int, NodeInformation] = {}
-        for gui, node in self.neighbors_table.items():
-            if gui not in avoid_nodes:
-                temp_neighbor_list[gui] = node
+        temp_neighbor_list = self.neighbors_table.copy()
+        # for gui, node in self.neighbors_table.items():
+        #     if gui not in avoid_nodes:
+        #         temp_neighbor_list[gui] = node
 
         try:
             assert(isinstance(pck['dest'], wsn.Addr))
@@ -613,8 +614,8 @@ class SensorNode(wsn.Node):
                 pck['next_hop'] = node.addr
                 pck['routed_type'] = 'Neighbors Table'
                 break
+
         if pck['next_hop'] == self.addr:
-            
             for gui, node in temp_neighbor_list.items():
                 if pck['dest'] in node.neighbor_nodes:
                     next_gui = gui
@@ -688,15 +689,18 @@ class SensorNode(wsn.Node):
 
         """
         try:
-            if config.USE_BATTERY_POWER and self.charge < 0 and self.role != Roles.ROOT and 'CHARGE_TIMER' not in self.active_timer_list and self.addr != wsn.Addr(-1,-1):
-                self.kill_all_timers()
-                old_addr = self.addr
-                self.addr = wsn.Addr(-1,-1)
-                self.send_address_renew(old_addr=old_addr)
-                self.set_timer('CHARGE_TIMER', config.NODE_CHARGE_TIME)
-                self.log('I ran out of power.')
-                self.sleep()
-                return
+            if config.USE_BATTERY_POWER:
+                if self.charge < 0 and self.role != Roles.ROOT and 'CHARGE_TIMER' not in self.active_timer_list and self.addr != wsn.Addr(-1,-1):
+                    self.kill_all_timers()
+                    old_addr = self.addr
+                    self.addr = wsn.Addr(-1,-1)
+                    self.send_address_renew(old_addr=old_addr)
+                    self.set_timer('CHARGE_TIMER', config.NODE_CHARGE_TIME)
+                    self.log('I ran out of power.')
+                    self.sleep()
+                    return
+                else:
+                    self.charge -= config.RECEIVE_COST
             
             elif (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
                 self.process_packet(pck.copy())
