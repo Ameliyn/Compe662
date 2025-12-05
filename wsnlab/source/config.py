@@ -47,13 +47,13 @@ GENERATE_AVG_PACKET_DELAY = True
 GENERATE_AVG_JOIN_DELAY = True
 
 # - Customizable number of children per cluster
-CLUSTER_SIZE = 100
+CLUSTER_SIZE = 10
 
 # - Customizable number of clusters
-CLUSTER_LIMIT = 100
+CLUSTER_LIMIT = 20
 
 # - Customizable packet loss rate
-PACKET_LOSS_RATE = 0.00000
+PACKET_LOSS_RATE = 0.0
 
 # - Customizable and variable node Transmit Range
 NODE_TX_RANGE = 100  # transmission range of nodes

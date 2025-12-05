@@ -1,157 +1,651 @@
 timestamp,node_id,log_text
-30.499053,10,Node #10 [  30.49905] Became unregistered with no parent.
-36.924063,24,Node #24 [  36.92406] Became unregistered with no parent.
-50.499053,10,"Node #10 [  50.49905] Sent Join Request to [1,254]"
-50.499131,17,Node #17 [  50.49913] Sent Join Reply to: 10
-50.499209,10,"Node #10 [  50.49921] Heard Join Reply from: [1,254]"
-50.499209,10,"Node #10 [  50.49921] Parent Link Deletion Failed: (17, 10, 'parent')"
-50.499209,10,"Node #10 [  50.49921] 10.[1,1] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-56.924063,24,"Node #24 [  56.92406] Sent Join Request to [1,254]"
-56.924156,17,Node #17 [  56.92416] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
-56.924156,17,Node #17 [  56.92416] Sent Join Reply to: 24
-56.924249,24,"Node #24 [  56.92425] Heard Join Reply from: [1,254]"
-56.924249,24,"Node #24 [  56.92425] Parent Link Deletion Failed: (17, 24, 'parent')"
-56.924249,24,"Node #24 [  56.92425] 24.[1,2] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-57.439281,25,Node #25 [  57.43928] Became unregistered with no parent.
-77.439281,25,"Node #25 [  77.43928] Sent Join Request to [1,254]"
-77.439350,17,Node #17 [  77.43935] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
-77.439350,17,Node #17 [  77.43935] Sent Join Reply to: 25
-77.439419,25,"Node #25 [  77.43942] Heard Join Reply from: [1,254]"
-77.439419,25,"Node #25 [  77.43942] Parent Link Deletion Failed: (17, 25, 'parent')"
-77.439419,25,"Node #25 [  77.43942] 25.[1,3] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-77.669854,33,Node #33 [  77.66985] Became unregistered with no parent.
-89.754492,26,Node #26 [  89.75449] Became unregistered with no parent.
-89.754565,33,Node #33 [  89.75456] I ran out of power.
-102.759996,28,Node #28 [ 102.76000] I ran out of power.
-109.519488,40,Node #40 [ 109.51949] I ran out of power.
-109.754492,26,"Node #26 [ 109.75449] Sent Join Request to [1,3]"
-109.754584,25,Node #25 [ 109.75458] Heard Join Request from 26
-109.754584,25,"Node #25 [ 109.75458] 25.[1,3] Sending NETWORK_REQUEST to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-109.754653,17,"Node #17 [ 109.75465] Sent network reply to [1,3]"
-109.754653,17,"Node #17 [ 109.75465] 17.[1,254] Sending NETWORK_REPLY to [1,3] through 25.[1,3] (selected by Neighbors Table)"
-109.754722,25,Node #25 [ 109.75472] Sent Join Reply to: 26
-109.754813,26,"Node #26 [ 109.75481] Heard Join Reply from: [1,3]"
-109.754813,26,"Node #26 [ 109.75481] Parent Link Deletion Failed: (25, 26, 'parent')"
-109.754813,26,"Node #26 [ 109.75481] 26.[2,254] Sending JOIN_ACK to [1,3] through 25.[1,3] (selected by Neighbors Table)"
-109.754905,25,"Node #25 [ 109.75491] 25.[1,3] Sending NETWORK_UPDATE to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-109.754908,27,Node #27 [ 109.75491] Became unregistered with no parent.
-111.625101,38,Node #38 [ 111.62510] I ran out of power.
-115.754168,18,Node #18 [ 115.75417] Became unregistered with no parent.
-122.766495,11,Node #11 [ 122.76650] I ran out of power.
-123.518929,36,Node #36 [ 123.51893] I ran out of power.
-123.766515,20,Node #20 [ 123.76651] I ran out of power.
-129.754905,25,Node #25 [ 129.75491] I ran out of power.
-129.754908,27,"Node #27 [ 129.75491] Sent Join Request to [2,254]"
-129.754960,24,"Node #24 [ 129.75496] ADDRESS RENEW: [1,3] -> [-1,-1]"
-129.754974,17,"Node #17 [ 129.75497] ADDRESS RENEW: [1,3] -> [-1,-1]"
-129.754974,17,Node #17 [ 129.75497] Removing 25 from my assigned node ids.
-129.754997,26,Node #26 [ 129.75500] Parent is leaving!
-129.754997,26,Node #26 [ 129.75500] I became UNREGISTERED
-134.754908,27,"Node #27 [ 134.75491] Sent Join Request to [2,254]"
-135.754168,18,"Node #18 [ 135.75417] Sent Join Request to [2,254]"
-138.147960,32,Node #32 [ 138.14796] Became unregistered with no parent.
-139.754970,19,Node #19 [ 139.75497] I ran out of power.
-140.754168,18,"Node #18 [ 140.75417] Sent Join Request to [1,254]"
-140.754248,17,Node #17 [ 140.75425] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
-140.754248,17,Node #17 [ 140.75425] Sent Join Reply to: 18
-140.754328,18,"Node #18 [ 140.75433] Heard Join Reply from: [1,254]"
-140.754328,18,"Node #18 [ 140.75433] Parent Link Deletion Failed: (17, 18, 'parent')"
-140.754328,18,"Node #18 [ 140.75433] 18.[1,3] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-143.375620,44,Node #44 [ 143.37562] I ran out of power.
-144.574591,9,Node #9  [ 144.57459] Became unregistered with no parent.
-145.134802,30,Node #30 [ 145.13480] I ran out of power.
-151.007904,21,Node #21 [ 151.00790] I ran out of power.
-153.577152,16,Node #16 [ 153.57715] Became unregistered with no parent.
-158.147960,32,"Node #32 [ 158.14796] Sent Join Request to [1,2]"
-158.148049,24,Node #24 [ 158.14805] I ran out of power.
-158.148142,17,"Node #17 [ 158.14814] ADDRESS RENEW: [1,2] -> [-1,-1]"
-158.148142,17,Node #17 [ 158.14814] Removing 24 from my assigned node ids.
-163.148045,41,Node #41 [ 163.14805] I ran out of power.
-164.574591,9,"Node #9  [ 164.57459] Sent Join Request to [1,254]"
-164.574677,17,Node #17 [ 164.57468] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
-164.574677,17,Node #17 [ 164.57468] Sent Join Reply to: 9
-164.574763,9,"Node #9  [ 164.57476] Heard Join Reply from: [1,254]"
-164.574763,9,"Node #9  [ 164.57476] Parent Link Deletion Failed: (17, 9, 'parent')"
-164.574763,9,"Node #9  [ 164.57476] 9.[1,2] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-165.527118,8,Node #8  [ 165.52712] Became unregistered with no parent.
-165.527129,0,Node #0  [ 165.52713] I ran out of power.
-167.195651,35,Node #35 [ 167.19565] I ran out of power.
-168.512995,39,Node #39 [ 168.51299] I ran out of power.
-169.754997,26,"Node #26 [ 169.75500] Sent Join Request to [1,3]"
-169.755097,18,Node #18 [ 169.75510] Heard Join Request from 26
-169.755097,18,"Node #18 [ 169.75510] 18.[1,3] Sending NETWORK_REQUEST to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-169.755177,17,Node #17 [ 169.75518] Duplicate Network Request detected... Sending duplicate network reply
-169.755177,17,"Node #17 [ 169.75518] Sent network reply to [1,3]"
-169.755177,17,"Node #17 [ 169.75518] 17.[1,254] Sending NETWORK_REPLY to [1,3] through 18.[1,3] (selected by Neighbors Table)"
-169.755256,18,Node #18 [ 169.75526] Sent Join Reply to: 26
-169.755356,26,"Node #26 [ 169.75536] Heard Join Reply from: [1,3]"
-169.755356,26,"Node #26 [ 169.75536] Parent Link Deletion Failed: (18, 26, 'parent')"
-169.755356,26,"Node #26 [ 169.75536] 26.[2,254] Sending JOIN_ACK to [1,3] through 18.[1,3] (selected by Neighbors Table)"
-169.755456,18,"Node #18 [ 169.75546] 18.[1,3] Sending NETWORK_UPDATE to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-173.577152,16,"Node #16 [ 173.57715] Sent Join Request to [1,254]"
-173.577196,17,Node #17 [ 173.57720] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
-173.577196,17,Node #17 [ 173.57720] Sent Join Reply to: 16
-173.577241,16,"Node #16 [ 173.57724] Heard Join Reply from: [1,254]"
-173.577241,16,"Node #16 [ 173.57724] Parent Link Deletion Failed: (17, 16, 'parent')"
-173.577241,16,"Node #16 [ 173.57724] 16.[1,4] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-179.754908,27,"Node #27 [ 179.75491] Sent Join Request to [2,254]"
-179.755002,26,Node #26 [ 179.75500] Sent Join Reply to: 27
-179.755097,27,"Node #27 [ 179.75510] Heard Join Reply from: [2,254]"
-179.755097,27,"Node #27 [ 179.75510] Parent Link Deletion Failed: (26, 27, 'parent')"
-179.755097,27,"Node #27 [ 179.75510] 27.[2,1] Sending JOIN_ACK to [2,254] through 26.[2,254] (selected by Neighbors Table)"
-181.392018,1,Node #1  [ 181.39202] Became unregistered with no parent.
-183.375611,46,Node #46 [ 183.37561] I ran out of power.
-184.007916,12,Node #12 [ 184.00792] I ran out of power.
-184.823470,34,Node #34 [ 184.82347] Became unregistered with no parent.
-185.527118,8,"Node #8  [ 185.52712] Sent Join Request to [1,2]"
-185.527181,9,Node #9  [ 185.52718] Heard Join Request from 8
-185.527181,9,"Node #9  [ 185.52718] 9.[1,2] Sending NETWORK_REQUEST to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-185.527267,17,"Node #17 [ 185.52727] Sent network reply to [1,2]"
-185.527267,17,"Node #17 [ 185.52727] 17.[1,254] Sending NETWORK_REPLY to [1,2] through 9.[1,2] (selected by Neighbors Table)"
-185.527353,9,Node #9  [ 185.52735] Sent Join Reply to: 8
-185.527417,8,Node #8  [ 185.52742] I ran out of power.
-189.112518,45,Node #45 [ 189.11252] I ran out of power.
-189.134817,13,Node #13 [ 189.13482] I ran out of power.
-190.240689,22,Node #22 [ 190.24069] I ran out of power.
-190.754427,26,Node #26 [ 190.75443] I ran out of power.
-190.754522,27,Node #27 [ 190.75452] Parent is leaving!
-190.754522,27,Node #27 [ 190.75452] I became UNREGISTERED
-190.754527,18,"Node #18 [ 190.75453] ADDRESS RENEW: [2,254] -> [-1,-1]"
-193.906507,6,Node #6  [ 193.90651] I ran out of power.
-194.574849,10,Node #10 [ 194.57485] I ran out of power.
-194.574893,18,"Node #18 [ 194.57489] ADDRESS RENEW: [1,1] -> [-1,-1]"
-194.574927,17,"Node #17 [ 194.57493] ADDRESS RENEW: [1,1] -> [-1,-1]"
-194.574927,17,Node #17 [ 194.57493] Removing 10 from my assigned node ids.
-194.574935,9,"Node #9  [ 194.57494] ADDRESS RENEW: [1,1] -> [-1,-1]"
-195.931634,23,Node #23 [ 195.93163] I ran out of power.
-201.392018,1,"Node #1  [ 201.39202] Sent Join Request to [1,2]"
-201.392059,9,"Node #9  [ 201.39206] 9.[1,2] Sending NETWORK_REQUEST to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-201.392145,17,"Node #17 [ 201.39214] Sent network reply to [1,2]"
-201.392145,17,"Node #17 [ 201.39214] 17.[1,254] Sending NETWORK_REPLY to [1,2] through 9.[1,2] (selected by Neighbors Table)"
-201.392231,9,Node #9  [ 201.39223] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
-201.392231,9,Node #9  [ 201.39223] Sent Join Reply to: 1
-201.392271,1,"Node #1  [ 201.39227] Heard Join Reply from: [1,2]"
-201.392271,1,"Node #1  [ 201.39227] Parent Link Deletion Failed: (9, 1, 'parent')"
-201.392271,1,"Node #1  [ 201.39227] 1.[4,254] Sending JOIN_ACK to [1,2] through 9.[1,2] (selected by Neighbors Table)"
-201.392312,9,"Node #9  [ 201.39231] 9.[1,2] Sending NETWORK_UPDATE to [1,254] through 17.[1,254] (selected by Neighbors Table)"
-204.823470,34,"Node #34 [ 204.82347] Sent Join Request to [2,254]"
-223.112520,29,Node #29 [ 223.11252] I ran out of power.
-231.100086,9,Node #9  [ 231.10009] I ran out of power.
-231.100127,1,Node #1  [ 231.10013] Parent is leaving!
-231.100127,1,Node #1  [ 231.10013] I became UNREGISTERED
-231.100172,17,"Node #17 [ 231.10017] ADDRESS RENEW: [1,2] -> [-1,-1]"
-231.100172,17,Node #17 [ 231.10017] Removing 9 from my assigned node ids.
-231.931635,14,Node #14 [ 231.93163] I ran out of power.
-232.906511,4,Node #4  [ 232.90651] I ran out of power.
-233.917439,48,Node #48 [ 233.91744] I ran out of power.
-255.195658,42,Node #42 [ 255.19566] I ran out of power.
-269.755256,18,Node #18 [ 269.75526] Router status deemed unnecessary
-269.755256,18,Node #18 [ 269.75526] I became UNREGISTERED
-269.755336,17,"Node #17 [ 269.75534] ADDRESS RENEW: [1,3] -> [-1,-1]"
-269.755336,17,Node #17 [ 269.75534] Removing 18 from my assigned node ids.
-275.642820,15,Node #15 [ 275.64282] I ran out of power.
-289.755256,18,"Node #18 [ 289.75526] Sent Join Request to [1,254]"
-289.755336,17,Node #17 [ 289.75534] Sent Join Reply to: 18
-289.755415,18,"Node #18 [ 289.75542] Heard Join Reply from: [1,254]"
-289.755415,18,"Node #18 [ 289.75542] Parent Link Deletion Failed: (17, 18, 'parent')"
-289.755415,18,"Node #18 [ 289.75542] 18.[1,1] Sending JOIN_ACK to [1,254] through 17.[1,254] (selected by Neighbors Table)"
+11.787032,7,Node #7  [  11.78703] Became unregistered with no parent.
+31.787032,7,"Node #7  [  31.78703] Sent Join Request to [1,254]"
+31.787105,15,Node #15 [  31.78711] Sent Join Reply to: 7
+31.787178,7,"Node #7  [  31.78718] Heard Join Reply from: [1,254]"
+31.787178,7,"Node #7  [  31.78718] Parent Link Deletion Failed: (15, 7, 'parent')"
+31.787178,7,"Node #7  [  31.78718] 7.[1,1] Sending JOIN_ACK to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+59.550237,14,Node #14 [  59.55024] Became unregistered with no parent.
+78.583511,23,Node #23 [  78.58351] Became unregistered with no parent.
+79.550237,14,"Node #14 [  79.55024] Sent Join Request to [1,254]"
+79.550326,15,Node #15 [  79.55033] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+79.550326,15,Node #15 [  79.55033] Sent Join Reply to: 14
+79.550415,14,"Node #14 [  79.55041] Heard Join Reply from: [1,254]"
+79.550415,14,"Node #14 [  79.55041] Parent Link Deletion Failed: (15, 14, 'parent')"
+79.550415,14,"Node #14 [  79.55041] 14.[1,2] Sending JOIN_ACK to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+79.580051,22,Node #22 [  79.58005] Became unregistered with no parent.
+79.580056,13,Node #13 [  79.58006] Became unregistered with no parent.
+79.580061,21,Node #21 [  79.58006] Became unregistered with no parent.
+98.583511,23,"Node #23 [  98.58351] Sent Join Request to [1,254]"
+98.583607,15,Node #15 [  98.58361] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+98.583607,15,Node #15 [  98.58361] Sent Join Reply to: 23
+98.583703,23,"Node #23 [  98.58370] Heard Join Reply from: [1,254]"
+98.583703,23,"Node #23 [  98.58370] Parent Link Deletion Failed: (15, 23, 'parent')"
+98.583703,23,"Node #23 [  98.58370] 23.[1,3] Sending JOIN_ACK to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+98.661389,31,Node #31 [  98.66139] Became unregistered with no parent.
+99.580051,22,"Node #22 [  99.58005] Sent Join Request to [1,3]"
+99.580056,13,"Node #13 [  99.58006] Sent Join Request to [1,2]"
+99.580061,21,"Node #21 [  99.58006] Sent Join Request to [1,2]"
+99.580117,23,Node #23 [  99.58012] Heard Join Request from 22
+99.580117,23,"Node #23 [  99.58012] 23.[1,3] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+99.580128,14,Node #14 [  99.58013] Heard Join Request from 13
+99.580128,14,"Node #14 [  99.58013] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+99.580213,15,"Node #15 [  99.58021] Sent network reply to [1,3]"
+99.580213,15,"Node #15 [  99.58021] 15.[1,254] Sending NETWORK_REPLY to [1,3] through 23.[1,3] (selected by Neighbors Table)"
+99.580217,15,"Node #15 [  99.58022] Sent network reply to [1,2]"
+99.580217,15,"Node #15 [  99.58022] 15.[1,254] Sending NETWORK_REPLY to [1,2] through 14.[1,2] (selected by Neighbors Table)"
+99.580306,14,Node #14 [  99.58031] Sent Join Reply to: 13
+99.580310,23,Node #23 [  99.58031] Sent Join Reply to: 22
+99.580376,22,"Node #22 [  99.58038] Heard Join Reply from: [1,3]"
+99.580376,22,"Node #22 [  99.58038] Parent Link Deletion Failed: (23, 22, 'parent')"
+99.580376,22,"Node #22 [  99.58038] 22.[2,254] Sending JOIN_ACK to [1,3] through 23.[1,3] (selected by Neighbors Table)"
+99.580378,13,"Node #13 [  99.58038] Heard Join Reply from: [1,2]"
+99.580378,13,"Node #13 [  99.58038] Parent Link Deletion Failed: (14, 13, 'parent')"
+99.580378,13,"Node #13 [  99.58038] 13.[3,254] Sending JOIN_ACK to [1,2] through 14.[1,2] (selected by Neighbors Table)"
+99.580442,30,Node #30 [  99.58044] Became unregistered with no parent.
+99.580442,23,"Node #23 [  99.58044] 23.[1,3] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+99.580449,14,"Node #14 [  99.58045] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+99.580460,5,Node #5  [  99.58046] Became unregistered with no parent.
+104.580061,21,"Node #21 [ 104.58006] Sent Join Request to [2,254]"
+104.580127,22,Node #22 [ 104.58013] Sent Join Reply to: 21
+104.580192,21,"Node #21 [ 104.58019] Heard Join Reply from: [2,254]"
+104.580192,21,"Node #21 [ 104.58019] Parent Link Deletion Failed: (22, 21, 'parent')"
+104.580192,21,"Node #21 [ 104.58019] 21.[2,1] Sending JOIN_ACK to [2,254] through 22.[2,254] (selected by Neighbors Table)"
+118.661389,31,"Node #31 [ 118.66139] Sent Join Request to [2,254]"
+118.661470,22,Node #22 [ 118.66147] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+118.661470,22,Node #22 [ 118.66147] Sent Join Reply to: 31
+118.661551,31,"Node #31 [ 118.66155] Heard Join Reply from: [2,254]"
+118.661551,31,"Node #31 [ 118.66155] Parent Link Deletion Failed: (22, 31, 'parent')"
+118.661551,31,"Node #31 [ 118.66155] 31.[2,2] Sending JOIN_ACK to [2,254] through 22.[2,254] (selected by Neighbors Table)"
+119.580442,30,"Node #30 [ 119.58044] Sent Join Request to [2,254]"
+119.580460,5,"Node #5  [ 119.58046] Sent Join Request to [3,254]"
+119.580508,22,Node #22 [ 119.58051] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+119.580508,22,Node #22 [ 119.58051] Sent Join Reply to: 30
+119.580541,13,Node #13 [ 119.58054] Sent Join Reply to: 5
+119.580573,30,"Node #30 [ 119.58057] Heard Join Reply from: [2,254]"
+119.580573,30,"Node #30 [ 119.58057] Parent Link Deletion Failed: (22, 30, 'parent')"
+119.580573,30,"Node #30 [ 119.58057] 30.[2,3] Sending JOIN_ACK to [2,254] through 22.[2,254] (selected by Neighbors Table)"
+119.580623,5,"Node #5  [ 119.58062] Heard Join Reply from: [3,254]"
+119.580623,5,"Node #5  [ 119.58062] Parent Link Deletion Failed: (13, 5, 'parent')"
+119.580623,5,"Node #5  [ 119.58062] 5.[3,1] Sending JOIN_ACK to [3,254] through 13.[3,254] (selected by Neighbors Table)"
+120.439459,39,Node #39 [ 120.43946] Became unregistered with no parent.
+129.580660,37,Node #37 [ 129.58066] Became unregistered with no parent.
+140.439459,39,"Node #39 [ 140.43946] Sent Join Request to [2,2]"
+140.439543,31,Node #31 [ 140.43954] Heard Join Request from 39
+140.439543,31,"Node #31 [ 140.43954] 31.[2,2] Sending NETWORK_REQUEST to [1,254] through 23.[1,3] (selected by Neighbor Network)"
+140.439587,23,"Node #23 [ 140.43959] 23.[1,3] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+140.439683,15,"Node #15 [ 140.43968] Sent network reply to [2,2]"
+140.439683,15,"Node #15 [ 140.43968] 15.[1,254] Sending NETWORK_REPLY to [2,2] through 23.[1,3] (selected by Networking Table)"
+140.439779,23,"Node #23 [ 140.43978] 23.[1,3] Sending NETWORK_REPLY to [2,2] through 31.[2,2] (selected by Neighbors Table)"
+140.439823,31,Node #31 [ 140.43982] Sent Join Reply to: 39
+140.439907,39,"Node #39 [ 140.43991] Heard Join Reply from: [2,2]"
+140.439907,39,"Node #39 [ 140.43991] Parent Link Deletion Failed: (31, 39, 'parent')"
+140.439907,39,"Node #39 [ 140.43991] 39.[4,254] Sending JOIN_ACK to [2,2] through 31.[2,2] (selected by Neighbors Table)"
+140.439992,31,"Node #31 [ 140.43999] 31.[2,2] Sending NETWORK_UPDATE to [1,254] through 23.[1,3] (selected by Neighbor Network)"
+140.439997,47,Node #47 [ 140.44000] Became unregistered with no parent.
+140.440035,23,"Node #23 [ 140.44004] 23.[1,3] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+144.580278,20,Node #20 [ 144.58028] Became unregistered with no parent.
+148.130123,38,Node #38 [ 148.13012] Became unregistered with no parent.
+148.130155,46,Node #46 [ 148.13016] Became unregistered with no parent.
+149.580660,37,"Node #37 [ 149.58066] Sent Join Request to [2,3]"
+149.580747,30,Node #30 [ 149.58075] Heard Join Request from 37
+149.580747,30,"Node #30 [ 149.58075] 30.[2,3] Sending NETWORK_REQUEST to [1,254] through 22.[2,254] (selected by Parent)"
+149.580813,22,"Node #22 [ 149.58081] 22.[2,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+149.580880,14,"Node #14 [ 149.58088] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+149.580969,15,"Node #15 [ 149.58097] Sent network reply to [2,3]"
+149.580969,15,"Node #15 [ 149.58097] 15.[1,254] Sending NETWORK_REPLY to [2,3] through 23.[1,3] (selected by Networking Table)"
+149.581065,23,"Node #23 [ 149.58106] 23.[1,3] Sending NETWORK_REPLY to [2,3] through 22.[2,254] (selected by Neighbor Network)"
+149.581131,22,"Node #22 [ 149.58113] 22.[2,254] Sending NETWORK_REPLY to [2,3] through 30.[2,3] (selected by Neighbors Table)"
+149.581197,30,Node #30 [ 149.58120] Sent Join Reply to: 37
+149.581284,37,"Node #37 [ 149.58128] Heard Join Reply from: [2,3]"
+149.581284,37,"Node #37 [ 149.58128] Parent Link Deletion Failed: (30, 37, 'parent')"
+149.581284,37,"Node #37 [ 149.58128] 37.[5,254] Sending JOIN_ACK to [2,3] through 30.[2,3] (selected by Neighbors Table)"
+149.581338,36,Node #36 [ 149.58134] Became unregistered with no parent.
+149.581370,30,"Node #30 [ 149.58137] 30.[2,3] Sending NETWORK_UPDATE to [1,254] through 22.[2,254] (selected by Parent)"
+149.581436,22,"Node #22 [ 149.58144] 22.[2,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+149.581503,14,"Node #14 [ 149.58150] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+160.439997,47,"Node #47 [ 160.44000] Sent Join Request to [4,254]"
+160.440087,39,Node #39 [ 160.44009] Sent Join Reply to: 47
+160.440176,47,"Node #47 [ 160.44018] Heard Join Reply from: [4,254]"
+160.440176,47,"Node #47 [ 160.44018] Parent Link Deletion Failed: (39, 47, 'parent')"
+160.440176,47,"Node #47 [ 160.44018] 47.[4,1] Sending JOIN_ACK to [4,254] through 39.[4,254] (selected by Neighbors Table)"
+164.580278,20,"Node #20 [ 164.58028] Sent Join Request to [3,254]"
+164.580371,13,Node #13 [ 164.58037] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+164.580371,13,Node #13 [ 164.58037] Sent Join Reply to: 20
+164.580464,20,"Node #20 [ 164.58046] Heard Join Reply from: [3,254]"
+164.580464,20,"Node #20 [ 164.58046] Parent Link Deletion Failed: (13, 20, 'parent')"
+164.580464,20,"Node #20 [ 164.58046] 20.[3,2] Sending JOIN_ACK to [3,254] through 13.[3,254] (selected by Neighbors Table)"
+168.130123,38,"Node #38 [ 168.13012] Sent Join Request to [4,254]"
+168.130155,46,"Node #46 [ 168.13016] Sent Join Request to [4,254]"
+168.130173,39,Node #39 [ 168.13017] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+168.130173,39,Node #39 [ 168.13017] Sent Join Reply to: 38
+168.130224,38,"Node #38 [ 168.13022] Heard Join Reply from: [4,254]"
+168.130224,38,"Node #38 [ 168.13022] Parent Link Deletion Failed: (39, 38, 'parent')"
+168.130224,38,"Node #38 [ 168.13022] 38.[4,2] Sending JOIN_ACK to [4,254] through 39.[4,254] (selected by Neighbors Table)"
+168.130238,39,Node #39 [ 168.13024] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+168.130238,39,Node #39 [ 168.13024] Sent Join Reply to: 46
+168.130322,46,"Node #46 [ 168.13032] Heard Join Reply from: [4,254]"
+168.130322,46,"Node #46 [ 168.13032] Parent Link Deletion Failed: (39, 46, 'parent')"
+168.130322,46,"Node #46 [ 168.13032] 46.[4,3] Sending JOIN_ACK to [4,254] through 39.[4,254] (selected by Neighbors Table)"
+169.581338,36,"Node #36 [ 169.58134] Sent Join Request to [5,254]"
+169.581392,37,Node #37 [ 169.58139] Sent Join Reply to: 36
+169.581446,36,"Node #36 [ 169.58145] Heard Join Reply from: [5,254]"
+169.581446,36,"Node #36 [ 169.58145] Parent Link Deletion Failed: (37, 36, 'parent')"
+169.581446,36,"Node #36 [ 169.58145] 36.[5,1] Sending JOIN_ACK to [5,254] through 37.[5,254] (selected by Neighbors Table)"
+173.585813,6,Node #6  [ 173.58581] Became unregistered with no parent.
+174.580552,28,Node #28 [ 174.58055] Became unregistered with no parent.
+174.580713,44,Node #44 [ 174.58071] Became unregistered with no parent.
+176.032099,4,Node #4  [ 176.03210] Became unregistered with no parent.
+176.032111,12,Node #12 [ 176.03211] Became unregistered with no parent.
+178.130399,45,Node #45 [ 178.13040] Became unregistered with no parent.
+189.580629,29,Node #29 [ 189.58063] Became unregistered with no parent.
+193.585813,6,"Node #6  [ 193.58581] Sent Join Request to [3,254]"
+193.585891,13,Node #13 [ 193.58589] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+193.585891,13,Node #13 [ 193.58589] Sent Join Reply to: 6
+193.585968,6,"Node #6  [ 193.58597] Heard Join Reply from: [3,254]"
+193.585968,6,"Node #6  [ 193.58597] Parent Link Deletion Failed: (13, 6, 'parent')"
+193.585968,6,"Node #6  [ 193.58597] 6.[3,3] Sending JOIN_ACK to [3,254] through 13.[3,254] (selected by Neighbors Table)"
+194.580552,28,"Node #28 [ 194.58055] Sent Join Request to [3,2]"
+194.580640,20,Node #20 [ 194.58064] Heard Join Request from 28
+194.580640,20,"Node #20 [ 194.58064] 20.[3,2] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+194.580713,44,"Node #44 [ 194.58071] Sent Join Request to [5,1]"
+194.580733,13,"Node #13 [ 194.58073] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+194.580805,14,"Node #14 [ 194.58081] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+194.580809,36,Node #36 [ 194.58081] Heard Join Request from 44
+194.580809,36,"Node #36 [ 194.58081] 36.[5,1] Sending NETWORK_REQUEST to [1,254] through 37.[5,254] (selected by Parent)"
+194.580863,37,"Node #37 [ 194.58086] 37.[5,254] Sending NETWORK_REQUEST to [1,254] through 30.[2,3] (selected by Parent)"
+194.580894,15,"Node #15 [ 194.58089] Sent network reply to [3,2]"
+194.580894,15,"Node #15 [ 194.58089] 15.[1,254] Sending NETWORK_REPLY to [3,2] through 14.[1,2] (selected by Networking Table)"
+194.580949,30,"Node #30 [ 194.58095] 30.[2,3] Sending NETWORK_REQUEST to [1,254] through 22.[2,254] (selected by Parent)"
+194.580983,14,"Node #14 [ 194.58098] 14.[1,2] Sending NETWORK_REPLY to [3,2] through 13.[3,254] (selected by Neighbor Network)"
+194.581015,22,"Node #22 [ 194.58102] 22.[2,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+194.581055,13,"Node #13 [ 194.58106] 13.[3,254] Sending NETWORK_REPLY to [3,2] through 20.[3,2] (selected by Neighbors Table)"
+194.581082,14,"Node #14 [ 194.58108] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+194.581149,20,Node #20 [ 194.58115] Sent Join Reply to: 28
+194.581171,15,"Node #15 [ 194.58117] Sent network reply to [5,1]"
+194.581171,15,"Node #15 [ 194.58117] 15.[1,254] Sending NETWORK_REPLY to [5,1] through 14.[1,2] (selected by Networking Table)"
+194.581236,28,"Node #28 [ 194.58124] Heard Join Reply from: [3,2]"
+194.581236,28,"Node #28 [ 194.58124] Parent Link Deletion Failed: (20, 28, 'parent')"
+194.581236,28,"Node #28 [ 194.58124] 28.[6,254] Sending JOIN_ACK to [3,2] through 20.[3,2] (selected by Neighbors Table)"
+194.581260,14,"Node #14 [ 194.58126] 14.[1,2] Sending NETWORK_REPLY to [5,1] through 22.[2,254] (selected by Networking Table)"
+194.581316,27,Node #27 [ 194.58132] Became unregistered with no parent.
+194.581324,20,"Node #20 [ 194.58132] 20.[3,2] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+194.581327,22,"Node #22 [ 194.58133] 22.[2,254] Sending NETWORK_REPLY to [5,1] through 30.[2,3] (selected by Networking Table)"
+194.581393,30,"Node #30 [ 194.58139] 30.[2,3] Sending NETWORK_REPLY to [5,1] through 37.[5,254] (selected by Neighbor Network)"
+194.581418,13,"Node #13 [ 194.58142] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+194.581480,37,"Node #37 [ 194.58148] 37.[5,254] Sending NETWORK_REPLY to [5,1] through 36.[5,1] (selected by Neighbors Table)"
+194.581489,14,"Node #14 [ 194.58149] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+194.581534,36,Node #36 [ 194.58153] Sent Join Reply to: 44
+194.581630,44,"Node #44 [ 194.58163] Heard Join Reply from: [5,1]"
+194.581630,44,"Node #44 [ 194.58163] Parent Link Deletion Failed: (36, 44, 'parent')"
+194.581630,44,"Node #44 [ 194.58163] 44.[7,254] Sending JOIN_ACK to [5,1] through 36.[5,1] (selected by Neighbors Table)"
+194.581693,43,Node #43 [ 194.58169] Became unregistered with no parent.
+194.581725,36,"Node #36 [ 194.58173] 36.[5,1] Sending NETWORK_UPDATE to [1,254] through 37.[5,254] (selected by Parent)"
+194.581780,37,"Node #37 [ 194.58178] 37.[5,254] Sending NETWORK_UPDATE to [1,254] through 30.[2,3] (selected by Parent)"
+194.581866,30,"Node #30 [ 194.58187] 30.[2,3] Sending NETWORK_UPDATE to [1,254] through 22.[2,254] (selected by Parent)"
+194.581932,22,"Node #22 [ 194.58193] 22.[2,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+194.581999,14,"Node #14 [ 194.58200] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+196.032099,4,"Node #4  [ 196.03210] Sent Join Request to [3,1]"
+196.032111,12,"Node #12 [ 196.03211] Sent Join Request to [3,254]"
+196.032177,5,Node #5  [ 196.03218] Heard Join Request from 4
+196.032177,5,"Node #5  [ 196.03218] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+196.032179,13,Node #13 [ 196.03218] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+196.032179,13,Node #13 [ 196.03218] Sent Join Reply to: 12
+196.032246,12,"Node #12 [ 196.03225] Heard Join Reply from: [3,254]"
+196.032246,12,"Node #12 [ 196.03225] Parent Link Deletion Failed: (13, 12, 'parent')"
+196.032246,12,"Node #12 [ 196.03225] 12.[3,4] Sending JOIN_ACK to [3,254] through 13.[3,254] (selected by Neighbors Table)"
+196.032259,13,"Node #13 [ 196.03226] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+196.032330,14,"Node #14 [ 196.03233] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+196.032419,15,"Node #15 [ 196.03242] Sent network reply to [3,1]"
+196.032419,15,"Node #15 [ 196.03242] 15.[1,254] Sending NETWORK_REPLY to [3,1] through 14.[1,2] (selected by Networking Table)"
+196.032509,14,"Node #14 [ 196.03251] 14.[1,2] Sending NETWORK_REPLY to [3,1] through 13.[3,254] (selected by Neighbor Network)"
+196.032580,13,"Node #13 [ 196.03258] 13.[3,254] Sending NETWORK_REPLY to [3,1] through 5.[3,1] (selected by Neighbors Table)"
+196.032662,5,Node #5  [ 196.03266] Sent Join Reply to: 4
+196.032740,4,"Node #4  [ 196.03274] Heard Join Reply from: [3,1]"
+196.032740,4,"Node #4  [ 196.03274] Parent Link Deletion Failed: (5, 4, 'parent')"
+196.032740,4,"Node #4  [ 196.03274] 4.[8,254] Sending JOIN_ACK to [3,1] through 5.[3,1] (selected by Neighbors Table)"
+196.032787,3,Node #3  [ 196.03279] Became unregistered with no parent.
+196.032811,11,Node #11 [ 196.03281] Became unregistered with no parent.
+196.032818,5,"Node #5  [ 196.03282] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+196.032900,13,"Node #13 [ 196.03290] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+196.032972,14,"Node #14 [ 196.03297] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+198.130399,45,"Node #45 [ 198.13040] Sent Join Request to [7,254]"
+198.130482,44,Node #44 [ 198.13048] Sent Join Reply to: 45
+198.130565,45,"Node #45 [ 198.13056] Heard Join Reply from: [7,254]"
+198.130565,45,"Node #45 [ 198.13056] Parent Link Deletion Failed: (44, 45, 'parent')"
+198.130565,45,"Node #45 [ 198.13056] 45.[7,1] Sending JOIN_ACK to [7,254] through 44.[7,254] (selected by Neighbors Table)"
+209.580629,29,"Node #29 [ 209.58063] Sent Join Request to [5,254]"
+209.580669,37,Node #37 [ 209.58067] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+209.580669,37,Node #37 [ 209.58067] Sent Join Reply to: 29
+209.580709,29,"Node #29 [ 209.58071] Heard Join Reply from: [5,254]"
+209.580709,29,"Node #29 [ 209.58071] Parent Link Deletion Failed: (37, 29, 'parent')"
+209.580709,29,"Node #29 [ 209.58071] 29.[5,2] Sending JOIN_ACK to [5,254] through 37.[5,254] (selected by Neighbors Table)"
+214.581316,27,"Node #27 [ 214.58132] Sent Join Request to [6,254]"
+214.581395,28,Node #28 [ 214.58139] Sent Join Reply to: 27
+214.581474,27,"Node #27 [ 214.58147] Heard Join Reply from: [6,254]"
+214.581474,27,"Node #27 [ 214.58147] Parent Link Deletion Failed: (28, 27, 'parent')"
+214.581474,27,"Node #27 [ 214.58147] 27.[6,1] Sending JOIN_ACK to [6,254] through 28.[6,254] (selected by Neighbors Table)"
+214.581693,43,"Node #43 [ 214.58169] Sent Join Request to [7,254]"
+214.581757,44,Node #44 [ 214.58176] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+214.581757,44,Node #44 [ 214.58176] Sent Join Reply to: 43
+214.581821,43,"Node #43 [ 214.58182] Heard Join Reply from: [7,254]"
+214.581821,43,"Node #43 [ 214.58182] Parent Link Deletion Failed: (44, 43, 'parent')"
+214.581821,43,"Node #43 [ 214.58182] 43.[7,2] Sending JOIN_ACK to [7,254] through 44.[7,254] (selected by Neighbors Table)"
+216.032787,3,"Node #3  [ 216.03279] Sent Join Request to [8,254]"
+216.032811,11,"Node #11 [ 216.03281] Sent Join Request to [8,254]"
+216.032834,4,Node #4  [ 216.03283] Sent Join Reply to: 3
+216.032881,3,"Node #3  [ 216.03288] Heard Join Reply from: [8,254]"
+216.032881,3,"Node #3  [ 216.03288] Parent Link Deletion Failed: (4, 3, 'parent')"
+216.032881,3,"Node #3  [ 216.03288] 3.[8,1] Sending JOIN_ACK to [8,254] through 4.[8,254] (selected by Neighbors Table)"
+216.032883,4,Node #4  [ 216.03288] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+216.032883,4,Node #4  [ 216.03288] Sent Join Reply to: 11
+216.032954,11,"Node #11 [ 216.03295] Heard Join Reply from: [8,254]"
+216.032954,11,"Node #11 [ 216.03295] Parent Link Deletion Failed: (4, 11, 'parent')"
+216.032954,11,"Node #11 [ 216.03295] 11.[8,2] Sending JOIN_ACK to [8,254] through 4.[8,254] (selected by Neighbors Table)"
+216.081925,2,Node #2  [ 216.08192] Became unregistered with no parent.
+216.297309,19,Node #19 [ 216.29731] Became unregistered with no parent.
+216.297310,10,Node #10 [ 216.29731] Became unregistered with no parent.
+216.297430,26,Node #26 [ 216.29743] Became unregistered with no parent.
+216.297483,34,Node #34 [ 216.29748] Became unregistered with no parent.
+216.297484,18,Node #18 [ 216.29748] Became unregistered with no parent.
+216.297492,35,Node #35 [ 216.29749] Became unregistered with no parent.
+216.297663,42,Node #42 [ 216.29766] Became unregistered with no parent.
+236.081925,2,"Node #2  [ 236.08192] Sent Join Request to [8,1]"
+236.082006,3,Node #3  [ 236.08201] Heard Join Request from 2
+236.082006,3,"Node #3  [ 236.08201] 3.[8,1] Sending NETWORK_REQUEST to [1,254] through 4.[8,254] (selected by Parent)"
+236.082053,4,"Node #4  [ 236.08205] 4.[8,254] Sending NETWORK_REQUEST to [1,254] through 5.[3,1] (selected by Parent)"
+236.082131,5,"Node #5  [ 236.08213] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+236.082213,13,"Node #13 [ 236.08221] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.082285,14,"Node #14 [ 236.08228] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.082374,15,"Node #15 [ 236.08237] Sent network reply to [8,1]"
+236.082374,15,"Node #15 [ 236.08237] 15.[1,254] Sending NETWORK_REPLY to [8,1] through 14.[1,2] (selected by Networking Table)"
+236.082463,14,"Node #14 [ 236.08246] 14.[1,2] Sending NETWORK_REPLY to [8,1] through 13.[3,254] (selected by Networking Table)"
+236.082535,13,"Node #13 [ 236.08253] 13.[3,254] Sending NETWORK_REPLY to [8,1] through 5.[3,1] (selected by Networking Table)"
+236.082617,5,"Node #5  [ 236.08262] 5.[3,1] Sending NETWORK_REPLY to [8,1] through 4.[8,254] (selected by Neighbor Network)"
+236.082695,4,"Node #4  [ 236.08269] 4.[8,254] Sending NETWORK_REPLY to [8,1] through 3.[8,1] (selected by Neighbors Table)"
+236.082742,3,Node #3  [ 236.08274] Sent Join Reply to: 2
+236.082823,2,"Node #2  [ 236.08282] Heard Join Reply from: [8,1]"
+236.082823,2,"Node #2  [ 236.08282] Parent Link Deletion Failed: (3, 2, 'parent')"
+236.082823,2,"Node #2  [ 236.08282] 2.[9,254] Sending JOIN_ACK to [8,1] through 3.[8,1] (selected by Neighbors Table)"
+236.082904,3,"Node #3  [ 236.08290] 3.[8,1] Sending NETWORK_UPDATE to [1,254] through 4.[8,254] (selected by Parent)"
+236.082951,4,"Node #4  [ 236.08295] 4.[8,254] Sending NETWORK_UPDATE to [1,254] through 5.[3,1] (selected by Parent)"
+236.083029,5,"Node #5  [ 236.08303] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+236.083111,13,"Node #13 [ 236.08311] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.083183,14,"Node #14 [ 236.08318] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.297309,19,"Node #19 [ 236.29731] Sent Join Request to [8,2]"
+236.297310,10,"Node #10 [ 236.29731] Sent Join Request to [8,2]"
+236.297371,11,Node #11 [ 236.29737] Heard Join Request from 19
+236.297371,11,"Node #11 [ 236.29737] 11.[8,2] Sending NETWORK_REQUEST to [1,254] through 4.[8,254] (selected by Parent)"
+236.297430,26,"Node #26 [ 236.29743] Sent Join Request to [6,1]"
+236.297443,4,"Node #4  [ 236.29744] 4.[8,254] Sending NETWORK_REQUEST to [1,254] through 5.[3,1] (selected by Parent)"
+236.297466,27,Node #27 [ 236.29747] Heard Join Request from 26
+236.297466,27,"Node #27 [ 236.29747] 27.[6,1] Sending NETWORK_REQUEST to [1,254] through 28.[6,254] (selected by Parent)"
+236.297483,34,"Node #34 [ 236.29748] Sent Join Request to [6,1]"
+236.297484,18,"Node #18 [ 236.29748] Sent Join Request to [6,1]"
+236.297492,35,"Node #35 [ 236.29749] Sent Join Request to [6,1]"
+236.297521,5,"Node #5  [ 236.29752] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+236.297545,28,"Node #28 [ 236.29755] 28.[6,254] Sending NETWORK_REQUEST to [1,254] through 20.[3,2] (selected by Parent)"
+236.297603,13,"Node #13 [ 236.29760] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.297633,20,"Node #20 [ 236.29763] 20.[3,2] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+236.297663,42,"Node #42 [ 236.29766] Sent Join Request to [7,2]"
+236.297674,14,"Node #14 [ 236.29767] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.297726,13,"Node #13 [ 236.29773] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.297757,43,Node #43 [ 236.29776] Heard Join Request from 42
+236.297757,43,"Node #43 [ 236.29776] 43.[7,2] Sending NETWORK_REQUEST to [1,254] through 44.[7,254] (selected by Parent)"
+236.297763,15,"Node #15 [ 236.29776] Sent network reply to [8,2]"
+236.297763,15,"Node #15 [ 236.29776] 15.[1,254] Sending NETWORK_REPLY to [8,2] through 14.[1,2] (selected by Networking Table)"
+236.297798,14,"Node #14 [ 236.29780] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.297820,44,"Node #44 [ 236.29782] 44.[7,254] Sending NETWORK_REQUEST to [1,254] through 36.[5,1] (selected by Parent)"
+236.297853,14,"Node #14 [ 236.29785] 14.[1,2] Sending NETWORK_REPLY to [8,2] through 13.[3,254] (selected by Networking Table)"
+236.297887,15,"Node #15 [ 236.29789] Sent network reply to [6,1]"
+236.297887,15,"Node #15 [ 236.29789] 15.[1,254] Sending NETWORK_REPLY to [6,1] through 14.[1,2] (selected by Networking Table)"
+236.297916,36,"Node #36 [ 236.29792] 36.[5,1] Sending NETWORK_REQUEST to [1,254] through 37.[5,254] (selected by Parent)"
+236.297924,13,"Node #13 [ 236.29792] 13.[3,254] Sending NETWORK_REPLY to [8,2] through 5.[3,1] (selected by Networking Table)"
+236.297970,37,"Node #37 [ 236.29797] 37.[5,254] Sending NETWORK_REQUEST to [1,254] through 30.[2,3] (selected by Parent)"
+236.297976,14,"Node #14 [ 236.29798] 14.[1,2] Sending NETWORK_REPLY to [6,1] through 13.[3,254] (selected by Networking Table)"
+236.298006,5,"Node #5  [ 236.29801] 5.[3,1] Sending NETWORK_REPLY to [8,2] through 4.[8,254] (selected by Neighbor Network)"
+236.298048,13,"Node #13 [ 236.29805] 13.[3,254] Sending NETWORK_REPLY to [6,1] through 20.[3,2] (selected by Networking Table)"
+236.298057,30,"Node #30 [ 236.29806] 30.[2,3] Sending NETWORK_REQUEST to [1,254] through 22.[2,254] (selected by Parent)"
+236.298084,4,"Node #4  [ 236.29808] 4.[8,254] Sending NETWORK_REPLY to [8,2] through 11.[8,2] (selected by Neighbors Table)"
+236.298123,22,"Node #22 [ 236.29812] 22.[2,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.298142,20,"Node #20 [ 236.29814] 20.[3,2] Sending NETWORK_REPLY to [6,1] through 28.[6,254] (selected by Neighbor Network)"
+236.298155,11,Node #11 [ 236.29816] Sent Join Reply to: 19
+236.298190,14,"Node #14 [ 236.29819] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.298218,19,"Node #19 [ 236.29822] Heard Join Reply from: [8,2]"
+236.298218,19,"Node #19 [ 236.29822] Parent Link Deletion Failed: (11, 19, 'parent')"
+236.298218,19,"Node #19 [ 236.29822] 19.[10,254] Sending JOIN_ACK to [8,2] through 11.[8,2] (selected by Neighbors Table)"
+236.298229,28,"Node #28 [ 236.29823] 28.[6,254] Sending NETWORK_REPLY to [6,1] through 27.[6,1] (selected by Neighbors Table)"
+236.298279,15,"Node #15 [ 236.29828] Sent network reply to [7,2]"
+236.298279,15,"Node #15 [ 236.29828] 15.[1,254] Sending NETWORK_REPLY to [7,2] through 14.[1,2] (selected by Networking Table)"
+236.298280,11,"Node #11 [ 236.29828] 11.[8,2] Sending NETWORK_UPDATE to [1,254] through 4.[8,254] (selected by Parent)"
+236.298309,27,Node #27 [ 236.29831] Sent Join Reply to: 26
+236.298345,26,"Node #26 [ 236.29834] Heard Join Reply from: [6,1]"
+236.298345,26,"Node #26 [ 236.29834] Parent Link Deletion Failed: (27, 26, 'parent')"
+236.298345,26,"Node #26 [ 236.29834] 26.[11,254] Sending JOIN_ACK to [6,1] through 27.[6,1] (selected by Neighbors Table)"
+236.298351,4,"Node #4  [ 236.29835] 4.[8,254] Sending NETWORK_UPDATE to [1,254] through 5.[3,1] (selected by Parent)"
+236.298368,14,"Node #14 [ 236.29837] 14.[1,2] Sending NETWORK_REPLY to [7,2] through 22.[2,254] (selected by Networking Table)"
+236.298381,27,"Node #27 [ 236.29838] 27.[6,1] Sending NETWORK_UPDATE to [1,254] through 28.[6,254] (selected by Parent)"
+236.298429,5,"Node #5  [ 236.29843] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+236.298435,22,"Node #22 [ 236.29843] 22.[2,254] Sending NETWORK_REPLY to [7,2] through 30.[2,3] (selected by Networking Table)"
+236.298460,28,"Node #28 [ 236.29846] 28.[6,254] Sending NETWORK_UPDATE to [1,254] through 20.[3,2] (selected by Parent)"
+236.298501,30,"Node #30 [ 236.29850] 30.[2,3] Sending NETWORK_REPLY to [7,2] through 37.[5,254] (selected by Networking Table)"
+236.298511,13,"Node #13 [ 236.29851] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.298547,20,"Node #20 [ 236.29855] 20.[3,2] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+236.298583,14,"Node #14 [ 236.29858] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.298587,37,"Node #37 [ 236.29859] 37.[5,254] Sending NETWORK_REPLY to [7,2] through 36.[5,1] (selected by Networking Table)"
+236.298641,13,"Node #13 [ 236.29864] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.298641,36,"Node #36 [ 236.29864] 36.[5,1] Sending NETWORK_REPLY to [7,2] through 44.[7,254] (selected by Neighbor Network)"
+236.298713,14,"Node #14 [ 236.29871] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+236.298737,44,"Node #44 [ 236.29874] 44.[7,254] Sending NETWORK_REPLY to [7,2] through 43.[7,2] (selected by Neighbors Table)"
+236.298801,43,Node #43 [ 236.29880] Sent Join Reply to: 42
+236.298895,42,"Node #42 [ 236.29889] Heard Join Reply from: [7,2]"
+236.298895,42,"Node #42 [ 236.29889] Parent Link Deletion Failed: (43, 42, 'parent')"
+236.298895,42,"Node #42 [ 236.29889] 42.[12,254] Sending JOIN_ACK to [7,2] through 43.[7,2] (selected by Neighbors Table)"
+236.298981,49,Node #49 [ 236.29898] Became unregistered with no parent.
+236.298983,41,Node #41 [ 236.29898] Became unregistered with no parent.
+236.298989,43,"Node #43 [ 236.29899] 43.[7,2] Sending NETWORK_UPDATE to [1,254] through 44.[7,254] (selected by Parent)"
+236.299052,44,"Node #44 [ 236.29905] 44.[7,254] Sending NETWORK_UPDATE to [1,254] through 36.[5,1] (selected by Parent)"
+236.299148,36,"Node #36 [ 236.29915] 36.[5,1] Sending NETWORK_UPDATE to [1,254] through 37.[5,254] (selected by Parent)"
+236.299202,37,"Node #37 [ 236.29920] 37.[5,254] Sending NETWORK_UPDATE to [1,254] through 30.[2,3] (selected by Parent)"
+236.299289,30,"Node #30 [ 236.29929] 30.[2,3] Sending NETWORK_UPDATE to [1,254] through 22.[2,254] (selected by Parent)"
+236.299355,22,"Node #22 [ 236.29935] 22.[2,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+236.299422,14,"Node #14 [ 236.29942] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+241.297310,10,"Node #10 [ 241.29731] Sent Join Request to [10,254]"
+241.297389,19,Node #19 [ 241.29739] Sent Join Reply to: 10
+241.297468,10,"Node #10 [ 241.29747] Heard Join Reply from: [10,254]"
+241.297468,10,"Node #10 [ 241.29747] Parent Link Deletion Failed: (19, 10, 'parent')"
+241.297468,10,"Node #10 [ 241.29747] 10.[10,1] Sending JOIN_ACK to [10,254] through 19.[10,254] (selected by Neighbors Table)"
+241.297483,34,"Node #34 [ 241.29748] Sent Join Request to [11,254]"
+241.297484,18,"Node #18 [ 241.29748] Sent Join Request to [10,254]"
+241.297492,35,"Node #35 [ 241.29749] Sent Join Request to [11,254]"
+241.297540,26,Node #26 [ 241.29754] Sent Join Reply to: 34
+241.297560,19,Node #19 [ 241.29756] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+241.297560,19,Node #19 [ 241.29756] Sent Join Reply to: 18
+241.297584,26,Node #26 [ 241.29758] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+241.297584,26,Node #26 [ 241.29758] Sent Join Reply to: 35
+241.297596,34,"Node #34 [ 241.29760] Heard Join Reply from: [11,254]"
+241.297596,34,"Node #34 [ 241.29760] Parent Link Deletion Failed: (26, 34, 'parent')"
+241.297596,34,"Node #34 [ 241.29760] 34.[11,1] Sending JOIN_ACK to [11,254] through 26.[11,254] (selected by Neighbors Table)"
+241.297635,18,"Node #18 [ 241.29764] Heard Join Reply from: [10,254]"
+241.297635,18,"Node #18 [ 241.29764] Parent Link Deletion Failed: (19, 18, 'parent')"
+241.297635,18,"Node #18 [ 241.29764] 18.[10,2] Sending JOIN_ACK to [10,254] through 19.[10,254] (selected by Neighbors Table)"
+241.297677,35,"Node #35 [ 241.29768] Heard Join Reply from: [11,254]"
+241.297677,35,"Node #35 [ 241.29768] Parent Link Deletion Failed: (26, 35, 'parent')"
+241.297677,35,"Node #35 [ 241.29768] 35.[11,2] Sending JOIN_ACK to [11,254] through 26.[11,254] (selected by Neighbors Table)"
+249.511344,33,Node #33 [ 249.51134] Became unregistered with no parent.
+249.511369,25,Node #25 [ 249.51137] Became unregistered with no parent.
+250.699113,9,Node #9  [ 250.69911] Became unregistered with no parent.
+250.699136,17,Node #17 [ 250.69914] Became unregistered with no parent.
+256.298981,49,"Node #49 [ 256.29898] Sent Join Request to [12,254]"
+256.298983,41,"Node #41 [ 256.29898] Sent Join Request to [12,254]"
+256.299068,42,Node #42 [ 256.29907] Sent Join Reply to: 49
+256.299072,42,Node #42 [ 256.29907] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+256.299072,42,Node #42 [ 256.29907] Sent Join Reply to: 41
+256.299155,49,"Node #49 [ 256.29915] Heard Join Reply from: [12,254]"
+256.299155,49,"Node #49 [ 256.29915] Parent Link Deletion Failed: (42, 49, 'parent')"
+256.299155,49,"Node #49 [ 256.29915] 49.[12,1] Sending JOIN_ACK to [12,254] through 42.[12,254] (selected by Neighbors Table)"
+256.299160,41,"Node #41 [ 256.29916] Heard Join Reply from: [12,254]"
+256.299160,41,"Node #41 [ 256.29916] Parent Link Deletion Failed: (42, 41, 'parent')"
+256.299160,41,"Node #41 [ 256.29916] 41.[12,2] Sending JOIN_ACK to [12,254] through 42.[12,254] (selected by Neighbors Table)"
+260.108787,40,Node #40 [ 260.10879] Became unregistered with no parent.
+260.108795,48,Node #48 [ 260.10880] Became unregistered with no parent.
+269.511344,33,"Node #33 [ 269.51134] Sent Join Request to [11,1]"
+269.511369,25,"Node #25 [ 269.51137] Sent Join Request to [11,1]"
+269.511413,34,Node #34 [ 269.51141] Heard Join Request from 33
+269.511413,34,"Node #34 [ 269.51141] 34.[11,1] Sending NETWORK_REQUEST to [1,254] through 26.[11,254] (selected by Parent)"
+269.511470,26,"Node #26 [ 269.51147] 26.[11,254] Sending NETWORK_REQUEST to [1,254] through 27.[6,1] (selected by Parent)"
+269.511506,27,"Node #27 [ 269.51151] 27.[6,1] Sending NETWORK_REQUEST to [1,254] through 28.[6,254] (selected by Parent)"
+269.511585,28,"Node #28 [ 269.51159] 28.[6,254] Sending NETWORK_REQUEST to [1,254] through 20.[3,2] (selected by Parent)"
+269.511673,20,"Node #20 [ 269.51167] 20.[3,2] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+269.511766,13,"Node #13 [ 269.51177] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+269.511838,14,"Node #14 [ 269.51184] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+269.511927,15,"Node #15 [ 269.51193] Sent network reply to [11,1]"
+269.511927,15,"Node #15 [ 269.51193] 15.[1,254] Sending NETWORK_REPLY to [11,1] through 14.[1,2] (selected by Networking Table)"
+269.512016,14,"Node #14 [ 269.51202] 14.[1,2] Sending NETWORK_REPLY to [11,1] through 13.[3,254] (selected by Networking Table)"
+269.512088,13,"Node #13 [ 269.51209] 13.[3,254] Sending NETWORK_REPLY to [11,1] through 20.[3,2] (selected by Networking Table)"
+269.512182,20,"Node #20 [ 269.51218] 20.[3,2] Sending NETWORK_REPLY to [11,1] through 28.[6,254] (selected by Networking Table)"
+269.512269,28,"Node #28 [ 269.51227] 28.[6,254] Sending NETWORK_REPLY to [11,1] through 27.[6,1] (selected by Networking Table)"
+269.512348,27,"Node #27 [ 269.51235] 27.[6,1] Sending NETWORK_REPLY to [11,1] through 34.[11,1] (selected by Neighbors Table)"
+269.512437,34,Node #34 [ 269.51244] Sent Join Reply to: 33
+269.512506,33,"Node #33 [ 269.51251] Heard Join Reply from: [11,1]"
+269.512506,33,"Node #33 [ 269.51251] Parent Link Deletion Failed: (34, 33, 'parent')"
+269.512506,33,"Node #33 [ 269.51251] 33.[13,254] Sending JOIN_ACK to [11,1] through 34.[11,1] (selected by Neighbors Table)"
+269.512575,34,"Node #34 [ 269.51257] 34.[11,1] Sending NETWORK_UPDATE to [1,254] through 26.[11,254] (selected by Parent)"
+269.512586,32,Node #32 [ 269.51259] Became unregistered with no parent.
+269.512596,24,Node #24 [ 269.51260] Became unregistered with no parent.
+269.512632,26,"Node #26 [ 269.51263] 26.[11,254] Sending NETWORK_UPDATE to [1,254] through 27.[6,1] (selected by Parent)"
+269.512668,27,"Node #27 [ 269.51267] 27.[6,1] Sending NETWORK_UPDATE to [1,254] through 28.[6,254] (selected by Parent)"
+269.512747,28,"Node #28 [ 269.51275] 28.[6,254] Sending NETWORK_UPDATE to [1,254] through 20.[3,2] (selected by Parent)"
+269.512835,20,"Node #20 [ 269.51283] 20.[3,2] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+269.512928,13,"Node #13 [ 269.51293] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+269.513000,14,"Node #14 [ 269.51300] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+270.699113,9,"Node #9  [ 270.69911] Sent Join Request to [10,1]"
+270.699136,17,"Node #17 [ 270.69914] Sent Join Request to [10,2]"
+270.699188,10,Node #10 [ 270.69919] Heard Join Request from 9
+270.699188,10,"Node #10 [ 270.69919] 10.[10,1] Sending NETWORK_REQUEST to [1,254] through 19.[10,254] (selected by Parent)"
+270.699220,18,Node #18 [ 270.69922] Heard Join Request from 17
+270.699220,18,"Node #18 [ 270.69922] 18.[10,2] Sending NETWORK_REQUEST to [1,254] through 19.[10,254] (selected by Parent)"
+270.699267,19,"Node #19 [ 270.69927] 19.[10,254] Sending NETWORK_REQUEST to [1,254] through 11.[8,2] (selected by Parent)"
+270.699296,19,"Node #19 [ 270.69930] 19.[10,254] Sending NETWORK_REQUEST to [1,254] through 11.[8,2] (selected by Parent)"
+270.699329,11,"Node #11 [ 270.69933] 11.[8,2] Sending NETWORK_REQUEST to [1,254] through 4.[8,254] (selected by Parent)"
+270.699358,11,"Node #11 [ 270.69936] 11.[8,2] Sending NETWORK_REQUEST to [1,254] through 4.[8,254] (selected by Parent)"
+270.699400,4,"Node #4  [ 270.69940] 4.[8,254] Sending NETWORK_REQUEST to [1,254] through 5.[3,1] (selected by Parent)"
+270.699429,4,"Node #4  [ 270.69943] 4.[8,254] Sending NETWORK_REQUEST to [1,254] through 5.[3,1] (selected by Parent)"
+270.699478,5,"Node #5  [ 270.69948] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+270.699507,5,"Node #5  [ 270.69951] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+270.699560,13,"Node #13 [ 270.69956] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+270.699589,13,"Node #13 [ 270.69959] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+270.699632,14,"Node #14 [ 270.69963] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+270.699661,14,"Node #14 [ 270.69966] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+270.699721,15,"Node #15 [ 270.69972] Sent network reply to [10,1]"
+270.699721,15,"Node #15 [ 270.69972] 15.[1,254] Sending NETWORK_REPLY to [10,1] through 14.[1,2] (selected by Networking Table)"
+270.699750,15,"Node #15 [ 270.69975] Sent network reply to [10,2]"
+270.699750,15,"Node #15 [ 270.69975] 15.[1,254] Sending NETWORK_REPLY to [10,2] through 14.[1,2] (selected by Networking Table)"
+270.699810,14,"Node #14 [ 270.69981] 14.[1,2] Sending NETWORK_REPLY to [10,1] through 13.[3,254] (selected by Networking Table)"
+270.699839,14,"Node #14 [ 270.69984] 14.[1,2] Sending NETWORK_REPLY to [10,2] through 13.[3,254] (selected by Networking Table)"
+270.699882,13,"Node #13 [ 270.69988] 13.[3,254] Sending NETWORK_REPLY to [10,1] through 5.[3,1] (selected by Networking Table)"
+270.699911,13,"Node #13 [ 270.69991] 13.[3,254] Sending NETWORK_REPLY to [10,2] through 5.[3,1] (selected by Networking Table)"
+270.699964,5,"Node #5  [ 270.69996] 5.[3,1] Sending NETWORK_REPLY to [10,1] through 4.[8,254] (selected by Networking Table)"
+270.699993,5,"Node #5  [ 270.69999] 5.[3,1] Sending NETWORK_REPLY to [10,2] through 4.[8,254] (selected by Networking Table)"
+270.700042,4,"Node #4  [ 270.70004] 4.[8,254] Sending NETWORK_REPLY to [10,1] through 11.[8,2] (selected by Networking Table)"
+270.700071,4,"Node #4  [ 270.70007] 4.[8,254] Sending NETWORK_REPLY to [10,2] through 11.[8,2] (selected by Networking Table)"
+270.700113,11,"Node #11 [ 270.70011] 11.[8,2] Sending NETWORK_REPLY to [10,1] through 10.[10,1] (selected by Neighbors Table)"
+270.700142,11,"Node #11 [ 270.70014] 11.[8,2] Sending NETWORK_REPLY to [10,2] through 19.[10,254] (selected by Neighbor Network)"
+270.700176,10,Node #10 [ 270.70018] Sent Join Reply to: 9
+270.700204,19,"Node #19 [ 270.70020] 19.[10,254] Sending NETWORK_REPLY to [10,2] through 18.[10,2] (selected by Neighbors Table)"
+270.700251,9,"Node #9  [ 270.70025] Heard Join Reply from: [10,1]"
+270.700251,9,"Node #9  [ 270.70025] Parent Link Deletion Failed: (10, 9, 'parent')"
+270.700251,9,"Node #9  [ 270.70025] 9.[14,254] Sending JOIN_ACK to [10,1] through 10.[10,1] (selected by Neighbors Table)"
+270.700280,18,Node #18 [ 270.70028] Sent Join Reply to: 17
+270.700322,8,Node #8  [ 270.70032] Became unregistered with no parent.
+270.700326,10,"Node #10 [ 270.70033] 10.[10,1] Sending NETWORK_UPDATE to [1,254] through 19.[10,254] (selected by Parent)"
+270.700350,1,Node #1  [ 270.70035] Became unregistered with no parent.
+270.700364,17,"Node #17 [ 270.70036] Heard Join Reply from: [10,2]"
+270.700364,17,"Node #17 [ 270.70036] Parent Link Deletion Failed: (18, 17, 'parent')"
+270.700364,17,"Node #17 [ 270.70036] 17.[15,254] Sending JOIN_ACK to [10,2] through 18.[10,2] (selected by Neighbors Table)"
+270.700405,19,"Node #19 [ 270.70041] 19.[10,254] Sending NETWORK_UPDATE to [1,254] through 11.[8,2] (selected by Parent)"
+270.700429,16,Node #16 [ 270.70043] Became unregistered with no parent.
+270.700448,18,"Node #18 [ 270.70045] 18.[10,2] Sending NETWORK_UPDATE to [1,254] through 19.[10,254] (selected by Parent)"
+270.700467,11,"Node #11 [ 270.70047] 11.[8,2] Sending NETWORK_UPDATE to [1,254] through 4.[8,254] (selected by Parent)"
+270.700524,19,"Node #19 [ 270.70052] 19.[10,254] Sending NETWORK_UPDATE to [1,254] through 11.[8,2] (selected by Parent)"
+270.700539,4,"Node #4  [ 270.70054] 4.[8,254] Sending NETWORK_UPDATE to [1,254] through 5.[3,1] (selected by Parent)"
+270.700586,11,"Node #11 [ 270.70059] 11.[8,2] Sending NETWORK_UPDATE to [1,254] through 4.[8,254] (selected by Parent)"
+270.700617,5,"Node #5  [ 270.70062] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+270.700657,4,"Node #4  [ 270.70066] 4.[8,254] Sending NETWORK_UPDATE to [1,254] through 5.[3,1] (selected by Parent)"
+270.700698,13,"Node #13 [ 270.70070] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+270.700735,5,"Node #5  [ 270.70073] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+270.700770,14,"Node #14 [ 270.70077] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+270.700817,13,"Node #13 [ 270.70082] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+270.700889,14,"Node #14 [ 270.70089] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+274.511369,25,"Node #25 [ 274.51137] Sent Join Request to [13,254]"
+274.511417,33,Node #33 [ 274.51142] Sent Join Reply to: 25
+274.511464,25,"Node #25 [ 274.51146] Heard Join Reply from: [13,254]"
+274.511464,25,"Node #25 [ 274.51146] Parent Link Deletion Failed: (33, 25, 'parent')"
+274.511464,25,"Node #25 [ 274.51146] 25.[13,1] Sending JOIN_ACK to [13,254] through 33.[13,254] (selected by Neighbors Table)"
+280.108787,40,"Node #40 [ 280.10879] Sent Join Request to [12,2]"
+280.108795,48,"Node #48 [ 280.10880] Sent Join Request to [12,2]"
+280.108852,41,Node #41 [ 280.10885] Heard Join Request from 40
+280.108852,41,"Node #41 [ 280.10885] 41.[12,2] Sending NETWORK_REQUEST to [1,254] through 42.[12,254] (selected by Parent)"
+280.108941,42,"Node #42 [ 280.10894] 42.[12,254] Sending NETWORK_REQUEST to [1,254] through 43.[7,2] (selected by Parent)"
+280.109035,43,"Node #43 [ 280.10903] 43.[7,2] Sending NETWORK_REQUEST to [1,254] through 44.[7,254] (selected by Parent)"
+280.109098,44,"Node #44 [ 280.10910] 44.[7,254] Sending NETWORK_REQUEST to [1,254] through 36.[5,1] (selected by Parent)"
+280.109194,36,"Node #36 [ 280.10919] 36.[5,1] Sending NETWORK_REQUEST to [1,254] through 37.[5,254] (selected by Parent)"
+280.109248,37,"Node #37 [ 280.10925] 37.[5,254] Sending NETWORK_REQUEST to [1,254] through 30.[2,3] (selected by Parent)"
+280.109335,30,"Node #30 [ 280.10933] 30.[2,3] Sending NETWORK_REQUEST to [1,254] through 22.[2,254] (selected by Parent)"
+280.109401,22,"Node #22 [ 280.10940] 22.[2,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+280.109468,14,"Node #14 [ 280.10947] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+280.109557,15,"Node #15 [ 280.10956] Sent network reply to [12,2]"
+280.109557,15,"Node #15 [ 280.10956] 15.[1,254] Sending NETWORK_REPLY to [12,2] through 14.[1,2] (selected by Networking Table)"
+280.109646,14,"Node #14 [ 280.10965] 14.[1,2] Sending NETWORK_REPLY to [12,2] through 22.[2,254] (selected by Networking Table)"
+280.109713,22,"Node #22 [ 280.10971] 22.[2,254] Sending NETWORK_REPLY to [12,2] through 30.[2,3] (selected by Networking Table)"
+280.109779,30,"Node #30 [ 280.10978] 30.[2,3] Sending NETWORK_REPLY to [12,2] through 37.[5,254] (selected by Networking Table)"
+280.109865,37,"Node #37 [ 280.10987] 37.[5,254] Sending NETWORK_REPLY to [12,2] through 36.[5,1] (selected by Networking Table)"
+280.109919,36,"Node #36 [ 280.10992] 36.[5,1] Sending NETWORK_REPLY to [12,2] through 44.[7,254] (selected by Networking Table)"
+280.110015,44,"Node #44 [ 280.11002] 44.[7,254] Sending NETWORK_REPLY to [12,2] through 43.[7,2] (selected by Networking Table)"
+280.110079,43,"Node #43 [ 280.11008] 43.[7,2] Sending NETWORK_REPLY to [12,2] through 42.[12,254] (selected by Neighbor Network)"
+280.110173,42,"Node #42 [ 280.11017] 42.[12,254] Sending NETWORK_REPLY to [12,2] through 41.[12,2] (selected by Neighbors Table)"
+280.110261,41,Node #41 [ 280.11026] Sent Join Reply to: 40
+280.110327,40,"Node #40 [ 280.11033] Heard Join Reply from: [12,2]"
+280.110327,40,"Node #40 [ 280.11033] Parent Link Deletion Failed: (41, 40, 'parent')"
+280.110327,40,"Node #40 [ 280.11033] 40.[16,254] Sending JOIN_ACK to [12,2] through 41.[12,2] (selected by Neighbors Table)"
+280.110393,41,"Node #41 [ 280.11039] 41.[12,2] Sending NETWORK_UPDATE to [1,254] through 42.[12,254] (selected by Parent)"
+280.110481,42,"Node #42 [ 280.11048] 42.[12,254] Sending NETWORK_UPDATE to [1,254] through 43.[7,2] (selected by Parent)"
+280.110575,43,"Node #43 [ 280.11058] 43.[7,2] Sending NETWORK_UPDATE to [1,254] through 44.[7,254] (selected by Parent)"
+280.110639,44,"Node #44 [ 280.11064] 44.[7,254] Sending NETWORK_UPDATE to [1,254] through 36.[5,1] (selected by Parent)"
+280.110735,36,"Node #36 [ 280.11073] 36.[5,1] Sending NETWORK_UPDATE to [1,254] through 37.[5,254] (selected by Parent)"
+280.110789,37,"Node #37 [ 280.11079] 37.[5,254] Sending NETWORK_UPDATE to [1,254] through 30.[2,3] (selected by Parent)"
+280.110876,30,"Node #30 [ 280.11088] 30.[2,3] Sending NETWORK_UPDATE to [1,254] through 22.[2,254] (selected by Parent)"
+280.110941,22,"Node #22 [ 280.11094] 22.[2,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+280.111008,14,"Node #14 [ 280.11101] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+285.108795,48,"Node #48 [ 285.10880] Sent Join Request to [16,254]"
+285.108833,40,Node #40 [ 285.10883] Sent Join Reply to: 48
+285.108871,48,"Node #48 [ 285.10887] Heard Join Reply from: [16,254]"
+285.108871,48,"Node #48 [ 285.10887] Parent Link Deletion Failed: (40, 48, 'parent')"
+285.108871,48,"Node #48 [ 285.10887] 48.[16,1] Sending JOIN_ACK to [16,254] through 40.[16,254] (selected by Neighbors Table)"
+289.512586,32,"Node #32 [ 289.51259] Sent Join Request to [13,254]"
+289.512596,24,"Node #24 [ 289.51260] Sent Join Request to [13,254]"
+289.512667,33,Node #33 [ 289.51267] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+289.512667,33,Node #33 [ 289.51267] Sent Join Reply to: 32
+289.512686,33,Node #33 [ 289.51269] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+289.512686,33,Node #33 [ 289.51269] Sent Join Reply to: 24
+289.512747,32,"Node #32 [ 289.51275] Heard Join Reply from: [13,254]"
+289.512747,32,"Node #32 [ 289.51275] Parent Link Deletion Failed: (33, 32, 'parent')"
+289.512747,32,"Node #32 [ 289.51275] 32.[13,2] Sending JOIN_ACK to [13,254] through 33.[13,254] (selected by Neighbors Table)"
+289.512777,24,"Node #24 [ 289.51278] Heard Join Reply from: [13,254]"
+289.512777,24,"Node #24 [ 289.51278] Parent Link Deletion Failed: (33, 24, 'parent')"
+289.512777,24,"Node #24 [ 289.51278] 24.[13,3] Sending JOIN_ACK to [13,254] through 33.[13,254] (selected by Neighbors Table)"
+290.700322,8,"Node #8  [ 290.70032] Sent Join Request to [14,254]"
+290.700350,1,"Node #1  [ 290.70035] Sent Join Request to [14,254]"
+290.700394,9,Node #9  [ 290.70039] Sent Join Reply to: 8
+290.700429,16,"Node #16 [ 290.70043] Sent Join Request to [15,254]"
+290.700449,9,Node #9  [ 290.70045] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+290.700449,9,Node #9  [ 290.70045] Sent Join Reply to: 1
+290.700465,8,"Node #8  [ 290.70047] Heard Join Reply from: [14,254]"
+290.700465,8,"Node #8  [ 290.70047] Parent Link Deletion Failed: (9, 8, 'parent')"
+290.700465,8,"Node #8  [ 290.70047] 8.[14,1] Sending JOIN_ACK to [14,254] through 9.[14,254] (selected by Neighbors Table)"
+290.700494,17,Node #17 [ 290.70049] Sent Join Reply to: 16
+290.700548,1,"Node #1  [ 290.70055] Heard Join Reply from: [14,254]"
+290.700548,1,"Node #1  [ 290.70055] Parent Link Deletion Failed: (9, 1, 'parent')"
+290.700548,1,"Node #1  [ 290.70055] 1.[14,2] Sending JOIN_ACK to [14,254] through 9.[14,254] (selected by Neighbors Table)"
+290.700560,16,"Node #16 [ 290.70056] Heard Join Reply from: [15,254]"
+290.700560,16,"Node #16 [ 290.70056] Parent Link Deletion Failed: (17, 16, 'parent')"
+290.700560,16,"Node #16 [ 290.70056] 16.[15,1] Sending JOIN_ACK to [15,254] through 17.[15,254] (selected by Neighbors Table)"
+291.406732,0,Node #0  [ 291.40673] Became unregistered with no parent.
+311.406732,0,"Node #0  [ 311.40673] Sent Join Request to [14,1]"
+311.406816,8,Node #8  [ 311.40682] Heard Join Request from 0
+311.406816,8,"Node #8  [ 311.40682] 8.[14,1] Sending NETWORK_REQUEST to [1,254] through 9.[14,254] (selected by Parent)"
+311.406887,9,"Node #9  [ 311.40689] 9.[14,254] Sending NETWORK_REQUEST to [1,254] through 10.[10,1] (selected by Parent)"
+311.406962,10,"Node #10 [ 311.40696] 10.[10,1] Sending NETWORK_REQUEST to [1,254] through 19.[10,254] (selected by Parent)"
+311.407042,19,"Node #19 [ 311.40704] 19.[10,254] Sending NETWORK_REQUEST to [1,254] through 11.[8,2] (selected by Parent)"
+311.407104,11,"Node #11 [ 311.40710] 11.[8,2] Sending NETWORK_REQUEST to [1,254] through 4.[8,254] (selected by Parent)"
+311.407175,4,"Node #4  [ 311.40718] 4.[8,254] Sending NETWORK_REQUEST to [1,254] through 5.[3,1] (selected by Parent)"
+311.407253,5,"Node #5  [ 311.40725] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+311.407335,13,"Node #13 [ 311.40733] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+311.407407,14,"Node #14 [ 311.40741] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+311.407496,15,"Node #15 [ 311.40750] Sent network reply to [14,1]"
+311.407496,15,"Node #15 [ 311.40750] 15.[1,254] Sending NETWORK_REPLY to [14,1] through 14.[1,2] (selected by Networking Table)"
+311.407585,14,"Node #14 [ 311.40758] 14.[1,2] Sending NETWORK_REPLY to [14,1] through 13.[3,254] (selected by Networking Table)"
+311.407657,13,"Node #13 [ 311.40766] 13.[3,254] Sending NETWORK_REPLY to [14,1] through 5.[3,1] (selected by Networking Table)"
+311.407739,5,"Node #5  [ 311.40774] 5.[3,1] Sending NETWORK_REPLY to [14,1] through 4.[8,254] (selected by Networking Table)"
+311.407817,4,"Node #4  [ 311.40782] 4.[8,254] Sending NETWORK_REPLY to [14,1] through 11.[8,2] (selected by Networking Table)"
+311.407888,11,"Node #11 [ 311.40789] 11.[8,2] Sending NETWORK_REPLY to [14,1] through 19.[10,254] (selected by Networking Table)"
+311.407950,19,"Node #19 [ 311.40795] 19.[10,254] Sending NETWORK_REPLY to [14,1] through 10.[10,1] (selected by Networking Table)"
+311.408029,10,"Node #10 [ 311.40803] 10.[10,1] Sending NETWORK_REPLY to [14,1] through 9.[14,254] (selected by Neighbor Network)"
+311.408104,9,"Node #9  [ 311.40810] 9.[14,254] Sending NETWORK_REPLY to [14,1] through 8.[14,1] (selected by Neighbors Table)"
+311.408176,8,Node #8  [ 311.40818] Sent Join Reply to: 0
+311.408260,0,"Node #0  [ 311.40826] Heard Join Reply from: [14,1]"
+311.408260,0,"Node #0  [ 311.40826] Parent Link Deletion Failed: (8, 0, 'parent')"
+311.408260,0,"Node #0  [ 311.40826] 0.[17,254] Sending JOIN_ACK to [14,1] through 8.[14,1] (selected by Neighbors Table)"
+311.408344,8,"Node #8  [ 311.40834] 8.[14,1] Sending NETWORK_UPDATE to [1,254] through 9.[14,254] (selected by Parent)"
+311.408416,9,"Node #9  [ 311.40842] 9.[14,254] Sending NETWORK_UPDATE to [1,254] through 10.[10,1] (selected by Parent)"
+311.408491,10,"Node #10 [ 311.40849] 10.[10,1] Sending NETWORK_UPDATE to [1,254] through 19.[10,254] (selected by Parent)"
+311.408570,19,"Node #19 [ 311.40857] 19.[10,254] Sending NETWORK_UPDATE to [1,254] through 11.[8,2] (selected by Parent)"
+311.408632,11,"Node #11 [ 311.40863] 11.[8,2] Sending NETWORK_UPDATE to [1,254] through 4.[8,254] (selected by Parent)"
+311.408704,4,"Node #4  [ 311.40870] 4.[8,254] Sending NETWORK_UPDATE to [1,254] through 5.[3,1] (selected by Parent)"
+311.408782,5,"Node #5  [ 311.40878] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+311.408863,13,"Node #13 [ 311.40886] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+311.408935,14,"Node #14 [ 311.40894] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+370.700251,9,Node #9  [ 370.70025] I became UNREGISTERED
+370.700322,8,Node #8  [ 370.70032] Parent is leaving!
+370.700322,8,Node #8  [ 370.70032] I became UNREGISTERED
+370.700326,10,"Node #10 [ 370.70033] ADDRESS RENEW: [14,254] -> [-1,-1]"
+370.700328,17,"Node #17 [ 370.70033] ADDRESS RENEW: [14,254] -> [-1,-1]"
+370.700341,18,"Node #18 [ 370.70034] ADDRESS RENEW: [14,254] -> [-1,-1]"
+370.700350,1,Node #1  [ 370.70035] Parent is leaving!
+370.700350,1,Node #1  [ 370.70035] I became UNREGISTERED
+370.700406,16,"Node #16 [ 370.70041] ADDRESS RENEW: [14,1] -> [-1,-1]"
+370.700407,0,Node #0  [ 370.70041] Parent is leaving!
+370.700407,0,Node #0  [ 370.70041] I became UNREGISTERED
+390.700251,9,"Node #9  [ 390.70025] Sent Join Request to [15,254]"
+390.700322,8,"Node #8  [ 390.70032] Sent Join Request to [15,1]"
+390.700328,17,Node #17 [ 390.70033] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+390.700328,17,Node #17 [ 390.70033] Sent Join Reply to: 9
+390.700350,1,Node #1  [ 390.70035] No Available Addresses
+390.700405,9,"Node #9  [ 390.70040] Heard Join Reply from: [15,254]"
+390.700405,9,"Node #9  [ 390.70040] Parent Link Deletion Failed: (17, 9, 'parent')"
+390.700405,9,Node #9  [ 390.70040] TIMER_HEART_BEAT Timer already exists. Preventing Duplicate...
+390.700405,9,"Node #9  [ 390.70040] 9.[15,2] Sending JOIN_ACK to [15,254] through 17.[15,254] (selected by Neighbors Table)"
+390.700406,16,Node #16 [ 390.70041] Heard Join Request from 8
+390.700406,16,"Node #16 [ 390.70041] 16.[15,1] Sending NETWORK_REQUEST to [1,254] through 17.[15,254] (selected by Parent)"
+390.700471,17,"Node #17 [ 390.70047] 17.[15,254] Sending NETWORK_REQUEST to [1,254] through 18.[10,2] (selected by Parent)"
+390.700555,18,"Node #18 [ 390.70055] 18.[10,2] Sending NETWORK_REQUEST to [1,254] through 19.[10,254] (selected by Parent)"
+390.700630,19,"Node #19 [ 390.70063] 19.[10,254] Sending NETWORK_REQUEST to [1,254] through 11.[8,2] (selected by Parent)"
+390.700693,11,"Node #11 [ 390.70069] 11.[8,2] Sending NETWORK_REQUEST to [1,254] through 4.[8,254] (selected by Parent)"
+390.700764,4,"Node #4  [ 390.70076] 4.[8,254] Sending NETWORK_REQUEST to [1,254] through 5.[3,1] (selected by Parent)"
+390.700842,5,"Node #5  [ 390.70084] 5.[3,1] Sending NETWORK_REQUEST to [1,254] through 13.[3,254] (selected by Parent)"
+390.700924,13,"Node #13 [ 390.70092] 13.[3,254] Sending NETWORK_REQUEST to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+390.700996,14,"Node #14 [ 390.70100] 14.[1,2] Sending NETWORK_REQUEST to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+390.701085,15,"Node #15 [ 390.70108] Sent network reply to [15,1]"
+390.701085,15,"Node #15 [ 390.70108] 15.[1,254] Sending NETWORK_REPLY to [15,1] through 14.[1,2] (selected by Networking Table)"
+390.701174,14,"Node #14 [ 390.70117] 14.[1,2] Sending NETWORK_REPLY to [15,1] through 13.[3,254] (selected by Networking Table)"
+390.701246,13,"Node #13 [ 390.70125] 13.[3,254] Sending NETWORK_REPLY to [15,1] through 5.[3,1] (selected by Networking Table)"
+390.701327,5,"Node #5  [ 390.70133] 5.[3,1] Sending NETWORK_REPLY to [15,1] through 4.[8,254] (selected by Networking Table)"
+390.701405,4,"Node #4  [ 390.70141] 4.[8,254] Sending NETWORK_REPLY to [15,1] through 11.[8,2] (selected by Networking Table)"
+390.701477,11,"Node #11 [ 390.70148] 11.[8,2] Sending NETWORK_REPLY to [15,1] through 19.[10,254] (selected by Networking Table)"
+390.701539,19,"Node #19 [ 390.70154] 19.[10,254] Sending NETWORK_REPLY to [15,1] through 18.[10,2] (selected by Networking Table)"
+390.701614,18,"Node #18 [ 390.70161] 18.[10,2] Sending NETWORK_REPLY to [15,1] through 17.[15,254] (selected by Neighbor Network)"
+390.701698,17,"Node #17 [ 390.70170] 17.[15,254] Sending NETWORK_REPLY to [15,1] through 16.[15,1] (selected by Neighbors Table)"
+390.701764,16,Node #16 [ 390.70176] Sent Join Reply to: 8
+390.701847,8,"Node #8  [ 390.70185] Heard Join Reply from: [15,1]"
+390.701847,8,"Node #8  [ 390.70185] Parent Link Deletion Failed: (16, 8, 'parent')"
+390.701847,8,"Node #8  [ 390.70185] 8.[18,254] Sending JOIN_ACK to [15,1] through 16.[15,1] (selected by Neighbors Table)"
+390.701930,16,"Node #16 [ 390.70193] 16.[15,1] Sending NETWORK_UPDATE to [1,254] through 17.[15,254] (selected by Parent)"
+390.701996,17,"Node #17 [ 390.70200] 17.[15,254] Sending NETWORK_UPDATE to [1,254] through 18.[10,2] (selected by Parent)"
+390.702080,18,"Node #18 [ 390.70208] 18.[10,2] Sending NETWORK_UPDATE to [1,254] through 19.[10,254] (selected by Parent)"
+390.702155,19,"Node #19 [ 390.70216] 19.[10,254] Sending NETWORK_UPDATE to [1,254] through 11.[8,2] (selected by Parent)"
+390.702217,11,"Node #11 [ 390.70222] 11.[8,2] Sending NETWORK_UPDATE to [1,254] through 4.[8,254] (selected by Parent)"
+390.702289,4,"Node #4  [ 390.70229] 4.[8,254] Sending NETWORK_UPDATE to [1,254] through 5.[3,1] (selected by Parent)"
+390.702367,5,"Node #5  [ 390.70237] 5.[3,1] Sending NETWORK_UPDATE to [1,254] through 13.[3,254] (selected by Parent)"
+390.702449,13,"Node #13 [ 390.70245] 13.[3,254] Sending NETWORK_UPDATE to [1,254] through 14.[1,2] (selected by Neighbor Network)"
+390.702520,14,"Node #14 [ 390.70252] 14.[1,2] Sending NETWORK_UPDATE to [1,254] through 15.[1,254] (selected by Neighbors Table)"
+410.700350,1,"Node #1  [ 410.70035] Sent Join Request to [18,254]"
+410.700407,0,"Node #0  [ 410.70041] Sent Join Request to [18,254]"
+410.700440,8,Node #8  [ 410.70044] Sent Join Reply to: 1
+410.700491,8,Node #8  [ 410.70049] JOIN_ACK_TIMEOUT Timer already exists. Preventing Duplicate...
+410.700491,8,Node #8  [ 410.70049] Sent Join Reply to: 0
+410.700530,1,"Node #1  [ 410.70053] Heard Join Reply from: [18,254]"
+410.700530,1,"Node #1  [ 410.70053] Parent Link Deletion Failed: (8, 1, 'parent')"
+410.700530,1,"Node #1  [ 410.70053] 1.[18,1] Sending JOIN_ACK to [18,254] through 8.[18,254] (selected by Neighbors Table)"
+410.700575,0,"Node #0  [ 410.70058] Heard Join Reply from: [18,254]"
+410.700575,0,"Node #0  [ 410.70058] Parent Link Deletion Failed: (8, 0, 'parent')"
+410.700575,0,"Node #0  [ 410.70058] 0.[18,2] Sending JOIN_ACK to [18,254] through 8.[18,254] (selected by Neighbors Table)"
