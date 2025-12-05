@@ -1014,6 +1014,7 @@ class SensorNode(wsn.Node):
                 elif len(self.members_table) == 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:
                     self.become_unregistered()
                 elif config.PROMOTION_ALLOWED and len(self.members_table) == 1 and self.neighbors_table[self.members_table[0]].role == Roles.REGISTERED:
+                # elif config.PROMOTION_ALLOWED:
                     self.send_promote_request(self.neighbors_table[self.members_table[0]].addr)
                 
                 elif config.ALLOW_ROUTERS and self.role == Roles.CLUSTER_HEAD and len(self.members_table) > 0 and self.neighbors_table[self.parent_gui].role != Roles.ROUTER:

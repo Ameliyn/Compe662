@@ -41,6 +41,7 @@ PACKET_LOG_MASK = ["ALL"]
 
 # - A multihop neighbor discovery protocol (two hops using published neighbor tables)
 NEIGHBOR_PUBLISH_INTERVAL = 500
+MULTIHOP_ALLOWED = False
 
 # - Reports for the average time to join the network and average packet delay (from source to destination)
 GENERATE_AVG_PACKET_DELAY = True
