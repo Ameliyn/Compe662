@@ -55,7 +55,7 @@ class Node(wsnlab.Node):
         super().send(pck)
         
         # Uncomment for Radio Circles 
-        if config.SHOW_TX_CIRCLES and ("ALL" in config.TX_CIRCLE_MASK or pck['type'] in config.TX_CIRCLE_MASK):
+        if 'NONE' not in config.TX_CIRCLE_MASK and ("ALL" in config.TX_CIRCLE_MASK or pck['type'] in config.TX_CIRCLE_MASK):
             obj_id = self.scene.circle(
                 self.pos[0], self.pos[1],
                 self.tx_range,

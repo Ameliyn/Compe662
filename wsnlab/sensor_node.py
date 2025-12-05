@@ -169,15 +169,17 @@ class SensorNode(wsn.Node):
         if new_role == Roles.UNDISCOVERED:
             if recolor:
                 self.scene.nodecolor(self.id, 1, 1, 1)
-            self.erase_parent()
-            self.erase_tx_range()
+            if getattr(self, 'parent_gui', None) is not None:
+                self.erase_parent()
+                self.erase_tx_range()
         elif new_role == Roles.UNREGISTERED:
             if recolor:
                 self.scene.nodecolor(self.id, 1, 1, 0)
             if self.parent_gui == None:
                 self.log('Became unregistered with no parent.')
-            self.erase_parent()
-            self.erase_tx_range()
+            if getattr(self, 'parent_gui', None) is not None:
+                self.erase_parent()
+                self.erase_tx_range()
         elif new_role == Roles.REGISTERED:
             self.erase_parent()
             self.draw_parent()
@@ -211,7 +213,7 @@ class SensorNode(wsn.Node):
         
         # Send address renew if necessary
         if old_addr is not None and self.addr != old_addr:
-                self.send_address_renew(old_addr)
+            self.send_address_renew(old_addr)
 
     def become_unregistered(self):
         """Reset many variables and become unregistered."""
@@ -232,8 +234,7 @@ class SensorNode(wsn.Node):
         # Reset Variables
         self.set_role(Roles.UNREGISTERED)
         self.addr: wsn.Addr
-        self.__delattr__('parent_gui')
-        self.parent_gui: int
+        self.parent_gui: int = None
         self.root_addr: wsn.Addr
         self.c_probe = 0
         self.th_probe = 10
@@ -326,12 +327,12 @@ class SensorNode(wsn.Node):
                     min_hop_gui = gui
             if min_hop_gui == 99999:
                 self.log('No Available Addresses')
-                self.become_unregistered()
-                # self.set_timer('TIMER_ARRIVAL', self.arrival)
+                self.init()
+                self.set_timer('TIMER_ARRIVAL', self.arrival)
                 return
         selected_addr = self.neighbors_table[min_hop_gui].addr
         self.candidate_parents_table.remove(min_hop_gui)
-        self.log(f'Sent Join Request to {selected_addr}')
+        self.log(f'Sent Join Request to {min_hop_gui}.{selected_addr}')
         self.send_join_request(selected_addr)
         self.set_timer('TIMER_JOIN_REQUEST', 5)
 
@@ -688,23 +689,24 @@ class SensorNode(wsn.Node):
         """
         try:
             if config.USE_BATTERY_POWER:
-                if self.charge < 0 and self.role != Roles.ROOT and 'CHARGE_TIMER' not in self.active_timer_list and self.addr != wsn.Addr(-1,-1):
+                if self.charge < 0 and self.role not in [Roles.ROOT, Roles.UNDISCOVERED] and 'CHARGE_TIMER' not in self.active_timer_list and self.addr != wsn.Addr(-1,-1):
                     self.kill_all_timers()
                     old_addr = self.addr
                     self.addr = wsn.Addr(-1,-1)
-                    self.send_address_renew(old_addr=old_addr)
+                    self.set_role(Roles.UNDISCOVERED, old_addr=old_addr)
                     self.set_timer('CHARGE_TIMER', config.NODE_CHARGE_TIME)
                     self.log('I ran out of power.')
                     self.sleep()
                     return
-                else:
+                elif self.role != Roles.UNDISCOVERED:
                     self.charge -= config.RECEIVE_COST
             
-            elif (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
+            
+            if (pck['type'] == 'NETWORK_UPDATE' and pck['child_networks'] is not None) or pck['type'] == 'ADDRESS_RENEW':
                 self.process_packet(pck.copy())
 
             # If we are the destination, process the packet
-            if pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
+            elif pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
                 self.process_packet(pck.copy())
                 pass
             
@@ -754,6 +756,9 @@ class SensorNode(wsn.Node):
                     self.child_networks.add(pck['source'].net_addr)
                 if pck['next_hop'] == self.addr:
                    self.send_network_update()
+            elif pck['source'] == wsn.Addr(-1,-1):
+                self.log('Network deletion detected...')
+                del self.assigned_network_ids[pck['source'].net_addr]
             self.processing_packet = False
             return
     
@@ -869,6 +874,8 @@ class SensorNode(wsn.Node):
                 self.received_JR_guis.append(pck['gui'])
                 self.role = Roles.NETWORK_REQUEST_SENT
                 self.send_network_request(pck['gui'])
+                self.set_timer('NETWORK_REQUEST_TIMEOUT', config.NETWORK_REQUEST_TIMEOUT)
+
             if pck['type'] == 'NETWORK_REPLY':  # it becomes cluster head and send join reply to the candidates
                 self.kill_timer('NETWORK_REQUEST_TIMEOUT')
                 old_addr = self.addr
@@ -1029,8 +1036,7 @@ class SensorNode(wsn.Node):
             except:
                 pass
         elif name == 'NETWORK_REQUEST_TIMEOUT':
-            # raise RuntimeError("Network Request Timeout.")
-            pass
+            self.become_unregistered()
         elif name == 'TIMER_NEIGHBOR_PUBLISH':
             self.send_neighbor_table()
             self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)

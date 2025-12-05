@@ -16,8 +16,7 @@ SIM_TITLE = 'Data Collection Tree'  # title of visualization window
 SIM_VISUALIZATION = True  # visualization active
 SCALE = 1  # scale factor for visualization
 PACKET_TTL = 15
-SHOW_TX_CIRCLES = False
-TX_CIRCLE_MASK = ["HEART_BEAT"] # EIther use "ALL" or list "PACKET_TYPE" (ex. ["ALL"] or ["PROBE", "HEART_BEAT", "JOIN_ACK"])
+TX_CIRCLE_MASK = ["NONE"] # Either use "ALL", "NONE" or list "PACKET_TYPE" (ex. ["ALL"] or ["PROBE", "HEART_BEAT", "JOIN_ACK"])
 LOG_LEVEL = "INFO"
 DO_SENSOR_MESSAGES = False
 
@@ -50,7 +49,7 @@ GENERATE_AVG_JOIN_DELAY = True
 CLUSTER_SIZE = 10
 
 # - Customizable number of clusters
-CLUSTER_LIMIT = 20
+CLUSTER_LIMIT = 200
 
 # - Customizable packet loss rate
 PACKET_LOSS_RATE = 0.0
@@ -60,7 +59,7 @@ NODE_TX_RANGE = 100  # transmission range of nodes
 NODE_TX_MIN = 10
 
 # - The use of Routers and a mobile cluster head role to limit overlap between clusters (the network is optimized to have the minimum number of clusters)
-NETWORK_OPTIMIZATOIN_CHECK = True
+NETWORK_OPTIMIZATOIN_CHECK = False
 NETWORK_OPTIMIZATOIN_CHECK_INTERVAL = 100
 
 # - Automatic recovery from link failures and nodes leaving (set the "NUM_FAULTY_NODES" parameter to see nodes die randomly)
@@ -68,8 +67,8 @@ NUM_FAULTY_NODES = 0
 FAULTY_NODE_PERIOD = [1000,1500]
 
 # - An energy model that is based on CC2420 that includes nodes having a set battery amount and each transmission taking a certain amount of energy based on TX_RANGE and Message Length
-NODE_CHARGE_AMOUNT = 2000
-NODE_CHARGE_TIME = 10000
+NODE_CHARGE_AMOUNT = 20000
+NODE_CHARGE_TIME = 100000
 TX_RANGE_COST = 1 # Scalar for node TX_RANGE to set volume (simulated dBm)
 RECEIVE_COST = 18
 SEND_COST = 17
