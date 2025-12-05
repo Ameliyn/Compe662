@@ -993,10 +993,10 @@ class SensorNode(wsn.Node):
                 self.select_and_join()
 
         elif name == 'TIMER_SENSOR':
-            self.route_and_forward_package({'dest': self.root_addr, 'type': 'SENSOR', 'source': self.addr, 'sensor_value': random.uniform(10,50)})
+            self.route_and_forward_package({'dest': self.root_addr, 'type': 'SENSOR', 'source': self.addr, 'sensor_value': random.uniform(10,50), 'ttl': config.PACKET_TTL})
             timer_duration =  self.id % 20
             if timer_duration == 0: timer_duration = 1
-            # self.set_timer('TIMER_SENSOR', timer_duration)
+            self.set_timer('TIMER_SENSOR', timer_duration)
         elif name == 'TIMER_EXPORT_CH_CSV':
             # Only root should drive exports (cheap guard)
             if self.role == Roles.ROOT:

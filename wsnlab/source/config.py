@@ -39,8 +39,8 @@ PACKET_LOG_MASK = ["ALL"]
 ################################
 
 # - A multihop neighbor discovery protocol (two hops using published neighbor tables)
-NEIGHBOR_PUBLISH_INTERVAL = 500
-MULTIHOP_ALLOWED = False
+NEIGHBOR_PUBLISH_INTERVAL = 100
+MULTIHOP_ALLOWED = True
 
 # - Reports for the average time to join the network and average packet delay (from source to destination)
 GENERATE_AVG_PACKET_DELAY = True
@@ -62,7 +62,6 @@ NODE_TX_MIN = 10
 # - The use of Routers and a mobile cluster head role to limit overlap between clusters (the network is optimized to have the minimum number of clusters)
 NETWORK_OPTIMIZATOIN_CHECK = True
 NETWORK_OPTIMIZATOIN_CHECK_INTERVAL = 100
-
 
 # - Automatic recovery from link failures and nodes leaving (set the "NUM_FAULTY_NODES" parameter to see nodes die randomly)
 NUM_FAULTY_NODES = 0
