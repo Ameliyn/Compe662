@@ -59,7 +59,7 @@ NODE_TX_RANGE = 100  # transmission range of nodes
 NODE_TX_MIN = 10
 
 # - The use of Routers and a mobile cluster head role to limit overlap between clusters (the network is optimized to have the minimum number of clusters)
-NETWORK_OPTIMIZATOIN_CHECK = False
+NETWORK_OPTIMIZATOIN_CHECK = True
 NETWORK_OPTIMIZATOIN_CHECK_INTERVAL = 100
 
 # - Automatic recovery from link failures and nodes leaving (set the "NUM_FAULTY_NODES" parameter to see nodes die randomly)
