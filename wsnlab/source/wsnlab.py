@@ -13,7 +13,7 @@ import csv
 from simpy.util import start_delayed
 from source import config
 
-Roles = Enum('Roles', 'ROOT CLUSTER_HEAD ROUTER REGISTERED UNREGISTERED UNDISCOVERED')
+Roles = Enum('Roles', 'ROOT CLUSTER_HEAD ROUTER REGISTERED UNREGISTERED UNDISCOVERED NETWORK_REQUEST_SENT')
 """Enumeration of roles"""
 
 ###########################################################
@@ -132,7 +132,6 @@ class Simulator:
            timeout (Function): Timeout Function.
 
     """
-
     ############################
     def __init__(self, duration: float, timescale: float = 1, seed: float = 0):
         """Constructor for Simulator class.
