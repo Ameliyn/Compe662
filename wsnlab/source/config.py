@@ -69,7 +69,7 @@ FAULTY_NODE_PERIOD = [1000,1500]
 
 # - An energy model that is based on CC2420 that includes nodes having a set battery amount and each transmission taking a certain amount of energy based on TX_RANGE and Message Length
 NODE_CHARGE_AMOUNT = 2000
-NODE_CHARGE_TIME = 100
+NODE_CHARGE_TIME = 10000
 TX_RANGE_COST = 1 # Scalar for node TX_RANGE to set volume (simulated dBm)
 RECEIVE_COST = 18
 SEND_COST = 17

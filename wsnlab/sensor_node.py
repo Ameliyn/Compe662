@@ -137,6 +137,7 @@ class SensorNode(wsn.Node):
         self.is_faulty: float
         self.processing_packet = False
         self.node_addresses = dict()
+        self.charge = config.NODE_CHARGE_AMOUNT
 
 
     ###################
@@ -706,7 +707,7 @@ class SensorNode(wsn.Node):
                 self.process_packet(pck.copy())
 
             # If we are the destination, process the packet
-            elif pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
+            if pck['dest'] == wsn.BROADCAST_ADDR or pck['dest'] == self.addr:
                 self.process_packet(pck.copy())
                 pass
             
