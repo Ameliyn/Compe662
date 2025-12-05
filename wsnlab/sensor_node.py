@@ -616,7 +616,7 @@ class SensorNode(wsn.Node):
                 pck['routed_type'] = 'Neighbors Table'
                 break
 
-        if pck['next_hop'] == self.addr:
+        if pck['next_hop'] == self.addr and config.MULTIHOP_ALLOWED:
             for gui, node in temp_neighbor_list.items():
                 if pck['dest'] in node.neighbor_nodes:
                     next_gui = gui
