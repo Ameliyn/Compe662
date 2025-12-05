@@ -128,7 +128,8 @@ class Node(wsnlab.Node):
         if self.parent_gui is not None:
             try:
                 self.scene.dellink(self.parent_gui, self.id, "parent")
-            except:
+            except Exception as e:
+                self.log(f'Parent Link Deletion Failed: {e}')
                 pass
 
 ###########################################################

@@ -486,6 +486,9 @@ class Node:
            Returns:
 
         """
+        if name in self.active_timer_list:
+            self.log(f'{name} Timer already exists. Preventing Duplicate...')
+            return
         self.active_timer_list.append(name)
         self.delayed_exec(time - 0.00001, self.on_timer_fired_check, name, *args, **kwargs)
 
