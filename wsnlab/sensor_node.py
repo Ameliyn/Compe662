@@ -162,7 +162,7 @@ class SensorNode(wsn.Node):
                 ROLE_COUNTS.pop(old_role, None)
         ROLE_COUNTS[new_role] += 1
         self.role = new_role
-        self.sim.log_role_change(self.id, self.role)
+        self.sim.log_event(self.id, 'ROLE_CHANGE', str(self.role))
         # if 'TIMER_HEART_BEAT' not in self.active_timer_list and new_role not in ['UNDISCOVERED', 'UNREGISTERED']:
 
 
@@ -189,6 +189,7 @@ class SensorNode(wsn.Node):
                 self.is_faulty = False
             if self.is_faulty:
                 self.set_timer('FAULTY_NODE', random.randrange(config.FAULTY_NODE_PERIOD[0], config.FAULTY_NODE_PERIOD[1]))
+                self.is_faulty = config.FAULTY_NODE_REPEAT
             if recolor:
                 self.scene.nodecolor(self.id, 0, 1, 0)
         elif new_role == Roles.ROUTER:
@@ -234,7 +235,7 @@ class SensorNode(wsn.Node):
         # Reset Variables
         self.set_role(Roles.UNREGISTERED)
         self.addr: wsn.Addr
-        self.parent_gui: int = None
+        self.parent_gui: int = None #type: ignore
         self.root_addr: wsn.Addr
         self.c_probe = 0
         self.th_probe = 10
@@ -260,22 +261,12 @@ class SensorNode(wsn.Node):
             x2, y2 = pck['pos']
             pck['distance'] = math.hypot(x1 - x2, y1 - y2)
 
-        # Add source to neighbor Table
-        # if 'parent' in pck.keys() and pck['parent'] == self.id and self.parent_gui == pck['gui']:
-        #     self.log('Circular Parenting')
-        #     self.become_unregistered()
-        #     return
         if pck['gui'] in self.neighbors_table:
-            # if pck['source'] != self.neighbors_table[pck['gui']].addr:
-                # self.log('ADDRESS HAS CHANGED!')
             pck['addr'] = pck['source']
             if pck['addr'] == wsn.Addr(-1,-1):
                 del self.neighbors_table[pck['gui']]
                 return
             self.neighbors_table[pck['gui']].update(pck)
-            # if pck['type'] == 'HEART_BEAT' and pck['parent'] != self.id and pck['gui'] in self.members_table:
-                # self.log(f'Node has left my children.')
-                # self.members_table.remove(pck['gui'])
         elif pck['type'] == 'NEIGHBOR_UPDATE':
             self.log('Ignoring neighbor update for someone not in our neighbor table.')
         else:
@@ -585,9 +576,6 @@ class SensorNode(wsn.Node):
 
         temp_neighbor_list: dict[int, NodeInformation] = {}
         temp_neighbor_list = self.neighbors_table.copy()
-        # for gui, node in self.neighbors_table.items():
-        #     if gui not in avoid_nodes:
-        #         temp_neighbor_list[gui] = node
 
         try:
             assert(isinstance(pck['dest'], wsn.Addr))
@@ -598,7 +586,7 @@ class SensorNode(wsn.Node):
         # If the Time to Live is <= 0, don't route the packet
         if pck['ttl'] <= 0:
             if config.LOG_LEVEL == 'DEBUG':
-                print(f'Current: {self.id} Packet Died: {pck}')
+                self.log(f'Current: {self.id} Packet Died: {pck}')
             return
 
         next_gui = self.id
@@ -614,7 +602,7 @@ class SensorNode(wsn.Node):
                 pck['routed_type'] = 'Neighbors Table'
                 break
 
-        if pck['next_hop'] == self.addr and config.MULTIHOP_ALLOWED:
+        if pck['next_hop'] == self.addr and config.MULTIHOP_LIMIT > 0:
             for gui, node in temp_neighbor_list.items():
                 if pck['dest'] in node.neighbor_nodes:
                     next_gui = gui
@@ -645,7 +633,6 @@ class SensorNode(wsn.Node):
         # Finally if all else fails, send the packet towards ROOT
         if pck['next_hop'] == self.addr:
             if self.role == Roles.ROOT:
-                # if config.LOG_LEVEL == "DEBUG":
                 self.log(f'ROOT UNABLE TO FIND ROUTE TO: {pck["dest"]}')
                 self.log(f'Networking Table {self.networking_table}')
                 self.log(f'Neighbor Table: {self.neighbors_table}')
@@ -696,6 +683,8 @@ class SensorNode(wsn.Node):
                     self.set_role(Roles.UNDISCOVERED, old_addr=old_addr)
                     self.set_timer('CHARGE_TIMER', config.NODE_CHARGE_TIME)
                     self.log('I ran out of power.')
+                    self.sim.log_event(self.id, 'POWER_LOSS')
+
                     self.sleep()
                     return
                 elif self.role != Roles.UNDISCOVERED:
@@ -873,6 +862,7 @@ class SensorNode(wsn.Node):
                 self.log(f'Heard Join Request from {pck["gui"]}')
                 self.received_JR_guis.append(pck['gui'])
                 self.role = Roles.NETWORK_REQUEST_SENT
+                self.sim.log_event(self.id, 'ROLE_CHANGE', str(self.role))
                 self.send_network_request(pck['gui'])
                 self.set_timer('NETWORK_REQUEST_TIMEOUT', config.NETWORK_REQUEST_TIMEOUT)
 
@@ -961,6 +951,8 @@ class SensorNode(wsn.Node):
 
         """
         if name == 'TIMER_ARRIVAL':  # it wakes up and set timer probe once time arrival timer fired
+            self.sim.log_event(self.id, 'ARRIVAL')
+
             self.scene.nodecolor(self.id, 1, 0, 0)  # sets self color to red
             self.wake_up()
             self.set_timer('TIMER_PROBE', 1)
@@ -1045,6 +1037,7 @@ class SensorNode(wsn.Node):
         elif name == 'CHARGE_TIMER':
             self.charge = config.NODE_CHARGE_AMOUNT
             self.log(f'Recharged!')
+            self.sim.log_event(self.id, 'RECHARGE')
             self.init()
             self.set_timer('TIMER_ARRIVAL',1)
         else:

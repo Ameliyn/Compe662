@@ -163,11 +163,11 @@ class Simulator:
             w = csv.writer(f)
             w.writerow(["timestamp", "node_id", "send_receive", "create_time", "receive_time", "packet"])
 
-        self.node_role_change_file = 'node_role_change.csv'
-        self.role_changes = []
-        with open(self.node_role_change_file, "w", newline="") as f:
+        self.event_log_file = 'event_log.csv'
+        self.event_log = []
+        with open(self.event_log_file, "w", newline="") as f:
             w = csv.writer(f)
-            w.writerow(["timestamp", "node_id", "role"])
+            w.writerow(["timestamp", "node_id", "event", "event_details"])
 
 
 
@@ -279,6 +279,17 @@ class Simulator:
                     w.writerow([log['now'], log['id'], log['msg']])
                 self.node_logs = []
 
+    def log_event(self, id: int, event_msg: str, details: str = None):
+        if self.event_log is not None:
+            self.event_log.append({'event_msg': event_msg, 'id': id, 'now': f"{self.now:.6f}", 'details': details if details is not None else "NONE"})
+        
+        if len(self.event_log) > config.NODE_LOG_CACHE_COUNT:
+            with open(self.event_log_file, "a", newline="") as f:
+                w = csv.writer(f)
+                for log in self.event_log:
+                    w.writerow([log['now'], log['id'], log['event_msg'], log['details']])
+                self.event_log = []
+
     def log_packet(self, input_pck: dict, send_receive: str, id: int):
         pck = input_pck.copy()
         if self.packets is not None and 'ALL' in config.PACKET_LOG_MASK or pck['type'] in config.PACKET_LOG_MASK:
@@ -293,17 +304,6 @@ class Simulator:
                                 packet['pck']['receive_time'] if 'receive_time' in packet['pck'] else '-1', packet['pck']])
                 self.packets = []
 
-    def log_role_change(self, id: int, role: Roles):
-        if self.role_changes is not None:
-            self.role_changes.append({'role': f'{role.value}: {role.name}', 'id': id, 'now': f"{self.now:.6f}"})
-        
-        if len(self.role_changes) > config.PACKET_CACHE_COUNT:
-            with open(self.node_role_change_file, "a", newline="") as f:
-                w = csv.writer(f)
-                for packet in self.role_changes:
-                    w.writerow([packet['now'], packet['id'], packet['role']])
-                self.role_changes = []
-
     def write_packets_and_logs(self):
         with open(self.packet_file, "a", newline="") as f:
             w = csv.writer(f)
@@ -317,11 +317,11 @@ class Simulator:
             for log in self.node_logs:
                 w.writerow([log['now'], log['id'], log['msg']])
             self.node_logs = []
-        with open(self.node_role_change_file, "a", newline="") as f:
+        with open(self.event_log_file, "a", newline="") as f:
             w = csv.writer(f)
-            for packet in self.role_changes:
-                w.writerow([packet['now'], packet['id'], packet['role']])
-            self.role_changes = []
+            for log in self.event_log:
+                w.writerow([log['now'], log['id'], log['msg'], log['details']])
+            self.event_log = []
 
 ###########################################################
 class Node:
@@ -410,6 +410,14 @@ class Node:
         self.log_history.append(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}")
         self.sim.log_message(f"Node {'#' + str(self.id):4}[{self.now:10.5f}] {msg}", self.id)
 
+    def log_event(self, event_type: str, event_details: str):
+        """Log a specific event"""
+        event_string = f"{str(self.id):4}, {self.now:10.5f}, {event_details if event_details is not None else "BLANK"}"
+        if self.logging:
+            print(event_string)
+        self.log_history.append(event_string)
+        self.sim.log_event(event_string)
+        
     def dump_log(self):
         """Returns a string representation of node's log.
         
@@ -457,6 +465,8 @@ class Node:
             lose_packet = random.randrange(1, int(1/config.PACKET_LOSS_RATE)+1)
             if lose_packet == int(1/config.PACKET_LOSS_RATE):
                 self.log('Packet Lost due to Packet Loss Rate.')
+                self.sim.log_event(self.id, 'PACKET_LOSS', str(pck))
+                return
         if 'create_time' not in pck.keys():
             pck['create_time'] = self.now
         pck_cost = (len(bytes(f'{pck}', 'UTF-8')) * 1.67 * (self.tx_range / config.TX_RANGE_COST) )/ 1000000
@@ -472,7 +482,7 @@ class Node:
                         self.charge -= pck_cost
             else:
                 break
-        self.sim.log_packet(pck, 'send', self.id)
+        self.sim.log_event(self.id, 'PACKET_SENT', str(pck))
         
     ############################
     def set_timer(self, name: str, time: float, *args, **kwargs):

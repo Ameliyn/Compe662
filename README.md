@@ -26,8 +26,6 @@ The implementation of sensor_node.py includes:
 
 ## FINAL EXAM 
 
-
-
 Title: A hybrid self organizing network
 
 Abstract: (short)
