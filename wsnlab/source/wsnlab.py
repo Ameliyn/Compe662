@@ -412,7 +412,7 @@ class Node:
 
     def log_event(self, event_type: str, event_details: str):
         """Log a specific event"""
-        event_string = f"{str(self.id):4}, {self.now:10.5f}, {event_details if event_details is not None else "BLANK"}"
+        event_string = f"{str(self.id):4}, {self.now:10.5f}, {event_details if event_details is not None else 'BLANK'}"
         if self.logging:
             print(event_string)
         self.log_history.append(event_string)

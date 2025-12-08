@@ -602,7 +602,7 @@ class SensorNode(wsn.Node):
                 pck['routed_type'] = 'Neighbors Table'
                 break
 
-        if pck['next_hop'] == self.addr and config.MULTIHOP_LIMIT > 0:
+        if pck['next_hop'] == self.addr and config.MESH_LIMIT > 1:
             for gui, node in temp_neighbor_list.items():
                 if pck['dest'] in node.neighbor_nodes:
                     next_gui = gui
