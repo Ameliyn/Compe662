@@ -536,7 +536,9 @@ class SensorNode(wsn.Node):
 
         """
         if old_addr == wsn.Addr(-1,-1):
-            raise Exception('Bad Address Renew')
+            self.log('Bad address renew')
+            return
+            # raise Exception('Bad Address Renew')
         pck = {'dest': wsn.BROADCAST_ADDR, 'type': 'ADDRESS_RENEW', 'source': self.addr,
                    'gui': self.id, 'role': self.role, 'ttl': 1}
         pck['old_addr'] = old_addr
@@ -567,6 +569,9 @@ class SensorNode(wsn.Node):
         Returns:
 
         """
+        if self.role in [Roles.UNDISCOVERED, Roles.UNREGISTERED]:
+            self.log('Not routing packet because I am unregistered.')
+            return
         if 'hop_trace' in pck.keys():
             for (id, time) in pck['hop_trace']:
                 if id == self.addr:
@@ -582,7 +587,8 @@ class SensorNode(wsn.Node):
             assert(pck['dest'] != self.addr)
         except Exception as e:
             print(f'ERROR PACKET: {pck}')
-            raise e
+            return
+            # raise e
         # If the Time to Live is <= 0, don't route the packet
         if pck['ttl'] <= 0:
             if config.LOG_LEVEL == 'DEBUG':
@@ -657,9 +663,9 @@ class SensorNode(wsn.Node):
             pck['ttl'] -= 1
         
         if 'hop_trace' not in pck.keys():
-            pck['hop_trace'] = [(self.addr, self.now)]
+            pck['hop_trace'] = [(self.addr, self.now, pck['routed_type'])]
         else:
-            pck['hop_trace'].append((self.addr, self.now))
+            pck['hop_trace'].append((self.addr, self.now, pck['routed_type']))
         
         self.log(f'{self.id}.{self.addr} Sending {pck["type"]} to {pck["dest"]} through {next_gui}.{pck["next_hop"]}'
                  f' (selected by {pck["routed_type"]})')
@@ -939,6 +945,7 @@ class SensorNode(wsn.Node):
                 pass
 
         self.processing_packet = False
+
     ###################
     def on_timer_fired(self, name: str, *args, **kwargs):
         """Executes when a timer fired.
@@ -992,10 +999,11 @@ class SensorNode(wsn.Node):
                 self.select_and_join()
 
         elif name == 'TIMER_SENSOR':
-            self.route_and_forward_package({'dest': self.root_addr, 'type': 'SENSOR', 'source': self.addr, 'sensor_value': random.uniform(10,50), 'ttl': config.PACKET_TTL})
-            timer_duration =  self.id % 20
-            if timer_duration == 0: timer_duration = 1
-            self.set_timer('TIMER_SENSOR', timer_duration)
+            if self.role not in [Roles.UNDISCOVERED, Roles.UNREGISTERED]:
+                self.route_and_forward_package({'dest': self.root_addr, 'type': 'SENSOR', 'source': self.addr, 'sensor_value': random.uniform(10,50), 'ttl': config.PACKET_TTL})
+                timer_duration =  self.id % 20
+                if timer_duration == 0: timer_duration = 1
+                self.set_timer('TIMER_SENSOR', timer_duration)
         elif name == 'TIMER_EXPORT_CH_CSV':
             # Only root should drive exports (cheap guard)
             if self.role == Roles.ROOT:

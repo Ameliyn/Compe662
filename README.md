@@ -70,3 +70,8 @@ Discussion:
 - What is achieved
 - Weaknesses
 - Future work
+
+
+TODO:
+- Faulty nodes sleep for a configurable period
+- TX range for clusters set to limit farthest cluster member from CH
