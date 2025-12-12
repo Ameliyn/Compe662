@@ -39,7 +39,7 @@ PACKET_LOG_MASK = ["ALL"]
 
 # - A multihop neighbor discovery protocol (two hops using published neighbor tables)
 NEIGHBOR_PUBLISH_INTERVAL = 100
-MESH_LIMIT = 3
+MESH_LIMIT = 2
 
 # - Reports for the average time to join the network and average packet delay (from source to destination)
 GENERATE_AVG_PACKET_DELAY = True
@@ -63,7 +63,7 @@ NETWORK_OPTIMIZATOIN_CHECK = True
 NETWORK_OPTIMIZATOIN_CHECK_INTERVAL = 100
 
 # - Automatic recovery from link failures and nodes leaving (set the "NUM_FAULTY_NODES" parameter to see nodes die randomly)
-NUM_FAULTY_NODES = 0
+NUM_FAULTY_NODES = 5
 FAULTY_NODE_DEATH_ONSET_PERIOD = [1000,1001]
 FAULTY_NODE_REPEAT = False
 FAULTY_NODE_DEAD_PERIOD = 1000

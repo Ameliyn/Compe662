@@ -573,7 +573,7 @@ class SensorNode(wsn.Node):
             self.log('Not routing packet because I am unregistered.')
             return
         if 'hop_trace' in pck.keys():
-            for (id, time) in pck['hop_trace']:
+            for (id, time, routed_type) in pck['hop_trace']:
                 if id == self.addr:
                     self.log(f'Circular Routing Detected: {pck}')
                     return
@@ -1049,6 +1049,13 @@ class SensorNode(wsn.Node):
             self.log('Fault Node Died.')
             self.sim.log_event(self.id, 'FAULTY_DEATH')
             self.sleep()
+            self.scene.nodecolor(self.id, 1, 0, 0)
+            
+        elif name == 'FAULT_NODE_RETURN':
+            self.sim.log_event(self.id, 'FAULTY_NODE_RETURN')
+            self.init()
+            self.set_timer('TIMER_ARRIVAL',1)
+            
         elif name == 'CHARGE_TIMER':
             self.charge = config.NODE_CHARGE_AMOUNT
             self.log(f'Recharged!')
