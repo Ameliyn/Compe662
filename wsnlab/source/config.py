@@ -39,7 +39,7 @@ PACKET_LOG_MASK = ["ALL"]
 
 # - A multihop neighbor discovery protocol (two hops using published neighbor tables)
 NEIGHBOR_PUBLISH_INTERVAL = 100
-MESH_LIMIT = 2
+MESH_LIMIT = 3
 
 # - Reports for the average time to join the network and average packet delay (from source to destination)
 GENERATE_AVG_PACKET_DELAY = True
@@ -64,8 +64,9 @@ NETWORK_OPTIMIZATOIN_CHECK_INTERVAL = 100
 
 # - Automatic recovery from link failures and nodes leaving (set the "NUM_FAULTY_NODES" parameter to see nodes die randomly)
 NUM_FAULTY_NODES = 0
-FAULTY_NODE_PERIOD = [1000,1500]
+FAULTY_NODE_DEATH_ONSET_PERIOD = [1000,1001]
 FAULTY_NODE_REPEAT = False
+FAULTY_NODE_DEAD_PERIOD = 1000
 
 # - An energy model that is based on CC2420 that includes nodes having a set battery amount and each transmission taking a certain amount of energy based on TX_RANGE and Message Length
 NODE_CHARGE_AMOUNT = 20000

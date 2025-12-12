@@ -188,7 +188,7 @@ class SensorNode(wsn.Node):
             except:
                 self.is_faulty = False
             if self.is_faulty:
-                self.set_timer('FAULTY_NODE', random.randrange(config.FAULTY_NODE_PERIOD[0], config.FAULTY_NODE_PERIOD[1]))
+                self.set_timer('FAULTY_NODE', random.randrange(config.FAULTY_NODE_DEATH_ONSET_PERIOD[0], config.FAULTY_NODE_DEATH_ONSET_PERIOD[1]))
                 self.is_faulty = config.FAULTY_NODE_REPEAT
             if recolor:
                 self.scene.nodecolor(self.id, 0, 1, 0)
@@ -1041,7 +1041,14 @@ class SensorNode(wsn.Node):
             self.send_neighbor_table()
             self.set_timer('TIMER_NEIGHBOR_PUBLISH', config.NEIGHBOR_PUBLISH_INTERVAL)
         elif name == 'FAULTY_NODE':
-            self.become_unregistered()
+            self.kill_all_timers()
+            old_addr = self.addr
+            self.addr = wsn.Addr(-1,-1)
+            self.set_role(Roles.UNDISCOVERED, old_addr=old_addr)
+            self.set_timer('FAULT_NODE_RETURN', config.FAULTY_NODE_DEAD_PERIOD)
+            self.log('Fault Node Died.')
+            self.sim.log_event(self.id, 'FAULTY_DEATH')
+            self.sleep()
         elif name == 'CHARGE_TIMER':
             self.charge = config.NODE_CHARGE_AMOUNT
             self.log(f'Recharged!')
